@@ -6,14 +6,21 @@
 
         tr {
             border: 1px solid black;
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
         }
 
         .square {
             border: 1px solid black;
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
+            background-color: lightgreen;
+        }
+        .townhall{
+            border: 1px solid black;
+            width: 30px;
+            height: 30px;
+            background-color: blue;
         }
     </style>
 </head>
@@ -28,6 +35,10 @@
         for ($i = 0; $i < 30; $i++) {
             echo "<tr class='square'>";
             for ($j = 0; $j < 30; $j++) {
+                if($i == 15 && $j == 15){
+                    echo "<td class='townhall'>M</td>";
+                    continue;
+                }
                 echo "<td class='square'>A</td>";
             }
             echo "</tr>";
