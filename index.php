@@ -8,6 +8,8 @@
     </head>
 
     <body>
+        <h1>This is now a Web app hosten on Azure at: https://aos-web-testing.azurewebsites.net/</h1>
+
         <h1>Esercizio 1 - PHP - 15pt</h1>
         <br><br>
 
