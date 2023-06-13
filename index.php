@@ -23,9 +23,11 @@
             background-color: blue;
         }
     </style>
+
+    <script src="handler.js"><script>
 </head>
 
-<body>
+<body onload="setHandlers()">
     <h1>AOS Test 1</h1>
     <p>Test 1</p>
 
