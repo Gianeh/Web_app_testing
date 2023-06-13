@@ -29,7 +29,7 @@
     <h1>AOS Test 1</h1>
     <p>Test 1</p>
 
-    <table id="Village">
+    <table id="Village" style="margin:auto">
         <!--A 30 x 30 table-->
         <?php
         for ($i = 0; $i < 30; $i++) {
