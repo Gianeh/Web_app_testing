@@ -36,7 +36,7 @@
             echo "<tr class='square'>";
             for ($j = 0; $j < 30; $j++) {
                 if($i == 15 && $j == 15){
-                    echo "<td class='townhall'>M</td>";
+                    echo "<td id='townhall' class='townhall'>M</td>";
                     continue;
                 }
                 echo "<td class='square'>A</td>";
@@ -45,6 +45,13 @@
         }
         ?>
     </table>
+
+    <br />
+
+    <!-- A div + inner span element to write elements from townhall class (in php) when clicked (js) -->
+    <div id="info" style="margin:auto; backgroundcolor='lightbrown'">
+        <span id="townhall"></span>
+    </div>
 </body>
 
 </html>
