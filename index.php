@@ -24,7 +24,7 @@
         }
     </style>
 
-    <script src="handler.js"><script>
+    <script src="handler.js"></script>
 </head>
 
 <body onload="setHandlers()">
