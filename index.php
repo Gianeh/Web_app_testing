@@ -22,6 +22,18 @@
             height: 30px;
             background-color: blue;
         }
+        .rockmine{
+            border: 1px solid black;
+            width: 30px;
+            height: 30px;
+            background-color: grey;
+        }
+        .woodchopper{
+            border: 1px solid black;
+            width: 30px;
+            height: 30px;
+            background-color: brown;
+        }
     </style>
 
     <script src="handler.js"></script>
@@ -38,10 +50,16 @@
             echo "<tr class='square'>";
             for ($j = 0; $j < 30; $j++) {
                 if($i == 15 && $j == 15){
-                    echo "<td id='townhall' class='townhall'>M</td>";
+                    echo "<td id='townhall' class='townhall'>T</td>";
+                    continue;
+                }else if($i == 12 && $j == 9){
+                    echo "<td class='rockmine'>R</td>";
+                    continue;
+                }else if($i == 19 && $j == 22){
+                    echo "<td class='woodchopper'>W</td>";
                     continue;
                 }
-                echo "<td class='square'>A</td>";
+                echo "<td class='square'>e</td>";
             }
             echo "</tr>";
         }
