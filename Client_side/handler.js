@@ -50,12 +50,15 @@ function setHandlers(){
 function townhallClick(event){
     // get the info div
     let info = document.getElementById("info");
+    let background = document.getElementById("background");
+    background.style.backgroundColor = "lightblue";
     // write a temporary message
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
     let data = getData("townhall");
     // call the getData function to get the player data
     let player = getData("player");
+    player.remove("name");
     let text = Object.assign(data, player);
     // set the info div to the data
     info.innerHTML = printData(text);
