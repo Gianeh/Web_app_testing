@@ -2,7 +2,7 @@
     //log the error
     ini_set('display_errors', 1);
 
-    // the session is sterted to keep track of unique csrf tokens
+    // the session is started to keep track of unique csrf tokens
     session_start();
     // generate the token
     if (!isset($_SESSION["csrf_token"])) {
