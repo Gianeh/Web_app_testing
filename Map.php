@@ -58,7 +58,7 @@
     </style>
 </head>
 
-<body onload="setHandler()">
+<body onload="setHandlers()">
     <div class="table-container">
         <table id="WarMap" style="margin:auto">
 
