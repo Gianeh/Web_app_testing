@@ -11,6 +11,7 @@
 
     // include the class files
     include_once('structures.php');
+    include_once('player.php');
 
     // other inclusions here .........
 
@@ -42,6 +43,11 @@
             case "townhall":
                 $townhall = new Townhall(1, "townhall");
                 $data = $townhall->get_data();
+                break;
+            
+            case "player":
+                $player = new Player("player1234", 5, 0, 0, 0, 0);
+                $data = $player->get_data();
                 break;
             /*
             case "woodchopper":

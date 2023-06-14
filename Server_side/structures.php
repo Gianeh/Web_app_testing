@@ -20,11 +20,6 @@
     }
 
     class Townhall extends Structure{
-        public $population = 5;
-        public $iron = 0;
-        public $wood = 0;
-        public $rock = 0;
-        public $food = 0;
 
         function __construct($level = 0, $type = "townhall"){
             $this->level = $level;
@@ -35,11 +30,6 @@
             return array(
                 "level" => $this->level,
                 "type" => $this->type,
-                "population" => $this->population,
-                "iron" => $this->iron,
-                "wood" => $this->wood,
-                "rock" => $this->rock,
-                "food" => $this->food
             );
         }
 

@@ -54,6 +54,9 @@ function townhallClick(event){
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
     let data = getData("townhall");
+    // call the getData function to get the player data
+    let player = getData("player");
+    let text = Object.assign(data, player);
     // set the info div to the data
-    info.innerHTML = printData(data);
+    info.innerHTML = printData(text);
 }
