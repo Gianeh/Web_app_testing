@@ -1,7 +1,7 @@
 <html lang="it">
 
 <head>
-    <title>AOS Test 1 ciao come va?</title>
+    <title>AOS Test 1</title>
     <style>
 
         .info {
@@ -44,7 +44,7 @@
         }
     </style>
 
-    <script src="Client_side/handler_village.js" type="module"></script>
+    <script src="Client_side/handler_village.js"></script>
 </head>
 
 <body onload="setHandlers()">
