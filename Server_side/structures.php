@@ -34,3 +34,19 @@
         }
 
     }
+
+    class Rockmine extends Structure{
+
+        function __construct($level = 0, $type = "rockmine"){
+            $this->level = $level;
+            $this->type = $type;
+        }
+
+        public function get_data(){
+            return array(
+                "level" => $this->level,
+                "type" => $this->type,
+            );
+        }
+
+    }
