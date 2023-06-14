@@ -61,7 +61,7 @@
                     echo "<td id='townhall' class='townhall'>T</td>";
                     continue;
                 }else if($i == 12 && $j == 9){
-                    echo "<td class='rockmine'>R</td>";
+                    echo "<td id='rockmine' class='rockmine'>R</td>";
                     continue;
                 }else if($i == 19 && $j == 22){
                     echo "<td class='woodchopper'>W</td>";
