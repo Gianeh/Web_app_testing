@@ -53,6 +53,8 @@ function setHandlers(){
     t.addEventListener("click", townhallClick);
     let r = document.getElementById("rockmine");
     r.addEventListener("click", rockmineClick);
+    let w = document.getElementById("woodchopper");
+    w.addEventListener("click", woodchopperClick);
 }
 
 // a function to handle the townhall click
@@ -87,6 +89,24 @@ function rockmineClick(event){
     // call the getData function to get the player data
     let player = getData("player");
     pickRecords(player, ["rock"]);
+    let text = Object.assign(data, player);
+    // set the info div to the data
+    info.innerHTML = printData(text);
+}
+
+// a function to handle the woodchopper click
+function woodchopperClick(event){
+    // get the info div
+    let info = document.getElementById("info");
+    let background = document.getElementById("background");
+    background.style.backgroundColor = "lightbrown";
+    // write a temporary message
+    info.innerHTML = "Loading...";
+    // call the getData function to get the townhall data
+    let data = getData("woodchopper");
+    // call the getData function to get the player data
+    let player = getData("player");
+    pickRecords(player, ["wood"]);
     let text = Object.assign(data, player);
     // set the info div to the data
     info.innerHTML = printData(text);
