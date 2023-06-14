@@ -23,8 +23,8 @@
     // get the requested data from frontend (handler.js)
     $requestedData = $_POST["data"];
     // create the cache key based on the requested data and the csrf token
-    //$cache_key = $requestedData . "_data_" . $_SESSION["csrf_token"];
-    $cache_key = $requestedData;
+    $cache_key = $requestedData . "_data_" . $_SESSION["csrf_token"];
+    //$cache_key = $requestedData;
 
     // check if the requested data is already in the cache otherwise get it from the database and save it in the cache
     $data = $redis->get($cache_key);
