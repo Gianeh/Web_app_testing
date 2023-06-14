@@ -30,10 +30,11 @@ function getData(dataName) {
 }
 
 // a function that enumerates a data (dictionary) object
-function enumerateData(data){
-    let text = "";
+function printData(data){
+    let text = "<h3>"+data["type"]+"</h3><br />";
     for (let key in data){
-        text += key + ": " + data[key] + "<br>";
+        if(key == "type") continue;
+        text += key + ": " + data[key] + "<br />";
     }
     return text;
 }
@@ -54,5 +55,5 @@ function townhallClick(event){
     // call the getData function to get the townhall data
     let data = getData("townhall");
     // set the info div to the data
-    info.innerHTML = enumerateData(data);
+    info.innerHTML = printData(data);
 }
