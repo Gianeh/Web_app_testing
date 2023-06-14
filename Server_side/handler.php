@@ -32,7 +32,7 @@
         switch ($requestedData) {
 
             // ###############################################
-            // # Data should be generated and added to cahce #
+            // # Data should be generated and added to cache #
             // # Based on the Database records but now we    #
             // # Just create a new object from scratch       #
             // # every time                                  #
@@ -63,7 +63,7 @@
     }
     
     
-    // return the data to the frontend
+    //return the data to the frontend
     //header("Content-Type: application/json");
     echo json_encode($data);
 

@@ -3,13 +3,16 @@
 // a function to handle requests for a specific objects to the backend
 function getData(dataName) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "Server_side/handler.php", true);
-    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.open("POST", "Server_side/handler.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    let output = "";
     xhr.onload = function() {
+      //console.log("Server returned: " + xhr.responseText);
       if (xhr.status === 200) {
-        let data = JSON.parse(xhr.responseText);
-        // Process data for the requested data name
-        return data;
+        console.log("Server returned: " + xhr.responseText);
+        // decode the JSON response
+        output = JSON.parse(xhr.responseText);
+
       } else {
         // Handle error
         console.log("Server returned error: " + xhr.status);
@@ -20,9 +23,19 @@ function getData(dataName) {
         console.log("Error occurred: " + xhr.status);
     };
 
-    let formData = new FormData();
-    formData.append("data", dataName);
-    xhr.send(formData);
+    //let formData = new FormData();
+    //formData.append("data", dataName);
+    xhr.send("data=" + dataName);
+    return output;
+}
+
+// a function that enumerates a data (dictionary) object
+function enumerateData(data){
+    let text = "";
+    for (let key in data){
+        text += key + ": " + data[key] + "<br>";
+    }
+    return text;
 }
 
 // a function to set the handlers for the game
@@ -41,5 +54,5 @@ function townhallClick(event){
     // call the getData function to get the townhall data
     let data = getData("townhall");
     // set the info div to the data
-    info.innerHTML = data;
+    info.innerHTML = enumerateData(data);
 }
