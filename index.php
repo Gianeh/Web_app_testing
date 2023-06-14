@@ -4,6 +4,14 @@
     <title>AOS Test 1 ciao come va?</title>
     <style>
 
+        .info {
+            font-size: 20px;
+            font-weight: bold;
+            margin: auto;
+            background-color: rgb(196,164,132);
+            color: grey;
+        }
+
         tr {
             border: 1px solid black;
             width: 30px;
@@ -70,7 +78,7 @@
 
     <!-- A div + inner span element to write elements from townhall class (in php) when clicked (js) -->
     <div style="margin:auto;">
-        <span style="background-color:lightbrown" id="info"></span>
+        <span class="info" id="info"></span>
     </div>
 </body>
 
