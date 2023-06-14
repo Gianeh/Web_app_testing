@@ -17,7 +17,8 @@
 
     // instantiate a minimal cache object and save not already existing data
     $redis = new Redis();
-    $redis->connect('127.0.0.1', 6379);
+    $redis->connect('AOS-Web-Testing.redis.cache.windows.net', 6379);
+    $redis->auth('1QJ5aC5vpZESy1MYbw5oU42lnMixqxm0PAzCaHl4QH4='); // password for redis server
 
     // get the requested data from frontend (handler.js)
     $requestedData = $_POST["data"];
