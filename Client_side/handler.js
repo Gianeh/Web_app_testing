@@ -23,7 +23,7 @@ function getData(dataName) {
     //let formData = new FormData();
     //formData.append("data", dataName);
     xhr.send(dataName);
-  }
+}
 
 // a function to set the handlers for the game
 function setHandlers(){
