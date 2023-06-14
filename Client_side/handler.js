@@ -3,7 +3,7 @@
 // a function to handle requests for apecific objects to the backend
 function getData(dataName) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "handler.php", true);
+    xhr.open("POST", "../Server_side/handler.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onload = function() {
       if (xhr.status === 200) {
