@@ -40,15 +40,21 @@
             // # every time                                  #
             // ###############################################
 
-            case "townhall":
-                $townhall = new Townhall(1, "townhall");
-                $data = $townhall->get_data();
-                break;
-            
             case "player":
                 $player = new Player("player1234", 5, 0, 0, 0, 0);
                 $data = $player->get_data();
                 break;
+
+            case "townhall":
+                $townhall = new Townhall(1, "townhall");
+                $data = $townhall->get_data();
+                break;
+
+            case "rockmine":
+                $rockmine = new Rockmine(1, "rockmine");
+                $data = $rockmine->get_data();
+                break;
+            
             /*
             case "woodchopper":
                 $school = new School(1, "school");
