@@ -36,6 +36,8 @@ function setHandlers(){
 function townhallClick(event){
     // get the info div
     let info = document.getElementById("info");
+    // write a temporary message
+    info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
     let data = getData("townhall");
     // set the info div to the data
