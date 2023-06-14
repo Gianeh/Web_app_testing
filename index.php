@@ -4,8 +4,8 @@
     <title>AOS Test 1</title>
     <style>
         .container {
-            width: 300px;
-            height: 200px;
+            width:150px;
+            height: 1000px;
             border: 2px solid black;
             border-radius: 10px;
             display: flex;
@@ -73,7 +73,7 @@
     <script>
         function redirectToWarMap() {
             // redirect user tomap.php
-            window.location.href = "war_map.php";
+            window.location.href = "Map.php";
         }
     </script>
     <table id="Village" style="margin:auto">
