@@ -36,7 +36,7 @@
         }
     </style>
 
-    <script src="handler.js"></script>
+    <script src="Client_side/handler.js"></script>
 </head>
 
 <body onload="setHandlers()">
