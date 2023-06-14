@@ -77,7 +77,7 @@
     <br />
 
     <!-- A div + inner span element to write elements from townhall class (in php) when clicked (js) -->
-    <div style="margin:auto;">
+    <div style="margin:auto; background-color: rgb(196,164,132)">
         <span class="info" id="info"></span>
     </div>
 </body>
