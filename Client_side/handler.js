@@ -1,6 +1,6 @@
 // this file handles the first base functions of the game
 
-// a function to handle requests for apecific objects to the backend
+// a function to handle requests for a specific objects to the backend
 function getData(dataName) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "Server_side/handler.php", true);
