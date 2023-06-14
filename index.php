@@ -9,7 +9,7 @@
             font-weight: bold;
             margin: auto;
             background-color: rgb(196,164,132);
-            color: grey;
+            color: black;
         }
 
         tr {
