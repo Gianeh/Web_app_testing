@@ -16,8 +16,8 @@
 
 
     // instantiate a minimal cache object and save not already existing data
-    $cache = new Memcached();
-    $cache->addServer('localhost', 11211);
+    $redis = new Redis();
+    $redis->connect('127.0.0.1', 6379);
 
     // get the requested data from frontend (handler.js)
     $requestedData = $_POST["data"];
@@ -25,7 +25,7 @@
     $cache_key = $requestedData . "_data_" . $_SESSION["csrf_token"];
 
     // check if the requested data is already in the cache otherwise get it from the database and save it in the cache
-    $data = $cache->get($cache_key);
+    $data = $redis->get($cache_key);
     if($data == false){
         // data not found in cache, instantiate object and store data in cache
         switch ($requestedData) {
@@ -55,11 +55,14 @@
                 break;
         }
         // save the data in the cache - third parameter is the time to live in seconds
-        $cache->set($cache_key, $data, 3600);
+        $redis->set($cache_key, json_encode($data), 3600);
+    } else {
+        // data found in cache, decode the JSON string
+        $data = json_decode($data, true);
     }
     
     
     // return the data to the frontend
-    header("Content-Type: application/json");
+    //header("Content-Type: application/json");
     echo json_encode($data);
 
