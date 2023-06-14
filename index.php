@@ -3,7 +3,24 @@
 <head>
     <title>AOS Test 1</title>
     <style>
-
+        .container {
+            width: 300px;
+            height: 200px;
+            border: 2px solid black;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50px auto;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
         .info {
             font-size: 20px;
             font-weight: bold;
@@ -50,7 +67,15 @@
 <body onload="setHandlers()">
     <h1>AOS Test 1</h1>
     <p>Test 1</p>
-
+    <div class="container">
+        <button class="button" onclick="redirectToWarMap()">War Map</button>
+    </div>
+    <script>
+        function redirectToWarMap() {
+            // redirect user tomap.php
+            window.location.href = "war_map.php";
+        }
+    </script>
     <table id="Village" style="margin:auto">
         <!--A 30 x 30 table-->
         <?php
