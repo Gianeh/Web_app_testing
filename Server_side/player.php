@@ -9,6 +9,12 @@
         public $wood = 0;
         public $rock = 0;
         public $food = 0;
+
+
+        public $x;
+        public $y;
+
+
         function __construct($name="Undefined!", $population=5, $iron=0, $wood=0, $rock=0, $food=0){
             $this->name = $name;
             $this->population = $population;
@@ -16,6 +22,9 @@
             $this->wood = $wood;
             $this->rock = $rock;
             $this->food = $food;
+
+            $this->x = rand(1,29);
+            $this->y = rand(1,29);
         }
         
         public function get_data(){
