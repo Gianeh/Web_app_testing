@@ -55,6 +55,10 @@
                 $data = $rockmine->get_data();
                 break;
             
+            case "woodchopper":
+                $woodchopper = new Woodchopper(1, "woodchopper");
+                $data = $woodchopper->get_data();
+                break;
             /*
             case "woodchopper":
                 $school = new School(1, "school");

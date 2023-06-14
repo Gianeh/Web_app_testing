@@ -50,3 +50,20 @@
         }
 
     }
+
+    class Woodchopper extends Structure{
+
+        function __construct($level = 0, $type = "woodchopper"){
+            $this->level = $level;
+            $this->type = $type;
+        }
+
+        public function get_data(){
+            return array(
+                "level" => $this->level,
+                "type" => $this->type,
+            );
+        }
+
+    }
+    
