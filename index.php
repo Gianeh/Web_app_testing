@@ -64,7 +64,7 @@
                     echo "<td id='rockmine' class='rockmine'>R</td>";
                     continue;
                 }else if($i == 19 && $j == 22){
-                    echo "<td class='woodchopper'>W</td>";
+                    echo "<td id='woodchopper' class='woodchopper'>W</td>";
                     continue;
                 }
                 echo "<td class='square'>e</td>";
