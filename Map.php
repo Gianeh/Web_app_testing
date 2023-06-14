@@ -67,8 +67,12 @@
             $cols = 90; // cols number
 
             //getting information about the player position
-            $playerRow = $_POST['playerRow'];
-            $playerCol = $_POST['playerCol'];
+            //file get content is in charge to take http request without consider if is it post or get
+            //
+            $data = json_decode(file_get_contents("php://input"), true);
+
+            $playerRow = $data['x'];
+            $playerCol = $data['y'];
 
             
             //offsetting the map to center the player position
