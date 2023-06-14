@@ -31,7 +31,7 @@ function getData(dataName) {
 
 // a function that enumerates a data (dictionary) object
 function printData(data){
-    let text = "<h3>"+data["type"]+"</h3><br />";
+    let text = "<h3>"+data["type"]+":</h3><br />";
     for (let key in data){
         if(key == "type") continue;
         text += key + ": " + data[key] + "<br />";
