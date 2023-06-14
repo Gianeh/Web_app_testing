@@ -12,7 +12,7 @@ function GetPlayerPosition(dataName){
         console.log("Server returned: " + xhr.responseText);
         // decode the JSON response
         output = JSON.parse(xhr.responseText);
-       
+        output = pickRecords(output,["x","y"])
       } else {
         // Handle error
         console.log("Server returned error: " + xhr.status);
@@ -23,11 +23,7 @@ function GetPlayerPosition(dataName){
         console.log("Error occurred: " + xhr.status);
     };
 
-    let px = pickRecords(output, ["x"]);
-    xhr.send("playerCol=" + dataName);
-    let py = pickRecords(output, ["y"]);
-    xhr.send("playerRow=" + dataName);
-    
+    xhr.send("playerPos=",dataName)
     return output;
 }
 
