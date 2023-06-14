@@ -37,5 +37,12 @@
                 "food" => $this->food,
             );
         }
+
+        public function get_position(){
+            return array(
+                "x" => $this->x,
+                "y" => $this->y,
+            );
+        }
     }
     
