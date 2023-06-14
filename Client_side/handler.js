@@ -20,9 +20,9 @@ function getData(dataName) {
         console.log("Error occurred: " + xhr.status);
     };
 
-    //let formData = new FormData();
-    //formData.append("data", dataName);
-    xhr.send(dataName);
+    let formData = new FormData();
+    formData.append("data", dataName);
+    xhr.send(formData);
 }
 
 // a function to set the handlers for the game
