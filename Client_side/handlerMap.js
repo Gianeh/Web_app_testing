@@ -1,6 +1,13 @@
 
 // This file contains the functions that handle the map
 
+function pickRecords(data, records){
+  for (let key in data){
+      if(!(records.includes(key))) delete data[key];
+  }
+  return data;
+}
+
 function GetPlayerPosition(dataName){
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "Server_side/handler_map.php", false);
