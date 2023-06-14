@@ -8,7 +8,7 @@
             font-size: 20px;
             font-weight: bold;
             margin: auto;
-            background-color: rgb(196,164,132);
+            text-align: center;
             color: black;
         }
 
