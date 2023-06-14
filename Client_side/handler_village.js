@@ -99,7 +99,7 @@ function woodchopperClick(event){
     // get the info div
     let info = document.getElementById("info");
     let background = document.getElementById("background");
-    background.style.backgroundColor = "lightbrown";
+    background.style.backgroundColor = "brown";
     // write a temporary message
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
