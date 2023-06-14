@@ -4,8 +4,8 @@
     <title>AOS Test 1</title>
     <style>
         .container {
-            width:150px;
-            height: 1000px;
+            width:1000px;
+            height: 150px;
             border: 2px solid black;
             border-radius: 10px;
             display: flex;
