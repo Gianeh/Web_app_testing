@@ -23,8 +23,8 @@
             $this->rock = $rock;
             $this->food = $food;
 
-            $this->x = rand(1,29);
-            $this->y = rand(1,29);
+            $this->x = rand(1,89);
+            $this->y = rand(1,89);
         }
         
         public function get_data(){

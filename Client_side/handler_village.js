@@ -1,42 +1,50 @@
 // this file handles the first base functions of the game
 
+// a function that deletes records from a dictionary
+function pickRecords(data, records){
+    for (let key in data){
+        if(!(records.includes(key))) delete data[key];
+    }
+    return data;
+}
+
 // a function that enumerates a data (dictionary) object
 function printData(data){
-  let text = "<h3>"+data["type"]+":</h3><br />";
-  for (let key in data){
-      if(key == "type") continue;
-      text += key + ": " + data[key] + "<br />";
-  }
-  return text;
+    let text = "<h3>"+data["type"]+":</h3><br />";
+    for (let key in data){
+        if(key == "type") continue;
+        text += key + ": " + data[key] + "<br />";
+    }
+    return text;
 }
 
 // a function to handle requests for a specific objects to the backend
 function getData(dataName) {
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", "Server_side/handler_village.php", false);
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  let output = "";
-  xhr.onload = function() {
-    //console.log("Server returned: " + xhr.responseText);
-    if (xhr.status === 200) {
-      console.log("Server returned: " + xhr.responseText);
-      // decode the JSON response
-      output = JSON.parse(xhr.responseText);
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "Server_side/handler_village.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    let output = "";
+    xhr.onload = function() {
+      //console.log("Server returned: " + xhr.responseText);
+      if (xhr.status === 200) {
+        console.log("Server returned: " + xhr.responseText);
+        // decode the JSON response
+        output = JSON.parse(xhr.responseText);
 
-    } else {
-      // Handle error
-      console.log("Server returned error: " + xhr.status);
-    }
-  };
-  xhr.onerror = function() {
-      // Handle error
-      console.log("Error occurred: " + xhr.status);
-  };
+      } else {
+        // Handle error
+        console.log("Server returned error: " + xhr.status);
+      }
+    };
+    xhr.onerror = function() {
+        // Handle error
+        console.log("Error occurred: " + xhr.status);
+    };
 
-  //let formData = new FormData();
-  //formData.append("data", dataName);
-  xhr.send("data=" + dataName);
-  return output;
+    //let formData = new FormData();
+    //formData.append("data", dataName);
+    xhr.send("data=" + dataName);
+    return output;
 }
 
 // a function to set the handlers for the game
@@ -59,6 +67,7 @@ function townhallClick(event){
     let data = getData("townhall");
     // call the getData function to get the player data
     let player = getData("player");
+    pickRecords(player, ["population", "iron", "wood", "food", "rock"]);
     delete player["name"]; 
     let text = Object.assign(data, player);
     // set the info div to the data
@@ -77,10 +86,7 @@ function rockmineClick(event){
     let data = getData("rockmine");
     // call the getData function to get the player data
     let player = getData("player");
-    delete player["name"];
-    delete player["gold"];
-    delete player["wood"];
-    delete player["food"];
+    pickRecords(player, ["rock"]);
     let text = Object.assign(data, player);
     // set the info div to the data
     info.innerHTML = printData(text);
