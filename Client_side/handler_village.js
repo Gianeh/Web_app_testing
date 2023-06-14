@@ -1,6 +1,6 @@
 // this file handles the first base functions of the game
 
-import "./helper_village/helper.js"
+import "helper_village/helper.js"
 
 
 // a function to set the handlers for the game
@@ -9,7 +9,6 @@ function setHandlers(){
     t.addEventListener("click", townhallClick);
     let r = document.getElementById("rockmine");
     r.addEventListener("click", rockmineClick);
-    
 }
 
 // a function to handle the townhall click
