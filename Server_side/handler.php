@@ -1,4 +1,7 @@
 <?php
+    //log the error
+    ini_set('display_errors', 1);
+
     // the session is sterted to keep track of unique csrf tokens
     session_start();
     // generate the token
@@ -10,6 +13,7 @@
     include_once('structures.php');
 
     // other inclusions here .........
+
 
     // instantiate a minimal cache object and save not already existing data
     $cache = new Memcached();
@@ -53,7 +57,8 @@
         // save the data in the cache - third parameter is the time to live in seconds
         $cache->set($cache_key, $data, 3600);
     }
-
+    
+    
     // return the data to the frontend
     header("Content-Type: application/json");
     echo json_encode($data);

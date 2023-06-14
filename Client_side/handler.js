@@ -3,7 +3,7 @@
 // a function to handle requests for apecific objects to the backend
 function getData(dataName) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../Server_side/handler.php", true);
+    xhr.open("POST", "Server_side/handler.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onload = function() {
       if (xhr.status === 200) {
@@ -20,9 +20,9 @@ function getData(dataName) {
         console.log("Error occurred: " + xhr.status);
     };
 
-    let formData = new FormData();
-    formData.append("data", dataName);
-    xhr.send(formData);
+    //let formData = new FormData();
+    //formData.append("data", dataName);
+    xhr.send(dataName);
   }
 
 // a function to set the handlers for the game
