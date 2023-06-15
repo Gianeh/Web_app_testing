@@ -28,12 +28,12 @@ export function onLoad() {
 
  function Player_Focus() {
 
-  var tableContainer = document.querySelector(".table-container");
-  var playerCell = document.getElementById("playerVillage");
+  let tableContainer = document.querySelector(".table-container");
+  let playerCell = document.getElementById("playerVillage");
 
   // calcultate the offset of the player cell
-  var offsetTop = playerCell.offsetTop - (tableContainer.offsetHeight / 2) + (playerCell.offsetHeight / 2);
-  var offsetLeft = playerCell.offsetLeft - (tableContainer.offsetWidth / 2) + (playerCell.offsetWidth / 2);
+  let offsetTop = playerCell.offsetTop - (tableContainer.offsetHeight / 2) + (playerCell.offsetHeight / 2);
+  let offsetLeft = playerCell.offsetLeft - (tableContainer.offsetWidth / 2) + (playerCell.offsetWidth / 2);
 
   // apply the offset to the container
   tableContainer.scrollTop = offsetTop;
