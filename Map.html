@@ -65,11 +65,14 @@
             window.onload = function () {
                 var table = document.getElementById("WarMap");
 
+                let playerCell
+
+
                 for (var i = 0; i < 90; i++) {
                     var row = table.insertRow();
                     for (var j = 0; j < 90; j++) {
                         var cell = row.insertCell();
-                        cell.innerHTML = "m";           // Insert non-breaking space as placeholder content
+                        cell.innerHTML = "m";           
                         cell.classList.add("square");  
 
                         if (i === 49 && j === 49) {
