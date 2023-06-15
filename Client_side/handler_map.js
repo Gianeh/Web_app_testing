@@ -11,7 +11,7 @@ function pickRecords(data, records){
 
 function GetPlayerPosition(dataName){
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "Server_side/handler_map.php", false);
+    xhr.open("POST", "Server_side/Map/handler_map.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     let output = "";
     xhr.onload = function() {
