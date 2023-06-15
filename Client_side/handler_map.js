@@ -6,6 +6,7 @@ export function onLoad() {
 
   let playerpos = getData("player", "../Server_side/Map/handler_map.php");
   playerpos = pickRecords(playerpos,["x","y"]);
+  console.log(playerpos,["x","y"]);
 
   for (var i = 0; i < 90; i++) {
     var row = table.insertRow();
