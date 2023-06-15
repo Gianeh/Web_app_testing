@@ -3,7 +3,7 @@
 
     class Cache{
         
-        public $redis = new Redis();
+        public $redis;
 
         function __construct($classes, $server='AOS-Web-Testing.redis.cache.windows.net', $pass='1QJ5aC5vpZESy1MYbw5oU42lnMixqxm0PAzCaHl4QH4='){
             // include every class that should be cached
@@ -11,6 +11,7 @@
                 include_once($classes[$i].".php");
             }
             // connect to the redis server
+            $redis = new Redis();
             $redis->connect($server, 6379);
             $redis->auth($pass); // password for redis server
         }
