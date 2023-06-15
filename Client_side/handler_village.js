@@ -57,6 +57,8 @@ export function setHandlers(){
     w.addEventListener("click", woodchopperClick);
 }
 
+var backend_path = "../Server_side/Village/handler_village.php";
+
 // a function to handle the townhall click
 function townhallClick(event){
     // get the info div
@@ -66,9 +68,9 @@ function townhallClick(event){
     // write a temporary message
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
-    let data = getData("townhall");
+    let data = getData("townhall",backend_path);
     // call the getData function to get the player data
-    let player = getData("player");
+    let player = getData("player",backend_path);
     pickRecords(player, ["population", "iron", "wood", "food", "rock"]);
     delete player["name"]; 
     let text = Object.assign(data, player);
@@ -85,9 +87,9 @@ function rockmineClick(event){
     // write a temporary message
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
-    let data = getData("rockmine");
+    let data = getData("rockmine",backend_path);
     // call the getData function to get the player data
-    let player = getData("player");
+    let player = getData("player",backend_path);
     pickRecords(player, ["rock"]);
     let text = Object.assign(data, player);
     // set the info div to the data
@@ -103,9 +105,9 @@ function woodchopperClick(event){
     // write a temporary message
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
-    let data = getData("woodchopper");
+    let data = getData("woodchopper",backend_path);
     // call the getData function to get the player data
-    let player = getData("player");
+    let player = getData("player",backend_path);
     pickRecords(player, ["wood"]);
     let text = Object.assign(data, player);
     // set the info div to the data

@@ -19,9 +19,9 @@ export function printData(data){
 }
 
 // a function to handle requests for a specific objects to the backend
-export function getData(dataName) {
+export function getData(dataName, path) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "Server_side/handler_village.php", false);
+    xhr.open("POST", path, false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     let output = "";
     xhr.onload = function() {
