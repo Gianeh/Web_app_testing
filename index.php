@@ -73,7 +73,7 @@
     <script>
         function redirectToWarMap() {
             // redirect user tomap.php
-            window.location.href = "./Map/Map.php";
+            window.location.href = "./Server_side/Map/Map.php";
         }
     </script>
     <table id="Village" style="margin:auto">
