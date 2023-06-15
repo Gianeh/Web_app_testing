@@ -2,15 +2,15 @@ import { pickRecords, printData, getData } from "./helper.js";
 
 
 export function onLoad() {
-  var table = document.getElementById("WarMap");
+  let table = document.getElementById("WarMap");
 
   let playerpos = getData("player", "../Server_side/Map/handler_map.php");
   playerpos = pickRecords(playerpos,["x","y"]);
 
-  for (var i = 0; i < 90; i++) {
-    var row = table.insertRow();
-    for (var j = 0; j < 90; j++) {
-      var cell = row.insertCell();
+  for (let i = 0; i < 90; i++) {
+    let row = table.insertRow();
+    for (let j = 0; j < 90; j++) {
+      let cell = row.insertCell();
       cell.innerHTML = "m";
       cell.classList.add("square");
 
