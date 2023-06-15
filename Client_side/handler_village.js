@@ -111,6 +111,3 @@ function woodchopperClick(event){
     // set the info div to the data
     info.innerHTML = printData(text);
 }
-
-
-var tmp = getData("player");

@@ -20,7 +20,7 @@
             $cache_key = $data . "_data_" . $token;
             $output = $this->redis->get($cache_key);
 
-            if($data == false){
+            if($output == false){
                 // data not found in cache, instantiate object and store data in cache
                 switch ($data) {
         
@@ -62,7 +62,7 @@
                 $this->redis->set($cache_key, json_encode($data), 3600);
             } else {
                 // data found in cache, decode the JSON string
-                $data = json_decode($data, true);
+                $output = json_decode($data, true);
             }
 
             return $output;
