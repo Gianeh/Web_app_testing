@@ -77,7 +77,7 @@
     <script>
         function redirectToWarMap() {
             // redirect user tomap.php
-            window.location.href = "Map.php";
+            window.location.href = "Map.html";
         }
     </script>
     <table id="Village" style="margin:auto">
