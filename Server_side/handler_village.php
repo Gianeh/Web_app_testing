@@ -12,7 +12,10 @@
 
     // create a new cache object
     $cache = new Cache(array("player", "structures"));
+
+    // get the requested data from frontend (handler.js)
     $data = $cache->acquireData($_POST["data"], $_SESSION["csrf_token"]);
 
+    //return the data to the frontend
     echo json_encode($data);
 
