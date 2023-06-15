@@ -1,12 +1,6 @@
 <?php
     ini_set('display_errors', 1);
 
-    // include the class files
-    include_once('structures.php');
-    include_once('player.php');
-
-    // other inclusions here .........
-
     class Cache{
         
         public $redis = new Redis();
