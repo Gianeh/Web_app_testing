@@ -1,7 +1,7 @@
 // useful functions for client side
 
 // a function that deletes records from a dictionary
-function pickRecords(data, records){
+export function pickRecords(data, records){
     for (let key in data){
         if(!(records.includes(key))) delete data[key];
     }
@@ -9,7 +9,7 @@ function pickRecords(data, records){
 }
 
 // a function that enumerates a data (dictionary) object
-function printData(data){
+export function printData(data){
     let text = "<h3>"+data["type"]+":</h3><br />";
     for (let key in data){
         if(key == "type") continue;
@@ -19,7 +19,7 @@ function printData(data){
 }
 
 // a function to handle requests for a specific objects to the backend
-function getData(dataName) {
+export function getData(dataName) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "Server_side/handler_village.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
