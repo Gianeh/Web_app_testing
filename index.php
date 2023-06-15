@@ -62,8 +62,8 @@
     </style>
 
     <script type="module">
-        import { setHandlers } from './Client_side/handler_village.js';
-        window.onload = setHandlers;
+        import { onLoad } from './Client_side/handler_village.js';
+        window.onload = onLoad;
     </script>
     
 </head>

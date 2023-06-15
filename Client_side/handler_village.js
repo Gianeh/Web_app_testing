@@ -2,6 +2,11 @@
 
 import {pickRecords, printData, getData} from "./helper.js";
 // a function to set the handlers for the game
+
+export function onLoad(){
+    setHandlers();
+}
+
 export function setHandlers(){
     let t = document.getElementById("townhall");
     t.addEventListener("click", townhallClick);
