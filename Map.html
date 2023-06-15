@@ -3,7 +3,12 @@
 
 <head>
     <title>AOS Test Map</title>
-    <script src="./Client_side/handler_map.js"></script>
+    <script type="module">
+        import { setHandlers } from './Client_side/handler_map.js';
+        window.onload = setHandlers;
+    </script>
+
+    </script>
     <style>
         table {
 
@@ -59,7 +64,7 @@
     </style>
 </head>
 
-<body onload="setHandlers()">
+<body>
     <div class="table-container">
         <script>
             window.onload = function () {
