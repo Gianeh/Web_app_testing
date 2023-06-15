@@ -1,53 +1,12 @@
-// this file handles the first base functions of the game
-/*
-// a function that deletes records from a dictionary
-function pickRecords(data, records){
-    for (let key in data){
-        if(!(records.includes(key))) delete data[key];
-    }
-    return data;
-}
+// this file handles the first base functions of the Viallage page
 
-// a function that enumerates a data (dictionary) object
-function printData(data){
-    let text = "<h3>"+data["type"]+":</h3><br />";
-    for (let key in data){
-        if(key == "type") continue;
-        text += key + ": " + data[key] + "<br />";
-    }
-    return text;
-}
-
-// a function to handle requests for a specific objects to the backend
-function getData(dataName) {
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "Server_side/handler_village.php", false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    let output = "";
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        console.log("Server returned: " + xhr.responseText);
-        // decode the JSON response
-        output = JSON.parse(xhr.responseText);
-
-      } else {
-        // Handle error
-        console.log("Server returned error: " + xhr.status);
-      }
-    };
-    xhr.onerror = function() {
-        // Handle error
-        console.log("Error occurred: " + xhr.status);
-    };
-
-    //let formData = new FormData();
-    //formData.append("data", dataName);
-    xhr.send("data=" + dataName);
-    return output;
-}
-*/
 import {pickRecords, printData, getData} from "./helper.js";
 // a function to set the handlers for the game
+
+export function onLoad(){
+    setHandlers();
+}
+
 export function setHandlers(){
     let t = document.getElementById("townhall");
     t.addEventListener("click", townhallClick);
