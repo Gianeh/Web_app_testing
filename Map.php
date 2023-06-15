@@ -69,7 +69,7 @@
             //getting information about the player position
             //file get content is in charge to take http request without consider if is it post or get
             //
-            $data = json_decode(file_get_contents("php://input"), true);
+            $data = $_POST["data"];
 
             $playerRow = $data['x'];
             $playerCol = $data['y'];

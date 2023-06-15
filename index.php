@@ -61,7 +61,7 @@
         }
     </style>
 
-    <script src="Client_side/handler_village.js"></script>
+    <script src="./Client_side/handler_village.js"></script>
 </head>
 
 <body onload="setHandlers()">
@@ -73,7 +73,7 @@
     <script>
         function redirectToWarMap() {
             // redirect user tomap.php
-            window.location.href = "Map.php";
+            window.location.href = "./Map/Map.php";
         }
     </script>
     <table id="Village" style="margin:auto">
