@@ -81,8 +81,8 @@
         }
     </script>
     <table id="Village" style="margin:auto">
-        <!--A 30 x 30 table-->
-        <?php
+        <!--A 30 x 30 table
+        /*
         for ($i = 0; $i < 30; $i++) {
             echo "<tr class='square'>";
             for ($j = 0; $j < 30; $j++) {
@@ -99,8 +99,8 @@
                 echo "<td class='square'>e</td>";
             }
             echo "</tr>";
-        }
-        ?>
+        }*/
+        ?>-->
     </table>
 
     <br />

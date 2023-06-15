@@ -4,7 +4,32 @@ import {pickRecords, printData, getData} from "./helper.js";
 // a function to set the handlers for the game
 
 export function onLoad(){
-    let table = document.getElementById("WarMap");
+    let table = document.getElementById("Village");
+    for (let i = 0; i < 30; i++) {
+        let row = table.insertRow();
+        for (let j = 0; j < 30; j++) {
+            let cell = row.insertCell();
+            cell.innerHTML = "E";
+            cell.classList.add("square");
+            if(i == 15 && j == 15){
+                cell.id = "townhall";
+                cell.classList.add("townhall");
+                cell.innerHTML = "T";
+                continue;
+            }else if(i == 12 && j == 9){
+                cell.id = "rockmine";
+                cell.classList.add("rockmine");
+                cell.innerHTML = "R";
+                continue;
+            }else if(i == 19 && j == 22){
+                cell.id = "woodchopper";
+                cell.classList.add("woodchopper");
+                cell.innerHTML = "W";
+                continue;
+
+            }
+        }
+    }
     setHandlers();
 }
 
