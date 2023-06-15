@@ -1,5 +1,5 @@
 // this file handles the first base functions of the game
-
+/*
 // a function that deletes records from a dictionary
 function pickRecords(data, records){
     for (let key in data){
@@ -45,7 +45,8 @@ function getData(dataName) {
     xhr.send("data=" + dataName);
     return output;
 }
-
+*/
+import {pickRecords, printData, getData} from "./helper.js";
 // a function to set the handlers for the game
 function setHandlers(){
     let t = document.getElementById("townhall");
