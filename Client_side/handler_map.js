@@ -1,6 +1,6 @@
 import { pickRecords, printData, getData } from "./helper.js";
 
-function onLoad() {
+export function onLoad() {
   var table = document.getElementById("WarMap");
 
   let playerCell
