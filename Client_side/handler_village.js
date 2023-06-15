@@ -112,4 +112,5 @@ function woodchopperClick(event){
     info.innerHTML = printData(text);
 }
 
+
 var tmp = getData("player");
