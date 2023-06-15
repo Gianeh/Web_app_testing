@@ -57,7 +57,7 @@ export function setHandlers(){
     w.addEventListener("click", woodchopperClick);
 }
 
-var backend_path = "Server_side/Village/handler_village.php";
+var backend_path = "../Server_side/Village/handler_village.php";
 
 // a function to handle the townhall click
 function townhallClick(event){
