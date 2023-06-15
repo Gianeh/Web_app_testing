@@ -3,7 +3,7 @@
 
 <head>
     <title>AOS Test Map</title>
-    <script src="./Client_side/Map/handlerMap.js"></script>
+    <script src="./Client_side/Map/handler_map.js"></script>
     <style>
         table {
 
