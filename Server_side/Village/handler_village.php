@@ -2,7 +2,7 @@
     //log the error
     ini_set('display_errors', 1);
     // include the chache class
-    include_once('Server_side/redis_cache.php');
+    include_once('../redis_cache.php');
     // the session is started to keep track of unique csrf tokens
     session_start();
     // generate the token
