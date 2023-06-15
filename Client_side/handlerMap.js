@@ -2,7 +2,6 @@
 // This file contains the functions that handle the map
 
 // a function that deletes records from a dictionary
-
 function pickRecords(data, records){
   for (let key in data){
       if(!(records.includes(key))) delete data[key];
@@ -22,6 +21,7 @@ function GetPlayerPosition(dataName){
         // decode the JSON response
         output = JSON.parse(xhr.responseText);
         output = pickRecords(output,["x","y"])
+        console.log(output);
       } else {
         // Handle error
         console.log("Server returned error: " + xhr.status);

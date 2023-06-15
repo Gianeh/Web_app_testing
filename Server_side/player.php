@@ -35,6 +35,8 @@
                 "wood" => $this->wood,
                 "rock" => $this->rock,
                 "food" => $this->food,
+                "x"    => $this->x,
+                "y"    => $this->y,
             );
         }
 
