@@ -17,7 +17,15 @@
         }
 
         public function acquireData($data, $token){
+            if(!is_string($data)){
+                // invalid data requested
+                return array("error" => "invalid data requested");
+            }
             $cache_key = $data . "_data_" . $token;
+            if($this->redis === null){
+                // Redis connection not established
+                return array("error" => "Redis connection not established");
+            }
             $output = $this->redis->get($cache_key);
 
             if($output == false){

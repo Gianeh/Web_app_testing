@@ -25,7 +25,6 @@ function getData(dataName) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     let output = "";
     xhr.onload = function() {
-      //console.log("Server returned: " + xhr.responseText);
       if (xhr.status === 200) {
         console.log("Server returned: " + xhr.responseText);
         // decode the JSON response
