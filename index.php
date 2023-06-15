@@ -62,12 +62,11 @@
     </style>
 
     <script type="module" src="./Client_side/handler_village.js">
-        import { setHandlers } from './Client_side/handler_village.js';
     </script>
     
 </head>
 
-<body onload="setHandlers()">
+<body onload="setHandlers">
     <h1>AOS Test 1</h1>
     <p>Test 1</p>
     <div class="container">
