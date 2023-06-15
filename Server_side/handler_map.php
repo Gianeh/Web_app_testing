@@ -14,7 +14,7 @@
     $cache = new Cache(array("player"));
 
     // get the requested data from frontend (hanlerMap.js)
-    $data = $cache->acquireData($_POST["player"], $_SESSION["csrf_token"]);
+    $data = $cache->acquireData($_POST["playerPos"], $_SESSION["csrf_token"]);
 
     //return the data to the frontend
     echo json_encode($data);
