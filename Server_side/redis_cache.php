@@ -8,7 +8,7 @@
         function __construct($classes, $server='AOS-Web-Testing.redis.cache.windows.net', $pass='1QJ5aC5vpZESy1MYbw5oU42lnMixqxm0PAzCaHl4QH4='){
             // include every class that should be cached
             for ($i = 0; $i < count($classes); $i++) {
-                include_once($classes[$i].".php");
+                include_once("/Asset".$classes[$i].".php");
             }
             // connect to the redis server
             $this->redis = new Redis();
