@@ -61,8 +61,8 @@
         }
     </style>
 
-    <script src="./Client_side/handler_village.js"></script>
-    <script src="./Client_side/helpers.js"></script>
+    <script type="module" src="./Client_side/handler_village.js"></script>
+    <script type="module" src="./Client_side/helpers.js"></script>
 </head>
 
 <body onload="setHandlers()">
