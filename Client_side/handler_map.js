@@ -4,7 +4,8 @@ import { pickRecords, printData, getData } from "./helper.js";
 export function onLoad() {
   var table = document.getElementById("WarMap");
 
-  let playerCell
+  let playerpos = getData("player", ":/Server_side/Map/handler_map.php");
+  playerpos = pickRecords(playerpos,["x","y"]);
 
   for (var i = 0; i < 90; i++) {
     var row = table.insertRow();
@@ -13,7 +14,7 @@ export function onLoad() {
       cell.innerHTML = "m";
       cell.classList.add("square");
 
-      if (i === 49 && j === 49) {
+      if (i === playerpos["x"] && j === playerpos["y"]) {
         cell.innerHTML = "P";                   // Set cell content to "P"
         cell.classList.remove("square");        // Remove square class
         cell.classList.add("playerVillage");    // Add player-village class
