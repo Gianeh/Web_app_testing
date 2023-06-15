@@ -7,7 +7,7 @@ export function onLoad(){
     setHandlers();
 }
 
-export function setHandlers(){
+function setHandlers(){
     let t = document.getElementById("townhall");
     t.addEventListener("click", townhallClick);
     let r = document.getElementById("rockmine");

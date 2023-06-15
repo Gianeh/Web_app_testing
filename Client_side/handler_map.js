@@ -2,11 +2,11 @@ import { pickRecords, printData, getData } from "./helper.js";
 
 
 export function onLoad() {
-  var table = document.getElementById("WarMap");
+  let table = document.getElementById("WarMap");
 
   let playerpos = getData("player", "../Server_side/Map/handler_map.php");
   playerpos = pickRecords(playerpos,["x","y"]);
-  console.log(playerpos);
+
   for (var i = 0; i < 90; i++) {
     var row = table.insertRow();
     for (var j = 0; j < 90; j++) {
@@ -28,12 +28,12 @@ export function onLoad() {
 
  function Player_Focus() {
 
-  var tableContainer = document.querySelector(".table-container");
-  var playerCell = document.getElementById("playerVillage");
+  let tableContainer = document.querySelector(".table-container");
+  let playerCell = document.getElementById("playerVillage");
 
   // calcultate the offset of the player cell
-  var offsetTop = playerCell.offsetTop - (tableContainer.offsetHeight / 2) + (playerCell.offsetHeight / 2);
-  var offsetLeft = playerCell.offsetLeft - (tableContainer.offsetWidth / 2) + (playerCell.offsetWidth / 2);
+  let offsetTop = playerCell.offsetTop - (tableContainer.offsetHeight / 2) + (playerCell.offsetHeight / 2);
+  let offsetLeft = playerCell.offsetLeft - (tableContainer.offsetWidth / 2) + (playerCell.offsetWidth / 2);
 
   // apply the offset to the container
   tableContainer.scrollTop = offsetTop;
