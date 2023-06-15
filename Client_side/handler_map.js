@@ -1,43 +1,42 @@
-/*
-// This file contains the functions that handle the map
+import { pickRecords, printData, getData } from "./helper.js";
 
-// a function that deletes records from a dictionary
-function pickRecords(data, records){
-  for (let key in data){
-      if(!(records.includes(key))) delete data[key];
-  }
-  return data;
-}
+function onLoad() {
+  var table = document.getElementById("WarMap");
 
-function GetPlayerPosition(dataName){
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "Server_side/Map/handler_map.php", false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    let output = "";
-    xhr.onload = function() {
-      //console.log("Server returned: " + xhr.responseText);
-      if (xhr.status === 200) {
-        console.log("Server returned: " + xhr.responseText);
-        // decode the JSON response
-        output = JSON.parse(xhr.responseText);
-        output = pickRecords(output,["x","y"])
-        console.log(output);
-      } else {
-        // Handle error
-        console.log("Server returned error: " + xhr.status);
+  let playerCell
+
+  for (var i = 0; i < 90; i++) {
+    var row = table.insertRow();
+    for (var j = 0; j < 90; j++) {
+      var cell = row.insertCell();
+      cell.innerHTML = "m";
+      cell.classList.add("square");
+
+      if (i === 49 && j === 49) {
+        cell.innerHTML = "P";                   // Set cell content to "P"
+        cell.classList.remove("square");        // Remove square class
+        cell.classList.add("playerVillage");    // Add player-village class
       }
-    };
-    xhr.onerror = function() {
-        // Handle error
-        console.log("Error occurred: " + xhr.status);
-    };
-
-    xhr.send("data="+dataName)
-    return output;
+    }
+  }
+  setHandlers();
 }
-*/
-import {pickRecords, printData, getData} from "./helper.js";
 
-function setHandlers(){
-   let playerPos =  GetPlayerPosition("player");
+
+ function Player_Focus() {
+
+  var tableContainer = document.querySelector(".table-container");
+  var playerCell = document.getElementById("playerVillage");
+
+  // calcultate the offset of the player cell
+  var offsetTop = playerCell.offsetTop - (tableContainer.offsetHeight / 2) + (playerCell.offsetHeight / 2);
+  var offsetLeft = playerCell.offsetLeft - (tableContainer.offsetWidth / 2) + (playerCell.offsetWidth / 2);
+
+  // apply the offset to the container
+  tableContainer.scrollTop = offsetTop;
+  tableContainer.scrollLeft = offsetLeft;
+}
+
+function setHandlers() {
+  document.addEventListener("DOMContentLoaded", Player_Focus());
 }

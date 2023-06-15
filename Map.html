@@ -5,7 +5,7 @@
     <title>AOS Test Map</title>
     <script type="module">
         import { setHandlers } from './Client_side/handler_map.js';
-        window.onload = setHandlers;
+        window.onload = onLoad();
     </script>
 
     </script>
@@ -66,47 +66,13 @@
 
 <body>
     <div class="table-container">
-        <script>
-            window.onload = function () {
-                var table = document.getElementById("WarMap");
-
-                let playerCell
-
-
-                for (var i = 0; i < 90; i++) {
-                    var row = table.insertRow();
-                    for (var j = 0; j < 90; j++) {
-                        var cell = row.insertCell();
-                        cell.innerHTML = "m";           
-                        cell.classList.add("square");  
-
-                        if (i === 49 && j === 49) {
-                            cell.innerHTML = "P";                   // Set cell content to "P"
-                            cell.classList.remove("square");        // Remove square class
-                            cell.classList.add("playerVillage");    // Add player-village class
-                        }
-                    }
-                }
-            };
-        </script>
+        
+        <!--A table for the war map createte onLoad by handler_map.js-->
         <table id="WarMap" style="margin:auto">
-
         </table>
 
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
-
-                var tableContainer = document.querySelector(".table-container");
-                var playerCell = document.getElementById("playerVillage");
-
-                // calcultate the offset of the player cell
-                var offsetTop = playerCell.offsetTop - (tableContainer.offsetHeight / 2) + (playerCell.offsetHeight / 2);
-                var offsetLeft = playerCell.offsetLeft - (tableContainer.offsetWidth / 2) + (playerCell.offsetWidth / 2);
-
-                // apply the offset to the container
-                tableContainer.scrollTop = offsetTop;
-                tableContainer.scrollLeft = offsetLeft;
-            });
+          
         </script>
 
     </div>
