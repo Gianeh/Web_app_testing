@@ -9,8 +9,7 @@ export function onLoad(){
         let row = table.insertRow();
         for (let j = 0; j < 30; j++) {
             let cell = row.insertCell();
-            cell.innerHTML = "E";
-            cell.classList.add("square");
+            
             if(i == 15 && j == 15){
                 cell.id = "townhall";
                 cell.classList.add("townhall");
@@ -26,8 +25,9 @@ export function onLoad(){
                 cell.classList.add("woodchopper");
                 cell.innerHTML = "W";
                 continue;
-
             }
+            cell.innerHTML = "e";
+            cell.classList.add("square");
         }
     }
     setHandlers();
