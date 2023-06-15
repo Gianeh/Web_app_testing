@@ -30,7 +30,7 @@ function GetPlayerPosition(dataName){
         console.log("Error occurred: " + xhr.status);
     };
 
-    xhr.send("playerPos=",dataName)
+    xhr.send("playerPos="+dataName)
     return output;
 }
 
