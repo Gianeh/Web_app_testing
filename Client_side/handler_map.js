@@ -1,5 +1,6 @@
 import { pickRecords, printData, getData } from "./helper.js";
 
+
 export function onLoad() {
   var table = document.getElementById("WarMap");
 
@@ -16,6 +17,7 @@ export function onLoad() {
         cell.innerHTML = "P";                   // Set cell content to "P"
         cell.classList.remove("square");        // Remove square class
         cell.classList.add("playerVillage");    // Add player-village class
+        cell.id = "player-village";             // Set the id of the cell to "player-village"
       }
     }
   }
