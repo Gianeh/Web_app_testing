@@ -1,4 +1,4 @@
-
+/*
 // This file contains the functions that handle the map
 
 // a function that deletes records from a dictionary
@@ -35,6 +35,8 @@ function GetPlayerPosition(dataName){
     xhr.send("data="+dataName)
     return output;
 }
+*/
+import {pickRecords, printData, getData} from "./helper.js";
 
 function setHandlers(){
    let playerPos =  GetPlayerPosition("player");
