@@ -11,9 +11,9 @@
                 include_once($classes[$i].".php");
             }
             // connect to the redis server
-            $redis = new Redis();
-            $redis->connect($server, 6379);
-            $redis->auth($pass); // password for redis server
+            $this->redis = new Redis();
+            $this->redis->connect($server, 6379);
+            $this->redis->auth($pass); // password for redis server
         }
 
         public function acquireData($data, $token){
