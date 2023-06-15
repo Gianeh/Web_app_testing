@@ -40,6 +40,13 @@ function setHandlers(){
     r.addEventListener("click", rockmineClick);
     let w = document.getElementById("woodchopper");
     w.addEventListener("click", woodchopperClick);
+
+    let b = document.getElementById("warmap");
+    b.addEventListener("click", warmapClick);
+}
+
+function warmapClick(event){
+    window.location.href = "Map.html";
 }
 
 var backend_path = "../Server_side/Village/handler_village.php";

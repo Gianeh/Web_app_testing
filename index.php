@@ -72,35 +72,11 @@
     <h1>AOS Test 1</h1>
     <p>Test 1</p>
     <div class="container">
-        <button class="button" onclick="redirectToWarMap()">War Map</button>
+        <button id="warmap" class="button">War Map</button>
     </div>
-    <script>
-        function redirectToWarMap() {
-            // redirect user tomap.php
-            window.location.href = "Map.html";
-        }
-    </script>
+    
     <table id="Village" style="margin:auto">
-        <!--A 30 x 30 table
-        /*
-        for ($i = 0; $i < 30; $i++) {
-            echo "<tr class='square'>";
-            for ($j = 0; $j < 30; $j++) {
-                if($i == 15 && $j == 15){
-                    echo "<td id='townhall' class='townhall'>T</td>";
-                    continue;
-                }else if($i == 12 && $j == 9){
-                    echo "<td id='rockmine' class='rockmine'>R</td>";
-                    continue;
-                }else if($i == 19 && $j == 22){
-                    echo "<td id='woodchopper' class='woodchopper'>W</td>";
-                    continue;
-                }
-                echo "<td class='square'>e</td>";
-            }
-            echo "</tr>";
-        }*/
-        ?>-->
+        <!-- Table rows and columns are created dynamically in js -->
     </table>
 
     <br />
