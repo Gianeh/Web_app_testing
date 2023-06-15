@@ -48,7 +48,7 @@ function getData(dataName) {
 */
 import {pickRecords, printData, getData} from "./helper.js";
 // a function to set the handlers for the game
-function setHandlers(){
+export function setHandlers(){
     let t = document.getElementById("townhall");
     t.addEventListener("click", townhallClick);
     let r = document.getElementById("rockmine");
