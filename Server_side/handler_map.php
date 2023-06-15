@@ -13,8 +13,8 @@
     // create a new cache object
     $cache = new Cache(array("player"));
 
-    // get the requested data from frontend (handler.js)
-    $data = $cache->acquireData($_POST["data"], $_SESSION["csrf_token"]);
+    // get the requested data from frontend (hanlerMap.js)
+    $data = $cache->acquireData($_POST["player"], $_SESSION["csrf_token"]);
 
     //return the data to the frontend
     echo json_encode($data);
