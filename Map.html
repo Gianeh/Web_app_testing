@@ -11,7 +11,7 @@
             table-layout: fixed;
             width: 100%;
             height: 100%;
-            
+
         }
 
         .table-container {
@@ -55,52 +55,38 @@
             text-align: center;
             border: 1px solid black;
         }
+      
     </style>
 </head>
 
 <body onload="setHandlers()">
     <div class="table-container">
-        <table id="WarMap" style="margin:auto">
+        <script>
+            window.onload = function () {
+                var table = document.getElementById("WarMap");
 
-            <?php
-            $rows = 90; // row number
-            $cols = 90; // cols number
+                for (var i = 0; i < 90; i++) {
+                    var row = table.insertRow();
+                    for (var j = 0; j < 90; j++) {
+                        var cell = row.insertCell();
+                        cell.innerHTML = "m";           // Insert non-breaking space as placeholder content
+                        cell.classList.add("square");  
 
-            //getting information about the player position
-            //file get content is in charge to take http request without consider if is it post or get
-            //
-            $data = $_POST["data"];
-
-            $playerRow = $data['x'];
-            $playerCol = $data['y'];
-
-            
-            //offsetting the map to center the player position
-            $offsetRow = max(0, $playerRow - 5);
-            $offsetCol = max(0, $playerCol - 5);
-
-           
-
-            for ($i = 0; $i < $rows; $i++) {
-                echo "<tr>";
-                for ($j = 0; $j < $cols; $j++) {
-                    if ($i == $playerRow && $j == $playerCol) {
-                        echo "<td id='playerVillage' class='playerVillage'>P</td>";
-                        continue;
-                    } else if ($i == 20 && $j == 20) {
-                        echo "<td id='enemyVillage' class='enemyVillage'>E</td>";
-                        continue;
-                    } else {
-                        echo "<td class='square'></td>";
+                        if (i === 49 && j === 49) {
+                            cell.innerHTML = "P";                   // Set cell content to "P"
+                            cell.classList.remove("square");        // Remove square class
+                            cell.classList.add("playerVillage");    // Add player-village class
+                        }
                     }
                 }
-                echo '</tr>';
-            }
-            ?>
+            };
+        </script>
+        <table id="WarMap" style="margin:auto">
+
         </table>
 
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("DOMContentLoaded", function () {
 
                 var tableContainer = document.querySelector(".table-container");
                 var playerCell = document.getElementById("playerVillage");
