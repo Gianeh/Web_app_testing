@@ -1,4 +1,10 @@
 <?php
+
+    // create function to delete chache record
+
+    // create function for the switch adn the db query
+
+
     ini_set('display_errors', 1);
 
     class Cache{
@@ -15,6 +21,9 @@
             $this->redis->connect($server, 6379);
             $this->redis->auth($pass); // password for redis server
         }
+
+        // a function that delete element on cache on requirement
+
 
         public function acquireData($data, $token){
             if(!is_string($data)){
