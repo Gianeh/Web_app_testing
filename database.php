@@ -3,7 +3,19 @@
 try {
     $conn = new PDO("sqlsrv:server = tcp:aos-database.database.windows.net,1433; Database = AOS_Database", "aosadmin", "AOSpassword!");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "ciao porcodio funziono";
+    $query = "SELECT * FROM Dummy_player_data";
+    $stmt = $pdo->query($query);
+    
+    // Fetch the results
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        // Access the data
+        $name = $row['Username'];
+        $pwd = $row['Password'];
+        // ...access other columns here
+        
+        // Do something with the data
+        echo "Name: $name, password $pwd<br>";
+    }
 }
 catch (PDOException $e) {
     print("Error connecting to SQL Server.");
@@ -11,8 +23,4 @@ catch (PDOException $e) {
     echo "ciao porcodio non funziono";
 }
 
-// SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "aosadmin", "pwd" => "AOSpassword!", "Database" => "AOS_Database", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:aos-database.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
 ?>
