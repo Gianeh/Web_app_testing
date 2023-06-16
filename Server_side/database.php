@@ -1,6 +1,6 @@
 <?php
 
-// it need to became a class -> custroctor will take as parameter the connection db data
+// it need to become a class -> custructor will take as parameter the connection db data
 
 // insert function -> inserisce una nuova riga
 
@@ -9,6 +9,21 @@
 // RetriveData    -> ottiene dati dal bd
 
 // remove         -> rimuvoe un record intero
+
+class Database{
+    public $connection;
+    function __construct($server="tcp:aos-database.database.windows.net", $username="aosadmin", $password="AOSpassword!", $database="AOS_Database"){
+        $this->connection = new PDO("sqlsrv:server = $server; Database = $database", "$username", "$password");
+    }
+
+    function query($query){
+        /*
+        $stmt = $this->connection->query($query);
+        return $stmt;
+        */
+        // the $query format may be specified inside the class using a different method to parse a string input
+    }
+}
 
 
 
