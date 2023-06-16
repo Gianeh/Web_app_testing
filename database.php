@@ -1,4 +1,17 @@
 <?php
+
+// it need to became a class -> custroctor will take as parameter the connection db data
+
+// insert function -> inserisce una nuova riga
+
+// update function -> modifica un record
+
+// RetriveData    -> ottiene dati dal bd
+
+// remove         -> rimuvoe un record intero
+
+
+
 // PHP Data Objects(PDO) Sample Code:
 try {
     $conn = new PDO("sqlsrv:server = tcp:aos-database.database.windows.net,1433; Database = AOS_Database", "aosadmin", "AOSpassword!");
