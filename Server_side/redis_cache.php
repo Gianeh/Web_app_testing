@@ -10,6 +10,7 @@
     class Cache{
         
         public $redis;
+        public $database;
 
         function __construct($classes, $server='AOS-Web-Testing.redis.cache.windows.net', $pass='1QJ5aC5vpZESy1MYbw5oU42lnMixqxm0PAzCaHl4QH4='){
             // include every class that should be cached
@@ -20,9 +21,53 @@
             $this->redis = new Redis();
             $this->redis->connect($server, 6379);
             $this->redis->auth($pass); // password for redis server
+
+            // connect to the database
+            $this->database = new Database();
         }
 
         // a function that delete element on cache on requirement
+
+        // a function that handles the switch and the db query
+        function populateRecord($data){
+
+            switch ($data) {
+                // ###############################################
+                // # Data should be generated and added to cache #
+                // # Based on the Database records but now we    #
+                // # Just create a new object from scratch       #
+                // # every time                                  #
+                // ###############################################
+        
+                case "player":
+                    $player = new Player("player1234", 5, 0, 0, 0, 0);
+                    $output = $player->get_data();
+                    break;
+        
+                case "townhall":
+                    $townhall = new Townhall(1, "townhall");
+                    $output = $townhall->get_data();
+                    break;
+        
+                case "rockmine":
+                    $rockmine = new Rockmine(1, "rockmine");
+                    $output = $rockmine->get_data();
+                    break;
+                
+                case "woodchopper":
+                    $woodchopper = new Woodchopper(1, "woodchopper");
+                    $output = $woodchopper->get_data();
+                    break;
+
+                // add more cases for other objects as needed
+        
+                default:
+                    // handle error
+                    $output = array("error" => "invalid data requested");
+                    break;
+            }
+            return $output;
+        }
 
 
         public function acquireData($data, $token){
@@ -39,42 +84,7 @@
 
             if($output == false){
                 // data not found in cache, instantiate object and store data in cache
-                switch ($data) {
-        
-                    // ###############################################
-                    // # Data should be generated and added to cache #
-                    // # Based on the Database records but now we    #
-                    // # Just create a new object from scratch       #
-                    // # every time                                  #
-                    // ###############################################
-        
-                    case "player":
-                        $player = new Player("player1234", 5, 0, 0, 0, 0);
-                        $output = $player->get_data();
-                        break;
-        
-                    case "townhall":
-                        $townhall = new Townhall(1, "townhall");
-                        $output = $townhall->get_data();
-                        break;
-        
-                    case "rockmine":
-                        $rockmine = new Rockmine(1, "rockmine");
-                        $output = $rockmine->get_data();
-                        break;
-                    
-                    case "woodchopper":
-                        $woodchopper = new Woodchopper(1, "woodchopper");
-                        $output = $woodchopper->get_data();
-                        break;
-
-                    // add more cases for other objects as needed
-        
-                    default:
-                        // handle error
-                        $output = array("error" => "invalid data requested");
-                        break;
-                }
+                $output = $this->populateRecord($data);
                 // save the data in the cache - third parameter is the time to live in seconds
                 $this->redis->set($cache_key, json_encode($output), 3600);
             } else {
