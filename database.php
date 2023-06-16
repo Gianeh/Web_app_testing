@@ -3,12 +3,12 @@
 try {
     $conn = new PDO("sqlsrv:server = tcp:aos-database.database.windows.net,1433; Database = AOS_Database", "aosadmin", "AOSpassword!");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "ciao porcodio funziono"
+    echo "ciao porcodio funziono";
 }
 catch (PDOException $e) {
     print("Error connecting to SQL Server.");
     die(print_r($e));
-    echo "ciao porcodio non funziono"
+    echo "ciao porcodio non funziono";
 }
 
 // SQL Server Extension Sample Code:
