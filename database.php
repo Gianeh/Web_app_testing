@@ -4,7 +4,7 @@ try {
     $conn = new PDO("sqlsrv:server = tcp:aos-database.database.windows.net,1433; Database = AOS_Database", "aosadmin", "AOSpassword!");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $query = "SELECT * FROM Dummy_player_data";
-    $stmt = $pdo->query($query);
+    $stmt = $conn->query($query);
     
     // Fetch the results
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
