@@ -64,7 +64,6 @@ function townhallClick(event){
     // call the getData function to get the player data
     let player = getData("player",backend_path);
     pickRecords(player, ["population", "iron", "wood", "food", "rock"]);
-    delete player["name"]; 
     let text = Object.assign(data, player);
     // set the info div to the data
     info.innerHTML = printData(text);
