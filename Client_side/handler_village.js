@@ -88,6 +88,7 @@ function townhallClick(event){
     let button = document.createElement("button");
     button.innerHTML = "Add Population +5";
     button.addEventListener("click", addPopulation);
+    info.appendChild(button);
 
 }
 

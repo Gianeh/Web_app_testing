@@ -19,7 +19,7 @@
     // create a new cache object
     $cache = new Cache(array("player", "structures"));
 
-    // get the requested data from frontend (handler.js)
+    // get the requested data from frontend (handler.js) inside the POST request and search for the data in the cache
     /*
     $data = $cache->acquireData($_POST["data"], $_SESSION["csrf_token"]);
     */
