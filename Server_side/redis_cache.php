@@ -81,8 +81,8 @@
             } else {
                 // data found in cache, decode the JSON string
                 // log that the data was found in the cache
-                echo "Data found in cache";
                 $output = json_decode($output, true);
+                $output["cache"] = "data found in cache";
             }
 
             return $output;
