@@ -1,4 +1,5 @@
 <?php
+    ini_set('display_errors', 1);
     include_once("database_query.php");
 
     // create 4 unique record for table Dummy_player_data
