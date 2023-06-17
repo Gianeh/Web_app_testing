@@ -56,6 +56,7 @@
                     $output = array("error" => "invalid data requested");
                     break;
             }
+            $output["cached"] = "false";
             return $output;
         }
 
@@ -82,7 +83,7 @@
                 // data found in cache, decode the JSON string
                 // log that the data was found in the cache
                 $output = json_decode($output, true);
-                $output["cache"] = "data found in cache";
+                $output["cached"] = "true";
             }
 
             return $output;
