@@ -18,7 +18,7 @@
         public $y;
 
 
-        function __construct($name="Undefined!", $population=5, $iron=0, $wood=0, $rock=0, $food=0, $x=rand(1,89), $y=rand(1,89)){
+        function __construct($name="Undefined!", $population=5, $iron=0, $wood=0, $rock=0, $food=0, $x=25, $y=25){
             $this->name = $name;
             $this->population = $population;
             /*
