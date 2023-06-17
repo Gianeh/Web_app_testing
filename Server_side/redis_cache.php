@@ -80,6 +80,8 @@
                 $this->redis->set($cache_key, json_encode($output), 3600);
             } else {
                 // data found in cache, decode the JSON string
+                // log that the data was found in the cache
+                echo "Data found in cache";
                 $output = json_decode($output, true);
             }
 
