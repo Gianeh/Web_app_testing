@@ -52,7 +52,7 @@ export function getData(dataName, path, user_id="thisisatestuser") {
 
 
 // a function to send new data to the backend
-export function sendData(func="none", user_id="thisisatestuser", path=backend_updater_path) {
+export function sendData(func="none", user_id="thisisatestuser", password="", path=backend_updater_path) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", path, false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -68,7 +68,7 @@ export function sendData(func="none", user_id="thisisatestuser", path=backend_up
         // Handle error
         console.log("Error occurred: " + xhr.status);
     }
-    xhr.send("function=" + func + "&user_id=" + user_id);
+    xhr.send("function=" + func + "&user_id=" + user_id + "&password=" + password);
 }
 
 // a function that manages the local storage queries and retrieves from the redis cache if needed (redis cache queries the database if needed)

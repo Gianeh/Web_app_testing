@@ -16,6 +16,9 @@
         case "upgradeTownhall":
             $status = upgradeTownhall($token);
             break;
+
+        case "cleancache":
+            $status = cleancache($_POST["password"]);
         default:
             $status = false;
     }

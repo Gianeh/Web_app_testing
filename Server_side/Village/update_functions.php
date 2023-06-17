@@ -46,3 +46,19 @@
         }
 
     }
+
+
+    //////////////////////////////////////////
+    //special functions: required password: "gianeh!"
+
+    function cleanCache($password){
+        // clean the cache
+        if($password == "gianeh!"){
+            $cache = new Cache(array("player", "structures"));
+            $cache->deleteAllCache();
+            return true;
+        } else {
+            return false;
+        }
+
+    }

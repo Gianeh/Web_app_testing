@@ -49,6 +49,13 @@ function setHandlers(){
         // empties the local storage
         localStorage.clear();
     });
+
+    // cheat handler
+    let key = document.getElementById("cheat_key");
+    let cheat = document.getElementById("cheat");
+    cheat.addEventListener("click", function(event){
+        sendData("cleancache", key.value);
+    });
 }
 
 function warmapClick(event){
