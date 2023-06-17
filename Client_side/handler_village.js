@@ -48,19 +48,28 @@ function setHandlers(){
     window.addEventListener("beforeunload", function(){
         // empties the local storage
         localStorage.clear();
-    })
+    });
 }
 
 function warmapClick(event){
     window.location.href = "Map.html";
 }
 
-var backend_path = "../Server_side/Village/handler_village.php";
+function addPopulation(event){
+    // checks if the local storage has the townhall data
+    if(localStorage.getItem("townhall") != null){
+        localStorage.removeItem("townhall");    // removes the local data
+    }
+    // 
+}
 
 // a function to handle the townhall click
 function townhallClick(event){
     // get the info div
     let info = document.getElementById("info");
+    // empties the info div
+    info.innerHTML = "";
+    // set the background color
     let background = document.getElementById("background");
     background.style.backgroundColor = "lightblue";
     // write a temporary message
@@ -74,6 +83,12 @@ function townhallClick(event){
     let text = Object.assign(data, player);
     // set the info div to the data
     info.innerHTML = printData(text);
+
+    //spawn a button inside the info div
+    let button = document.createElement("button");
+    button.innerHTML = "Add Population +5";
+    button.addEventListener("click", addPopulation);
+
 }
 
 // a function to handle the rockmine click

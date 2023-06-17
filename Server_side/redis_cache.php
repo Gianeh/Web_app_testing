@@ -8,6 +8,7 @@
         public $db;       // the database query object need to stay here?
         function __construct($classes, $server='AOS-Web-Testing.redis.cache.windows.net', $pass='1QJ5aC5vpZESy1MYbw5oU42lnMixqxm0PAzCaHl4QH4='){
             // include every class that should be cached
+            // this may be useless and removed from constructor
             for ($i = 0; $i < count($classes); $i++) {
                 include_once("Asset/".$classes[$i].".php");
             }
@@ -99,9 +100,9 @@
             $cache_key = $data . "_data_" . $token;   // the key is the data name + the token
             $deleted = $this->redis->del($cache_key); // del returns TRUE or FALSE
             if($deleted){
-                return array("key '$data' deleted successfuly from redis cache");
+                return array("status" => "key '$data' deleted successfuly from redis cache");
             }else{
-                return array("key '$data' deleted successfuly from redis cache");
+                return array("status" => "key '$data' deleted successfuly from redis cache");
             }
 
         }

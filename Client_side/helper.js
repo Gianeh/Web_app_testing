@@ -2,6 +2,7 @@
 
 // the path to the backend file that handles the requests to cache and database
 var backend_path = "../Server_side/Village/handler_village.php";
+var backend_updater_path = "../Server_side/data_updater.php";
 
 // a function that deletes records from a dictionary
 export function pickRecords(data, records){
@@ -22,7 +23,7 @@ export function printData(data){
 }
 
 // a function to handle requests for a specific objects to the backend
-export function getData(dataName, path) {
+export function getData(dataName, path, user_id="thisisasampleid") {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", path, false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -45,8 +46,28 @@ export function getData(dataName, path) {
 
     //let formData = new FormData();
     //formData.append("data", dataName);
-    xhr.send("data=" + dataName);
+    xhr.send("data=" + dataName + "&user_id=" + user_id);
     return output;
+}
+
+
+// a function to send new data to the backend
+export function sendData(data, path) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", path, false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        console.log("Server returned: " + xhr.responseText);
+      } else {
+        // Handle error
+        console.log("Server returned error: " + xhr.status);
+      }
+    }
+    xhr.onerror = function() {
+        // Handle error
+        console.log("Error occurred: " + xhr.status);
+    }
 }
 
 // a function that manages the local storage queries and retrieves from the redis cache if needed (redis cache queries the database if needed)
