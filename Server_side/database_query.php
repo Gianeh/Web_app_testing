@@ -8,20 +8,21 @@ class databaseQuery{
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    // afunction the create a complitly new row
+    // a function the create a completely new row
     public function insert($table, $columns, $values){       // insert a new row in the table colums = "column1, column2, column3" values = "value1, value2, value3"
-        $query = "INSERT INTO $table ($columns) VALUES ($values)";
+        $query = "INSERT INTO ".$table."(".$columns.") VALUES (".$values.")";
         $this->conn->query($query);
     }
 
     // a function that update an already existing row
+    /*
     public function update($table, $columns, $values, $where){  
         $query = "UPDATE $table SET $columns = $values WHERE $where";
         $this->conn->query($query);
-    }
+    }*/
     // a function that retrive data from the database
     public function RetriveData($table, $columns, $where){
-        $query = "SELECT $columns FROM $table WHERE $where";
+        $query = "SELECT ".$columns. " FROM ".$table. " WHERE ".$where;
         $stmt = $this->conn->query($query);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row;
