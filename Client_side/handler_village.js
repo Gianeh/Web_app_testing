@@ -51,7 +51,7 @@ function warmapClick(event){
 
 var backend_path = "../Server_side/Village/handler_village.php";
 
-var player = getData("player",backend_path);
+var temporary = getData("player",backend_path);
 console.log(player);
 
 // a function to handle the townhall click
