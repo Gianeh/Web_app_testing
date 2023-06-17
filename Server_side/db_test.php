@@ -23,10 +23,10 @@
     echo "</tr>";
     foreach ($table as $row) {
         echo "<tr>";
-        echo "<td>".$row["id"]."</td>";
-        echo "<td>".$row["name"]."</td>";
-        echo "<td>".$row["pass"]."</td>";
-        echo "<td>".$row["lvl"]."</td>";
+        echo "<td>".$row[0]."</td>";
+        echo "<td>".$row[1]."</td>";
+        echo "<td>".$row[2]."</td>";
+        echo "<td>".$row[3]."</td>";
         echo "</tr>";
     }
     echo "</table>";

@@ -28,7 +28,7 @@
             switch ($data) {
     
                 case "player":
-                    $player = $this->db->RetriveData("Dummy_player_data", "*", "Username = 'test'");
+                    $player = $this->db->RetriveData("Dummy_player_data", "*", "name = 'test'");
                     $output = $player->get_data();
                     break;
     
