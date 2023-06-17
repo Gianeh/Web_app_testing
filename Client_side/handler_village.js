@@ -1,6 +1,6 @@
 // this file handles the first base functions of the Viallage page
 
-import {pickRecords, printData, getData} from "./helper.js";
+import {pickRecords, printData, getLocalData, getData} from "./helper.js";
 // a function to set the handlers for the game
 
 export function onLoad(){
@@ -79,10 +79,10 @@ function rockmineClick(event){
     // write a temporary message
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
-    let data = getData("rockmine",backend_path);
+    let data = getLocalData("rockmine");
     delete data["cached"];
     // call the getData function to get the player data
-    let player = getData("player",backend_path);
+    let player = getLocalData("player");
     pickRecords(player, ["rock"]);
     let text = Object.assign(data, player);
     // set the info div to the data
@@ -98,10 +98,10 @@ function woodchopperClick(event){
     // write a temporary message
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
-    let data = getData("woodchopper",backend_path);
+    let data = getLocalData("woodchopper");
     delete data["cached"];
     // call the getData function to get the player data
-    let player = getData("player",backend_path);
+    let player = getLocalData("player");
     pickRecords(player, ["wood"]);
     let text = Object.assign(data, player);
     // set the info div to the data
