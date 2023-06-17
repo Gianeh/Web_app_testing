@@ -43,6 +43,12 @@ function setHandlers(){
 
     let b = document.getElementById("warmap");
     b.addEventListener("click", warmapClick);
+
+    // a refresh handling
+    window.addEventListener("beforeunload", function(){
+        // empties the local storage
+        localStorage.clear();
+    })
 }
 
 function warmapClick(event){
