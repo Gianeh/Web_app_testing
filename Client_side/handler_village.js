@@ -80,6 +80,9 @@ function upgradeTownhall(event){
 
 // a function to handle the townhall click
 function townhallClick(event){
+    // empties the info div
+    let buttons = document.getElementById("buttons");
+    buttons.innerHTML = "";
     // get the info div
     let info = document.getElementById("info");
     // empties the info div
@@ -100,10 +103,6 @@ function townhallClick(event){
     info.innerHTML = printData(text);
 
     //spawn a button inside the buttons div
-    let buttons = document.getElementById("buttons");
-    // empties the buttons div
-    buttons.innerHTML = "";
-
     let pop = document.createElement("button");
     pop.innerHTML = "Add Population + 1 [10 food]";
     pop.classList.add("button");
@@ -120,6 +119,9 @@ function townhallClick(event){
 
 // a function to handle the rockmine click
 function rockmineClick(event){
+    // empties the info div
+    let buttons = document.getElementById("buttons");
+    buttons.innerHTML = "";
     // get the info div
     let info = document.getElementById("info");
     let background = document.getElementById("background");
@@ -139,6 +141,9 @@ function rockmineClick(event){
 
 // a function to handle the woodchopper click
 function woodchopperClick(event){
+    // empties the info div
+    let buttons = document.getElementById("buttons");
+    buttons.innerHTML = "";
     // get the info div
     let info = document.getElementById("info");
     let background = document.getElementById("background");
