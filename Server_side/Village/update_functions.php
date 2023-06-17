@@ -38,6 +38,7 @@
             $resources["rock"] -= 100;
             $resources["iron"] -= 100;
             $cache->setData("player", $resources, $token);
+            $cache->setData("townhall", $townhall, $token);
             return true;
         } else {
             // if the player doesn't have enough food, return false

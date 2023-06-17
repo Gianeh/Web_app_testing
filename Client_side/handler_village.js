@@ -98,6 +98,9 @@ function townhallClick(event){
 
     //spawn a button inside the buttons div
     let buttons = document.getElementById("buttons");
+    // empties the buttons div
+    buttons.innerHTML = "";
+
     let pop = document.createElement("button");
     pop.innerHTML = "Add Population + 1 [10 food]";
     pop.classList.add("button");
