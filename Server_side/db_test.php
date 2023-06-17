@@ -19,9 +19,9 @@
     echo "</pre>";
 
     // print every row
-    while($row = $table->fetch(PDO::FETCH_ASSOC)) {
+    for($i = 0; $i < count($table); $i++){
         echo "<pre>";
-        print_r($row);
+        print_r($table[$i]);
         echo "</pre>";
     }
 

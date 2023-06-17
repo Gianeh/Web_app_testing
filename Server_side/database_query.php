@@ -28,8 +28,13 @@ class databaseQuery{
             $query = "SELECT ".$columns. " FROM ".$table. " WHERE ".$where;
         }
         $stmt = $this->conn->query($query);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row;
+        $output = array();
+        $i = 0;
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+            //$output[$row["id"]] = $row;   this would work (maybe) if used record as key is a primary key
+            $output[$i] = $row;
+            $i++;
+        return $output;
     }
     // a function that delete a row from the database
     public function remove($table, $where){
