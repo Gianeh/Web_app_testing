@@ -15,13 +15,14 @@
     /*
     $data = $cache->acquireData($_POST["data"], $_SESSION["csrf_token"]);
     */
+    $dataName = $_POST["data"];
     $current_data = $cache->acquireData($_POST["object"], $token);
     if ($_POST["action"] == "add") {
-        $current_data["data"] += $_POST["update"];
+        $current_data[$dataName] += $_POST["update"];
     } else if ($_POST["action"] == "sub") {
-        $current_data["data"] -= $_POST["update"];
+        $current_data[$dataName] -= $_POST["update"];
     } else if ($_POST["action"] == "replace") {
-        $current_data["data"] = $_POST["update"];
+        $current_data[$dataName] = $_POST["update"];
     } else {
         echo json_encode(array("status" => "error", "message" => "Invalid action"));
         exit();
