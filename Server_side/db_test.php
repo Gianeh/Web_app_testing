@@ -11,7 +11,7 @@
     $db->insert("Dummy_player_data", "id, name, pass, lvl", "4, 'test4', 'test4', 1");
 
     // retrieve the whole table from the database
-    $table = $db->RetriveData("Dummy_player_data", "*", "id = 1");
+    $table = $db->RetriveData("Dummy_player_data", "*");
 
     // print table
     echo "<pre>";
