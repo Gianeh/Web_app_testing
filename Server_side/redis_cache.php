@@ -61,12 +61,12 @@
         }
 
 
-        public function acquireData($data, $token){
-            if(!is_string($data)){
+        public function acquireData($dataName, $token){
+            if(!is_string($dataName)){
                 // invalid data requested
                 return array("error" => "invalid data requested");
             }
-            $cache_key = $data . "_data_" . $token;
+            $cache_key = $dataName . "_data_" . $token;
             if($this->redis === null){
                 // Redis connection not established
                 return array("error" => "Redis connection not established");
@@ -74,9 +74,8 @@
             $output = $this->redis->get($cache_key);
 
             if($output == false){
-                // data not found in cache, instantiate object and store data in cache
-                $output = $this->addInCache($data);
-
+                // data not found in cache, find object data in the database and store in cache
+                $output = $this->addInCache($dataName);
                 // save the data in the cache - third parameter is the time to live in seconds
                 $this->redis->set($cache_key, json_encode($output), 3600);
             } else {
@@ -88,6 +87,44 @@
 
             return $output;
 
+        }
+
+        //a function that updates a data in the cache
+        /*
+        public function updateCache($data, $token){
+            if($this->redis === null){
+                // Redis connection not established
+                return array("error" => "Redis connection not established");
+            }
+            $cache_key = $data . "_data_" . $token;   // the key is the data name + the token
+            $output = $this->redis->get($cache_key);  // get the data from the cache
+            if($output == false){
+                // data not found in cache, instantiate object and store data in cache
+                $output = $this->addInCache($data);
+                // save the data in the cache - third parameter is the time to live in seconds
+                $this->redis->set($cache_key, json_encode($output), 3600);
+            } else {
+                // data found in cache, decode the JSON string
+                // log that the data was found in the cache
+                $output = json_decode($output, true);
+                $output["cached"] = "true";
+            }
+            return $output;
+        }
+        */ //using the cache as the most fresh storage for the whole game this function is not needed in theory
+
+        //a function that update the cache from the db
+        public function updateData($dataName, $data, $token){
+            if($this->redis === null){
+                // Redis connection not established
+                return array("error" => "Redis connection not established");
+            }
+            $stored = $this->acquireData($dataName, $token);       // get the data from the db and add it to the cache
+            $cache_key = $dataName . "_data_" . $token;   // the key is the data name + the token
+            // update $stored with the new data
+            $stored[$dataName] += $data;
+            $this->redis->set($cache_key, json_encode($stored), 3600); // save the data in the cache - third parameter is the time to live in seconds
+            return array("status" => "key '$dataName' updated successfuly in redis cache");
         }
 
 
