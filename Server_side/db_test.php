@@ -24,9 +24,9 @@
     foreach ($table as $row) {
         echo "<tr>";
         echo "<td>".$row["id"]."</td>";
-        echo "<td>".$row["Username"]."</td>";
-        echo "<td>".$row["Password"]."</td>";
-        echo "<td>".$row["Level"]."</td>";
+        echo "<td>".$row["name"]."</td>";
+        echo "<td>".$row["pass"]."</td>";
+        echo "<td>".$row["lvl"]."</td>";
         echo "</tr>";
     }
     echo "</table>";
