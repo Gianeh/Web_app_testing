@@ -61,7 +61,7 @@ function addPopulation(event){
         localStorage.removeItem("player");    // removes the local data
     }
     // send update to the server
-    sendData("player", 5, "add");
+    sendData("player", "population", 5, "add");
     townhallClick();
     // 
 }
