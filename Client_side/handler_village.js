@@ -56,14 +56,23 @@ function warmapClick(event){
 }
 
 function addPopulation(event){
-    // checks if the local storage has the townhall data
+    // checks if the local storage has the resources data
     if(localStorage.getItem("player") != null){
         localStorage.removeItem("player");    // removes the local data
     }
     // send update to the server
     sendData("addPopulation");
     townhallClick();
-    // 
+}
+
+function upgradeTownhall(event){
+    // checks if the local storage has the resources data
+    if(localStorage.getItem("player") != null){
+        localStorage.removeItem("player");    // removes the local data
+    }
+    // send update to the server
+    sendData("upgradeTownhall");
+    townhallClick();
 }
 
 // a function to handle the townhall click
@@ -87,11 +96,19 @@ function townhallClick(event){
     // set the info div to the data
     info.innerHTML = printData(text);
 
-    //spawn a button inside the info div
-    let button = document.createElement("button");
-    button.innerHTML = "Add Population +5";
-    button.addEventListener("click", addPopulation);
-    info.appendChild(button);
+    //spawn a button inside the buttons div
+    let buttons = document.getElementById("buttons");
+    let pop = document.createElement("button");
+    pop.innerHTML = "Add Population + 1 [10 food]";
+    pop.classList.add("button");
+    pop.addEventListener("click", addPopulation);
+    buttons.appendChild(pop);
+    let upgrade = document.createElement("button");
+    upgrade.innerHTML = "Upgrade Townhall [100 iron, 100 wood, 100 rock]";
+    upgrade.addEventListener("click", upgradeTownhall);
+    upgrade.classList.add("button");
+    buttons.appendChild(upgrade);
+
 
 }
 
