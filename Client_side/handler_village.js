@@ -53,7 +53,7 @@ function setHandlers(){
     // cheat handler
     let key = document.getElementById("cheat_key");
     let cheat = document.getElementById("cheat");
-    cheat.addEventListener("click", function(event){
+    cheat.addEventListener("click", function(){
         sendData("cleancache", key.value);
     });
 }

@@ -52,7 +52,7 @@ export function getData(dataName, path, user_id="thisisatestuser") {
 
 
 // a function to send new data to the backend
-export function sendData(func="none", user_id="thisisatestuser", password="", path=backend_updater_path) {
+export function sendData(func="none", password="", user_id="thisisatestuser", path=backend_updater_path) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", path, false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
