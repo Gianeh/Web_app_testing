@@ -68,7 +68,6 @@ export function sendData(func="none", user_id="thisisatestuser", path=backend_up
         // Handle error
         console.log("Error occurred: " + xhr.status);
     }
-
     xhr.send("function=" + func + "&user_id=" + user_id);
 }
 
