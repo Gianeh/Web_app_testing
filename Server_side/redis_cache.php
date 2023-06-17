@@ -17,14 +17,13 @@
             $this->redis->auth($pass); // password for redis server
 
 
-            // create a new istance for the database query
-            $this->db = new databaseQuery();
-
-
         }
 
         // a function that get data from teh db and add it to the cache
         function addInCache($data){
+            // connect to database creating a new databaseQuery object
+            // this should only happen once thing are not in the cache -- as opposed to the constructor scope!
+            $this->db = new databaseQuery();
             switch ($data) {
     
                 case "player":
