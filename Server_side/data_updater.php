@@ -2,7 +2,7 @@
     //log the error
     ini_set('display_errors', 1);
     // include the chache class
-    include_once('../redis_cache.php');
+    include_once('redis_cache.php');
 
     $secret_key = '6Lc6BqUUAAAAAFCZ3Z4Z3Z4Z3Z4Z3Z4Z3Z4Z3Z4Z';
     $user_id = $_POST['user_id'];
