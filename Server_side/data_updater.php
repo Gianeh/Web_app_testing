@@ -27,7 +27,7 @@
         echo json_encode(array("status" => "error", "message" => "Invalid action"));
         exit();
     }
-    $status = $cache->setData($_POST["data"], $_POST["update"], $token);
+    $status = $cache->setData($_POST["object"], $current_data, $token);
 
     // return status
     echo json_encode($status);
