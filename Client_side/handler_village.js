@@ -57,11 +57,11 @@ function warmapClick(event){
 
 function addPopulation(event){
     // checks if the local storage has the townhall data
-    if(localStorage.getItem("townhall") != null){
-        localStorage.removeItem("townhall");    // removes the local data
+    if(localStorage.getItem("player") != null){
+        localStorage.removeItem("player");    // removes the local data
     }
     // send update to the server
-    sendData("player", 5);
+    sendData("player", 5, "add");
     townhallClick();
     // 
 }

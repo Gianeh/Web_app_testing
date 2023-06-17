@@ -112,8 +112,7 @@
             return $output;
         }
         */ //using the cache as the most fresh storage for the whole game this function is not needed in theory
-
-        //a function that update the cache from the db
+        /*
         public function updateData($dataName, $data, $token){
             if($this->redis === null){
                 // Redis connection not established
@@ -126,7 +125,18 @@
             $this->redis->set($cache_key, json_encode($stored), 3600); // save the data in the cache - third parameter is the time to live in seconds
             return array("status" => "key '$dataName' updated successfuly in redis cache");
         }
+        */
 
+        // a function that sets specific data in the cache
+        public function setData($dataName, $data, $token){
+            if($this->redis === null){
+                // Redis connection not established
+                return array("error" => "Redis connection not established");
+            }
+            $cache_key = $dataName . "_data_" . $token;   // the key is the data name + the token
+            $this->redis->set($cache_key, json_encode($data), 3600); // save the data in the cache - third parameter is the time to live in seconds
+            return array("status" => "key '$dataName' updated successfuly in redis cache");
+        }
 
         //a function that delete something from the cache by the key
         public function deleteData($data, $token){
