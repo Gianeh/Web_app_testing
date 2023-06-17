@@ -28,7 +28,7 @@
             switch ($data) {
     
                 case "player":
-                    $player = $this->db->RetriveData("player, resources", "*", "player.user_id = resources.user_id");
+                    $player = $this->db->RetriveData("*","player, resources", "player.user_id = resources.user_id");
                     //$name="Undefined!", $population=5, $iron=0, $wood=0, $rock=0, $food=0, $x=rand(1,89), $y=rand(1,89)
                     $player = new Player($player[0]["user_id"], $player[0]["population"], $player[0]["iron"], $player[0]["wood"], $player[0]["rock"], $player[0]["food"], $player[0]["x"], $player[0]["y"]);
                     $output = $player->get_data();

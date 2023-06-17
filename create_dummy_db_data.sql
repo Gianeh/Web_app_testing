@@ -37,6 +37,9 @@ INSERT INTO resources (user_id, iron, food, wood, rock, population) VALUES ('use
 -- select a player and his resources
 SELECT * FROM player, resources WHERE player.user_id = resources.user_id;
 
+-- select the whole resources table
+SELECT * FROM resources;
+
 
 -- reset tables contents
 /*

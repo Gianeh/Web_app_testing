@@ -11,7 +11,12 @@ class databaseQuery{
     // a function the create a completely new row
     public function insert($table, $columns, $values){       // insert a new row in the table colums = "column1, column2, column3" values = "value1, value2, value3"
         $query = "INSERT INTO ".$table."(".$columns.") VALUES (".$values.")";
-        $this->conn->query($query);
+        try {
+            $this->conn->query($query);
+            // Rest of the code
+        } catch (PDOException $e) {
+            echo "Database Query Error: " . $e->getMessage();
+        }
     }
 
     // a function that update an already existing row
@@ -19,15 +24,22 @@ class databaseQuery{
     public function update($table, $columns, $values, $where){  
         $query = "UPDATE $table SET $columns = $values WHERE $where";
         $this->conn->query($query);
-    }*/
+    }
+    */
+
     // a function that retrive data from the database
-    public function RetriveData($table, $columns, $where=""){
+    public function RetriveData($columns, $table, $where=""){
         if($where == ""){       // if the where condition is empty it will retrive the whole table
             $query = "SELECT ".$columns. " FROM ".$table;
         }else{
             $query = "SELECT ".$columns. " FROM ".$table. " WHERE ".$where;
         }
-        $stmt = $this->conn->query($query);
+        try {
+            $stmt = $this->conn->query($query);
+            // Rest of the code
+        } catch (PDOException $e) {
+            echo "Database Query Error: " . $e->getMessage();
+        }
         $output = array();
         $i = 0;
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
