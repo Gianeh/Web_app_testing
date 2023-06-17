@@ -21,8 +21,12 @@ class databaseQuery{
         $this->conn->query($query);
     }*/
     // a function that retrive data from the database
-    public function RetriveData($table, $columns, $where){
-        $query = "SELECT ".$columns. " FROM ".$table. " WHERE ".$where;
+    public function RetriveData($table, $columns, $where=""){
+        if($where == ""){       // if the where condition is empty it will retrive the whole table
+            $query = "SELECT ".$columns. " FROM ".$table;
+        }else{
+            $query = "SELECT ".$columns. " FROM ".$table. " WHERE ".$where;
+        }
         $stmt = $this->conn->query($query);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row;
