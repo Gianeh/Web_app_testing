@@ -18,22 +18,11 @@
     print_r($table);
     echo "</pre>";
 
-    // print the whole table html style
-    echo "<table>";
-    echo "<tr>";
-    echo "<th>id</th>";
-    echo "<th>name</th>";
-    echo "<th>pass</th>";
-    echo "<th>lvl</th>";
-    echo "</tr>";
+    // print every row
     while($row = $table->fetch(PDO::FETCH_ASSOC)) {
-        echo "<tr>";
-        echo "<td>".$row["id"]."</td>";
-        echo "<td>".$row["name"]."</td>";
-        echo "<td>".$row["pass"]."</td>";
-        echo "<td>".$row["lvl"]."</td>";
-        echo "</tr>";
+        echo "<pre>";
+        print_r($row);
+        echo "</pre>";
     }
-    echo "</table>";
 
     // $table = array(row1 => array(user => test, pass => test, lvl => 1), row2 => array(user => test2, pass => test2, lvl => 1), row3 => array(user => test3, pass => test3, lvl => 1), row4 => array(user => test4, pass => test4, lvl => 1));
