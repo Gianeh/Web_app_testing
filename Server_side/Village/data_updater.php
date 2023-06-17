@@ -18,7 +18,7 @@
             break;
 
         case "cleancache":
-            $status = cleancache($_POST["password"]);
+            $status = cleanCache($_POST["password"]);
         default:
             $status = false;
     }
