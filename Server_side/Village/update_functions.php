@@ -4,7 +4,7 @@
     ini_set('display_errors', 1);
 
     // include the chache class
-    include_once('redis_cache.php');
+    include_once('../redis_cache.php');
 
     // example rule: the player needs to have 10 food to add 1 population to village
     function addPopulation($token){
