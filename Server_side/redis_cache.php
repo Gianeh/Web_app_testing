@@ -1,24 +1,11 @@
 <?php
-
-    // create function for the switch adn the db query
-
-
     ini_set('display_errors', 1);
     include_once('database_query.php');
 
-    // information needed to connect to the database
-    $server = "tcp:AOS-Web-Testing.database.windows.net,1433";
-    $db     = "AOS-Web-Testing";
-    $user   = "aosadmin";
-    $pass   = "AOSpassword!"; 
 
     class Cache{
-        
         public $redis;
-
         public $db;       // the database query object need to stay here?
-
-
         function __construct($classes, $server='AOS-Web-Testing.redis.cache.windows.net', $pass='1QJ5aC5vpZESy1MYbw5oU42lnMixqxm0PAzCaHl4QH4='){
             // include every class that should be cached
             for ($i = 0; $i < count($classes); $i++) {
