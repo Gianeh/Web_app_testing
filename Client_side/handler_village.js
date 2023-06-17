@@ -61,6 +61,7 @@ function townhallClick(event){
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
     let data = getData("townhall",backend_path);
+    delete data["cached"];
     // call the getData function to get the player data
     let player = getData("player",backend_path);
     pickRecords(player, ["population", "iron", "wood", "food", "rock"]);
@@ -79,6 +80,7 @@ function rockmineClick(event){
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
     let data = getData("rockmine",backend_path);
+    delete data["cached"];
     // call the getData function to get the player data
     let player = getData("player",backend_path);
     pickRecords(player, ["rock"]);
@@ -97,6 +99,7 @@ function woodchopperClick(event){
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
     let data = getData("woodchopper",backend_path);
+    delete data["cached"];
     // call the getData function to get the player data
     let player = getData("player",backend_path);
     pickRecords(player, ["wood"]);
