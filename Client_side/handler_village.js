@@ -1,6 +1,6 @@
 // this file handles the first base functions of the Viallage page
 
-import {pickRecords, printData, getLocalData, getData} from "./helper.js";
+import {pickRecords, printData, getLocalData, sendData} from "./helper.js";
 // a function to set the handlers for the game
 
 export function onLoad(){
@@ -60,6 +60,9 @@ function addPopulation(event){
     if(localStorage.getItem("townhall") != null){
         localStorage.removeItem("townhall");    // removes the local data
     }
+    // send update to the server
+    sendData("player", 5);
+    townhallClick();
     // 
 }
 
