@@ -60,10 +60,10 @@ function townhallClick(event){
     // write a temporary message
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
-    let data = getData("townhall",backend_path);
+    let data = getLocalData("townhall",backend_path);
     delete data["cached"];
     // call the getData function to get the player data
-    let player = getData("player",backend_path);
+    let player = getLocalData("player",backend_path);
     pickRecords(player, ["population", "iron", "wood", "food", "rock"]);
     let text = Object.assign(data, player);
     // set the info div to the data

@@ -1,5 +1,8 @@
 // useful functions for client side
 
+// the path to the backend file that handles the requests to cache and database
+var backend_path = "../Server_side/Village/handler_village.php";
+
 // a function that deletes records from a dictionary
 export function pickRecords(data, records){
     for (let key in data){
@@ -44,4 +47,15 @@ export function getData(dataName, path) {
     //formData.append("data", dataName);
     xhr.send("data=" + dataName);
     return output;
+}
+
+// a function that manages the local storage queries and retrieves from the redis cache if needed (redis cache queries the database if needed)
+export function getLocalData(dataName){
+    if(localStorage[dataName] == null){
+        let data = getData(dataName, backend_path);
+        localStorage[dataName] = JSON.stringify(data);
+        return data;
+    }else{
+        return JSON.parse(localStorage[dataName]);
+    }
 }
