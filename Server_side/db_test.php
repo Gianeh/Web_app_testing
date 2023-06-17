@@ -21,12 +21,12 @@
     echo "<th>pass</th>";
     echo "<th>lvl</th>";
     echo "</tr>";
-    foreach ($table as $row) {
+    while($row = $table->fetch(PDO::FETCH_ASSOC)) {
         echo "<tr>";
-        echo "<td>".$row[0]."</td>";
-        echo "<td>".$row[1]."</td>";
-        echo "<td>".$row[2]."</td>";
-        echo "<td>".$row[3]."</td>";
+        echo "<td>".$row["id"]."</td>";
+        echo "<td>".$row["name"]."</td>";
+        echo "<td>".$row["pass"]."</td>";
+        echo "<td>".$row["lvl"]."</td>";
         echo "</tr>";
     }
     echo "</table>";
