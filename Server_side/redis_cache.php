@@ -107,6 +107,18 @@
 
         }
 
-      
+        //a function that delete all the cache
+        public function deleteAllCache(){
+            if($this->redis === null){
+                // Redis connection not established
+                return array("error" => "Redis connection not established");
+            }
+            $deleted = $this->redis->flushAll(); // del returns TRUE or FALSE
+            if($deleted){
+                return array("all keys deleted successfuly from redis cache");
+            }else{
+                return array("all keys deleted successfuly from redis cache");
+            }
 
+        }
     }
