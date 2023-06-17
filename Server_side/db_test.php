@@ -13,6 +13,11 @@
     // retrieve the whole table from the database
     $table = $db->RetriveData("Dummy_player_data", "*");
 
+    // print table
+    echo "<pre>";
+    print_r($table);
+    echo "</pre>";
+
     // print the whole table html style
     echo "<table>";
     echo "<tr>";
