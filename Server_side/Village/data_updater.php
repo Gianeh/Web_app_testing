@@ -13,6 +13,11 @@
         case "addPopulation":
             $status = addPopulation($token);
             break;
+        case "upgradeTownhall":
+            $status = upgradeTownhall($token);
+            break;
+        default:
+            $status = false;
     }
     
     // return status
