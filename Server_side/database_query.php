@@ -11,9 +11,9 @@ class databaseQuery{
     // a function the create a completely new row
     public function insert($table, $columns, $values){       // insert a new row in the table colums = "column1, column2, column3" values = "value1, value2, value3"
         $query = "INSERT INTO ".$table."(".$columns.") VALUES (".$values.")";
+        // try to execute the insertion query
         try {
             $this->conn->query($query);
-            // Rest of the code
         } catch (PDOException $e) {
             echo "Database Query Error: " . $e->getMessage();
         }
@@ -34,6 +34,7 @@ class databaseQuery{
         }else{
             $query = "SELECT ".$columns. " FROM ".$table. " WHERE ".$where;
         }
+        // try to execute the selection query
         try {
             $stmt = $this->conn->query($query);
             // Rest of the code
