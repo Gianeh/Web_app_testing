@@ -3,8 +3,8 @@
 class databaseQuery{
 
     public $conn;
-    function __construct($server, $user, $pass, $db){  //connect to the database
-        $this->conn = new PDO("sqlsrv:server = $server; Database = $db", "$user", "$pass");
+    function __construct($server="tcp:aos-database.database.windows.net", $user="aosadmin", $pass="AOSpassword!", $db="AOS_Database"){  //connect to the database
+        $this->conn = new PDO("sqlsrv:server = ".$server."; Database = ".$db, $user, $pass);
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
