@@ -70,6 +70,9 @@ function upgradeTownhall(event){
     if(localStorage.getItem("player") != null){
         localStorage.removeItem("player");    // removes the local data
     }
+    if(localStorage.getItem("townhall") != null){
+        localStorage.removeItem("townhall");    // removes the local data
+    }
     // send update to the server
     sendData("upgradeTownhall");
     townhallClick();
