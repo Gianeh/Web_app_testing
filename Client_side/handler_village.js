@@ -80,7 +80,7 @@ function upgradeTownhall(event){
 
 // a function to handle the townhall click
 function townhallClick(event){
-    // empties the info div
+    // empties the buttons div
     let buttons = document.getElementById("buttons");
     buttons.innerHTML = "";
     // get the info div
@@ -119,7 +119,7 @@ function townhallClick(event){
 
 // a function to handle the rockmine click
 function rockmineClick(event){
-    // empties the info div
+    // empties the buttons div
     let buttons = document.getElementById("buttons");
     buttons.innerHTML = "";
     // get the info div
@@ -141,7 +141,7 @@ function rockmineClick(event){
 
 // a function to handle the woodchopper click
 function woodchopperClick(event){
-    // empties the info div
+    // empties the buttons div
     let buttons = document.getElementById("buttons");
     buttons.innerHTML = "";
     // get the info div
