@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Login to AOS</title>
+        <style>
+            .login{
+                width: 300px;
+                height: 200px;
+                border: 2px solid black;
+                border-radius: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 50px auto;
+            }
+            form{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            label{
+                margin: 10px 0;
+                background-color: lightgreen;
+                border-radius: 5px;
+                border-color: black;
+            }
+            input{
+                margin: 10px 0;
+            }
+            .openingTitle{
+                text-align: center;
+                text-decoration: underline;
+               
+            }
+            .wrong{
+                color: red;
+                font-size: larger;
+                text-align: center;
+                display: flex;
+            }
+        </style>
+        <h1 class="openingTitle">Welcome to Age Of Stronghold</h1>
+    </head>
+    <body>
+        <div class="login">
+        <form action="login.php" method="post">
+            <label for="username">username:</label>
+            <input type="text" name="username" id="username">
+            <label for="password">password:</label>
+            <input type="password" name="password" id="password">
+            <input style="color: gold;" type="submit" value="login">
+        </form>
+    </div>
+    <div>
+        <span class="wrong" id="Wrong">Pwd sbagliata</span>
+    </div>
+    <div>
+        <button class="button" onclick="location.href='index.html'">Registrati</button>
+    </div>
+    </body>
+</html>
