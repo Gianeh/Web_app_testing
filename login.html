@@ -12,7 +12,7 @@
                 align-items: center;
                 margin: 50px auto;
             }
-            form{
+            .LoginForm{
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -42,15 +42,13 @@
         <h1 class="openingTitle">Welcome to Age Of Stronghold</h1>
     </head>
     <body>
-        <div class="login">
-        <form action="login.php" method="post">
+        <div class="LoginForm">
             <label for="username">username:</label>
             <input type="text" name="username" id="username">
             <label for="password">password:</label>
             <input type="password" name="password" id="password">
             <input style="color: gold;" type="submit" value="login">
-        </form>
-    </div>
+      </div>
     <div>
         <span class="wrong" id="Wrong">Pwd sbagliata</span>
     </div>
