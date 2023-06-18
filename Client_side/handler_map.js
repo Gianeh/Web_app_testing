@@ -5,11 +5,11 @@ import { pickRecords, printData, getData, sendData, getLocalData } from "./helpe
 export function onLoad() {
   let table = document.getElementById("WarMap");
 
-  let playerpos = getLocalData("player", "../Server_side/Map/handler_map.php");
+  let playerpos = getLocalData("player", "map"); // search in local cache player data
   playerpos = pickRecords(playerpos,["x","y"]);
-  console.log(playerpos,["x","y"]);
+ // console.log(playerpos,["x","y"]);
 
-  for (var i = 0; i < 90; i++) {
+  for (var i = 0; i < 90; i++) {  
     var row = table.insertRow();
     for (var j = 0; j < 90; j++) {
       var cell = row.insertCell();

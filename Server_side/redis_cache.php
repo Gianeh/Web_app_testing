@@ -50,7 +50,13 @@
                     break;
 
                 // add more cases for other objects as needed
-    
+                    
+                case "troops":
+                    $troops = $this->db->RetriveData("*","troops", "troops.user_id = user1");
+                    $troops = new Troops($troops[0]["user_id"], $troops[0]["archer"], $troops[0]["infantry"], $troops[0]["cavalary"]);
+                    $output = $troops->get_data();
+                    break;
+
                 default:
                     // handle error
                     $output = array("error" => "invalid data requested");
