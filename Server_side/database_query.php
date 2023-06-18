@@ -28,7 +28,7 @@ class databaseQuery{
     */
 
     // a function that retrive data from the database
-    public function RetriveData($columns, $table, $where=""){
+    public function retriveData($columns, $table, $where=""){
         if($where == ""){       // if the where condition is empty it will retrive the whole table
             $query = "SELECT ".$columns. " FROM ".$table;
         }else{
