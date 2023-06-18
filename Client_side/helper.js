@@ -1,8 +1,7 @@
 // useful functions for client side
 
 // the path to the backend file that handles the requests to cache and database
-var backend_path = "../Server_side/Village/handler_village.php";
-var backend_updater_path = "../Server_side/Village/data_updater.php";
+var backend_path = "../Server_side/Village/data_interface.php";
 
 // a function that deletes records from a dictionary
 export function pickRecords(data, records){
@@ -52,7 +51,7 @@ export function getData(dataName, path, user_id="thisisatestuser") {
 
 
 // a function to send new data to the backend
-export function sendData(func="none", password="", user_id="thisisatestuser", path=backend_updater_path) {
+export function sendData(func="none", password="", user_id="thisisatestuser", path=backend_path) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", path, false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
