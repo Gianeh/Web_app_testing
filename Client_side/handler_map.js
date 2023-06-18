@@ -1,10 +1,11 @@
-import { pickRecords, printData, getData } from "./helper.js";
+import { pickRecords, printData, getData, sendData, getLocalData } from "./helper.js";
 
+//use only getLocalData to get info
 
 export function onLoad() {
   let table = document.getElementById("WarMap");
 
-  let playerpos = getData("player", "../Server_side/Map/handler_map.php");
+  let playerpos = getLocalData("player", "../Server_side/Map/handler_map.php");
   playerpos = pickRecords(playerpos,["x","y"]);
   console.log(playerpos,["x","y"]);
 
