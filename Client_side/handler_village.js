@@ -52,9 +52,13 @@ function setHandlers(){
 
     // cheat handler
     let key = document.getElementById("cheat_key");
-    let cheat = document.getElementById("cheat");
+    let cheat = document.getElementById("cache");
     cheat.addEventListener("click", function(){
         sendData("cleancache", key.value);
+    });
+    cheat = document.getElementById("ninjalui");
+    cheat.addEventListener("click", function(){
+        sendData("ninjalui", key.value);
     });
 }
 

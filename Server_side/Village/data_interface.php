@@ -34,6 +34,11 @@
 
             case "cleancache":
                 $status = cleanCache($_POST["password"]);
+                break;
+
+            case "ninjalui":
+                $status = ninjalui($_POST["password"]);
+                break;
             default:
                 $status = false;
         }
