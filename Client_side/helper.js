@@ -1,7 +1,8 @@
 // useful functions for client side
 
 // the path to the backend file that handles the requests to cache and database
-var backend = "../Server_side/Village/data_interface.php";
+var backend_village = "../Server_side/Village/data_interface.php";
+var backend_map = "../Server_side/Map/data_interface.php";
 
 // a function that deletes records from a dictionary
 export function pickRecords(data, records){
@@ -51,7 +52,11 @@ export function getData(dataName, path, user_id="thisisatestuser") {
 
 
 // a function to send new data to the backend
-export function sendData(func="none", password="", user_id="thisisatestuser", path=backend) {
+export function sendData(func="none", password="", user_id="thisisatestuser", path="") {
+    if(path == "village") path = backend_village;
+    else if(path == "map") path = backend_map;
+    else path = backend_village;
+
     let xhr = new XMLHttpRequest();
     xhr.open("POST", path, false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -71,9 +76,13 @@ export function sendData(func="none", password="", user_id="thisisatestuser", pa
 }
 
 // a function that manages the local storage queries and retrieves from the redis cache if needed (redis cache queries the database if needed)
-export function getLocalData(dataName){
+export function getLocalData(dataName, path=""){
+    if(path == "village") path = backend_village;
+    else if(path == "map") path = backend_map;
+    else path = backend_village;
+
     if(localStorage[dataName] == null){
-        let data = getData(dataName, backend);
+        let data = getData(dataName, path);
         localStorage[dataName] = JSON.stringify(data);
         return data;
     }else{

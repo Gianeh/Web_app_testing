@@ -101,10 +101,10 @@ function townhallClick(event){
     // write a temporary message
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
-    let data = getLocalData("townhall");
+    let data = getLocalData("townhall", "village");
     delete data["cached"];
     // call the getData function to get the player data
-    let player = getLocalData("player");
+    let player = getLocalData("player", "village");
     pickRecords(player, ["population", "iron", "wood", "food", "rock"]);
     let text = Object.assign(data, player);
     // set the info div to the data
@@ -137,10 +137,10 @@ function rockmineClick(event){
     // write a temporary message
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
-    let data = getLocalData("rockmine");
+    let data = getLocalData("rockmine", "village");
     delete data["cached"];
     // call the getData function to get the player data
-    let player = getLocalData("player");
+    let player = getLocalData("player", "village");
     pickRecords(player, ["rock"]);
     let text = Object.assign(data, player);
     // set the info div to the data
@@ -159,10 +159,10 @@ function woodchopperClick(event){
     // write a temporary message
     info.innerHTML = "Loading...";
     // call the getData function to get the townhall data
-    let data = getLocalData("woodchopper");
+    let data = getLocalData("woodchopper", "village");
     delete data["cached"];
     // call the getData function to get the player data
-    let player = getLocalData("player");
+    let player = getLocalData("player", "village");
     pickRecords(player, ["wood"]);
     let text = Object.assign(data, player);
     // set the info div to the data
