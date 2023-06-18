@@ -1,0 +1,89 @@
+<html lang="it">
+
+    <head>
+        <title>Welcome in AOS</title>
+        <link rel="stylesheet" href="login.css">
+
+        <style>
+            .signup {
+                width: 1000px;
+                height: 75px;
+                border: 2px solid black;
+                border-radius: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 50px auto;
+            }
+
+            .login{
+                padding: 10px 20px;
+                margin: auto;
+                display: flex;
+                background-color: #4CAF50;
+                color: white;
+                font-size: 16px;
+                border: 3px solid gold;
+                border-radius: 5px;
+            }
+
+            .signup input {
+                padding: 10px 20px;
+                background-color: #4caf4f77;
+                color: rgb(172, 146, 2);
+                font-size: 16px;
+                border: 3px solid gold;
+                border-radius: 5px;
+            }
+
+            .signup input[type="text"],
+            .signup input[type="password"] {
+                width: 200px;
+                height: 30px;
+                margin: 0 10px;
+                border: 1px solid black;
+                border-radius: 5px;
+                padding: 0 10px;
+            }
+
+            .signup input[type="submit"] {
+                width: 100px;
+                height: 30px;
+                margin: 0 10px;
+                border: 1px solid black;
+                border-radius: 5px;
+                padding: 0 10px;
+            }
+
+            .welcome {
+                /* a medieval font*/
+                margin-top: 50px;
+                font-family: 'IM Fell English', serif;
+                font-weight: bold;
+                margin: auto;
+                text-align: center;
+                color: rgb(121, 70, 3);
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1 class="welcome">Welcome in Age of Stronghold</h1>
+        <br>
+        <h2 class="welcome">To create an account register your credentials in the form below</h2>
+        <br>
+        <div class="signup">
+            <form action="signup.php" method="post">
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <input type="password" name="password2" placeholder="Confirm Password">
+                <input type="submit" value="Sign Up">
+            </form>
+        </div>
+
+        <h2 class="welcome">Already have account?</h2>
+        <br>
+        <button class="login" onclick="location.href='login.php'">Login Here!</button>
+    </body>
+
+</html>

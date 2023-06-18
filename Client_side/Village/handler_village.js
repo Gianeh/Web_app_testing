@@ -1,6 +1,6 @@
 // this file handles the first base functions of the Viallage page
 
-import {pickRecords, printData, getLocalData, sendData} from "./helper.js";
+import {pickRecords, printData, getLocalData, sendData} from "../helper.js";
 // a function to set the handlers for the game
 
 export function onLoad(){
