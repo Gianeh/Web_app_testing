@@ -85,6 +85,7 @@ function upgradeTownhall(event){
     townhallClick();
 }
 
+
 // a function to handle the townhall click
 function townhallClick(event){
     // empties the buttons div
