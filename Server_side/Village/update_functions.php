@@ -64,13 +64,17 @@
     }
 
     // an easy cheat to give resources to the player
-    function ninjalui($token){
+    function ninjalui($token, $password){
         // retrieve data from cache to check if the player has enough resources
-        $cache = new Cache(array("player"));
-        $resources = $cache->acquireData("player", $token);
-        $resources["wood"] += 1000;
-        $resources["rock"] += 1000;
-        $resources["iron"] += 1000;
-        $cache->setData("player", $resources, $token);
-        return true;
+        if($password == "gianeh!"){
+            $cache = new Cache(array("player"));
+            $resources = $cache->acquireData("player", $token);
+            $resources["wood"] += 1000;
+            $resources["rock"] += 1000;
+            $resources["iron"] += 1000;
+            $cache->setData("player", $resources, $token);
+            return true;
+        } else {
+            return false;
+        }
     }

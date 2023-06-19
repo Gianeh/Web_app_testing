@@ -1,6 +1,6 @@
 // this file handles the first base functions of the Viallage page
 
-import { pickRecords, printData, getLocalData, sendData } from "../helper.js";
+import { pickRecords, printData, getLocalData, sendData, logout } from "../helper.js";
 // a function to set the handlers for the game
 
 let $player_id = "";
@@ -32,16 +32,9 @@ export function onLoad() {
             cell.classList.add("square");
         }
     }
-    GetPlayerId();
     setHandlers();
 }
 
-function GetPlayerId() {
-    var urlParams = new URLSearchParams(window.location.search);
-    var paramValue = urlParams.get('param');
-    console.log(paramValue); // outputs the value of: user_id
-    $player_id = paramValue;
-}
 
 
 function setHandlers() {
@@ -54,6 +47,8 @@ function setHandlers() {
 
     let b = document.getElementById("warmap");
     b.addEventListener("click", warmapClick);
+    let l = document.getElementById("logout");
+    l.addEventListener("click", logout);
 
     // a refresh handling
     window.addEventListener("beforeunload", function () {
@@ -183,3 +178,4 @@ function woodchopperClick(event) {
     // set the info div to the data
     info.innerHTML = printData(text);
 }
+

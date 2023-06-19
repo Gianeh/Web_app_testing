@@ -1,9 +1,21 @@
 <?php
     //log the error
     ini_set('display_errors', 1);
+    
+    if(isset($_POST["logout"])){
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+        session_destroy();
+        echo json_encode(array("status" => "success", "message" => "User logged out"));
+        exit();
+    }
+    
     // include the chache class
     include_once('update_functions.php');
     include_once('../redis_cache.php');
+
+
     if (session_status() !== PHP_SESSION_ACTIVE) {
         session_start();
     }
@@ -43,7 +55,7 @@
                 break;
 
             case "ninjalui":
-                $status = ninjalui($_POST["password"]);
+                $status = ninjalui($token, $_POST["password"]);
                 break;
             default:
                 $status = false;

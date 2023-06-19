@@ -89,3 +89,27 @@ export function getLocalData(dataName, path=""){
         return JSON.parse(localStorage[dataName]);
     }
 }
+
+// a function to logout the user
+export function logout(path=""){
+  if(path == "village") path = backend_village;
+    else if(path == "map") path = backend_map;
+    else path = backend_village;  // defaults to Village/data_interface.php
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", path, false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        console.log("Server returned: " + xhr.responseText);
+      } else {
+        // Handle error
+        console.log("Server returned error: " + xhr.status);
+      }
+    }
+    xhr.onerror = function() {
+        // Handle error
+        console.log("Error occurred: " + xhr.status);
+    }
+    xhr.send("logout=" + 1);
+}

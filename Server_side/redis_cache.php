@@ -35,7 +35,7 @@
                 case "player":
                     $player = $this->db->retriveData("*","player, resources", "player.user_id = resources.user_id");
                     //$name="Undefined!", $population=5, $iron=0, $wood=0, $rock=0, $food=0, $x=rand(1,89), $y=rand(1,89)
-                    $player = new Player($player[$user_id]["user_id"], $player[$user_id]["population"], $player[$user_id]["iron"], $player[$user_id]["wood"], $player[$user_id]["rock"], $player[$user_id]["food"], $player[$user_id]["x"], $player[$user_id]["y"]);
+                    $player = new Player($player[$user_id]["username"], $player[$user_id]["population"], $player[$user_id]["iron"], $player[$user_id]["wood"], $player[$user_id]["rock"], $player[$user_id]["food"], $player[$user_id]["x"], $player[$user_id]["y"]);
                     $output = $player->get_data();
                     break;
     

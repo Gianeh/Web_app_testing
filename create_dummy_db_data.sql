@@ -92,10 +92,12 @@ DELETE FROM player;
 DELETE FROM resources;
 */
 -- delete all the tables
+
 /*
-DROP TABLE users;
 DROP TABLE resources;
 DROP TABLE troops;
 DROP TABLE player;
+DROP TABLE users;
 */
+
 
