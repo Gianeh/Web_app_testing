@@ -2,14 +2,30 @@
 
 class databaseQuery{
 
+    private $server = "";
+    private $user;
+    private $pass;
+    private $db;
+
     public $conn;
     function __construct($server="tcp:aos-database.database.windows.net", $user="aosadmin", $pass="AOSpassword!", $db="AOS_Database"){  //connect to the database
-        $this->conn = new PDO("sqlsrv:server = ".$server."; Database = ".$db, $user, $pass);
-        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->server = "sqlsrv:server = ".$server;
+        $this->user = $user;
+        $this->pass = $pass;
+        $this->db = "; Database = ".$db;
     }
+
 
     // a function the create a completely new row
     public function insert($table, $columns, $values){       // insert a new row in the table colums = "column1, column2, column3" values = "value1, value2, value3"
+       
+        // create a new pdo connection
+        try {
+            $this->conn = new PDO($this->server.$this->db, $this->user, $this->pass);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo "Database Connection Error: " . $e->getMessage();
+        }
         $query = "INSERT INTO ".$table."(".$columns.") VALUES (".$values.")";
         // try to execute the insertion query
         try {
@@ -17,6 +33,9 @@ class databaseQuery{
         } catch (PDOException $e) {
             echo "Database Query Error: " . $e->getMessage();
         }
+        
+        //close pdo connection
+        $this->conn = null;
     }
 
     // a function that update an already existing row
@@ -29,6 +48,15 @@ class databaseQuery{
 
     // a function that retrive data from the database
     public function retriveData($columns, $table, $where=""){
+
+        //execute the conncetio to the database
+        try {
+            $this->conn = new PDO($this->server.$this->db, $this->user, $this->pass);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo "Database Connection Error: " . $e->getMessage();
+        }
+
         if($where == ""){       // if the where condition is empty it will retrive the whole table
             $query = "SELECT ".$columns. " FROM ".$table;
         }else{
@@ -48,6 +76,9 @@ class databaseQuery{
             $output[$i] = $row;
             $i++;
         }
+
+        //close pdo connection and return the output
+        $this->conn = null;
         return $output;
     }
     // a function that delete a row from the database
