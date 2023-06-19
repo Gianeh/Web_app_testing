@@ -1,26 +1,28 @@
 // this file handles the first base functions of the Viallage page
 
-import {pickRecords, printData, getLocalData, sendData} from "../helper.js";
+import { pickRecords, printData, getLocalData, sendData } from "../helper.js";
 // a function to set the handlers for the game
 
-export function onLoad(){
+let $player_id = "";
+
+export function onLoad() {
     let table = document.getElementById("Village");
     for (let i = 0; i < 30; i++) {
         let row = table.insertRow();
         for (let j = 0; j < 30; j++) {
             let cell = row.insertCell();
-            
-            if(i == 15 && j == 15){
+
+            if (i == 15 && j == 15) {
                 cell.id = "townhall";
                 cell.classList.add("townhall");
                 cell.innerHTML = "T";
                 continue;
-            }else if(i == 12 && j == 9){
+            } else if (i == 12 && j == 9) {
                 cell.id = "rockmine";
                 cell.classList.add("rockmine");
                 cell.innerHTML = "R";
                 continue;
-            }else if(i == 19 && j == 22){
+            } else if (i == 19 && j == 22) {
                 cell.id = "woodchopper";
                 cell.classList.add("woodchopper");
                 cell.innerHTML = "W";
@@ -30,10 +32,19 @@ export function onLoad(){
             cell.classList.add("square");
         }
     }
+    GetPlayerId();
     setHandlers();
 }
 
-function setHandlers(){
+function GetPlayerId() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var paramValue = urlParams.get('param');
+    console.log(paramValue); // outputs the value of: user_id
+    $player_id = paramValue;
+}
+
+
+function setHandlers() {
     let t = document.getElementById("townhall");
     t.addEventListener("click", townhallClick);
     let r = document.getElementById("rockmine");
@@ -45,7 +56,7 @@ function setHandlers(){
     b.addEventListener("click", warmapClick);
 
     // a refresh handling
-    window.addEventListener("beforeunload", function(){
+    window.addEventListener("beforeunload", function () {
         // empties the local storage
         localStorage.clear();
     });
@@ -53,22 +64,22 @@ function setHandlers(){
     // cheat handler
     let key = document.getElementById("cheat_key");
     let cheat = document.getElementById("cache");
-    cheat.addEventListener("click", function(){
+    cheat.addEventListener("click", function () {
         sendData("cleancache", key.value);
     });
     cheat = document.getElementById("ninjalui");
-    cheat.addEventListener("click", function(){
+    cheat.addEventListener("click", function () {
         sendData("ninjalui", key.value);
     });
 }
 
-function warmapClick(event){
+function warmapClick(event) {
     window.location.href = "Map.html";
 }
 
-function addPopulation(event){
+function addPopulation(event) {
     // checks if the local storage has the resources data
-    if(localStorage.getItem("player") != null){
+    if (localStorage.getItem("player") != null) {
         localStorage.removeItem("player");    // removes the local data
     }
     // send update to the server
@@ -76,12 +87,12 @@ function addPopulation(event){
     townhallClick();
 }
 
-function upgradeTownhall(event){
+function upgradeTownhall(event) {
     // checks if the local storage has the resources data
-    if(localStorage.getItem("player") != null){
+    if (localStorage.getItem("player") != null) {
         localStorage.removeItem("player");    // removes the local data
     }
-    if(localStorage.getItem("townhall") != null){
+    if (localStorage.getItem("townhall") != null) {
         localStorage.removeItem("townhall");    // removes the local data
     }
     // send update to the server
@@ -91,7 +102,7 @@ function upgradeTownhall(event){
 
 
 // a function to handle the townhall click
-function townhallClick(event){
+function townhallClick(event) {
     // empties the buttons div
     let buttons = document.getElementById("buttons");
     buttons.innerHTML = "";
@@ -130,7 +141,7 @@ function townhallClick(event){
 }
 
 // a function to handle the rockmine click
-function rockmineClick(event){
+function rockmineClick(event) {
     // empties the buttons div
     let buttons = document.getElementById("buttons");
     buttons.innerHTML = "";
@@ -152,7 +163,7 @@ function rockmineClick(event){
 }
 
 // a function to handle the woodchopper click
-function woodchopperClick(event){
+function woodchopperClick(event) {
     // empties the buttons div
     let buttons = document.getElementById("buttons");
     buttons.innerHTML = "";
