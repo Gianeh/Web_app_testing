@@ -33,7 +33,7 @@ function submitClick(){
         // decode the JSON response
         let output = JSON.parse(xhr.responseText);
         if(output["status"] == "success"){
-            window.location.href = "../Client_side/Village/village.html";
+            window.location.href = "Village.html";
         }else{
             alert(output["message"]);
         }
