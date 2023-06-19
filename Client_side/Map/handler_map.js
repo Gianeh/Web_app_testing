@@ -5,7 +5,7 @@ import { pickRecords, printData, getData, sendData, getLocalData } from "../help
 export function onLoad() {
   let table = document.getElementById("WarMap");
 
-  let playerpos = getLocalData("player", "map"); // search in local cache player data
+  let playerpos = getLocalData("player", "map");    // search in local cache player data
   playerpos = pickRecords(playerpos,["x","y"]);
  // console.log(playerpos,["x","y"]);
 

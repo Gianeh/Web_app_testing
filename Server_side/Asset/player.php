@@ -1,5 +1,5 @@
 <?php
-
+  
     // A Player class
 
     class Player{
@@ -31,6 +31,7 @@
 
             $this->x = $x;
             $this->y = $y;
+
         }
         
         public function get_data(){

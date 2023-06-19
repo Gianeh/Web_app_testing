@@ -17,7 +17,9 @@
         exit();
     }
 
-    // various checks on username validity and password strength
+    // various checks on username validity and password strength should be done here
+
+    
 
     // check the database to be sure that the username is not already taken
     include_once("../database_query.php");
@@ -31,8 +33,23 @@
         exit();
     }
 
+    
+
+    //Generate a random position for the player
+    $existingPositions = $conn->retriveData("x, y", "users");
+
+    $x = rand(0, 99);
+    $y = rand(0, 99);
+    $position = array($x, $y);
+
+    while (in_array($position, $existingPositions)) {
+        $x = rand(0, 99);
+        $y = rand(0, 99);
+        $position = array($x, $y);
+    }
+
     // if everything is ok, insert the new user in the database
-    $connection->insert("users", "user_id, username, password", "'$user_id','$username', '$password'");
+    $connection->insert("users", "user_id, username, password", "'$user_id','$username', '$password', '$x', '$y'");
     session_start();
     $_SESSION["user_id"] = $user_id;
     echo json_encode(array("status" => "success", "message" => "User created"));
