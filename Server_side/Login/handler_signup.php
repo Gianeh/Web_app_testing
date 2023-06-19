@@ -21,7 +21,7 @@
 
     // check the database to be sure that the username is not already taken
     include_once("../database_query.php");
-    include_once("user_id_encoder.php");
+    include_once("./user_id_encoder.php");
     $user_id = encode($username);
     $connection = new DatabaseQuery();
     $matching_users = $connection->retriveData("*", "user", "username = '$username'");
