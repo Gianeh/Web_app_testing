@@ -31,7 +31,7 @@ function submitClick(){
       if (xhr.status === 200) {
         console.log("Server returned: " + xhr.responseText);
         // decode the JSON response
-        output = JSON.parse(xhr.responseText);
+        let output = JSON.parse(xhr.responseText);
         if(output["status"] == "success"){
             window.location.href = "../Client_side/Village/village.html";
         }else{

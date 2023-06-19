@@ -26,7 +26,7 @@ function submitClick(){
       if (xhr.status === 200) {
         console.log("Server returned: " + xhr.responseText);
         // decode the JSON response
-        output = JSON.parse(xhr.responseText);
+        let output = JSON.parse(xhr.responseText);
         //if the login was successful, redirect to the village page adding on param the username 
         // is not the safest way i know it
         if(output["status"] == "success"){

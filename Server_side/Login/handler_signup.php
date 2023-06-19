@@ -2,7 +2,7 @@
     // log the error
     ini_set('display_errors', 1);
 
-    if(!isset($_POST["username"]) || !isset($_POST["password"]) || !isset($_POST["email"])){
+    if(!isset($_POST["username"]) || !isset($_POST["password"]) || !isset($_POST["password2"])){
         echo json_encode(array("status" => "error", "message" => "Missing parameters"));
         exit();
     }
