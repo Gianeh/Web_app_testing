@@ -102,6 +102,8 @@ export function logout(path=""){
     xhr.onload = function() {
       if (xhr.status === 200) {
         console.log("Server returned: " + xhr.responseText);
+        // href to index.html
+        window.location.href = "../../index.html";
       } else {
         // Handle error
         console.log("Server returned error: " + xhr.status);
