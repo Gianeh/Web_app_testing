@@ -44,5 +44,5 @@ function submitClick(){
         // Handle error
         console.log("Error occurred: " + xhr.status);
     };
-    xhr.send("username=" + username + "&password=" + password + "&email=" + email);
+    xhr.send("username=" + username + "&password=" + password + "&password2=" + password2);
 }
