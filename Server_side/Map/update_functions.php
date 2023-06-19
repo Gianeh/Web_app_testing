@@ -16,6 +16,6 @@ include_once('../redis_cache.php');
          return array("status" => "error", "message" => "Not enough troops!");
      }else{
             // if the player has enough troops he can attack someone
-            $
+            
      }  
  }
