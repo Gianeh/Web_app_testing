@@ -17,6 +17,8 @@
             $this->redis->connect($server, 6379);
             $this->redis->auth($pass); // password for redis server
 
+            // CONNECTION MAY NEED TO BE CREATED ON DEMAND INSIDE EACH FUNCTION
+
 
         }
 
@@ -25,12 +27,14 @@
             // connect to database creating a new databaseQuery object
             // this should only happen once thing are not in the cache -- as opposed to the constructor scope!
             $this->db = new databaseQuery();
+            // save the user_id in a variable
+            $user_id = $_SESSION["user_id"];
             switch ($data) {
     
                 case "player":
                     $player = $this->db->retriveData("*","player, resources", "player.user_id = resources.user_id");
                     //$name="Undefined!", $population=5, $iron=0, $wood=0, $rock=0, $food=0, $x=rand(1,89), $y=rand(1,89)
-                    $player = new Player($player[0]["user_id"], $player[0]["population"], $player[0]["iron"], $player[0]["wood"], $player[0]["rock"], $player[0]["food"], $player[0]["x"], $player[0]["y"]);
+                    $player = new Player($player[$user_id]["user_id"], $player[$user_id]["population"], $player[$user_id]["iron"], $player[$user_id]["wood"], $player[$user_id]["rock"], $player[$user_id]["food"], $player[$user_id]["x"], $player[$user_id]["y"]);
                     $output = $player->get_data();
                     break;
     
@@ -91,6 +95,8 @@
                 $output["cached"] = "true";
             }
 
+            // close the cache connection
+            $this->redis->close();
             return $output;
 
         }
@@ -141,6 +147,8 @@
             }
             $cache_key = $dataName . "_data_" . $token;   // the key is the data name + the token
             $this->redis->set($cache_key, json_encode($data), 3600); // save the data in the cache - third parameter is the time to live in seconds
+            // close the cache connection
+            $this->redis->close();
             return array("status" => "key '$dataName' updated successfuly in redis cache");
         }
 
@@ -152,6 +160,10 @@
             }
             $cache_key = $data . "_data_" . $token;   // the key is the data name + the token
             $deleted = $this->redis->del($cache_key); // del returns TRUE or FALSE
+
+            // close the cache connection
+            $this->redis->close();
+
             if($deleted){
                 return array("status" => "key '$data' deleted successfuly from redis cache");
             }else{
@@ -167,6 +179,10 @@
                 return array("error" => "Redis connection not established");
             }
             $deleted = $this->redis->flushAll(); // del returns TRUE or FALSE
+
+            // close the cache connection
+            $this->redis->close();
+
             if($deleted){
                 return array("all keys deleted successfuly from redis cache");
             }else{

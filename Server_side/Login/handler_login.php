@@ -16,7 +16,7 @@
     include_once("user_id_encoder.php");
     $user_id = encode($username);
     $connection = new DatabaseQuery();
-    $matching_users = $connection->RetriveData("*", "user", "username = '$username' AND password = '$password'");
+    $matching_users = $connection->RetriveData("*", "users", "username = '$username' AND password = '$password'");
 
     if(count($matching_users) == 0){
         echo json_encode(array("status" => "error", "message" => "Wrong username or password"));

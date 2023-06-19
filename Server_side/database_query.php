@@ -70,11 +70,10 @@ class databaseQuery{
             echo "Database Query Error: " . $e->getMessage();
         }
         $output = array();
-        $i = 0;
+        // fetch the data from the database
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-            //$output[$row["id"]] = $row;   this would work (maybe) if used record as key is a primary key
-            $output[$i] = $row;
-            $i++;
+            $output[$row["id"]] = $row; // add the row to the output array at the specified user_id which is then retrieved by session!
+
         }
 
         //close pdo connection and return the output

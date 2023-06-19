@@ -1,3 +1,25 @@
+-- create the main user table
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'users')
+BEGIN
+    CREATE TABLE users (
+        user_id varchar(20) PRIMARY KEY,
+        username varchar(20) NOT NULL,
+        password varchar(20) NOT NULL,
+    );
+END
+
+-- create a table player containing the player's name, password
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'player')
+BEGIN
+    CREATE TABLE player (
+        user_id varchar(20) PRIMARY KEY,
+        username varchar(20) NOT NULL,
+        password varchar(20) NOT NULL,
+        x INTEGER NOT NULL,
+        y INTEGER NOT NULL
+    );
+END
+
 -- create a table resources containing iron, food, wood, rock
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'resources')
 BEGIN
@@ -9,16 +31,6 @@ CREATE TABLE resources (
     rock INTEGER NOT NULL,
     population INTEGER NOT NULL
     FOREIGN KEY (user_id) REFERENCES player(user_id)
-    );
-END
--- create a table player containing the player's name, password
-IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'player')
-BEGIN
-    CREATE TABLE player (
-        user_id varchar(20) PRIMARY KEY,
-        password varchar(20) NOT NULL,
-        x INTEGER NOT NULL,
-        y INTEGER NOT NULL
     );
 END
 
@@ -34,6 +46,7 @@ BEGIN
     );
 END
 
+/*
 -- create a table wars containing the player's wars (user_id_attack, user_id_defend, user_id_winner)
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'wars')
 BEGIN
@@ -51,7 +64,7 @@ BEGIN
         FOREIGN KEY (user_id_winner) REFERENCES player(user_id)
     );
 END
-
+*/
 -- create some sample data for the tables player and resources
 INSERT INTO player (user_id, password, x, y) VALUES ('user1', 'password1', 0, 0);
 INSERT INTO player (user_id, password, x, y) VALUES ('user2', 'password2', 0, 0);
@@ -78,7 +91,8 @@ DELETE FROM resources;
 */
 -- delete tables player and resources
 /*
-DROP TABLE player;
+DROP TABLE users;
 DROP TABLE resources;
+DROP TABLE troops;
+DROP TABLE player;
 */
-

@@ -6,7 +6,8 @@
     include_once('../redis_cache.php');
 
     $secret_key = '6Lc6BqUUAAAAAFCZ3Z4Z3Z4Z3Z4Z3Z4Z3Z4Z3Z4Z';
-    $user_id = $_POST['user_id'];
+    $user_id = $_SESSION['user_id'];    // retrieve user_id from session
+    $_SESSION['user_id'] = $user_id;    // update session to increase lifetime
     $token = hash("sha256", $secret_key.$user_id);
 
     if(!isset($_POST["function"])){ // retrieve data!

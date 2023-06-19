@@ -32,6 +32,6 @@
     }
 
     // if everything is ok, insert the new user in the database
-    $connection->insert("user", "user_id, username, password", "'$user_id','$username', '$password'");
+    $connection->insert("users", "user_id, username, password", "'$user_id','$username', '$password'");
     echo json_encode(array("status" => "success", "message" => "User created"));
 ?>
