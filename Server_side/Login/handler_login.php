@@ -1,6 +1,7 @@
 <?php 
     // log the error
     ini_set('display_errors', 1);
+    session_start();
 
     if(!isset($_POST["username"]) || !isset($_POST["password"])){
         echo json_encode(array("status" => "error", "message" => "Missing parameters"));
@@ -23,7 +24,7 @@
         exit();
     }
 
-    session_start();
+    
     $_SESSION["user_id"] = $user_id;
 
     // if everything is ok, log the user in
