@@ -14,11 +14,12 @@ END
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'player')
 BEGIN
     CREATE TABLE player (
-        user_id varchar(20) PRIMARY KEY,
+        user_id varchar(64) PRIMARY KEY,
         username varchar(20) NOT NULL,
         password varchar(20) NOT NULL,
         x INTEGER NOT NULL,
         y INTEGER NOT NULL
+        FOREIGN KEY (user_id) REFERENCES users(user_id)
     );
 END
 
@@ -26,7 +27,7 @@ END
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'resources')
 BEGIN
 CREATE TABLE resources (
-    user_id varchar(20) PRIMARY KEY,
+    user_id varchar(64) PRIMARY KEY,
     iron INTEGER NOT NULL,
     food INTEGER NOT NULL,
     wood INTEGER NOT NULL,
@@ -40,7 +41,7 @@ END
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'troops')
 BEGIN
     CREATE TABLE troops (
-        user_id varchar(20) PRIMARY KEY,
+        user_id varchar(64) PRIMARY KEY,
         archer INTEGER NOT NULL,
         infantry INTEGER NOT NULL,
         cavalry INTEGER NOT NULL
@@ -67,6 +68,7 @@ BEGIN
     );
 END
 */
+/*
 -- create some sample data for the tables player and resources
 INSERT INTO player (user_id, password, x, y) VALUES ('user1', 'password1', 0, 0);
 INSERT INTO player (user_id, password, x, y) VALUES ('user2', 'password2', 0, 0);
@@ -85,13 +87,13 @@ SELECT * FROM player, resources WHERE player.user_id = resources.user_id;
 -- select the whole resources table
 SELECT * FROM resources;
 
-
+*/
 -- reset tables contents
 /*
 DELETE FROM player;
 DELETE FROM resources;
 */
--- delete tables player and resources
+-- delete all the tables
 /*
 DROP TABLE users;
 DROP TABLE resources;
