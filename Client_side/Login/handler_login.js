@@ -1,5 +1,3 @@
-import {pickRecords, printData, getLocalData, sendData} from "../helper.js";
-
 //a function that set handlers for the login page
 export function setHandlers(){
     let submit = document.getElementById("submit");

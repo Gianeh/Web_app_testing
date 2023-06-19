@@ -5,8 +5,6 @@ BEGIN
         user_id varchar(64) PRIMARY KEY,
         username varchar(20) NOT NULL,
         password varchar(20) NOT NULL,
-        x INTEGER NOT NULL,
-        y INTEGER NOT NULL
     );
 END
 

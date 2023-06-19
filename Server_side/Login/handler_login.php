@@ -1,7 +1,9 @@
 <?php 
     // log the error
     ini_set('display_errors', 1);
-    session_start();
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
 
     if(!isset($_POST["username"]) || !isset($_POST["password"])){
         echo json_encode(array("status" => "error", "message" => "Missing parameters"));

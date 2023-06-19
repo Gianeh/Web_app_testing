@@ -58,9 +58,9 @@ class databaseQuery{
         }
 
         if($where == ""){       // if the where condition is empty it will retrive the whole table
-            $query = "SELECT ".$columns. " FROM ".$table;
+            $query = "SELECT ".$columns." FROM ".$table;
         }else{
-            $query = "SELECT ".$columns. " FROM ".$table. " WHERE ".$where;
+            $query = "SELECT ".$columns." FROM ".$table." WHERE ".$where;
         }
         // try to execute the selection query
         try {
