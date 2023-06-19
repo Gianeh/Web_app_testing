@@ -37,6 +37,10 @@
     
     //Generate a random position for the player
     $existingPositions = $connection->retriveData("x, y", "player");
+    // this for loop is needed to convert the array of 2 distinct values into an array of arrays of 2 values
+    foreach($existingPositions as $key => $value){
+        $existingPositions[$key] = array($value["x"], $value["y"]);
+    }
 
     $x = rand(0, 99);
     $y = rand(0, 99);
