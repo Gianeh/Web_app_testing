@@ -14,7 +14,6 @@ BEGIN
     CREATE TABLE player (
         user_id varchar(20) PRIMARY KEY,
         username varchar(20) NOT NULL,
-        password varchar(20) NOT NULL,
         x INTEGER NOT NULL,
         y INTEGER NOT NULL
     );
@@ -65,6 +64,7 @@ BEGIN
     );
 END
 */
+/*
 -- create some sample data for the tables player and resources
 INSERT INTO player (user_id, password, x, y) VALUES ('user1', 'password1', 0, 0);
 INSERT INTO player (user_id, password, x, y) VALUES ('user2', 'password2', 0, 0);
@@ -83,17 +83,19 @@ SELECT * FROM player, resources WHERE player.user_id = resources.user_id;
 -- select the whole resources table
 SELECT * FROM resources;
 
-
+*/
 -- reset tables contents
 /*
 DELETE FROM player;
 DELETE FROM resources;
 */
 -- delete tables player and resources
+
+
 /*
 DROP TABLE users;
 DROP TABLE resources;
 DROP TABLE troops;
 DROP TABLE player;
-*/
 
+*/
