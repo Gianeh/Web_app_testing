@@ -68,6 +68,7 @@ class databaseQuery{
             // Rest of the code
         } catch (PDOException $e) {
             echo "Database Query Error: " . $e->getMessage();
+            exit();
         }
         $output = array();
         // fetch the data from the database

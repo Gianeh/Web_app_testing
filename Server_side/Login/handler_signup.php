@@ -24,7 +24,7 @@
     include_once("user_id_encoder.php");
     $user_id = encode($username);
     $connection = new DatabaseQuery();
-    $matching_users = $connection->retriveData("*", "user", "username = '$username'");
+    $matching_users = $connection->retriveData("*", "users", "username = '$username'");
 
     if(count($matching_users) > 0){
         echo json_encode(array("status" => "error", "message" => "Username already taken"));
