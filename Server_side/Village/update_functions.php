@@ -69,9 +69,9 @@
         if($password == "gianeh!"){
             $cache = new Cache(array("player"));
             $resources = $cache->acquireData("player", $token);
-            $resources["wood"] += 1000;
-            $resources["rock"] += 1000;
-            $resources["iron"] += 1000;
+            $resources["wood"] += 100;
+            $resources["rock"] += 100;
+            $resources["iron"] += 100;
             $cache->setData("player", $resources, $token);
             return true;
         } else {

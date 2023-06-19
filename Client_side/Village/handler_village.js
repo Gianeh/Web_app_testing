@@ -65,6 +65,8 @@ function setHandlers() {
     cheat = document.getElementById("ninjalui");
     cheat.addEventListener("click", function () {
         sendData("ninjalui", key.value);
+        // destroy local storage
+        localStorage.clear();
     });
 }
 
