@@ -24,7 +24,7 @@
     // check the database to be sure that the username is not already taken
     include_once("../database_query.php");
     include_once("user_id_encoder.php");
-    $user_id = encode($username);
+
     $connection = new DatabaseQuery();
     $matching_users = $connection->retriveData("*", "users", "username = '$username'");
 
@@ -34,7 +34,7 @@
     }
 
     
-    /*
+    
     //Generate a random position for the player
     $existingPositions = $connection->retriveData("x, y", "users");
 
@@ -47,10 +47,17 @@
         $y = rand(0, 99);
         $position = array($x, $y);
     }
-    */
 
+    // encode the username to get the user_id and insert all needed records in the database
+    $user_id = encode($username);
     // if everything is ok, insert the new user in the database
-    $connection->insert("users", "user_id, username, password, x, y", "'$user_id','$username', '$password', '$x', '$y'");
+    $connection->insert("users", "user_id, username, password", "'$user_id','$username', '$password'");
+    $connection->insert("player", "user_id, username, password, x, y", "'$user_id', '$username', '$password', '$x', '$y'");
+    $connection->insert("resources", "user_id, iron, food, wood, rock, population", "'$user_id', 200, 200, 200, 200, 50");
+    $connection->insert("troops", "user_id, archer, infantry, cavalry", "'$user_id', 0, 0, 0");
+    // every new table rows needs to be added here
+    
+    
     if (session_status() !== PHP_SESSION_ACTIVE) {
         session_start();
     }
