@@ -36,7 +36,7 @@
     
     
     //Generate a random position for the player
-    $existingPositions = $connection->retriveData("x, y", "users");
+    $existingPositions = $connection->retriveData("x, y", "player");
 
     $x = rand(0, 99);
     $y = rand(0, 99);
