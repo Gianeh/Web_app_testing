@@ -12,10 +12,12 @@ function submitClick(){
     // if any of the previous is empty
     if(username == "" || password == "" || password2 == ""){
         alert("Please fill all the fields!");
+        console.log("Please fill all the fields!");
         return;
     }
     if(password != password2){
         alert("Passwords do not match!");
+        console.log("Passwords do not match!");
         return;
     }
     // password should be veriefied to match security concerns
