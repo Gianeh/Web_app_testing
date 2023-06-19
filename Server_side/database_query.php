@@ -86,6 +86,7 @@ class databaseQuery{
         $query = "DELETE FROM $table WHERE $where";
         $this->conn->query($query);
     }
+    /// FIX THERE ^^^^^^^
 
 }
 

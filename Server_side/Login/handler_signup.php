@@ -21,8 +21,10 @@
 
     // check the database to be sure that the username is not already taken
     include_once("../database_query.php");
+    include_once("user_id_encoder.php");
+    $user_id = encode($username);
     $connection = new DatabaseQuery();
-    $matching_users = $connection->RetriveData("*", "user", "username = '$username'");
+    $matching_users = $connection->retriveData("*", "user", "username = '$username'");
 
     if(count($matching_users) > 0){
         echo json_encode(array("status" => "error", "message" => "Username already taken"));
@@ -30,6 +32,6 @@
     }
 
     // if everything is ok, insert the new user in the database
-    $connection->insert("user", "username, password", "'$username', '$password'");
+    $connection->insert("user", "user_id, username, password", "'$user_id','$username', '$password'");
     echo json_encode(array("status" => "success", "message" => "User created"));
 ?>

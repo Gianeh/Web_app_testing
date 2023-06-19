@@ -30,7 +30,7 @@ function submitClick(){
         //if the login was successful, redirect to the village page adding on param the username 
         // is not the safest way i know it
         if(output["status"] == "success"){
-            window.location.href = "../Client_side/Village/village.html?param=".concat(username);
+            window.location.href = "../Client_side/Village/village.html";
         }else{
             alert(output["message"]);
         }
