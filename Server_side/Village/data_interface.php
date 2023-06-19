@@ -4,7 +4,6 @@
     // include the chache class
     include_once('update_functions.php');
     include_once('../redis_cache.php');
-    session_start();
     $secret_key = '6Lc6BqUUAAAAAFCZ3Z4Z3Z4Z3Z4Z3Z4Z3Z4Z3Z4Z';
     $user_id = $_SESSION['user_id'];    // retrieve user_id from session
     $_SESSION['user_id'] = $user_id;    // update session to increase lifetime
