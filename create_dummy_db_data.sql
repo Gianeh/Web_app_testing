@@ -92,6 +92,7 @@ DELETE FROM resources;
 -- delete tables player and resources
 
 
+
 /*
 DROP TABLE users;
 DROP TABLE resources;

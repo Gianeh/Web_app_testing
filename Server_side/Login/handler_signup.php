@@ -34,7 +34,7 @@
     // if everything is ok, insert the new user in the database
     $connection->insert("users", "user_id, username, password", "'$user_id','$username', '$password'");
     $connection->insert("player", "user_id, username, x, y", "'$user_id','$username', 0, 0");
-    $connection->insert("resources", "user_id, wood, stone, iron, food", "'$user_id', 100, 100, 100, 100");
+    $connection->insert("resources", "user_id, wood, rock, iron, food", "'$user_id', 100, 100, 100, 100");
     session_start();
     $_SESSION["user_id"] = $user_id;
     echo json_encode(array("status" => "success", "message" => "User created"));
