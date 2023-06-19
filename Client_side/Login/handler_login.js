@@ -20,7 +20,7 @@ function submitClick(){
     // I hate the users...
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../Server_side/Login/login_handler.php", false);
+    xhr.open("POST", "../Server_side/Login/handler_login.php", false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function() {
       if (xhr.status === 200) {
