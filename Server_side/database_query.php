@@ -8,7 +8,7 @@ class databaseQuery{
     private $db;
 
     public $conn;
-    function __construct($server="tcp:aos-database.database.windows.net", $user="aosadmin", $pass="AOSpassword!", $db="AOS_Database"){  //connect to the database
+    function __construct($server="tcp:aos-database.database.windows.net,1433", $user="aosadmin", $pass="AOSpassword!", $db="AOS_Database"){  //connect to the database
         $this->server = "sqlsrv:server = ".$server;
         $this->user = $user;
         $this->pass = $pass;
