@@ -12,7 +12,7 @@ END
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'player')
 BEGIN
     CREATE TABLE player (
-        user_id varchar(20) PRIMARY KEY,
+        user_id varchar(64) PRIMARY KEY,
         username varchar(20) NOT NULL,
         x INTEGER NOT NULL,
         y INTEGER NOT NULL
@@ -23,7 +23,7 @@ END
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'resources')
 BEGIN
 CREATE TABLE resources (
-    user_id varchar(20) PRIMARY KEY,
+    user_id varchar(64) PRIMARY KEY,
     iron INTEGER NOT NULL,
     food INTEGER NOT NULL,
     wood INTEGER NOT NULL,
@@ -37,7 +37,7 @@ END
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'troops')
 BEGIN
     CREATE TABLE troops (
-        user_id varchar(20) PRIMARY KEY,
+        user_id varchar(64) PRIMARY KEY,
         archer INTEGER NOT NULL,
         infantry INTEGER NOT NULL,
         cavalry INTEGER NOT NULL
@@ -92,8 +92,8 @@ DELETE FROM resources;
 -- delete tables player and resources
 
 
-
 /*
+
 DROP TABLE users;
 DROP TABLE resources;
 DROP TABLE troops;
