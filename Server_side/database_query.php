@@ -72,9 +72,18 @@ class databaseQuery{
         }
         $output = array();
         // fetch the data from the database
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-            $output[$row["user_id"]] = $row; // add the row to the output array at the specified user_id which is then retrieved by session!
+        // if $columns do not include the user_id use a generic index
+        if(strpos($columns, "user_id") === false && strpos($columns, "*") === false){
+            $i = 0;
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                $output[$i] = $row; // add the row to the output array at the numeric index $i
+                $i++;
+            }
+        }else{
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                $output[$row["user_id"]] = $row; // add the row to the output array at the specified user_id which is then retrieved by session!
 
+            }
         }
 
         //close pdo connection and return the output
