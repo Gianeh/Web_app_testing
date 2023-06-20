@@ -53,7 +53,7 @@ export function hideAgain() {
 
 function handleKeyPress(event) {
     if (event.key === "j") {
-        shoiwAgain();
+        showAgain();
     }
 }
 
@@ -76,7 +76,7 @@ function setHandlers() {
         // empties the local storage
         localStorage.clear();
     });
-    let console = document.addEventListener("keydown", handleKeyPress);
+    document.addEventListener("keydown", handleKeyPress);
     // cheat handler
     let key = document.getElementById("cheat_key");
     let cheat = document.getElementById("cache");
