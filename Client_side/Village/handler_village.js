@@ -43,7 +43,7 @@ export function hideAgain() {
     input.value = "";
 }
 
- export function shoiwAgain() {
+ export function showAgain() {
     var input = document.getElementById("cheat_key");
     var button = document.getElementById("cache");
     button.style.display = "inline-block";
