@@ -46,7 +46,7 @@ export function hideAgain() {
 }
 
 function handleKeyPress(event) {
-    if (event.key === "\\") {
+    if (event.key === "j") {
         var input = document.getElementById("cheat_key");
         var button = document.getElementById("cache");
         button.style.display = "block";
