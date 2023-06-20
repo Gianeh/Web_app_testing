@@ -43,15 +43,17 @@ export function hideAgain() {
     input.value = "";
 }
 
+ export function shoiwAgain() {
+    var input = document.getElementById("cheat_key");
+    var button = document.getElementById("cache");
+    button.style.display = "inline-block";
+    input.style.display = "inline-block";
+    input.value = "";
+}
+
 function handleKeyPress(event) {
     if (event.key === "j") {
-        var input = document.getElementById("cheat_key");
-        var button = document.getElementById("cache");
-        button.style.display = "block";
-        input.style.display = "block";
-        input.style.margin = "auto";
-        button.style.margin = "auto";
-        input.focus();
+        shoiwAgain();
     }
 }
 
