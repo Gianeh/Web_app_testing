@@ -1,6 +1,7 @@
 // this file handles the first base functions of the Viallage page
 
 import { pickRecords, printData, getLocalData, sendData, logout } from "../helper.js";
+import { setConsole } from "../console.js";
 // a function to set the handlers for the game
 
 let $player_id = "";
@@ -33,8 +34,28 @@ export function onLoad() {
         }
     }
     setHandlers();
+    setConsole();
 }
 
+export function hideAgain() {
+    var input = document.getElementById("cheat_key");
+    var button = document.getElementById("cache");
+    button.style.display = "none";
+    input.style.display = "none";
+    input.value = "";
+}
+
+function handleKeyPress(event) {
+    if (event.key === "\\") {
+        var input = document.getElementById("cheat_key");
+        var button = document.getElementById("cache");
+        button.style.display = "block";
+        input.style.display = "block";
+        input.style.margin = "auto";
+        button.style.margin = "auto";
+        input.focus();
+    }
+}
 
 
 function setHandlers() {
@@ -55,7 +76,7 @@ function setHandlers() {
         // empties the local storage
         localStorage.clear();
     });
-
+    let console = document.addEventListener("keydown", handleKeyPress);
     // cheat handler
     let key = document.getElementById("cheat_key");
     let cheat = document.getElementById("cache");
