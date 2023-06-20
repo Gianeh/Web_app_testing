@@ -1,7 +1,6 @@
 // this file handles the first base functions of the Viallage page
 
 import { pickRecords, printData, getLocalData, sendData, logout } from "../helper.js";
-import { setConsole } from "../console.js";
 // a function to set the handlers for the game
 
 let $player_id = "";
@@ -34,7 +33,6 @@ export function onLoad() {
         }
     }
     setHandlers();
-    setConsole();
 }
 
 export function hideAgain() {
