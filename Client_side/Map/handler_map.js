@@ -4,10 +4,11 @@ import { pickRecords, printData, getData, sendData, getLocalData } from "../help
 
 export function onLoad() {
   let table = document.getElementById("WarMap");
-
+  /*
   let playerpos = getLocalData("player", "map");    // search in local cache player data
   playerpos = pickRecords(playerpos,["x","y"]);
  // console.log(playerpos,["x","y"]);
+  */  //TO FIX THIS PART DATA INTERFACE NEEDS TO BE FIXED
 
   for (var i = 0; i < 90; i++) {  
     var row = table.insertRow();
@@ -16,12 +17,13 @@ export function onLoad() {
       cell.innerHTML = "m";
       cell.classList.add("square");
 
+      /*
       if (i === playerpos["x"] && j === playerpos["y"]) {
         cell.innerHTML = "P";                   // Set cell content to "P"
         cell.classList.remove("square");        // Remove square class
         cell.classList.add("playerVillage");    // Add player-village class
         cell.id = "playerVillage";              // Set the id of the cell to "player-village"
-      }
+      }*/
     }
   }
   setHandlers();
