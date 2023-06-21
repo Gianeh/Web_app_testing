@@ -92,7 +92,7 @@ function setHandlers() {
       tableContainer.scrollLeft += tableContainer.scrollWidth / table.rows[0].cells.length;
     }
   });
-}
+
 
   table.addEventListener("mousedown", function(event) {
       var startX = event.pageX;
