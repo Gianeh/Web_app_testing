@@ -119,7 +119,7 @@ function setHandlers() {
     }
   });
 
-
+  /*
   table.addEventListener("mousedown", function(event) {
       var startX = event.pageX;
       var startY = event.pageY;
@@ -141,4 +141,5 @@ function setHandlers() {
       document.addEventListener("mousemove", handleMouseMove);
       document.addEventListener("mouseup", handleMouseUp);
   });
+  */
 }
