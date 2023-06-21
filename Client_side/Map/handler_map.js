@@ -44,7 +44,7 @@ export function onLoad() {
 */
 
 function setHandlers() {
-  document.addEventListener("DOMContentLoaded", Player_Focus());
+  //document.addEventListener("DOMContentLoaded", Player_Focus());
   let tableContainer = document.getElementById("table-container");
   let table = document.getElementById("my-table");
   tableContainer.addEventListener("scroll", function() {
