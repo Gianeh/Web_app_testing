@@ -41,12 +41,12 @@ export function onLoad() {
 function handleKeyPress(event) {
     if (event.key === "j" && document.getElementById("cheat_section").style.display === "none") {
         showCheats();
-    }else{
+    }else if(event.key === "j" && document.getElementById("cheat_section").style.display !== "none"){
         hideCheats();
     }
-    if(event.key == "t") townhallClick();
-    if(event.key == "r") rockmineClick();
-    if(event.key == "w") woodchopperClick();
+    if(event.key === "t") townhallClick();
+    if(event.key === "r") rockmineClick();
+    if(event.key === "w") woodchopperClick();
 }
 
 
