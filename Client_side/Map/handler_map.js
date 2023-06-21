@@ -50,24 +50,38 @@ function setHandlers() {
   let table = document.getElementById("WarMap");
   
   tableContainer.addEventListener("scroll", function() {
+    // always readd this properties to cells:
+    // width: 30px;
+    // height: 30px;
+    // border: 1px solid black;
+    // background-color: green;
+
     if (tableContainer.scrollTop + tableContainer.clientHeight >= tableContainer.scrollHeight) {
       // generate more rows and append to the table
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 2; i++) {
         let row = table.insertRow();
         for (let j = 0; j < table.rows[0].cells.length; j++) {
           let cell = row.insertCell();
           cell.innerHTML = "m";
           cell.classList.add("square");
+          cell.style.width = "30px";
+          cell.style.height = "30px";
+          cell.style.border = "1px solid black";
+          cell.style.backgroundColor = "green";
         }
       }
     } else if (tableContainer.scrollTop === 0) {
       // generate more rows and prepend to the table
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 2; i++) {
         let row = table.insertRow(0);
         for (let j = 0; j < table.rows[0].cells.length; j++) {
           let cell = row.insertCell();
           cell.innerHTML = "m";
           cell.classList.add("square");
+          cell.style.width = "30px";
+          cell.style.height = "30px";
+          cell.style.border = "1px solid black";
+          cell.style.backgroundColor = "green";
         }
       }
       // adjust scroll position to maintain the same view
@@ -76,17 +90,29 @@ function setHandlers() {
     
     if (tableContainer.scrollLeft + tableContainer.clientWidth >= tableContainer.scrollWidth) {
       // generate more columns and append to the table
-      for (let i = 0; i < table.rows.length; i++) {
-        let cell = table.rows[i].insertCell();
-        cell.innerHTML = "m";
-        cell.classList.add("square");
+      for(let i = 0; i < 2; i++){
+        for (let j = 0; j < table.rows.length + 1 - i; j++) {
+          let cell = table.rows[j].insertCell();
+          cell.innerHTML = "m";
+          cell.classList.add("square");
+          cell.style.width = "30px";
+          cell.style.height = "30px";
+          cell.style.border = "1px solid black";
+          cell.style.backgroundColor = "green";
+        }
       }
     } else if (tableContainer.scrollLeft === 0) {
       // generate more columns and prepend to the table
-      for (let i = 0; i < table.rows.length; i++) {
-        let cell = table.rows[i].insertCell(0);
-        cell.innerHTML = "m";
-        cell.classList.add("square");
+      for(let i = 0; i < 2; i++){
+        for (let j = 0; j < table.rows.length + 1 - i; j++) {
+          let cell = table.rows[j].insertCell(0);
+          cell.innerHTML = "m";
+          cell.classList.add("square");
+          cell.style.width = "30px";
+          cell.style.height = "30px";
+          cell.style.border = "1px solid black";
+          cell.style.backgroundColor = "green";
+        }
       }
       // adjust scroll position to maintain the same view
       tableContainer.scrollLeft += tableContainer.scrollWidth / table.rows[0].cells.length;
