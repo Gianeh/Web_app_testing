@@ -47,6 +47,7 @@ function handleKeyPress(event) {
     if(event.key === "t") townhallClick();
     if(event.key === "r") rockmineClick();
     if(event.key === "w") woodchopperClick();
+    if(event.key === "m") warmapClick();
 }
 
 
