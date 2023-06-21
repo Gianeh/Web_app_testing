@@ -1,11 +1,13 @@
 // this file handles the first base functions of the Viallage page
 
-import { pickRecords, printData, getLocalData, sendData, logout } from "../helper.js";
+import { sendData, logout } from "../helper.js";
+import { townhallClick, rockmineClick, woodchopperClick, warmapClick } from "handlers.js";
+import { showCheats, hideCheats } from "shortcuts.js";
 // a function to set the handlers for the game
 
-let $player_id = "";
-
 export function onLoad() {
+
+    // this is the base graphics of the village for now
     let table = document.getElementById("Village");
     for (let i = 0; i < 30; i++) {
         let row = table.insertRow();
@@ -35,30 +37,21 @@ export function onLoad() {
     setHandlers();
 }
 
-export function hideAgain() {
-    var input = document.getElementById("cheat_key");
-    var button = document.getElementById("cache");
-    button.style.display = "none";
-    input.style.display = "none";
-    input.value = "";
-}
-
- export function showAgain() {
-    var input = document.getElementById("cheat_key");
-    var button = document.getElementById("cache");
-    button.style.display = "inline-block";
-    input.style.display = "inline-block";
-    input.value = "";
-}
 
 function handleKeyPress(event) {
-    if (event.key === "j") {
-        showAgain();
+    if (event.key === "j" && document.getElementById("cheat_section").style.display === "none") {
+        showCheats();
+    }else{
+        hideCheats();
     }
+    if(event.key == "t") townhallClick();
+    if(event.key == "r") rockmineClick();
+    if(event.key == "w") woodchopperClick();
 }
 
 
 function setHandlers() {
+    // set listeners for the structures
     let t = document.getElementById("townhall");
     t.addEventListener("click", townhallClick);
     let r = document.getElementById("rockmine");
@@ -66,139 +59,36 @@ function setHandlers() {
     let w = document.getElementById("woodchopper");
     w.addEventListener("click", woodchopperClick);
 
+    // set listeners for the buttons
     let b = document.getElementById("warmap");
     b.addEventListener("click", warmapClick);
     let l = document.getElementById("logout");
     l.addEventListener("click", logout);
 
-    // a refresh handling
-    window.addEventListener("beforeunload", function () {
-        // empties the local storage
-        localStorage.clear();
-    });
+    // set listener for the key shortcuts
     document.addEventListener("keydown", handleKeyPress);
-    // cheat handler
+
+    // set listener for the cheat buttons and key value
     let key = document.getElementById("cheat_key");
+
     let cheat = document.getElementById("cache");
     cheat.addEventListener("click", function () {
         sendData("cleancache", key.value);
+        // refresh the page
+        location.reload();
     });
+
     cheat = document.getElementById("ninjalui");
     cheat.addEventListener("click", function () {
         sendData("ninjalui", key.value);
         // destroy local storage
         localStorage.clear();
+        townhallClick();
+    });
+
+    // clear local storage on unload
+    window.addEventListener("beforeunload", function () {
+        // empties the local storage
+        localStorage.clear();
     });
 }
-
-function warmapClick(event) {
-    window.location.href = "Map.html";
-}
-
-function addPopulation(event) {
-    // checks if the local storage has the resources data
-    if (localStorage.getItem("player") != null) {
-        localStorage.removeItem("player");    // removes the local data
-    }
-    // send update to the server
-    sendData("addPopulation");
-    townhallClick();
-}
-
-function upgradeTownhall(event) {
-    // checks if the local storage has the resources data
-    if (localStorage.getItem("player") != null) {
-        localStorage.removeItem("player");    // removes the local data
-    }
-    if (localStorage.getItem("townhall") != null) {
-        localStorage.removeItem("townhall");    // removes the local data
-    }
-    // send update to the server
-    sendData("upgradeTownhall");
-    townhallClick();
-}
-
-
-// a function to handle the townhall click
-function townhallClick(event) {
-    // empties the buttons div
-    let buttons = document.getElementById("buttons");
-    buttons.innerHTML = "";
-    // get the info div
-    let info = document.getElementById("info");
-    // empties the info div
-    info.innerHTML = "";
-    // set the background color
-    let background = document.getElementById("background");
-    background.style.backgroundColor = "lightblue";
-    // write a temporary message
-    info.innerHTML = "Loading...";
-    // call the getData function to get the townhall data
-    let data = getLocalData("townhall", "village");
-    delete data["cached"];
-    // call the getData function to get the player data
-    let player = getLocalData("player", "village");
-    pickRecords(player, ["population", "iron", "wood", "food", "rock"]);
-    let text = Object.assign(data, player);
-    // set the info div to the data
-    info.innerHTML = printData(text);
-
-    //spawn a button inside the buttons div
-    let pop = document.createElement("button");
-    pop.innerHTML = "Add Population + 1 [10 food]";
-    pop.classList.add("button");
-    pop.addEventListener("click", addPopulation);
-    buttons.appendChild(pop);
-    let upgrade = document.createElement("button");
-    upgrade.innerHTML = "Upgrade Townhall [100 iron, 100 wood, 100 rock]";
-    upgrade.addEventListener("click", upgradeTownhall);
-    upgrade.classList.add("button");
-    buttons.appendChild(upgrade);
-
-
-}
-
-// a function to handle the rockmine click
-function rockmineClick(event) {
-    // empties the buttons div
-    let buttons = document.getElementById("buttons");
-    buttons.innerHTML = "";
-    // get the info div
-    let info = document.getElementById("info");
-    let background = document.getElementById("background");
-    background.style.backgroundColor = "grey";
-    // write a temporary message
-    info.innerHTML = "Loading...";
-    // call the getData function to get the townhall data
-    let data = getLocalData("rockmine", "village");
-    delete data["cached"];
-    // call the getData function to get the player data
-    let player = getLocalData("player", "village");
-    pickRecords(player, ["rock"]);
-    let text = Object.assign(data, player);
-    // set the info div to the data
-    info.innerHTML = printData(text);
-}
-
-// a function to handle the woodchopper click
-function woodchopperClick(event) {
-    // empties the buttons div
-    let buttons = document.getElementById("buttons");
-    buttons.innerHTML = "";
-    // get the info div
-    let info = document.getElementById("info");
-    let background = document.getElementById("background");
-    background.style.backgroundColor = "brown";
-    // write a temporary message
-    info.innerHTML = "Loading...";
-    // call the getData function to get the townhall data
-    let data = getLocalData("woodchopper", "village");
-    delete data["cached"];
-    // call the getData function to get the player data
-    let player = getLocalData("player", "village");
-    pickRecords(player, ["wood"]);
-    let text = Object.assign(data, player);
-    // set the info div to the data
-    info.innerHTML = printData(text);
-}
-
