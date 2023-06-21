@@ -27,7 +27,7 @@ export function onLoad() {
   setHandlers();
 }
 
-
+/*
  function Player_Focus() {
 
   let tableContainer = document.querySelector(".table-container");
@@ -41,6 +41,7 @@ export function onLoad() {
   tableContainer.scrollTop = offsetTop;
   tableContainer.scrollLeft = offsetLeft;
 }
+*/
 
 function setHandlers() {
   document.addEventListener("DOMContentLoaded", Player_Focus());
