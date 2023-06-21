@@ -1,8 +1,8 @@
 // this file handles the first base functions of the Viallage page
 
 import { sendData, logout } from "../helper.js";
-import { townhallClick, rockmineClick, woodchopperClick, warmapClick } from "handlers.js";
-import { showCheats, hideCheats } from "shortcuts.js";
+import { townhallClick, rockmineClick, woodchopperClick, warmapClick } from "./handlers.js";
+import { showCheats, hideCheats } from "./shortcuts.js";
 // a function to set the handlers for the game
 
 export function onLoad() {
