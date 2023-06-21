@@ -44,4 +44,65 @@ export function onLoad() {
 
 function setHandlers() {
   document.addEventListener("DOMContentLoaded", Player_Focus());
+  let tableContainer = document.getElementById("table-container");
+  let table = document.getElementById("my-table");
+  tableContainer.addEventListener("scroll", function() {
+    if (tableContainer.scrollTop + tableContainer.clientHeight >= tableContainer.scrollHeight) {
+        // generate more rows and append to the table
+        for(let i = 0; i < 10; i++) {
+          let row = table.insertRow();
+          for (let j = 0; j < table.rows[0].length; j++) {
+            let cell = row.insertCell();
+            cell.innerHTML = "m";
+            cell.classList.add("square");
+          }
+        }
+    }else if (tableContainer.scrollLeft + tableContainer.clientWidth >= tableContainer.scrollWidth) {
+        // generate more columns and append to the table
+        for(let i = 0; i < table.rows.length; i++) {
+          let cell = table.rows[i].insertCell();
+          cell.innerHTML = "m";
+          cell.classList.add("square");
+          }
+    }else if (tableContainer.scrollTop === 0) {
+        // generate more rows and prepend to the table
+        for(let i = 0; i < 10; i++) {
+          let row = table.insertRow(0);
+          for (let j = 0; j < table.rows[0].length; j++) {
+            let cell = row.insertCell();
+            cell.innerHTML = "m";
+            cell.classList.add("square");
+          }
+        }
+    }else if (tableContainer.scrollLeft === 0) {
+        // generate more columns and prepend to the table
+        for(let i = 0; i < table.rows.length; i++) {
+          let cell = table.rows[i].insertCell(0);
+          cell.innerHTML = "m";
+          cell.classList.add("square");
+          }
+    }
+  });
+
+  table.addEventListener("mousedown", function(event) {
+      var startX = event.pageX;
+      var startY = event.pageY;
+      var startScrollLeft = table.scrollLeft;
+      var startScrollTop = table.scrollTop;
+
+      function handleMouseMove(event) {
+          var deltaX = event.pageX - startX;
+          var deltaY = event.pageY - startY;
+          table.scrollLeft = startScrollLeft - deltaX;
+          table.scrollTop = startScrollTop - deltaY;
+      }
+
+      function handleMouseUp(event) {
+          document.removeEventListener("mousemove", handleMouseMove);
+          document.removeEventListener("mouseup", handleMouseUp);
+      }
+
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+  });
 }
