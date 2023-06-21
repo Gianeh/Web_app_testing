@@ -46,7 +46,7 @@ export function onLoad() {
 function setHandlers() {
   //document.addEventListener("DOMContentLoaded", Player_Focus());
   let tableContainer = document.getElementById("table-container");
-  let table = document.getElementById("my-table");
+  let table = document.getElementById("WarMap");
   tableContainer.addEventListener("scroll", function() {
     if (tableContainer.scrollTop + tableContainer.clientHeight >= tableContainer.scrollHeight) {
         // generate more rows and append to the table
