@@ -3,4 +3,4 @@
 apt-get install pip -y
 pip install datetime
 pip install schedule
-python3 time_daemon.py
+python3 /home/site/wwwroot/on_startup/time_daemon.py
