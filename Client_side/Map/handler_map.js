@@ -138,9 +138,10 @@ function setHandlers() {
       var deltaY = event.pageY - startY;
       table.scrollLeft = startScrollLeft - deltaX;
       table.scrollTop = startScrollTop - deltaY;
+      let tableContainer = document.getElementById("table-container");
 
       // Check if user has reached the right end of the table
-      if (table.scrollLeft + table.clientWidth >= table.scrollWidth - 1) {
+      if (tableContainer.scrollLeft + tableContainer.clientWidth >= tableContainer.scrollWidth - 1) {
         for (let i = 0; i < 2; i++) {
           for (let j = 0; j < table.rows.length; j++) {
             let cell = table.rows[j].insertCell();
@@ -155,7 +156,7 @@ function setHandlers() {
       }
 
       // Check if user has reached the bottom of the table
-      if (table.scrollTop + table.clientHeight >= table.scrollHeight - 1) {
+      if (tableContainer.scrollTop + tableContainer.clientHeight >= tableContainer.scrollHeight - 1) {
         for (let i = 0; i < 2; i++) {
           let row = table.insertRow();
           for (let j = 0; j < table.rows[0].cells.length; j++) {
