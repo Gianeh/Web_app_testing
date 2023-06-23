@@ -6,6 +6,7 @@ export function onLoad() {
   let table = document.getElementById("WarMap");
   let playerpos = getLocalData("player", "map");    // search in local cache player data
   playerpos = pickRecords(playerpos, ["x", "y"]);
+  console.log(playerpos);
 
 
   for (var i = 0; i < 90; i++) {
