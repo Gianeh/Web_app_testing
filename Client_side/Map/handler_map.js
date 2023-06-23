@@ -16,7 +16,7 @@ export function onLoad() {
       cell.innerHTML = "m";
       cell.classList.add("square");
 
-      if (i === playerpos["x"] && j === playerpos["y"]) {
+      if (i == playerpos["x"] && j == playerpos["y"]) {
         cell.innerHTML = "P";                   // Set cell content to "P"
         cell.classList.remove("square");        // Remove square class
         cell.classList.add("playerVillage");    // Add player-village class
@@ -44,11 +44,11 @@ function Player_Focus() {
 }
 
 function setHandlers() {
-  
+  let tableContainer = document.getElementById("table-container");
   // handle the scroll event
   tableContainer.addEventListener("scroll", function(event){
 
-    let tableContainer = document.getElementById("table-container");
+   
     let table = document.getElementById("WarMap");
   
     document.addEventListener("mousemove", handleMouseMove);
