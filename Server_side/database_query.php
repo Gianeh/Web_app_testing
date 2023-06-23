@@ -15,17 +15,22 @@ class databaseQuery{
         $this->db = "; Database = ".$db;
     }
 
-
-    // a function the create a completely new row
-    public function insert($table, $columns, $values){       // insert a new row in the table colums = "column1, column2, column3" values = "value1, value2, value3"
-       
-        // create a new pdo connection
+    public function connect(){
         try {
             $this->conn = new PDO($this->server.$this->db, $this->user, $this->pass);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo "Database Connection Error: " . $e->getMessage();
         }
+    }
+
+
+    // a function the create a completely new row
+    public function insert($table, $columns, $values){       // insert a new row in the table colums = "column1, column2, column3" values = "value1, value2, value3"
+       
+        // create a new pdo connection
+        $this->connect();
+
         $query = "INSERT INTO ".$table."(".$columns.") VALUES (".$values.")";
         // try to execute the insertion query
         try {
@@ -49,13 +54,8 @@ class databaseQuery{
     // a function that retrive data from the database
     public function retriveData($columns, $table, $where=""){
 
-        //execute the conncetio to the database
-        try {
-            $this->conn = new PDO($this->server.$this->db, $this->user, $this->pass);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            echo "Database Connection Error: " . $e->getMessage();
-        }
+        //execute the conncetion to the database
+        $this->connect();
 
         if($where == ""){       // if the where condition is empty it will retrive the whole table
             $query = "SELECT ".$columns." FROM ".$table;
@@ -92,37 +92,30 @@ class databaseQuery{
     }
     // a function that delete a row from the database
     public function remove($table, $where){
-        $query = "DELETE FROM $table WHERE $where";
-        $this->conn->query($query);
+        // connect to the database
+        $this->connect();
+        // build deletion query
+        $query = "DELETE FROM "+"$table"+" WHERE "*$where;
+        // try to execute the deletion query
+        try {
+            $this->conn->query($query);
+        } catch (PDOException $e) {
+            echo "Database Query Error: " . $e->getMessage();
+        }
     }
-    /// FIX THERE ^^^^^^^
-
-}
-
-
-// PHP Data Objects(PDO) Sample Code:
-/*
-try {
-    $conn = new PDO("sqlsrv:server = tcp:aos-database.database.windows.net,1433; Database = AOS_Database", "aosadmin", "AOSpassword!");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $query = "SELECT * FROM Dummy_player_data";
-    $stmt = $conn->query($query);
     
-    // Fetch the results
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        // Access the data
-        $name = $row['Username'];
-        $pwd = $row['Password'];
-        // ...access other columns here
-        
-        // Do something with the data
-        echo "Name: $name, password $pwd<br>";
+    // a function that updates existing data in the database
+    public function update($table, $columns, $values, $where){
+        // connect to the database
+        $this->connect();
+        // build update query
+        $query = "UPDATE ".$table." SET ".$columns." = ".$values." WHERE ".$where;
+        // try to execute the update query
+        try {
+            $this->conn->query($query);
+        } catch (PDOException $e) {
+            echo "Database Query Error: " . $e->getMessage();
+        }
     }
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    echo "ciao porcodio non funziono";
-    die(print_r($e));
-}
 
-?>*/
+}
