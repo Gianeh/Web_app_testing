@@ -92,7 +92,7 @@
             return array(
                 "archer" => $this->archer,
                 "infantry" => $this->infantry,
-                "cavalary" => $this->cavalary,
+                "cavalry" => $this->cavalary,
             );
         }
     }
