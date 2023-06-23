@@ -19,7 +19,7 @@
         public $y;
 
 
-        function __construct($name="Undefined!", $population=5, $iron=0, $wood=0, $rock=0, $food=0, $archer, $infantry, $cavalary, $x=25, $y=25){
+        function __construct($name="Undefined!", $population=5, $iron=0, $wood=0, $rock=0, $food=0, $archer=0, $infantry=0, $cavalary=0, $x=25, $y=25){
             $this->name = $name;
             $this->population = $population;
 
