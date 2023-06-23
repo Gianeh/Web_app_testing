@@ -115,7 +115,7 @@ DROP TABLE troops;
 DROP TABLE structures;
 DROP TABLE player;
 DROP TABLE users;
-
 */
+
 
 
