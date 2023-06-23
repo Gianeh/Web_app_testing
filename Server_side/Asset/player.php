@@ -3,8 +3,8 @@
     // A Player class
 
     class Player{
-        public $name = "Undefined!";
-        public $population = 5;
+        public $name;
+        public $population;
         /*
         public $iron = 0;
         public $wood = 0;
@@ -82,10 +82,10 @@
         public $infantry = 0;
         public $cavalary = 0;
 
-        function __construct($archer=0, $infantry=0, $cavalary=0){
+        function __construct($archer=0, $infantry=0, $cavalry=0){
             $this->archer = $archer;
             $this->infantry = $infantry;
-            $this->cavalary = $cavalary;
+            $this->cavalary = $cavalry;
         }
 
         public function get_data(){
