@@ -19,3 +19,10 @@ include_once('../redis_cache.php');
             
      }  
  }
+
+
+ function PlayerPosition($token){
+    $cache = new Cache(array("player"));
+    $PlayerPosition = $cache->acquireData("player", $token);
+    return array("status" => "success", "message" => "Player position", "data" => $PlayerPosition);
+ }
