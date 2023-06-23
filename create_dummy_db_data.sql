@@ -36,6 +36,22 @@ CREATE TABLE resources (
 END
 
 -- create a table troops containing the player's troops (archer, infantry, cavalry)
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'structures')
+BEGIN
+    CREATE TABLE structures (
+        user_id varchar(64) PRIMARY KEY,
+        townhall INTEGER NOT NULL,
+        woodchopper INTEGER NOT NULL,
+        rockmine INTEGER NOT NULL,
+        ironmine INTEGER NOT NULL,
+        farm INTEGER NOT NULL,
+        barracks INTEGER NOT NULL,
+        FOREIGN KEY (user_id) REFERENCES player(user_id)
+    );
+END
+
+
+-- create a table troops containing the player's troops (archer, infantry, cavalry)
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'troops')
 BEGIN
     CREATE TABLE troops (
@@ -96,8 +112,10 @@ DELETE FROM resources;
 /*
 DROP TABLE resources;
 DROP TABLE troops;
+DROP TABLE structures;
 DROP TABLE player;
 DROP TABLE users;
+
 */
 
 

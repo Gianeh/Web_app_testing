@@ -12,22 +12,19 @@
         public $food = 0;
         */
         public $resources;
+        public $troops;
 
 
         public $x;
         public $y;
 
 
-        function __construct($name="Undefined!", $population=5, $iron=0, $wood=0, $rock=0, $food=0, $x=25, $y=25){
+        function __construct($name="Undefined!", $population=5, $iron=0, $wood=0, $rock=0, $food=0, $archer, $infantry, $cavalary, $x=25, $y=25){
             $this->name = $name;
             $this->population = $population;
-            /*
-            $this->iron = $iron;
-            $this->wood = $wood;
-            $this->rock = $rock;
-            $this->food = $food;
-            */
+
             $this->resources = new Resources($iron, $wood, $rock, $food);
+            $this->troops = new Troops($archer, $infantry, $cavalary);
 
             $this->x = $x;
             $this->y = $y;
@@ -43,7 +40,8 @@
                 "x"    => $this->x,
                 "y"    => $this->y,
                 ),
-                $this->resources->get_data()
+                $this->resources->get_data(),
+                $this->troops->get_data()
             );
 
         }
@@ -75,6 +73,26 @@
                 "wood" => $this->wood,
                 "rock" => $this->rock,
                 "food" => $this->food,
+            );
+        }
+    }
+
+    class Troops{
+        public $archer = 0;
+        public $infantry = 0;
+        public $cavalary = 0;
+
+        function __construct($archer=0, $infantry=0, $cavalary=0){
+            $this->archer = $archer;
+            $this->infantry = $infantry;
+            $this->cavalary = $cavalary;
+        }
+
+        public function get_data(){
+            return array(
+                "archer" => $this->archer,
+                "infantry" => $this->infantry,
+                "cavalary" => $this->cavalary,
             );
         }
     }

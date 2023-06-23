@@ -29,9 +29,7 @@
         $cache = new Cache(array("player", "structures"));
 
         // get the requested data from frontend (handler.js) inside the POST request and search for the data in the cache
-        /*
-        $data = $cache->acquireData($_POST["data"], $_SESSION["csrf_token"]);
-        */
+
         $data = $cache->acquireData($_POST["data"], $token);
 
         // delete cache object

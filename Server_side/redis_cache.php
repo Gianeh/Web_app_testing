@@ -33,32 +33,42 @@
             switch ($data) {
     
                 case "player":
-                    $player = $this->db->retriveData("*","player, resources", "player.user_id = resources.user_id");
+                    $player = $this->db->retriveData("*","player, resources, troops", "player.user_id = resources.user_id AND player.user_id = troops.user_id");
                     //$name="Undefined!", $population=5, $iron=0, $wood=0, $rock=0, $food=0, $x=rand(1,89), $y=rand(1,89)
-                    $player = new Player($player[$user_id]["username"], $player[$user_id]["population"], $player[$user_id]["iron"], $player[$user_id]["wood"], $player[$user_id]["rock"], $player[$user_id]["food"], $player[$user_id]["x"], $player[$user_id]["y"]);
+                    $player = new Player($player[$user_id]["username"], $player[$user_id]["population"], $player[$user_id]["iron"], $player[$user_id]["wood"], $player[$user_id]["rock"],
+                                         $player[$user_id]["food"], $player[$user_id]["archer"], $player[$user_id]["infantry"], $player[$user_id]["cavalry"], $player[$user_id]["x"], $player[$user_id]["y"]);
                     $output = $player->get_data();
                     break;
     
                 case "townhall":
-                    $townhall = new Townhall(1, "townhall");
+                    $townhall = $this->db->retriveData("*","townhall", "townhall.user_id = '$user_id'");
+                    $townhall = new Townhall($townhall[$user_id]["level"]);
                     $output = $townhall->get_data();
                     break;
     
                 case "rockmine":
-                    $rockmine = new Rockmine(1, "rockmine");
+                    $rockmine = $this->db->retriveData("*","rockmine", "rockmine.user_id = '$user_id'");
+                    $rockmine = new Rockmine($rockmine[$user_id]["level"]);
                     $output = $rockmine->get_data();
+                    break;
+
+                case "ironmine":
+                    $ironmine = $this->db->retriveData("*","ironmine", "ironmine.user_id = '$user_id'");
+                    $ironmine = new Ironmine($ironmine[$user_id]["level"]);
+                    $output = $ironmine->get_data();
                     break;
                 
                 case "woodchopper":
-                    $woodchopper = new Woodchopper(1, "woodchopper");
+                    $woodchopper = $this->db->retriveData("*","woodchopper", "woodchopper.user_id = '$user_id'");
+                    $woodchopper = new Woodchopper($woodchopper[$user_id]["level"]);
                     $output = $woodchopper->get_data();
                     break;
 
                 // add more cases for other objects as needed
-                    
+            
                 case "troops":
                     $troops = $this->db->retriveData("*","troops", "troops.user_id = user1");
-                    $troops = new Troops($troops[0]["user_id"], $troops[0]["archer"], $troops[0]["infantry"], $troops[0]["cavalary"]);
+                    $troops = new Troops($troops[0]["archer"], $troops[0]["infantry"], $troops[0]["cavalary"]);
                     $output = $troops->get_data();
                     break;
 

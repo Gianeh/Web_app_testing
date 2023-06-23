@@ -29,6 +29,21 @@ export function onLoad() {
                 cell.classList.add("woodchopper");
                 cell.innerHTML = "W";
                 continue;
+            } else if (i == 20 && j == 13) {
+                cell.id = "farm";
+                cell.classList.add("farm");
+                cell.innerHTML = "F";
+                continue;
+            } else if (i == 10 && j == 20) {
+                cell.id = "barracks";
+                cell.classList.add("barracks");
+                cell.innerHTML = "B";
+                continue;
+            } else if (i == 5 && j == 5) {
+                cell.id = "ironmine";
+                cell.classList.add("ironmine");
+                cell.innerHTML = "I";
+                continue;
             }
             cell.innerHTML = "e";
             cell.classList.add("square");
@@ -59,12 +74,16 @@ function setHandlers() {
     r.addEventListener("click", rockmineClick);
     let w = document.getElementById("woodchopper");
     w.addEventListener("click", woodchopperClick);
+    let f = document.getElementById("farm");
+    f.addEventListener("click", farmclick);
+    let b = document.getElementById("barracks");
+    b.addEventListener("click", barracksClick);
 
     // set listeners for the buttons
-    let b = document.getElementById("warmap");
-    b.addEventListener("click", warmapClick);
-    let l = document.getElementById("logout");
-    l.addEventListener("click", logout);
+    let buttons = document.getElementById("warmap");
+    buttons.addEventListener("click", warmapClick);
+    let logout = document.getElementById("logout");
+    logout.addEventListener("click", logout);
 
     // set listener for the key shortcuts
     document.addEventListener("keydown", handleKeyPress);

@@ -2,16 +2,8 @@ import { pickRecords, printData, getLocalData, sendData } from "../helper.js";
 
 // a function to handle the woodchopper click
 export function woodchopperClick(event) {
-    // empties the buttons div
-    let buttons = document.getElementById("buttons");
-    buttons.innerHTML = "";
-    // get the info div
-    let info = document.getElementById("info");
-    let background = document.getElementById("background");
-    background.style.backgroundColor = "brown";
-    // write a temporary message
-    info.innerHTML = "Loading...";
-    // call the getData function to get the townhall data
+    let info = setInfoDiv("brown");
+    // call the getData function to get the woodchopper data
     let data = getLocalData("woodchopper", "village");
     delete data["cached"];
     // call the getData function to get the player data
@@ -24,16 +16,8 @@ export function woodchopperClick(event) {
 
 // a function to handle the rockmine click
 export function rockmineClick(event) {
-    // empties the buttons div
-    let buttons = document.getElementById("buttons");
-    buttons.innerHTML = "";
-    // get the info div
-    let info = document.getElementById("info");
-    let background = document.getElementById("background");
-    background.style.backgroundColor = "grey";
-    // write a temporary message
-    info.innerHTML = "Loading...";
-    // call the getData function to get the townhall data
+    let info = setInfoDiv("grey");
+    // call the getData function to get the rockmine data
     let data = getLocalData("rockmine", "village");
     delete data["cached"];
     // call the getData function to get the player data
@@ -44,20 +28,51 @@ export function rockmineClick(event) {
     info.innerHTML = printData(text);
 }
 
+// a function to handle the ironmine click
+export function ironmineClick(event) {
+    let info = setInfoDiv("silver");
+    // call the getData function to get the ironmine data
+    let data = getLocalData("ironmine", "village");
+    delete data["cached"];
+    // call the getData function to get the player data
+    let player = getLocalData("player", "village");
+    pickRecords(player, ["iron"]);
+    let text = Object.assign(data, player);
+    // set the info div to the data
+    info.innerHTML = printData(text);
+}
+
+// a function to handle the farm click
+export function farmClick(event) {
+    let info = setInfoDiv("yellow");
+    // call the getData function to get the farm data
+    let data = getLocalData("farm", "village");
+    delete data["cached"];
+    // call the getData function to get the player data
+    let player = getLocalData("player", "village");
+    pickRecords(player, ["food"]);
+    let text = Object.assign(data, player);
+    // set the info div to the data
+    info.innerHTML = printData(text);
+}
+
+// a function to handle the barracks click
+export function barracksClick(event) {
+    let info = setInfoDiv("red");
+    // call the getData function to get the barracks data
+    let data = getLocalData("barracks", "village");
+    delete data["cached"];
+    // call the getData function to get the player data
+    let player = getLocalData("player", "village");
+    pickRecords(player, ["infantry", "archer", "cavalry"]);
+    let text = Object.assign(data, player);
+    // set the info div to the data
+    info.innerHTML = printData(text);
+}
+
 // a function to handle the townhall click
 export function townhallClick(event) {
-    // empties the buttons div
-    let buttons = document.getElementById("buttons");
-    buttons.innerHTML = "";
-    // get the info div
-    let info = document.getElementById("info");
-    // empties the info div
-    info.innerHTML = "";
-    // set the background color
-    let background = document.getElementById("background");
-    background.style.backgroundColor = "lightblue";
-    // write a temporary message
-    info.innerHTML = "Loading...";
+    let info = setInfoDiv("lightblue");
     // call the getData function to get the townhall data
     let data = getLocalData("townhall", "village");
     delete data["cached"];
@@ -108,4 +123,21 @@ export function upgradeTownhall(event) {
     // send update to the server
     sendData("upgradeTownhall");
     townhallClick();
+}
+
+
+function setInfoDiv(color){
+    // empties the buttons div
+    let buttons = document.getElementById("buttons");
+    buttons.innerHTML = "";
+    // get the info div
+    let info = document.getElementById("info");
+    // empties the info div
+    info.innerHTML = "";
+    // set the background color
+    let background = document.getElementById("background");
+    background.style.backgroundColor = color;
+    // write a temporary message
+    info.innerHTML = "Loading...";
+    return info;
 }
