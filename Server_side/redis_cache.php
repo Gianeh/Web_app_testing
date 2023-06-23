@@ -41,37 +41,37 @@
                     break;
     
                 case "townhall":
-                    $townhall = $this->db->retriveData("townhall","structures", "townhall.user_id = '$user_id'");
+                    $townhall = $this->db->retriveData("townhall","structures", "structures.user_id = '$user_id'");
                     $townhall = new Townhall($townhall[0]["level"]);
                     $output = $townhall->get_data();
                     break;
     
                 case "rockmine":
-                    $rockmine = $this->db->retriveData("rockmine","structures", "rockmine.user_id = '$user_id'");
+                    $rockmine = $this->db->retriveData("rockmine","structures", "structures.user_id = '$user_id'");
                     $rockmine = new Rockmine($rockmine[0]["level"]);
                     $output = $rockmine->get_data();
                     break;
 
                 case "ironmine":
-                    $ironmine = $this->db->retriveData("ironmine","structures", "ironmine.user_id = '$user_id'");
+                    $ironmine = $this->db->retriveData("ironmine","structures", "structures.user_id = '$user_id'");
                     $ironmine = new Ironmine($ironmine[0]["level"]);
                     $output = $ironmine->get_data();
                     break;
                 
                 case "woodchopper":
-                    $woodchopper = $this->db->retriveData("woodchopper","structures", "woodchopper.user_id = '$user_id'");
+                    $woodchopper = $this->db->retriveData("woodchopper","structures", "structures.user_id = '$user_id'");
                     $woodchopper = new Woodchopper($woodchopper[0]["level"]);
                     $output = $woodchopper->get_data();
                     break;
 
                 case "farm":
-                    $farm = $this->db->retriveData("farm","structures", "farm.user_id = '$user_id'");
+                    $farm = $this->db->retriveData("farm","structures", "structures.user_id = '$user_id'");
                     $farm = new Farm($farm[0]["level"]);
                     $output = $farm->get_data();
                     break;
                 
                 case "barracks":
-                    $barracks = $this->db->retriveData("barracks","structures", "barracks.user_id = '$user_id'");
+                    $barracks = $this->db->retriveData("barracks","structures", "structures.user_id = '$user_id'");
                     $barracks = new Barracks($barracks[0]["level"]);
                     $output = $barracks->get_data();
                     break;
