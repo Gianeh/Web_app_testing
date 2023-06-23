@@ -6,12 +6,12 @@ export function onLoad() {
   let table = document.getElementById("WarMap");
   let playerpos = getLocalData("player", "map");    // search in local cache player data
   playerpos = pickRecords(playerpos, ["x", "y"]);
-  console.log(playerpos);
+  console.log(playerpos["x"]);
 
 
-  for (var i = 0; i < 90; i++) {
+  for (var i = 0; i < 100+playerpos["x"]; i++) {
     var row = table.insertRow();
-    for (var j = 0; j < 90; j++) {
+    for (var j = 0; j < 100+playerpos["y"]; j++) {
       var cell = row.insertCell();
       cell.innerHTML = "m";
       cell.classList.add("square");
@@ -60,12 +60,9 @@ function setHandlers() {
       for (let i = 0; i < 2; i++) {
         for (let j = 0; j < table.rows.length; j++) {
           let cell = table.rows[j].insertCell();
-          cell.innerHTML = "New";
+          cell.innerHTML = "m";
           cell.classList.add("square");
-          cell.style.width = "30px";
-          cell.style.height = "30px";
-          cell.style.border = "1px solid black";
-          cell.style.backgroundColor = "green";
+
         }
       }
     }
@@ -76,91 +73,13 @@ function setHandlers() {
         let row = table.insertRow();
         for (let j = 0; j < table.rows[0].cells.length; j++) {
           let cell = row.insertCell();
-          cell.innerHTML = "New";
+          cell.innerHTML = "m";
           cell.classList.add("square");
-          cell.style.width = "30px";
-          cell.style.height = "30px";
-          cell.style.border = "1px solid black";
-          cell.style.backgroundColor = "green";
         }
       }
     }
 });
 
-  /*  
-    tableContainer.addEventListener("scroll", function() {
-      // always readd this properties to cells:
-      // width: 30px;
-      // height: 30px;
-      // border: 1px solid black;
-      // background-color: green;
-  
-  
-      // check if the player has now at the top or bottom of the table
-  
-      if (tableContainer.scrollTop + tableContainer.clientHeight >= tableContainer.scrollHeight) {
-        // generate more rows and append to the table
-        for (let i = 0; i < 2; i++) {
-          let row = table.insertRow();
-          for (let j = 0; j < table.rows[0].cells.length; j++) {
-            let cell = row.insertCell();
-            cell.innerHTML = "m";
-            cell.classList.add("square");
-            cell.style.width = "30px";
-            cell.style.height = "30px";
-            cell.style.border = "1px solid black";
-            cell.style.backgroundColor = "green";
-          }
-        }
-      } else if (tableContainer.scrollTop === 0) {
-        // generate more rows and prepend to the table
-        for (let i = 0; i < 2; i++) {
-          let row = table.insertRow(0);
-          for (let j = 0; j < table.rows[0].cells.length; j++) {
-            let cell = row.insertCell();
-            cell.innerHTML = "m";
-            cell.classList.add("square");
-            cell.style.width = "30px";
-            cell.style.height = "30px";
-            cell.style.border = "1px solid black";
-            cell.style.backgroundColor = "green";
-          }
-        }
-        // adjust scroll position to maintain the same view
-        tableContainer.scrollTop += tableContainer.scrollHeight / 10;
-      }
-      
-      if (tableContainer.scrollLeft + tableContainer.clientWidth >= tableContainer.scrollWidth) {
-        // generate more columns and append to the table
-        for(let i = 0; i < 2; i++){
-          for (let j = 0; j < table.rows.length + 1 - i; j++) {
-            let cell = table.rows[j].insertCell();
-            cell.innerHTML = "m";
-            cell.classList.add("square");
-            cell.style.width = "30px";
-            cell.style.height = "30px";
-            cell.style.border = "1px solid black";
-            cell.style.backgroundColor = "green";
-          }
-        }
-      } else if (tableContainer.scrollLeft === 0) {
-        // generate more columns and prepend to the table
-        for(let i = 0; i < 2; i++){
-          for (let j = 0; j < table.rows.length + 1 - i; j++) {
-            let cell = table.rows[j].insertCell(0);
-            cell.innerHTML = "m";
-            cell.classList.add("square");
-            cell.style.width = "30px";
-            cell.style.height = "30px";
-            cell.style.border = "1px solid black";
-            cell.style.backgroundColor = "green";
-          }
-        }
-        // adjust scroll position to maintain the same view
-        tableContainer.scrollLeft += tableContainer.scrollWidth / table.rows[0].cells.length;
-      }
-    });
-  */
 }
 
 
