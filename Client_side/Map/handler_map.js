@@ -140,7 +140,7 @@ function setHandlers() {
       table.scrollTop = startScrollTop - deltaY;
 
       // Check if user has reached the right end of the table
-      if (table.scrollLeft + table.clientWidth >= table.scrollWidth) {
+      if (table.scrollLeft + table.clientWidth >= table.scrollWidth - 1) {
         for (let i = 0; i < 2; i++) {
           for (let j = 0; j < table.rows.length; j++) {
             let cell = table.rows[j].insertCell();
@@ -155,7 +155,7 @@ function setHandlers() {
       }
 
       // Check if user has reached the bottom of the table
-      if (table.scrollTop + table.clientHeight >= table.scrollHeight) {
+      if (table.scrollTop + table.clientHeight >= table.scrollHeight - 1) {
         for (let i = 0; i < 2; i++) {
           let row = table.insertRow();
           for (let j = 0; j < table.rows[0].cells.length; j++) {
