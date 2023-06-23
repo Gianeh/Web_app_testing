@@ -140,38 +140,42 @@ function setHandlers() {
       table.scrollTop = startScrollTop - deltaY;
       let tableContainer = document.getElementById("table-container");
 
-      // Check if user has reached the right end of the table
-      if (tableContainer.scrollLeft + tableContainer.clientWidth >= tableContainer.scrollWidth - 1) {
-        for (let i = 0; i < 2; i++) {
-          for (let j = 0; j < table.rows.length; j++) {
-            let cell = table.rows[j].insertCell();
-            cell.innerHTML = "New";
-            cell.classList.add("square");
-            cell.style.width = "30px";
-            cell.style.height = "30px";
-            cell.style.border = "1px solid black";
-            cell.style.backgroundColor = "green";
-          }
-        }
-      }
-
-      // Check if user has reached the bottom of the table
-      if (tableContainer.scrollTop + tableContainer.clientHeight >= tableContainer.scrollHeight - 1) {
-        for (let i = 0; i < 2; i++) {
-          let row = table.insertRow();
-          for (let j = 0; j < table.rows[0].cells.length; j++) {
-            let cell = row.insertCell();
-            cell.innerHTML = "New";
-            cell.classList.add("square");
-            cell.style.width = "30px";
-            cell.style.height = "30px";
-            cell.style.border = "1px solid black";
-            cell.style.backgroundColor = "green";
-          }
-        }
-      }
+  
 
     }
+
+    tableContainer.addEventListener("scroll", function() {
+          // Check if user has reached the right end of the table
+          if (tableContainer.scrollLeft + tableContainer.clientWidth >= tableContainer.scrollWidth - 1) {
+            for (let i = 0; i < 2; i++) {
+              for (let j = 0; j < table.rows.length; j++) {
+                let cell = table.rows[j].insertCell();
+                cell.innerHTML = "New";
+                cell.classList.add("square");
+                cell.style.width = "30px";
+                cell.style.height = "30px";
+                cell.style.border = "1px solid black";
+                cell.style.backgroundColor = "green";
+              }
+            }
+          }
+    
+          // Check if user has reached the bottom of the table
+          if (tableContainer.scrollTop + tableContainer.clientHeight >= tableContainer.scrollHeight - 1) {
+            for (let i = 0; i < 2; i++) {
+              let row = table.insertRow();
+              for (let j = 0; j < table.rows[0].cells.length; j++) {
+                let cell = row.insertCell();
+                cell.innerHTML = "New";
+                cell.classList.add("square");
+                cell.style.width = "30px";
+                cell.style.height = "30px";
+                cell.style.border = "1px solid black";
+                cell.style.backgroundColor = "green";
+              }
+            }
+          }
+    });
 
     function handleMouseUp(event) {
       document.removeEventListener("mousemove", handleMouseMove);
