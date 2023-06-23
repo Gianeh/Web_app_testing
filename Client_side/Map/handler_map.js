@@ -43,11 +43,6 @@ function Player_Focus() {
   tableContainer.scrollLeft = offsetLeft;
 }
 
-
-
-
-
-
 function setHandlers() {
   
   // handle the scroll event
