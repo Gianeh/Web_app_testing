@@ -1,7 +1,7 @@
 // this file handles the first base functions of the Viallage page
 
 import { sendData, logout } from "../helper.js";
-import { townhallClick, rockmineClick, woodchopperClick, warmapClick } from "./handlers.js";
+import { townhallClick, rockmineClick, woodchopperClick, farmClick, ironmineClick, barracksClick, warmapClick } from "./handlers.js";
 import { showCheats, hideCheats } from "./shortcuts.js";
 // a function to set the handlers for the game
 
@@ -72,18 +72,20 @@ function setHandlers() {
     t.addEventListener("click", townhallClick);
     let r = document.getElementById("rockmine");
     r.addEventListener("click", rockmineClick);
+    let i = document.getElementById("ironmine");
+    i.addEventListener("click", ironmineClick);
     let w = document.getElementById("woodchopper");
     w.addEventListener("click", woodchopperClick);
     let f = document.getElementById("farm");
-    f.addEventListener("click", farmclick);
+    f.addEventListener("click", farmClick);
     let b = document.getElementById("barracks");
     b.addEventListener("click", barracksClick);
 
     // set listeners for the buttons
     let buttons = document.getElementById("warmap");
     buttons.addEventListener("click", warmapClick);
-    let logout = document.getElementById("logout");
-    logout.addEventListener("click", logout);
+    let log = document.getElementById("logout");
+    log.addEventListener("click", logout);
 
     // set listener for the key shortcuts
     document.addEventListener("keydown", handleKeyPress);
