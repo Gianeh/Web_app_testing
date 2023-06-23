@@ -143,7 +143,7 @@ function setHandlers() {
         for (let i = 0; i < 2; i++) {
           for (let j = 0; j < table.rows.length; j++) {
             let cell = table.rows[j].insertCell();
-            cell.innerHTML = "m";
+            cell.innerHTML = "New";
             cell.classList.add("square");
             cell.style.width = "30px";
             cell.style.height = "30px";
@@ -159,7 +159,7 @@ function setHandlers() {
           let row = table.insertRow();
           for (let j = 0; j < table.rows[0].cells.length; j++) {
             let cell = row.insertCell();
-            cell.innerHTML = "m";
+            cell.innerHTML = "New";
             cell.classList.add("square");
             cell.style.width = "30px";
             cell.style.height = "30px";
