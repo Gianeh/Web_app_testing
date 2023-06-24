@@ -26,7 +26,7 @@
     include_once("user_id_encoder.php");
 
     $connection = new DatabaseQuery();
-    $matching_users = $connection->retriveData("*", "users", "username = '$username'");
+    $matching_users = $connection->select("*", "users", "username = '$username'");
 
     if(count($matching_users) > 0){
         echo json_encode(array("status" => "error", "message" => "Username already taken"));
@@ -36,7 +36,7 @@
     
     
     //Generate a random position for the player
-    $existingPositions = $connection->retriveData("x, y", "player");
+    $existingPositions = $connection->select("x, y", "player");
     // this for loop is needed to convert the array of 2 distinct values into an array of arrays of 2 values
     foreach($existingPositions as $key => $value){
         $existingPositions[$key] = array($value["x"], $value["y"]);
