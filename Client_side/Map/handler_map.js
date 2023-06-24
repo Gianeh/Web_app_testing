@@ -85,6 +85,8 @@ function setHandlers() {
 
 
 function handleMouseMove(event) {
+  let startX = event.pageX;
+  let startY = event.pageY;
   var deltaX = event.pageX - startX;
   var deltaY = event.pageY - startY;
   table.scrollLeft = startScrollLeft - deltaX;
