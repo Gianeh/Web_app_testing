@@ -63,6 +63,19 @@ BEGIN
     );
 END
 
+-- create a table that contains timed events (user_id, event_type, event_completion_date, finished)
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'events')
+BEGIN
+    CREATE TABLE events (
+        event_id INTEGER PRIMARY KEY,
+        user_id varchar(64) NOT NULL,
+        event_type INTEGER NOT NULL,
+        event_completion_date INTEGER NOT NULL,
+        finished BIT NOT NULL,
+        FOREIGN KEY (user_id) REFERENCES player(user_id)
+    );
+END
+
 /*
 -- create a table wars containing the player's wars (user_id_attack, user_id_defend, user_id_winner)
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'wars')

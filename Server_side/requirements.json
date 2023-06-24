@@ -1,0 +1,45 @@
+{
+    "townhall_upgrade": {
+        "comment" : "Townhall upgrade time in seconds, thid is a temporary solution",
+        
+        "1": {
+            "rock": 100,
+            "wood": 100,
+            "iron": 0,
+            "food": 100,
+            "duration": 10
+        },
+
+        "2": {
+            "rock": 200,
+            "wood": 200,
+            "iron": 0,
+            "food": 300,
+            "duration": 30
+        },
+
+        "3": {
+            "rock": 300,
+            "wood": 300,
+            "iron": 0,
+            "food": 600,
+            "duration": 60
+        },
+
+        "4": {
+            "rock": 400,
+            "wood": 400,
+            "iron": 0,
+            "food": 1000,
+            "duration": 120
+        },
+
+        "5": {
+            "rock": 500,
+            "wood": 500,
+            "iron": 0,
+            "food": 1500,
+            "duration": 180
+        }
+    }
+}
