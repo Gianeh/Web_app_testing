@@ -67,10 +67,10 @@ END
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'events')
 BEGIN
     CREATE TABLE events (
-        event_id INTEGER PRIMARY KEY,
+        event_id varchar(64) PRIMARY KEY,
         user_id varchar(64) NOT NULL,
         event_type INTEGER NOT NULL,
-        event_completion_date INTEGER NOT NULL,
+        event_completion_date INT NOT NULL,
         finished BIT NOT NULL,
         FOREIGN KEY (user_id) REFERENCES player(user_id)
     );
@@ -123,12 +123,14 @@ DELETE FROM resources;
 -- delete all the tables
 
 /*
+DROP TABLE events;
 DROP TABLE resources;
 DROP TABLE troops;
 DROP TABLE structures;
 DROP TABLE player;
 DROP TABLE users;
 */
+
 
 
 

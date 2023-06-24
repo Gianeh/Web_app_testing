@@ -52,7 +52,7 @@ class databaseQuery{
     */
 
     // a function that retrive data from the database
-    public function retrieveData($columns, $table, $where=""){
+    public function select($columns, $table, $where=""){
 
         //execute the conncetion to the database
         $this->connect();

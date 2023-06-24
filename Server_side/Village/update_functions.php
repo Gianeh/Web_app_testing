@@ -7,23 +7,40 @@
     include_once('../redis_cache.php');
     include_once('../databse_query.php');
 
-    // a function to add the event to events table in the database
-    function addEvent($event_type, $level){
+
+    // a function to add an upgrade event to events table in the database
+    function addUpgrade($event_type, $level){
         $db = new DatabaseQuery();
-        // create DateTime object
-        $date = new DateTime();
-        // get current date and time
-        $date = $date->format('Y-m-d H:i:s');
         // parse requirements json to get the duration of the event
         $json = file_get_contents('../requirements.json');
         $requirements = json_decode($json, true);
         // add the duration to the current date and time
-        $date = date('Y-m-d H:i:s', strtotime($date . ' + '.$requirements[$event_type][$level]["duration"].' seconds'));
-        // NOTE THAT LEVEL IS A PARAMETER NEEDED FOR STRUCTURES OR UNITS UPGRADES, NOT FOR TROOPS TRAINING OR MOVEMENTS NOR FOR RESOURCES PRODUCTION -- need for a generalization!
+        // get current date and time
+        $now = time();
+        $completion = $now + $requirements[$event_type][$level]["duration"];
         // compute event_id
-        $event_id = hash("sha256", $event_type.$level.$date);
+        $event_id = hash("sha256", $event_type.$_SESSION['user_id'].$completion);
         // add the event to the database
-        $db->insert("events", "(event_id, user_id, event_type, event_completion, finished)", "('".$event_id."', '".$_SESSION['user_id']."', '".$event_type."', '".$date."', 0)"); // 0 means that the event is not finished yet
+        $db->insert("events", "event_id, user_id, event_type, event_completion, finished", "'".$event_id."', '".$_SESSION['user_id']."', '".$event_type."', '".$completion."', 0"); // 0 means that the event is not finished yet
+    }
+
+    // a function to add a training event to events table in the database
+    function addTraining($event_type, $level){
+        $db = new DatabaseQuery();
+        // if a training event for this player already exists this event will have a completion_date calculated from the last event completion date
+        // query database to get the last event completion date
+        $ongoing_training = $db->select("events", "event_completion", "user_id = '".$_SESSION['user_id']."' AND finished = 0");
+        // get ongoing completion_date
+        // parse requirements json to get the duration of the event
+        $json = file_get_contents('../requirements.json');
+        $requirements = json_decode($json, true);
+        
+        if(count($ongoing_training) != 0) $completion = $ongoing_training[count($ongoing_training)-1]["event_completion"] + $requirements[$event_type]["duration"];
+        else $completion = time() + $requirements[$event_type]["duration"];
+        // compute event_id
+        $event_id = hash("sha256", $event_type.$_SESSION['user_id'].$completion);
+        // add the event to the database
+        $db->insert("events", "event_id, user_id, event_type, event_completion, finished", "'".$event_id."', '".$_SESSION['user_id']."', '".$event_type."', '".$completion."', 0"); // 0 means that the event is not finished yet
     }
 
     // example rule: the player needs to have 10 food to add 1 population to village

@@ -33,45 +33,44 @@
             switch ($data) {
     
                 case "player":
-                    $player = $this->db->retrieveData("*","player, resources, troops", "player.user_id = resources.user_id AND player.user_id = troops.user_id");
-                    //$name="Undefined!", $population=5, $iron=0, $wood=0, $rock=0, $food=0, $x=rand(1,89), $y=rand(1,89)
+                    $player = $this->db->select("*","player, resources, troops", "player.user_id = resources.user_id AND player.user_id = troops.user_id");
                     $player = new Player($player[$user_id]["username"], $player[$user_id]["population"], $player[$user_id]["iron"], $player[$user_id]["wood"], $player[$user_id]["rock"],
                                          $player[$user_id]["food"], $player[$user_id]["archer"], $player[$user_id]["infantry"], $player[$user_id]["cavalry"], $player[$user_id]["x"], $player[$user_id]["y"]);
                     $output = $player->get_data();
                     break;
     
                 case "townhall":
-                    $townhall = $this->db->retrieveData("townhall","structures", "structures.user_id = '$user_id'");
+                    $townhall = $this->db->select("townhall","structures", "structures.user_id = '$user_id'");
                     $townhall = new Townhall($townhall[0]["townhall"]);
                     $output = $townhall->get_data();
                     break;
     
                 case "rockmine":
-                    $rockmine = $this->db->retrieveData("rockmine","structures", "structures.user_id = '$user_id'");
+                    $rockmine = $this->db->select("rockmine","structures", "structures.user_id = '$user_id'");
                     $rockmine = new Rockmine($rockmine[0]["rockmine"]);
                     $output = $rockmine->get_data();
                     break;
 
                 case "ironmine":
-                    $ironmine = $this->db->retrieveData("ironmine","structures", "structures.user_id = '$user_id'");
+                    $ironmine = $this->db->select("ironmine","structures", "structures.user_id = '$user_id'");
                     $ironmine = new Ironmine($ironmine[0]["ironmine"]);
                     $output = $ironmine->get_data();
                     break;
                 
                 case "woodchopper":
-                    $woodchopper = $this->db->retrieveData("woodchopper","structures", "structures.user_id = '$user_id'");
+                    $woodchopper = $this->db->select("woodchopper","structures", "structures.user_id = '$user_id'");
                     $woodchopper = new Woodchopper($woodchopper[0]["woodchopper"]);
                     $output = $woodchopper->get_data();
                     break;
 
                 case "farm":
-                    $farm = $this->db->retrieveData("farm","structures", "structures.user_id = '$user_id'");
+                    $farm = $this->db->select("farm","structures", "structures.user_id = '$user_id'");
                     $farm = new Farm($farm[0]["farm"]);
                     $output = $farm->get_data();
                     break;
                 
                 case "barracks":
-                    $barracks = $this->db->retrieveData("barracks","structures", "structures.user_id = '$user_id'");
+                    $barracks = $this->db->select("barracks","structures", "structures.user_id = '$user_id'");
                     $barracks = new Barracks($barracks[0]["barracks"]);
                     $output = $barracks->get_data();
                     break;
