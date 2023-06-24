@@ -73,7 +73,7 @@ function setHandlers() {
       for (let i = 0; i < 2; i++) {
         // Add a row to the top of the table
         let row = table.insertRow(0);
-        for (let j = 0; j < table.rows[1].cells.length; j++) {
+        for (let j = 0; j < table.rows[0].cells.length; j++) {
           // Add cells to the new row
           let cell = row.insertCell();
           cell.innerHTML = "m";
