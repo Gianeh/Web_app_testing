@@ -72,7 +72,7 @@ function setHandlers() {
     if (tableContainer.scrollTop == 0) {
       for (let i = 0; i < 2; i++) {
         // Add a row to the top of the table
-        let row = table.insertRow(0);
+        let row = table.insertRow();
         for (let j = 0; j < table.rows[0].cells.length; j++) {
           // Add cells to the new row
           let cell = row.insertCell();
@@ -90,8 +90,8 @@ function setHandlers() {
 function handleMouseMove(event) {
   let startX = event.pageX;
   let startY = event.pageY;
-  let deltaX = event.pageX - startX;
-  let deltaY = event.pageY - startY;
+  var deltaX = event.pageX - startX;
+  var deltaY = event.pageY - startY;
   table.scrollLeft = startScrollLeft - deltaX;
   table.scrollTop = startScrollTop - deltaY;
   let tableContainer = document.getElementById("table-container");
