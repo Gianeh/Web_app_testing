@@ -6,17 +6,17 @@ export function onLoad() {
   let table = document.getElementById("WarMap");
   let playerpos = getLocalData("player", "map");    // search in local cache player data
   playerpos = pickRecords(playerpos, ["x", "y"]);
-  console.log(playerpos["x"]);
+  console.log(playerpos["x"], playerpos["y"]);
 
 
-  for (var i = 0; i < 100+playerpos["x"]; i++) {
+  for (var i = 0; i < 100; i++) {
     var row = table.insertRow();
-    for (var j = 0; j < 100+playerpos["y"]; j++) {
+    for (var j = 0; j < 100; j++) {
       var cell = row.insertCell();
       cell.innerHTML = "m";
       cell.classList.add("square");
 
-      if (i-1 == playerpos["x"] && j-1 == playerpos["y"]) {
+      if (i == playerpos["x"] && j == playerpos["y"]) {
         cell.innerHTML = "P";                   // Set cell content to "P"
         cell.classList.remove("square");        // Remove square class
         cell.classList.add("playerVillage");    // Add player-village class
@@ -59,7 +59,6 @@ function setHandlers() {
     if (tableContainer.scrollLeft + tableContainer.clientWidth >= tableContainer.scrollWidth - 1) {
       for (let i = 0; i < 2; i++) {
         for (let j = 0; j < table.rows.length; j++) {
-          // Add a cell to the end of each row for all rows
           let cell = table.rows[j].insertCell();
           cell.innerHTML = "m";
           cell.classList.add("square");
@@ -68,13 +67,11 @@ function setHandlers() {
       }
     }
 
-    // Check if user has reached the top of the table
+    // Check if user has reached the bottom of the table
     if (tableContainer.scrollTop == 0) {
       for (let i = 0; i < 2; i++) {
-        // Add a row to the top of the table
         let row = table.insertRow();
         for (let j = 0; j < table.rows[0].cells.length; j++) {
-          // Add cells to the new row
           let cell = row.insertCell();
           cell.innerHTML = "m";
           cell.classList.add("square");
@@ -88,7 +85,6 @@ function setHandlers() {
 
 
 function handleMouseMove(event) {
-
   var deltaX = event.pageX - startX;
   var deltaY = event.pageY - startY;
   table.scrollLeft = startScrollLeft - deltaX;
