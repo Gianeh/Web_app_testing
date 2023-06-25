@@ -1,6 +1,6 @@
 
 // Player_Focus function to focus on the player cell
-function PlayerFocus() {
+export function PlayerFocus() {
 
     let tableContainer = document.querySelector(".table-container");
     let playerCell = document.getElementById("playerVillage");
@@ -15,7 +15,7 @@ function PlayerFocus() {
   }
   
   // ScrollHandler function to handle the scroll event and add more rows and columns
-  function ScrollHandler() {
+  export function ScrollHandler() {
     
 
     let table = document.getElementById("WarMap");
