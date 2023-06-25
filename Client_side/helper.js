@@ -3,7 +3,7 @@
 // the path to the backend file that handles the requests to cache and database
 var backend_village = "../Server_side/Village/data_interface.php";
 var backend_map = "../Server_side/Map/data_interface.php";
-var backend_database = "../Server_side/map/database_interface.php";
+var backend_database = "../Server_side/Map/database_interface.php";
 
 // a function that deletes records from a dictionary
 export function pickRecords(data, records){
