@@ -50,6 +50,33 @@ export function getData(dataName, path) {
     return output;
 }
 
+// a function to handle requests for a specific objects to the backend with a parametr
+export function getDataWithParametr(dataName, path, parameter) {
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", path, false);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  let output = "";
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      console.log("Server returned: " + xhr.responseText);
+      // decode the JSON response
+      output = JSON.parse(xhr.responseText);
+
+    } else {
+      // Handle error
+      console.log("Server returned error: " + xhr.status);
+    }
+  };
+  xhr.onerror = function() {
+      // Handle error
+      console.log("Error occurred: " + xhr.status);
+  };
+
+  // send data and parametr for a specific request
+  xhr.send("data=" + dataName + "parametr=" + parameter);
+  return output;
+}
+
 
 // a function to send new data to the backend
 export function sendData(func="none", password="", path="") {

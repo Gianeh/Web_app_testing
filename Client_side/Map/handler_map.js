@@ -1,4 +1,4 @@
-import { pickRecords, printData, getData, sendData, getLocalData } from "../helper.js";
+import { pickRecords, printData, getData, sendData, getLocalData, getDataWithParametr } from "../helper.js";
 import { PlayerFocus, setHandlers } from "./handlers.js";
 //use only getLocalData to get info
 
@@ -8,6 +8,8 @@ export function onLoad() {
   playerpos = pickRecords(playerpos, ["x", "y"]);
   console.log(playerpos["x"], playerpos["y"]);
 
+  let enemypos = getDataWithParametr("player", "backend_map", "x=10,y=10")      // search in local cache enemy data
+  console.log(enemypos);
 
   for (var i = 0; i < 100; i++) {
     var row = table.insertRow();

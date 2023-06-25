@@ -57,7 +57,7 @@ export function PlayerFocus() {
     let startY = event.pageY;
     var deltaX = event.pageX - startX;
     var deltaY = event.pageY - startY;
-    table = document.getElementById("WarMap");
+    let table = document.getElementById("WarMap");
     table.scrollLeft = startScrollLeft - deltaX;
     table.scrollTop = startScrollTop - deltaY;
     let tableContainer = document.getElementById("table-container");
