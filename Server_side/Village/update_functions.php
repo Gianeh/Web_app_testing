@@ -5,7 +5,7 @@
 
     // include the chache class
     include_once('../redis_cache.php');
-    include_once('../databse_query.php');
+    include_once('../database_query.php');
 
 
     // a function to add an upgrade event to events table in the database
