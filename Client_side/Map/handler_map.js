@@ -1,4 +1,4 @@
-import { pickRecords, printData, getData, sendData, getLocalData, getDataWithParametr } from "../helper.js";
+import { pickRecords, printData, getData, sendData, getLocalData, getDataWithParameter } from "../helper.js";
 import { PlayerFocus, setHandlers } from "./handlers.js";
 //use only getLocalData to get info
 
