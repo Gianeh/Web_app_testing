@@ -18,7 +18,7 @@ export function PlayerFocus() {
     tableContainer.addEventListener("scroll", ScrollHandler);
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
-    let PlayerReFocus = document.getElementById("PlayerReFocus");
+    let PlayerReFocus = document.getElementById("PlayerRefocus");
     PlayerReFocus.addEventListener("click", PlayerFocus);
   }
   // ScrollHandler function to handle the scroll event and add more rows and columns
