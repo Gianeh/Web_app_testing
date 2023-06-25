@@ -14,16 +14,18 @@ export function PlayerFocus() {
     tableContainer.scrollLeft = offsetLeft;
   }
   
+  export function setHandlers() {
+    let tableContainer = document.querySelector(".table-container");
+    tableContainer.addEventListener("scroll", ScrollHandler);
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+  }
   // ScrollHandler function to handle the scroll event and add more rows and columns
-  export function ScrollHandler() {
+    function ScrollHandler() {
     
 
     let table = document.getElementById("WarMap");
     let tableContainer = document.querySelector(".table-container");
-
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
-  
   
     // Check if user has reached the right end of the table
     if (tableContainer.scrollLeft + tableContainer.clientWidth >= tableContainer.scrollWidth - 1) {
