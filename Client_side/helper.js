@@ -55,7 +55,7 @@ export function getData(dataName, path) {
 export function getDataWithParameter(dataName, parameter, colums) {
   let xhr = new XMLHttpRequest();
   // set the path to the backend file that handles the direct request to database
-  path = backend_database;
+  let path = backend_database;
   xhr.open("POST", path, false);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   let output = "";
