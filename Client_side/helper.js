@@ -79,7 +79,7 @@ export function getDataWithParametr(dataName, parameter, colums) {
   };
 
   // send data and parametr for a specific request
-  xhr.send("data=" + dataName + "parameter=" + parameter + "colums=" + colums);
+  xhr.send("data=" + dataName + "&parameter=" + parameter + "&colums=" + colums);
   return output;
 }
 
