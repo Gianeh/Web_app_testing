@@ -43,14 +43,6 @@ class databaseQuery{
         $this->conn = null;
     }
 
-    // a function that update an already existing row
-    /*
-    public function update($table, $columns, $values, $where){  
-        $query = "UPDATE $table SET $columns = $values WHERE $where";
-        $this->conn->query($query);
-    }
-    */
-
     // a function that retrive data from the database
     public function select($columns, $table, $where=""){
 
@@ -103,6 +95,7 @@ class databaseQuery{
             echo "Database Query Error: " . $e->getMessage();
         }
     }
+    
     
     // a function that updates existing data in the database
     public function update($table, $columns, $values, $where){

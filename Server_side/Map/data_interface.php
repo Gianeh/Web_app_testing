@@ -12,7 +12,7 @@
 
     if(!isset($_POST["function"])){ // retrieve data!
         // create a new cache object
-        $cache = new Cache(array("player", "structures"));
+        $cache = new Cache(array("player"));
 
         // get the requested data from frontend (handler.js) inside the POST request and search for the data in the cache
         $data = $cache->acquireData($_POST["data"], $token);
@@ -20,17 +20,12 @@
         //return the data to the frontend
         echo json_encode($data);
 
-    }else{                          // send data!
-        // get the requested data from frontend (handler.js) inside the POST request and search for the appropriate function
+    }else{  // send data!
+            // get the requested data from frontend (handler.js) inside the POST request and search for the appropriate function
         switch($_POST["function"]){
-            case "SendTroops":
-                $status = SendTroops($token);
-                break;
-            
             case "PlayerPosition":
                 $status = PlayerPosition($token);
                 break;
-                
         }
         
         // return status

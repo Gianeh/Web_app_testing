@@ -3,6 +3,7 @@
 // the path to the backend file that handles the requests to cache and database
 var backend_village = "../Server_side/Village/data_interface.php";
 var backend_map = "../Server_side/Map/data_interface.php";
+var backend_database = "../Server_side/map/database_interface.php";
 
 // a function that deletes records from a dictionary
 export function pickRecords(data, records){
@@ -50,12 +51,16 @@ export function getData(dataName, path) {
     return output;
 }
 
-// a function to handle requests for a specific objects to the backend with a parametr
-export function getDataWithParametr(dataName, path, parameter) {
+// a function to handle requests for a specific objects to the backend inside the database with a parametr for where clause
+export function getDataWithParametr(dataName, parameter, colums) {
   let xhr = new XMLHttpRequest();
+
+  // set the path to the backend file that handles the direct request to database
+  path = backend_database;
   xhr.open("POST", path, false);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   let output = "";
+
   xhr.onload = function() {
     if (xhr.status === 200) {
       console.log("Server returned: " + xhr.responseText);
@@ -67,13 +72,14 @@ export function getDataWithParametr(dataName, path, parameter) {
       console.log("Server returned error: " + xhr.status);
     }
   };
+
   xhr.onerror = function() {
       // Handle error
       console.log("Error occurred: " + xhr.status);
   };
 
   // send data and parametr for a specific request
-  xhr.send("data=" + dataName + "parametr=" + parameter);
+  xhr.send("data=" + dataName + "parameter=" + parameter + "colums=" + colums);
   return output;
 }
 

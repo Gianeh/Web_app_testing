@@ -8,7 +8,7 @@ export function onLoad() {
   playerpos = pickRecords(playerpos, ["x", "y"]);
   console.log(playerpos["x"], playerpos["y"]);
 
-  let enemypos = getDataWithParametr("player", "backend_map", "x=10,y=10")      // search in local cache enemy data
+  let enemypos = getDataWithParametr("player", "x<10 AND y<10", "x, y")      // search in local cache enemy data
   console.log(enemypos);
 
   for (var i = 0; i < 100; i++) {
