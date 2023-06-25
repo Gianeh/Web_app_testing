@@ -52,7 +52,7 @@ export function getData(dataName, path) {
 }
 
 // a function to handle requests for a specific objects to the backend inside the database with a parametr for where clause
-export function getDataWithParametr(dataName, parameter, colums) {
+export function getDataWithParameter(dataName, parameter, colums) {
   let xhr = new XMLHttpRequest();
   var backend_database = "../Server_side/Map/database_interface.php";
   // set the path to the backend file that handles the direct request to database
