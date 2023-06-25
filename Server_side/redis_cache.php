@@ -169,6 +169,13 @@
         updated rows should then be deleted from the file
 
         Both options need the daemon to be able to differentiate the data and update tables accordingly
+
+
+
+         NEW IDEA!
+
+        To prevent concurrecy issues, while a user is online ($_SESSION["user_id"] is set) the daemon should not update the events, those might be completely stored in cache
+        and updated accordingly by backend functions (like the one above) and the daemon should only update the database when the user logs out (or when the session expires)
         */
 
 

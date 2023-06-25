@@ -115,3 +115,5 @@ export function logout(path=""){
     }
     xhr.send("logout=" + 1);
 }
+
+// this function may call a global backend function to update the database with events that are just saved in cache
