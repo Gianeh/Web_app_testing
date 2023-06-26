@@ -31,7 +31,7 @@ export function onLoad() {
         cell.id = "playerVillage";              // Set the id of the cell to "player-village"
 
       }
-      for (let k = 0; k < enemypos.length; k++) {
+      for (let k in enemypos) {
         if (i == enemypos[k]["x"] && j == enemypos[k]["y"]) {
           cell.innerHTML = "E";                   // Set cell content to "E"
           cell.classList.remove("square");        // Remove square class
