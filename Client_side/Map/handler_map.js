@@ -8,7 +8,7 @@ export function onLoad() {
   playerpos = pickRecords(playerpos, ["x", "y"]);
   console.log("player position: " + playerpos["x"]+", " + playerpos["y"]);
 
-  let enemypos = getDataWithParameter("player", "x<60 AND y<60", "x, y")      // search in local cache enemy data
+  let enemypos = getDataWithParameter("player", "x<60 AND y<60", "x, y, username")      // search in local cache enemy data
   console.log(enemypos);
   
 
@@ -26,10 +26,10 @@ export function onLoad() {
         cell.id = "playerVillage";              // Set the id of the cell to "player-village"
       for(let k = 0; k < enemypos.length; k++){
         if(i == enemypos[k]["x"] && j == enemypos[k]["y"]){
-          cell.innerHTML = "E";                   // Set cell content to "P"
+          cell.innerHTML = "E";                   // Set cell content to "E"
           cell.classList.remove("square");        // Remove square class
-          cell.classList.add("enemyVillage");     // Add player-village class
-          cell.id = "enemyVillage";               // Set the id of the cell to "player-village"
+          cell.classList.add("enemyVillage");     // Add enemy-village class
+          cell.id = enemypos[k]["username"];      // Set the id of the cell to "username"
         }
       }
     }
