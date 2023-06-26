@@ -33,7 +33,7 @@ export function setHandlers() {
   player.addEventListener("click", playerHandler);
 
   //add event listener to return to village button
-  let villages = document.getElementsById("ReturnToVillage")
+  let villages = document.getElementById("ReturnToVillage")
   villages.addEventListener("click", VillageClick);
 }
 
