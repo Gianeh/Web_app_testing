@@ -2,7 +2,7 @@
 export function PlayerFocus() {
 
   let tableContainer = document.getElementById(".tableContainer");
-  let playerCell = document.getElementById("playerVillage")[0];
+  let playerCell = document.getElementById("playerVillage");
 
   // calcultate the offset of the player cell
   let offsetTop = playerCell.offsetTop - (tableContainer.offsetHeight / 2) + (playerCell.offsetHeight / 2);
@@ -61,12 +61,14 @@ function overlayCloseHandler(event) {
   }
 }
 
+//function to open the overlay for player
 function playerHandler(event) {
   // open the overlay
   let overlay = document.getElementById("overlay");
   overlay.style.display = "block";
 }
 
-export function VillageClick(event) {
+//function to return to village
+function VillageClick(event) {
   window.location.href = "Village.html";
 }
