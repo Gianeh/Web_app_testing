@@ -25,10 +25,8 @@ export function setHandlers() {
   PlayerReFocus.addEventListener("click", PlayerFocus);
 
   // add event listeners to overlay
-  let overlay = document.getElementById("overlay");
   let closeOverlay = document.getElementById("overlayClose");
   overlay.style.display = "none";
-  overlay.addEventListener("click", overlayHandler);
   closeOverlay.addEventListener("click", overlayCloseHandler);
 
   // add event listeners to player village
