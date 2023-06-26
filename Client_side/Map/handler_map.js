@@ -6,11 +6,11 @@ export function onLoad() {
   let table = document.getElementById("WarMap");
   let playerpos = getLocalData("player", "map");    // search in local cache player data
   playerpos = pickRecords(playerpos, ["x", "y"]);
-  console.log("player position: " + playerpos["x"]+", " + playerpos["y"]);
+  console.log("player position: " + playerpos["x"] + ", " + playerpos["y"]);
 
   let enemypos = getDataWithParameter("player", "x<60 AND y<60", "x, y, username")      // search in local cache enemy data
   console.log(enemypos);
-  
+
 
   for (var i = 0; i < 100; i++) {
     var row = table.insertRow();
@@ -24,8 +24,10 @@ export function onLoad() {
         cell.classList.remove("square");        // Remove square class
         cell.classList.add("playerVillage");    // Add player-village class
         cell.id = "playerVillage";              // Set the id of the cell to "player-village"
-      for(let k = 0; k < enemypos.length; k++){
-        if(i == enemypos[k]["x"] && j == enemypos[k]["y"]){
+
+      }
+      for (let k = 0; k < enemypos.length; k++) {
+        if (i == enemypos[k]["x"] && j == enemypos[k]["y"]) {
           cell.innerHTML = "E";                   // Set cell content to "E"
           cell.classList.remove("square");        // Remove square class
           cell.classList.add("enemyVillage");     // Add enemy-village class
@@ -37,5 +39,4 @@ export function onLoad() {
   PlayerFocus();
   setHandlers();
 }
-
 
