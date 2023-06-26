@@ -22,15 +22,13 @@ export function setHandlers() {
   let PlayerReFocus = document.getElementById("PlayerRefocus");
   PlayerReFocus.addEventListener("click", PlayerFocus);
 
-  // add event listeners to overlay and set it to invisible
+  // add event listeners to overlay close button
   let closeOverlay = document.getElementById("overlayClose");
-  let overlay = document.getElementById("overlay");
-  overlay.style.display = "none";
   closeOverlay.addEventListener("click", overlayCloseHandler);
 
   // add event listeners to player village
   let player = document.getElementById("playerVillage");
-  player.addEventListener("click", playerHandler);
+  player.addEventListener("mouseover", playerHandler);
 
   //add event listener to return to village button
   let villages = document.getElementById("ReturnToVillage")
@@ -66,6 +64,18 @@ function playerHandler(event) {
   // open the overlay
   let overlay = document.getElementById("overlay");
   overlay.style.display = "block";
+
+  // get the player cell position
+  let playerCell = document.getElementById("playerVillage");
+  let top = playerCell.offsetTop;
+  let left = playerCell.offsetLeft;
+
+  // set the overlay position
+  top+=10;
+  left+=10;
+  overlay.style.top = top +"px";
+  overlay.style.left = left +"px";
+
 }
 
 //function to return to village

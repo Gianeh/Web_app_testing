@@ -45,7 +45,7 @@ export function onLoad() {
   }
   // set the infoDiv to display the welcome message
   let info = document.getElementById("info");
-  info.innerHTML = "Welcome to your War Map " + player["username"] + " are you are ready to conquer the world?";
+  info.innerHTML = "Welcome to your War Map " + player["username"] + ", are you are ready to conquer the world?";
   
   setHandlers();
   PlayerFocus();
