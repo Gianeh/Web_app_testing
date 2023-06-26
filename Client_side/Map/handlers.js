@@ -1,8 +1,8 @@
 // Player_Focus function to focus on the player cell
 export function PlayerFocus() {
 
-  let tableContainer = document.querySelector(".table-container");
-  let playerCell = document.getElementById("playerVillage");
+  let tableContainer = document.getElementById(".table-container");
+  let playerCell = document.getElementsByClassName("playerVillage")[0];
 
   // calcultate the offset of the player cell
   let offsetTop = playerCell.offsetTop - (tableContainer.offsetHeight / 2) + (playerCell.offsetHeight / 2);
@@ -26,6 +26,7 @@ export function setHandlers() {
 
   // add event listeners to overlay
   let closeOverlay = document.getElementById("overlayClose");
+  let overlay = document.getElementById("overlay");
   overlay.style.display = "none";
   closeOverlay.addEventListener("click", overlayCloseHandler);
 
