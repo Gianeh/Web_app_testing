@@ -15,8 +15,6 @@
 ini_set('display_errors', 1);
 
 include_once('../database_query.php');
-$user_id = $_SESSION['user_id'];
-$_SESSION['user_id'] = $user_id;    // update session to increase lifetime (IS IT NEEDED?)
 
 // get the requested data from frontend (helper.js) inside the POST request and do the query
 $parameter = $_POST["parameter"];
