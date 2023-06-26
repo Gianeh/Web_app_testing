@@ -2,7 +2,7 @@
 export function PlayerFocus() {
 
   let tableContainer = document.getElementById(".table-container");
-  let playerCell = document.getElementsByClassName("playerVillage")[0];
+  let playerCell = document.getElementById("playerVillage")[0];
 
   // calcultate the offset of the player cell
   let offsetTop = playerCell.offsetTop - (tableContainer.offsetHeight / 2) + (playerCell.offsetHeight / 2);
