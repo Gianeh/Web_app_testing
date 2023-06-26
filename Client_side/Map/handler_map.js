@@ -17,9 +17,9 @@ export function onLoad() {
   console.log(enemypos);
 
  // create the table
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < 500; i++) {
     var row = table.insertRow();
-    for (var j = 0; j < 100; j++) {
+    for (var j = 0; j < 500; j++) {
       var cell = row.insertCell();
       cell.innerHTML = "m";
       cell.classList.add("square");

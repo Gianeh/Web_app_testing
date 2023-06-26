@@ -15,8 +15,6 @@ export function PlayerFocus() {
 
 export function setHandlers() {
   // add event listeners to the table container
-  let tableContainer = document.querySelector(".table-container");
-  tableContainer.addEventListener("scroll", ScrollHandler);
   document.addEventListener("mousemove", handleMouseMove);
   document.addEventListener("mouseup", handleMouseUp);
 
@@ -34,36 +32,6 @@ export function setHandlers() {
   let player = document.getElementById("playerVillage");
   player.addEventListener("click", playerHandler);
 
-}
-// ScrollHandler function to handle the scroll event and add more rows and columns
-function ScrollHandler() {
-  // get the table and table container
-  let table = document.getElementById("WarMap");
-  let tableContainer = document.querySelector(".table-container");
-
-  // Check if user has reached the right end of the table
-  if (tableContainer.scrollLeft + tableContainer.clientWidth >= tableContainer.scrollWidth - 1) {
-    for (let i = 0; i < 2; i++) {
-      for (let j = 0; j < table.rows.length; j++) {
-        let cell = table.rows[j].insertCell();
-        cell.innerHTML = "m";
-        cell.classList.add("square");
-
-      }
-    }
-  }
-
-  // Check if user has reached the bottom of the table and add 2 more rows
-  if (tableContainer.scrollTop - 1 == 0) {
-    for (let i = 0; i < 2; i++) {
-      let row = table.insertRow(0);
-      for (let j = 0; j < table.rows[1].cells.length; j++) {
-        let cell = row.insertCell();
-        cell.innerHTML = "m";
-        cell.classList.add("square");
-      }
-    }
-  }
 }
 
 function handleMouseMove(event) {
