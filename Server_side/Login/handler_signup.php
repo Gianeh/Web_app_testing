@@ -2,10 +2,10 @@
     // log the error
     ini_set('display_errors', 1);
 
-    $MAP_WIDTH = 100;
-    $MAP_HEIGHT = 100;
-    $MAX_DISTANCE = 10;
-    $MIN_DISTANCE = 5;
+    $MAP_WIDTH = 500;
+    $MAP_HEIGHT = 500;
+    $MAX_DISTANCE = 200;
+    $MIN_DISTANCE = 10;
 
 
     if(!isset($_POST["username"]) || !isset($_POST["password"]) || !isset($_POST["password2"])){
