@@ -16,6 +16,9 @@ export function onLoad() {
   let enemypos = getDataWithParameter("player", "x<60 AND y<60 AND username  <> '"+player["username"]+"'", "x, y, username")      // search in local cache enemy data
   console.log(enemypos);
 
+  let container = document.getElementById("container");
+  container.innerHTML = "Loading War Map for " + player["username"] + "!";
+
  // create the table
   for (var i = 0; i < 500; i++) {
     var row = table.insertRow();
