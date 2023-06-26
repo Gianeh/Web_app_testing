@@ -5,12 +5,15 @@ import { PlayerFocus, setHandlers } from "./handlers.js";
 export function onLoad() {
   let table = document.getElementById("WarMap");
   let player = getLocalData("player", "map");           // search in local cache player data
-  player = pickRecords(player, ["user_id","x", "y"]);  // pick only username, x and y from player data
-  let username = getLocalData("player", "user_id");
+  player = pickRecords(player, ["username","x", "y"]);   // pick only username, x and y from player data
+  
+  let username = getLocalData("player", "map");
+  username = pickRecords(username, ["username"]);     
+  
   console.log("player position: " + player["x"] + ", " + player["y"]);
-  console.log("player username: " + player["user_id"]);
+  console.log("player username: " + player["username"]);
   // execute the query to get enemy data and not the player data
-  let enemypos = getDataWithParameter("player", "x<60 AND y<60 AND user_id  <> '"+player["user_id"]+"'", "x, y, user_id")      // search in local cache enemy data
+  let enemypos = getDataWithParameter("player", "x<60 AND y<60 AND user_id  <> '"+player["username"]+"'", "x, y, username")      // search in local cache enemy data
   console.log(enemypos);
 
  // create the table
