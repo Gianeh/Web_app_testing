@@ -13,7 +13,7 @@ export function onLoad() {
   console.log("player position: " + player["x"] + ", " + player["y"]);
   console.log("player username: " + player["username"]);
   // execute the query to get enemy data and not the player data
-  let enemypos = getDataWithParameter("player", "x<60 AND y<60 AND user_id  <> '"+player["username"]+"'", "x, y, username")      // search in local cache enemy data
+  let enemypos = getDataWithParameter("player", "x<60 AND y<60 AND username  <> '"+player["username"]+"'", "x, y, username")      // search in local cache enemy data
   console.log(enemypos);
 
  // create the table
