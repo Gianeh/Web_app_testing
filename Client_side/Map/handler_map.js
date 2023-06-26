@@ -16,9 +16,9 @@ export function onLoad() {
   let enemypos = getDataWithParameter("player", "x<60 AND y<60 AND username  <> '"+player["username"]+"'", "x, y, username")      // search in local cache enemy data
   console.log(enemypos);
 
-  // set the container to display the loading message
-  let container = document.getElementById("tableContainer");
-  container.innerHTML = "Loading War Map for " + player["username"] + "!";
+  // set the infoDivo to display the loading message
+  let info = document.getElementById("info");
+  info.innerHTML = "Loading War Map for " + player["username"] + "!";
 
  // create the table
   for (var i = 0; i < 500; i++) {
@@ -45,6 +45,8 @@ export function onLoad() {
       }
     }
   }
+  // set the infoDiv to display the welcome message
+  info.innerHTML = "Welcome to your War Map " + player["username"] + " are you are ready to conquer the world?";
   PlayerFocus();
   setHandlers();
 }
