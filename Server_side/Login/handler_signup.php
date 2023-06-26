@@ -2,6 +2,12 @@
     // log the error
     ini_set('display_errors', 1);
 
+    $MAP_WIDTH = 100;
+    $MAP_HEIGHT = 100;
+    $MAX_DISTANCE = 10;
+    $MIN_DISTANCE = 5;
+
+
     if(!isset($_POST["username"]) || !isset($_POST["password"]) || !isset($_POST["password2"])){
         echo json_encode(array("status" => "error", "message" => "Missing parameters"));
         exit();
@@ -42,15 +48,43 @@
         $existingPositions[$key] = array($value["x"], $value["y"]);
     }
 
+    /*
     $x = rand(0, 99);
     $y = rand(0, 99);
     $position = array($x, $y);
-
+    
     while (in_array($position, $existingPositions)) {
         $x = rand(0, 99);
         $y = rand(0, 99);
         $position = array($x, $y);
+    }*/
+
+    // Following code is incomplete, after a first spawn the next player won't be able to spawn covering the whole map but just in a $MAX_DISTANCE radius from the first player
+    if(count($existingPositions) == 0){
+        $x = floor($MAP_WIDTH/2);
+        $y = floor($MAP_HEIGHT/2);
+        $position = array($x, $y);
+    }else{
+        $near = true;
+        while ($near) {
+            $x = rand(0, $MAP_WIDTH - 1);
+            $y = rand(0, $MAP_HEIGHT - 1);
+            $within_range = true;
+            foreach($existingPositions as $key => $value){
+                $distance = sqrt(($value[0] - $x) ** 2 + ($value[1] - $y) ** 2);
+                if ($distance < $MIN_DISTANCE || $distance > $MAX_DISTANCE) {
+                    $within_range = false;
+                    break;
+                }
+            }
+
+            if ($within_range) {
+                $near = false;
+            }
+        }
+        $position = array($x, $y);
     }
+
 
     // encode the username to get the user_id and insert all needed records in the database
     $user_id = encode($username);
