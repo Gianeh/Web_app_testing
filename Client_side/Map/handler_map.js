@@ -4,14 +4,16 @@ import { PlayerFocus, setHandlers } from "./handlers.js";
 
 export function onLoad() {
   let table = document.getElementById("WarMap");
-  let playerpos = getLocalData("player", "map");    // search in local cache player data
-  playerpos = pickRecords(playerpos, ["x", "y"]);
-  console.log("player position: " + playerpos["x"] + ", " + playerpos["y"]);
+  let player = getLocalData("player", "map");           // search in local cache player data
+  player = pickRecords(player, ["username","x", "y"]);  // pick only username, x and y from player data
+  let username = getLocalData("player", "username");
+  console.log("player position: " + player["x"] + ", " + player["y"]);
 
-  let enemypos = getDataWithParameter("player", "x<60 AND y<60", "x, y, username")      // search in local cache enemy data
+  // execute the query to get enemy data and not the player data
+  let enemypos = getDataWithParameter("player", "x<60 AND y<60 AND username  <> ",player["username"], "x, y, username")      // search in local cache enemy data
   console.log(enemypos);
 
-
+ // create the table
   for (var i = 0; i < 100; i++) {
     var row = table.insertRow();
     for (var j = 0; j < 100; j++) {
@@ -19,7 +21,7 @@ export function onLoad() {
       cell.innerHTML = "m";
       cell.classList.add("square");
 
-      if (i == playerpos["x"] && j == playerpos["y"]) {
+      if (i == player["x"] && j == player["y"]) {
         cell.innerHTML = "P";                   // Set cell content to "P"
         cell.classList.remove("square");        // Remove square class
         cell.classList.add("playerVillage");    // Add player-village class
