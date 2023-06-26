@@ -1,7 +1,7 @@
 // Player_Focus function to focus on the player cell
 export function PlayerFocus() {
 
-  let tableContainer = document.getElementById(".table-container");
+  let tableContainer = document.getElementById(".tableContainer");
   let playerCell = document.getElementById("playerVillage")[0];
 
   // calcultate the offset of the player cell
@@ -45,7 +45,7 @@ function handleMouseMove(event) {
   let table = document.getElementById("WarMap");
   table.scrollLeft = startScrollLeft - deltaX;
   table.scrollTop = startScrollTop - deltaY;
-  let tableContainer = document.getElementById("table-container");
+  let tableContainer = document.getElementById("tableContainer");
 }
 
 function handleMouseUp(event) {
