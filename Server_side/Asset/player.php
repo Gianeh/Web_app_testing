@@ -35,7 +35,7 @@
             //join the arrys
             return array_merge(
                 array(
-                "name" => $this->name,
+                "username" => $this->name,
                 "population" => $this->population,
                 "x"    => $this->x,
                 "y"    => $this->y,
