@@ -5,8 +5,8 @@ export function PlayerFocus() {
   let playerCell = document.getElementById("playerVillage");
 
   // calcultate the offset of the player cell
-  let offsetTop = playerCell.offsetTop - (tableContainer.offsetHeight / 2) + (playerCell.offsetHeight / 2);
-  let offsetLeft = playerCell.offsetLeft - (tableContainer.offsetWidth / 2) + (playerCell.offsetWidth / 2);
+  let offsetTop = playerCell.offsetTop() - (tableContainer.offsetHeight / 2) + (playerCell.offsetHeight / 2);
+  let offsetLeft = playerCell.offsetLeft() - (tableContainer.offsetWidth / 2) + (playerCell.offsetWidth / 2);
 
   // apply the offset to the container
   tableContainer.scrollTop = offsetTop;
