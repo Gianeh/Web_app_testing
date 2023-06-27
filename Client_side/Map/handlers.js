@@ -42,7 +42,8 @@ export function HandlerDrawMap (cellSize, player, enemypos) {
 
   for (let i = 0; i < 500; i++) {
     for (let j = 0; j < 500; j++) {
-      
+      const cellX = i * cellSize;
+      const cellY = j * cellSize;
       if (i == player["x"] && j == player["y"]) {
         // Draw player cell
         ctx.fillStyle = "blue";
