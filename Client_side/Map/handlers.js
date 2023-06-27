@@ -1,24 +1,24 @@
 // Player_Focus function to focus on the player cell
 export function PlayerFocus() {
 
-  // get the table container and the player cell
-  let tableContainer = document.getElementById("tableContainer");
-  let playerCell = document.getElementById("playerVillage");
+  const canvasContainer = document.getElementById("canvasContainer");
+  const playerCell = document.getElementById("playerVillage");
+  const playerX = playerCell.dataset.x;
+  const playerY = playerCell.dataset.y;
 
-  // calcultate the offset of the player cell
-  let offsetTop = playerCell.offsetTop - (tableContainer.offsetHeight / 2) + (playerCell.offsetHeight / 2);
-  let offsetLeft = playerCell.offsetLeft - (tableContainer.offsetWidth / 2) + (playerCell.offsetWidth / 2);
+  const containerWidth = canvasContainer.offsetWidth;
+  const containerHeight = canvasContainer.offsetHeight;
+  const cellSize = 30;
 
-  // apply the offset to the container
-  tableContainer.scrollTop = offsetTop;
-  tableContainer.scrollLeft = offsetLeft;
+  const offsetX = (containerWidth / 2) - (playerX * cellSize) - (cellSize / 2);
+  const offsetY = (containerHeight / 2) - (playerY * cellSize) - (cellSize / 2);
+
+  canvasContainer.scrollTo(offsetX, offsetY);
+
+
 }
 
 export function setHandlers() {
-  // add event listeners to the table container
-  document.addEventListener("mousemove", handleMouseMove);
-  document.addEventListener("mouseup", handleMouseUp);
-
   // add event listeners to refocus button
   let PlayerReFocus = document.getElementById("PlayerRefocus");
   PlayerReFocus.addEventListener("click", PlayerFocus);
@@ -36,21 +36,62 @@ export function setHandlers() {
   villages.addEventListener("click", VillageClick);
 }
 
-function handleMouseMove(event) {
-  let startX = event.pageX;
-  let startY = event.pageY;
-  var deltaX = event.pageX - startX;
-  var deltaY = event.pageY - startY;
-  let table = document.getElementById("WarMap");
-  table.scrollLeft = startScrollLeft - deltaX;
-  table.scrollTop = startScrollTop - deltaY;
-  let tableContainer = document.getElementById("tableContainer");
+// HandlerDrawMap function to draw the map
+export function HandlerDrawMap(originX, originY, player, enemypos) {
+  
+  let canvas = document.getElementById("canvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = 0; i < 500; i++) {
+    for (let j = 0; j < 500; j++) {
+      const cellX = i * cellSize;
+      const cellY = j * cellSize;
+
+      // Draw background square
+      ctx.fillStyle = "lightgreen";
+      ctx.fillRect(cellX, cellY, cellSize, cellSize);
+
+      if (i === player["x"] && j === player["y"]) {
+        // Draw player cell
+        ctx.fillStyle = "blue";
+        ctx.fillRect(cellX, cellY, cellSize, cellSize);
+      }
+
+      for (let k in enemypos) {
+        if (i === enemypos[k]["x"] && j === enemypos[k]["y"]) {
+          // Draw enemy cell
+          ctx.fillStyle = "red";
+          ctx.fillRect(cellX, cellY, cellSize, cellSize);
+        }
+      }
+    }
+  }
+
 }
 
-function handleMouseUp(event) {
-  document.removeEventListener("mousemove", handleMouseMove);
-  document.removeEventListener("mouseup", handleMouseUp);
+export function zoomIn() {
+  zoomLevel *= 1.1;
+  applyZoom();
 }
+
+export function zoomOut() {
+  zoomLevel /= 1.1;
+  applyZoom();
+}
+
+function applyZoom() {
+  let canvas = document.getElementById("canvas");
+  let ctx = canvas.getContext("2d");
+  const newWidth = mapWidth * cellSize * zoomLevel;
+  const newHeight = mapHeight * cellSize * zoomLevel;
+  canvas.style.width = newWidth + "px";
+  canvas.style.height = newHeight + "px";
+  canvas.width = newWidth;
+  canvas.height = newHeight;
+  drawMap(currentOriginX, currentOriginY, player, enemypos);
+}
+
 
 function overlayCloseHandler(event) {
   // close the overlay
@@ -72,10 +113,10 @@ function playerHandler(event) {
   let left = playerCell.offsetLeft;
 
   // set the overlay position
-  top+=10;
-  left+=10;
-  overlay.style.top = top +"px";
-  overlay.style.left = left +"px";
+  top += 10;
+  left += 10;
+  overlay.style.top = top + "px";
+  overlay.style.left = left + "px";
 
 }
 

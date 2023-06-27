@@ -74,13 +74,15 @@
 
         }
 
-        .tableContainer {
+        #canvasContainer {
             width: 1000px;
-            /* container dimension */
             height: 1000px;
-            /* container dimension */
             overflow: auto;
             margin: auto;
+        }
+        #canvas {
+            border: 2px solid black;
+            border-radius: 10px;
         }
 
         .square {
@@ -95,10 +97,6 @@
             border: 1px solid black;
             width: 30px;
             height: 30px;
-        }
-
-        .red {
-            background-color: red;
         }
 
         .playerVillage {
@@ -146,11 +144,9 @@
     <div  id="infoDiv" style="margin:auto">
         <h1 style="text-align: center;" id="info">Loading your War Map !!</h1>
     </div>   
-    <div class="tableContainer" id="tableContainer">
-    
-        <!--A table for the war map createte onLoad by handler_map.js-->
-        <table id="WarMap" style="margin:auto">
-        </table>
+    <div id="canvasContainer">
+        <canvas id="canvas"></canvas>
+    </div>
         <div id="overlay">
             <div id="overlay-content">
                 <h2>Attack</h2>
