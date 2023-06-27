@@ -3,7 +3,7 @@ export function PlayerFocus(cellSize,x,y) {
 
   let container = document.getElementById("canvasContainer");
 
-  container.scrollTo((cellSize*x)*2,(cellSize*y)*2) // Translate the canvas
+  container.scrollTo((cellSize*x),(cellSize*y)) // Translate the canvas
 }
 
 export function setHandlers(x,y,cellSize) {
