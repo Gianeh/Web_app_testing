@@ -36,7 +36,7 @@ export function onLoad() {
   let info = document.getElementById("info");
   info.innerHTML = "Welcome to your War Map " + player["username"] + ", are you are ready to conquer the world?";
 
-  setHandlers(player["x"], player["y"]);
-  PlayerFocus(player["x"], player["y"]);
+  setHandlers(cellSize,player["x"], player["y"]);
+  PlayerFocus(cellSize,player["x"], player["y"]);
 }
 

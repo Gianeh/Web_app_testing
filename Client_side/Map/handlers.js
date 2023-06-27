@@ -1,22 +1,22 @@
 // Player_Focus function to focus on the player cell
-export function PlayerFocus(x,y) {
+export function PlayerFocus(cellSize,x,y) {
 
   let container = document.getElementById("canvasContainer");
   
   const canvasCenterX = container.width / 2; // X-coordinate of the canvas center
   const canvasCenterY = container.height / 2; // Y-coordinate of the canvas center
   
-  const translateX = canvasCenterX - x; // Calculate the translation amount for X-axis
-  const translateY = canvasCenterY - y; // Calculate the translation amount for Y-axis
+  const translateX = canvasCenterX - (x*cellSize); // Calculate the translation amount for X-axis
+  const translateY = canvasCenterY - (y*cellSize); // Calculate the translation amount for Y-axis
   
-  container.scrollTo(translateX, translateY); // Translate the canvas
+  container.scrollTo(translateX,translateY) // Translate the canvas
 }
 
-export function setHandlers(x,y) {
+export function setHandlers(x,y,cellSize) {
 
   // add event listeners to refocus button
   let PlayerReFocus = document.getElementById("PlayerRefocus");
-  PlayerReFocus.addEventListener("click", PlayerFocus(x,y));
+  PlayerReFocus.addEventListener("click", PlayerFocus(x,y,cellSize));
 
   // add event listeners to overlay close button
   let closeOverlay = document.getElementById("overlayClose");
