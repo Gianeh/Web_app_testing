@@ -37,7 +37,7 @@ export function setHandlers() {
 }
 
 // HandlerDrawMap function to draw the map
-export function HandlerDrawMap (player, enemypos) {
+export function HandlerDrawMap (cellSize, player, enemypos) {
   
   let canvas = document.getElementById("canvas");
   let ctx = canvas.getContext("2d");
