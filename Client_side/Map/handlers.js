@@ -1,7 +1,7 @@
 // Player_Focus function to focus on the player cell
 export function PlayerFocus() {
 
-  let tableContainer = document.getElementById(".tableContainer");
+  let tableContainer = document.getElementById("tableContainer");
   let playerCell = document.getElementById("playerVillage");
 
   // calcultate the offset of the player cell
