@@ -52,14 +52,14 @@ export function HandlerDrawMap (cellSize, player, enemypos) {
       ctx.fillStyle = "lightgreen";
       ctx.fillRect(cellX, cellY, cellSize, cellSize);
 
-      if (i === player["x"] && j === player["y"]) {
+      if (i == player["x"] && j == player["y"]) {
         // Draw player cell
         ctx.fillStyle = "blue";
         ctx.fillRect(cellX, cellY, cellSize, cellSize);
       }
 
       for (let k in enemypos) {
-        if (i === enemypos[k]["x"] && j === enemypos[k]["y"]) {
+        if (i == enemypos[k]["x"] && j == enemypos[k]["y"]) {
           // Draw enemy cell
           ctx.fillStyle = "red";
           ctx.fillRect(cellX, cellY, cellSize, cellSize);
