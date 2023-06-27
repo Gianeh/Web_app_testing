@@ -11,7 +11,7 @@ let zoomLevel = 1;
 
 export function onLoad() {
   // create the canvas
-  canvas = document.getElementById("canvas");
+  canvas = document.getElementById("MapCanvas");
   ctx = canvas.getContext("2d");
   canvas.width = mapWidth * cellSize;
   canvas.height = mapHeight * cellSize;
