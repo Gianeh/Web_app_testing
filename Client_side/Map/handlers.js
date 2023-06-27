@@ -6,8 +6,8 @@ export function PlayerFocus(cellSize,x,y) {
   const canvasCenterX = container.width / 2; // X-coordinate of the canvas center
   const canvasCenterY = container.height / 2; // Y-coordinate of the canvas center
   
-  const translateX = canvasCenterX - (x*cellSize); // Calculate the translation amount for X-axis
-  const translateY = canvasCenterY - (y*cellSize); // Calculate the translation amount for Y-axis
+  const translateX = (canvasCenterX - x)*cellSize; // Calculate the translation amount for X-axis
+  const translateY = (canvasCenterY - y)*cellSize; // Calculate the translation amount for Y-axis
   
   container.scrollTo(translateX,translateY) // Translate the canvas
 }
