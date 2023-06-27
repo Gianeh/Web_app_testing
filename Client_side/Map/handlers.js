@@ -3,8 +3,8 @@ export function PlayerFocus(x,y) {
 
   const container = document.getElementById("canvasContainer");
   
-  const canvasCenterX = canvas.width / 2; // X-coordinate of the canvas center
-  const canvasCenterY = canvas.height / 2; // Y-coordinate of the canvas center
+  const canvasCenterX = contanier.width / 2; // X-coordinate of the canvas center
+  const canvasCenterY = contanier.height / 2; // Y-coordinate of the canvas center
   
   const translateX = canvasCenterX - x; // Calculate the translation amount for X-axis
   const translateY = canvasCenterY - y; // Calculate the translation amount for Y-axis
