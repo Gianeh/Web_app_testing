@@ -1,6 +1,7 @@
 // Player_Focus function to focus on the player cell
 export function PlayerFocus() {
 
+  // get the table container and the player cell
   let tableContainer = document.getElementById("tableContainer");
   let playerCell = document.getElementById("playerVillage");
 
