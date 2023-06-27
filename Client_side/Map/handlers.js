@@ -1,27 +1,27 @@
 // Player_Focus function to focus on the player cell
-export function PlayerFocus() {
+export function PlayerFocus(x,y) {
 
-  const canvasContainer = document.getElementById("canvasContainer");
-  const playerCell = document.getElementById("playerVillage");
-  const playerX = playerCell.dataset.x;
-  const playerY = playerCell.dataset.y;
-
-  const containerWidth = canvasContainer.offsetWidth;
-  const containerHeight = canvasContainer.offsetHeight;
-  const cellSize = 30;
-
-  const offsetX = (containerWidth / 2) - (playerX * cellSize) - (cellSize / 2);
-  const offsetY = (containerHeight / 2) - (playerY * cellSize) - (cellSize / 2);
-
-  canvasContainer.scrollTo(offsetX, offsetY);
+  const canvas = document.getElementById("MapCanvas");
+  const ctx = canvas.getContext("2d");
+  
+  const canvasCenterX = canvas.width / 2; // X-coordinate of the canvas center
+  const canvasCenterY = canvas.height / 2; // Y-coordinate of the canvas center
+  
+  const translateX = canvasCenterX - x; // Calculate the translation amount for X-axis
+  const translateY = canvasCenterY - y; // Calculate the translation amount for Y-axis
+  
+  ctx.translate(translateX, translateY);
+  
+  // Now, any drawing or objects will be centered around the position (x, y) on the canvas
 
 
 }
 
-export function setHandlers() {
+export function setHandlers(x,y) {
+
   // add event listeners to refocus button
   let PlayerReFocus = document.getElementById("PlayerRefocus");
-  PlayerReFocus.addEventListener("click", PlayerFocus);
+  PlayerReFocus.addEventListener("click", PlayerFocus(x,y));
 
   // add event listeners to overlay close button
   let closeOverlay = document.getElementById("overlayClose");
@@ -34,12 +34,14 @@ export function setHandlers() {
   //add event listener to return to village button
   let villages = document.getElementById("ReturnToVillage")
   villages.addEventListener("click", VillageClick);
+
+
 }
 
 // HandlerDrawMap function to draw the map
 export function HandlerDrawMap (cellSize, player, enemypos) {
   
-  let canvas = document.getElementById("canvas");
+  let canvas = document.getElementById("MapCanvas");
   let ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -56,6 +58,7 @@ export function HandlerDrawMap (cellSize, player, enemypos) {
         // Draw player cell
         ctx.fillStyle = "blue";
         ctx.fillRect(cellX, cellY, cellSize, cellSize);
+        ctx.id = "playerVillage";
       }
 
       for (let k in enemypos) {
@@ -63,6 +66,7 @@ export function HandlerDrawMap (cellSize, player, enemypos) {
           // Draw enemy cell
           ctx.fillStyle = "red";
           ctx.fillRect(cellX, cellY, cellSize, cellSize);
+          ctx.id = "enemyVillage";
         }
       }
     }
@@ -81,7 +85,7 @@ export function zoomOut() {
 }
 
 function applyZoom() {
-  let canvas = document.getElementById("canvas");
+  let canvas = document.getElementById("MapCanvas");
   let ctx = canvas.getContext("2d");
   const newWidth = mapWidth * cellSize * zoomLevel;
   const newHeight = mapHeight * cellSize * zoomLevel;
