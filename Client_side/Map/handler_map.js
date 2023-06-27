@@ -30,7 +30,7 @@ export function onLoad() {
   let enemypos = getDataWithParameter("player", "x<60 AND y<60 AND username  <> '" + player["username"] + "'", "x, y, username")      // search in local cache enemy data
   console.log(enemypos);
 
-  HandlerDrawMap(currentOriginX, currentOriginY, player, enemypos);
+  HandlerDrawMap(player, enemypos);
 
   // set the infoDiv to display the welcome message
   let info = document.getElementById("info");
