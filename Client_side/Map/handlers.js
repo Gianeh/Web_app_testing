@@ -1,7 +1,7 @@
 // Player_Focus function to focus on the player cell
 export function PlayerFocus(x,y) {
 
-  const container = document.getElementById("canvasContainer");
+  let container = document.getElementById("canvasContainer");
   
   const canvasCenterX = contanier.width / 2; // X-coordinate of the canvas center
   const canvasCenterY = contanier.height / 2; // Y-coordinate of the canvas center
