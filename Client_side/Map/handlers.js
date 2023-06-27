@@ -1,8 +1,7 @@
 // Player_Focus function to focus on the player cell
 export function PlayerFocus(x,y) {
 
-  const canvas = document.getElementById("MapCanvas");
-  const ctx = canvas.getContext("2d");
+  const container = document.getElementById("canvasContainer");
   
   const canvasCenterX = canvas.width / 2; // X-coordinate of the canvas center
   const canvasCenterY = canvas.height / 2; // Y-coordinate of the canvas center
@@ -10,11 +9,7 @@ export function PlayerFocus(x,y) {
   const translateX = canvasCenterX - x; // Calculate the translation amount for X-axis
   const translateY = canvasCenterY - y; // Calculate the translation amount for Y-axis
   
-  ctx.translate(translateX, translateY);
-  
-  // Now, any drawing or objects will be centered around the position (x, y) on the canvas
-
-
+  container.scrollTo(translateX, translateY); // Translate the canvas
 }
 
 export function setHandlers(x,y) {
