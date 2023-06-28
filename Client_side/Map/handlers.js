@@ -76,6 +76,7 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
       }
     }
   }
+  console.log("Table Created ", i, j);
 }
 
 
