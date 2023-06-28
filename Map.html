@@ -21,7 +21,7 @@
             z-index: 9999;
         }
 
-        .overlay {
+        .PlayerOverlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -31,29 +31,6 @@
             display: none;
         }
 
-        .overlay-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .overlay-button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin-top: 20px;
-            cursor: pointer;
-        }
 
         .RefocusDiv {
             width: 1000px;
@@ -80,6 +57,7 @@
             height: 1000px;
             overflow: auto;
             margin: auto;
+            position: relative;
             border: 2px solid black;
         }
 
@@ -143,10 +121,13 @@
             background-color: #ccc;
             border: none;
         }
+        .arrowButton:hover{
+            background-color: #ddd;
+            box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.2);
+        }
         .moveButton{
             width: 1000px;
-            height: 35px;
-            border: 2px solid black;
+            height: 45px;
             border-radius: 10px;
             display: flex;
             justify-content: center;
@@ -176,5 +157,10 @@
         <button class="arrowButton" id="buttonRight">right</button>
     </div>
     </div>
+    <div id="PlayerOverlay" class="PlayerOverlay">
+        <div id="PlayerOverlayContent">
+            <h1>This is player overlay</h1>
+            <button id="OverlayCloseButton">Close</button>
+        </div>
 </body>
 </html>

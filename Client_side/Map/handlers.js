@@ -20,7 +20,7 @@ export function setHandlers(x, y, cellSize) {
 
   // add event listeners to player village
   let player = document.getElementById("playerVillage");
-  player.addEventListener("mouseover", playerHandler);
+  player.addEventListener("click", playerHandler);
 
   //add event listener to return to village button
   let villages = document.getElementById("ReturnToVillage")
@@ -70,6 +70,7 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
       if (j == player["x"] && i == player["y"]) {
         cell.className = "PlayerVillage";
         cell.id = "playerVillage";
+        cell.innerHTML = "P";
       }
      
       //Draw enemy villages cells
@@ -77,6 +78,7 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
         if (j == enemypos[k]["x"] && i == enemypos[k]["y"]) {
           cell.className = "enemyVillage";
           cell.id = "EnemyVillage" + enemypos[k]["username"];
+          cell.innerHTML = "E";
         }
       }
     }
@@ -84,31 +86,31 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
  
 }
 
-
+//close the overlay
 function overlayCloseHandler(event) {
   // close the overlay
-  let overlay = document.getElementById("overlay");
-  if (event.target == overlay) {
-    overlay.style.display = "none";
-  }
+  let overlay = document.getElementById("PlayerOverlay");
+  overlay.style.display = "none";
 }
 
 //function to open the overlay for player
 function playerHandler(event) {
   // open the overlay
-  let overlay = document.getElementById("overlay");
-  overlay.style.display = "block";
+  let overlay = document.getElementById("PlayerOverlay");
 
-  // get the player cell position
-  let playerCell = document.getElementById("playerVillage");
-  let top = playerCell.offsetTop;
-  let left = playerCell.offsetLeft;
+  // get top, left player village position on screen
+  let player = document.getElementById("playerVillage");
+  let top = player.offsetTop;
+  let left = player.offsetLeft;
 
   // set the overlay position
-  top += 10;
-  left += 10;
+  top += 20;
+  left += 20;
   overlay.style.top = top + "px";
   overlay.style.left = left + "px";
+
+  // show overlay
+  overlay.style.display = "block";
 
 }
 
