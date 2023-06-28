@@ -30,7 +30,7 @@ export function setHandlers(x, y, cellSize) {
 }
 
 // HandlerDrawMap function to draw the map
-export function HandlerDrawMap(CurrentOrigin, player, enemypos) {
+export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
 
   // Get the table
   let table = document.getElementById("WarMap");
