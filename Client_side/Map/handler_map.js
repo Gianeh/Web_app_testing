@@ -28,6 +28,7 @@ export function onLoad() {
   //set current origin
   CurrentOrigin[0] = player["x"]-19;
   CurrentOrigin[1] = player["y"]-19;
+  console.log("CurrentOrigin: " + CurrentOrigin[0] + ", " + CurrentOrigin[1]);
 
   // execute the query to get enemy data and not the player data
   let enemypos = getDataWithParameter("player", "x<90 AND y<90 AND username  <> '" + player["username"] + "'", "x, y, username")      // search in local cache enemy data
