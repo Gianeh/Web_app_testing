@@ -9,7 +9,7 @@
     </script>
 
     <style>
-        .infoDiv {
+        .infoDiv{ 
             width: 1000px;
             height: 35px;
             border: 2px solid black;
@@ -20,7 +20,6 @@
             margin: 50px auto;
             z-index: 9999;
         }
-
         .overlay {
             position: fixed;
             top: 0;
@@ -75,11 +74,14 @@
 
         }
 
-        .MapContainer {
-            width: 1000px;
+        #canvasContainer {
+            width: 1500px;
             height: 1000px;
             overflow: auto;
             margin: auto;
+        }
+        #MapCanvas {
+            background-color: lightgreen;
         }
 
         .square {
@@ -94,7 +96,6 @@
             border: 1px solid black;
             width: 30px;
             height: 30px;
-            border-radius: 3px;
         }
 
         .playerVillage {
@@ -134,39 +135,24 @@
             background-color: #3e8e41;
             box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.2);
         }
-
-        .arrowButton {
-            width: 30px;
-            height: 30px;
-            margin: 0 5px;
-            background-color: #ccc;
-            border: none;
-        }
     </style>
 </head>
 
 <body>
-    <div class="RefocusDiv"><button class="fancy-button" id="PlayerRefocus">Refocus on Village</button><button
-            class="fancy-button" id="ReturnToVillage">Return To Village</button></div>
-    <div id="infoDiv" style="margin:auto">
+    <div class="RefocusDiv"><button class="fancy-button" id="PlayerRefocus">Refocus on Village</button><button class="fancy-button" id="ReturnToVillage">Return To Village</button></div>
+    <div  id="infoDiv" style="margin:auto">
         <h1 style="text-align: center;" id="info">Loading your War Map !!</h1>
+    </div>   
+    <div id="canvasContainer">
+        <canvas id="MapCanvas"></canvas>
     </div>
-    <div class="MapContainer">
-        <table id="WarMap">
-        </table>
-    </div>
-    <button class="arrowButton" id="buttonUp">⬆</button>
-    <button class="arrowButton" id="buttonDown">⬇</button>
-    <button class="arrowButton" id="bittonLeft">⬅</button>
-    <button class="arrowButton" id="buttonRight">➡</button>
-    </div>
-    <div id="overlay">
-        <div id="overlay-content">
-            <h2>Attack</h2>
-            <p>Bho roba giusto per riempire</p>
-            <button id="overlayClose">Close</button>
+        <div id="overlay">
+            <div id="overlay-content">
+                <h2>Attack</h2>
+                <p>Bho roba giusto per riempire</p>
+                <button id="overlayClose">Close</button>
+            </div>
         </div>
-    </div>
     </div>
 </body>
 

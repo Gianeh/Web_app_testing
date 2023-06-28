@@ -1,17 +1,16 @@
-const MapWidth = 500;
-const MapHeight = 500;
-
-
 // Player_Focus function to focus on the player cell
-export function PlayerFocus(cellSize, x, y) {
+export function PlayerFocus(cellSize,x,y) {
 
+  let container = document.getElementById("canvasContainer");
+
+  container.scrollTo((cellSize*x)/2,(cellSize*y)/3) // Translate the canvas // finc new parameters
 }
 
-export function setHandlers(x, y, cellSize) {
+export function setHandlers(x,y,cellSize) {
 
   // add event listeners to refocus button
   let PlayerReFocus = document.getElementById("PlayerRefocus");
-  PlayerReFocus.addEventListener("click", PlayerFocus(x, y, cellSize));
+  PlayerReFocus.addEventListener("click", PlayerFocus(x,y,cellSize));
 
   // add event listeners to overlay close button
   let closeOverlay = document.getElementById("overlayClose");
@@ -29,50 +28,56 @@ export function setHandlers(x, y, cellSize) {
 }
 
 // HandlerDrawMap function to draw the map
-export function HandlerDrawMap(CurrentOrigin, player, enemypos) {
-
-  // Get the table
-  let table = document.getElementById("WarMap");
-
-  // Set the current origin
-  let i = CurrentOrigin["x"];
-  let j = CurrentOrigin["y"];
+export function HandlerDrawMap (cellSize, player, enemypos) {
   
+  let canvas = document.getElementById("MapCanvas");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-
-  // Set the height and width of the table
-  if (CurrentOrigin["x"] + 40 > MapWidth) {
-    height = MapWidth;
-  }else if(CurrentOrigin["y"] + 40 > MapHeight){
-    width = MapHeight;
-  }else{
-    let height = 40 + CurrentOrigin["y"];
-    let width = 40 + CurrentOrigin["x"];
-  }
-  
-  //Create the entire table
-  for ( i = 0; i < width; i++) {
-    const row = table.insertRow();
-    for ( j = 0; j < height; j++) {
-      
-      // Draw player village cell
+  for (let i = 0; i < 500; i++) {
+    for (let j = 0; j < 500; j++) {
+      const cellX = i * cellSize;
+      const cellY = j * cellSize;
       if (i == player["x"] && j == player["y"]) {
-        const cell = row.insertCell();
-        cell.className = "PlayerVillage";
-        cell.id = "playerVillage";
+        // Draw player cell
+        ctx.fillStyle = "blue";
+        ctx.fillRect(cellX, cellY, cellSize, cellSize);
+        ctx.id = "playerVillage";
       }
-      const cell = row.insertCell();
-      cell.className = "square";
 
-      //Draw enemy villages cells
       for (let k in enemypos) {
         if (i == enemypos[k]["x"] && j == enemypos[k]["y"]) {
-          cell.className = "enemyVillage";
-          cell.id = "EnemyVillage" + enemypos[k]["username"];
+          // Draw enemy cell
+          ctx.fillStyle = "red";
+          ctx.fillRect(cellX, cellY, cellSize, cellSize);
+          ctx.id = "enemyVillage";
         }
       }
     }
   }
+
+}
+
+export function zoomIn() {
+  zoomLevel *= 1.1;
+  applyZoom();
+}
+
+export function zoomOut() {
+  zoomLevel /= 1.1;
+  applyZoom();
+}
+
+function applyZoom() {
+  let canvas = document.getElementById("MapCanvas");
+  let ctx = canvas.getContext("2d");
+  const newWidth = mapWidth * cellSize * zoomLevel;
+  const newHeight = mapHeight * cellSize * zoomLevel;
+  canvas.style.width = newWidth + "px";
+  canvas.style.height = newHeight + "px";
+  canvas.width = newWidth;
+  canvas.height = newHeight;
+  drawMap(currentOriginX, currentOriginY, player, enemypos);
 }
 
 
