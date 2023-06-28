@@ -54,16 +54,16 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
   
   //Create the entire table
   for ( i = 0; i < width; i++) {
-    const row = table.insertRow();
+    let row = table.insertRow();
     for ( j = 0; j < height; j++) {
       
       // Draw player village cell
       if (i == player["x"] && j == player["y"]) {
-        const cell = row.insertCell();
+        let cell = row.insertCell();
         cell.className = "PlayerVillage";
         cell.id = "playerVillage";
       }
-      const cell = row.insertCell();
+      let cell = row.insertCell();
       cell.className = "square";
 
       //Draw enemy villages cells
