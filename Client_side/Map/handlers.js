@@ -56,6 +56,8 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
   console.log("height: ",height);
   console.log("width: ",width);
 
+  //REMEMBER i regulate the rows and j the columns
+
   //Create the entire table
   for (let i = CurrentOrigin[1]; i < height; i++) {
     let row = table.insertRow();
@@ -65,10 +67,11 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
         let cell = row.insertCell();
         cell.className = "PlayerVillage";
         cell.id = "playerVillage";
-      }
+      }else{
+      // draw empty cells
       let cell = row.insertCell();
       cell.className = "square";
-
+      }
       //Draw enemy villages cells
       for (let k in enemypos) {
         if (j == enemypos[k]["x"] && i == enemypos[k]["y"]) {
