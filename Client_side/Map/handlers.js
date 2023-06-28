@@ -100,8 +100,9 @@ function playerHandler(event) {
 
   // get top, left player village position on screen
   let player = document.getElementById("playerVillage");
-  let top = player.offsetTop;
-  let left = player.offsetLeft;
+  let rect = player.getBoundingClientRect();
+  let top = rect.top;
+  let left = rect.left;
 
   // set the overlay position
   top += 20;
