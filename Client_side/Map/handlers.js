@@ -56,8 +56,8 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
      width = 30 + CurrentOrigin[0];
   }
 
-  console.log("height: ",height);
-  console.log("width: ",width);
+  console.log("height: "+height);
+  console.log("width: "+width);
 
   //REMEMBER i regulate the rows and j the columns
 
@@ -99,6 +99,7 @@ function overlayCloseHandler(event) {
 //function to open the overlay for player
 function playerHandler(event) {
   // open the overlay
+  console.log("player clicked");
   let overlay = document.getElementById("PlayerOverlay");
 
   // get top, left player village position on screen
@@ -110,12 +111,14 @@ function playerHandler(event) {
   // set the overlay position
   top += 20;
   left += 20;
+  console.log("player top: "+top);
+  console.log("player left: "+left);
   overlay.style.top = top + "px";
   overlay.style.left = left + "px";
-
+  overlay.zIndex = 9999;
   // show overlay
   overlay.style.display = "block";
-  console.log("player clicked");
+ 
 }
 
 //function to return to village
