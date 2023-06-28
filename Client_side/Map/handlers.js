@@ -36,20 +36,20 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
   let table = document.getElementById("WarMap");
 
   // Set the current origin
-  let i = CurrentOrigin["x"];
-  let j = CurrentOrigin["y"];
+  let i = CurrentOrigin[0];
+  let j = CurrentOrigin[1];
   
   let width = 0;
   let height = 0;
 
   // Set the height and width of the table
-  if (CurrentOrigin["x"] + 40 > MapWidth) {
+  if (CurrentOrigin[1] + 40 > MapWidth) {
     height = MapWidth;
-  }else if(CurrentOrigin["y"] + 40 > MapHeight){
+  }else if(CurrentOrigin[0] + 40 > MapHeight){
     width = MapHeight;
   }else{
-     height = 40 + CurrentOrigin["y"];
-     width = 40 + CurrentOrigin["x"];
+     height = 40 + CurrentOrigin[1];
+     width = 40 + CurrentOrigin[0];
   }
 
   //Create the entire table
