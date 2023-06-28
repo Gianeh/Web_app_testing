@@ -7,31 +7,6 @@ export function PlayerFocus(cellSize, x, y) {
 
 }
 
-
-export function setHandlers(x, y, cellSize) {
-
-  // add event listeners to refocus button
-  let PlayerReFocus = document.getElementById("PlayerRefocus");
-  PlayerReFocus.addEventListener("click", PlayerFocus(x, y, cellSize));
-
-  // add event listeners to overlay close button
-  let closeOverlay = document.getElementById("overlayClose");
-  closeOverlay.addEventListener("click", overlayCloseHandler);
-
-  // add event listeners to player village
-  let playerCell = document.getElementById("playerVillage");
-  playerCell.addEventListener("click", playerHandler);
-
-  let button = document.getElementById("button");
-  button.addEventListener("click", playerHandler);
-
-  //add event listener to return to village button
-  let villages = document.getElementById("ReturnToVillage")
-  villages.addEventListener("click", VillageClick);
-
-
-}
-
 // HandlerDrawMap function to draw the map
 export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
 
@@ -90,14 +65,14 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
 }
 
 //close the overlay
-function overlayCloseHandler(event) {
+export function overlayCloseHandler(event) {
   // close the overlay
   let overlay = document.getElementById("PlayerOverlay");
   overlay.style.display = "none";
 }
 
 //function to open the overlay for player
-function playerHandler(event) {
+export function playerHandler(event) {
   // open the overlay
   console.log("player clicked");
   let overlay = document.getElementById("PlayerOverlay");
@@ -122,6 +97,6 @@ function playerHandler(event) {
 }
 
 //function to return to village
-function VillageClick(event) {
+export function VillageClick(event) {
   window.location.href = "Village.html";
 }

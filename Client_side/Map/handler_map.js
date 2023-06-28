@@ -1,5 +1,5 @@
 import { pickRecords,  getLocalData, getDataWithParameter } from "../helper.js";
-import { PlayerFocus, setHandlers, HandlerCreateTable } from "./handlers.js";
+import { PlayerFocus, HandlerCreateTable,PlayerFocus,playerHandler, setHandlers } from "./handlers.js";
 //use only getLocalData to get info
 
 let CurrentOrigin = [0, 0];
@@ -41,7 +41,29 @@ export function onLoad() {
   let info = document.getElementById("info");
   info.innerHTML = "Welcome to your War Map " + player["username"] + ", are you are ready to conquer the world?";
 
-  setHandlers(player["x"], player["y"]);
-  //PlayerFocus(player["x"], player["y"]);
+  setHandlers();
 }
 
+function setHandlers() {
+
+  // add event listeners to refocus button
+  let PlayerReFocus = document.getElementById("PlayerRefocus");
+  PlayerReFocus.addEventListener("click", PlayerFocus(1,1,1));
+
+  // add event listeners to overlay close button
+  let closeOverlay = document.getElementById("overlayClose");
+  closeOverlay.addEventListener("click", overlayCloseHandler);
+
+  // add event listeners to player village
+  let playerCell = document.getElementById("playerVillage");
+  playerCell.addEventListener("click", playerHandler);
+
+  let button = document.getElementById("button");
+  button.addEventListener("click", playerHandler);
+
+  //add event listener to return to village button
+  let villages = document.getElementById("ReturnToVillage")
+  villages.addEventListener("click", VillageClick);
+
+
+}
