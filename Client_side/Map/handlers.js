@@ -44,6 +44,10 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
     height = MapWidth;
   }else if(CurrentOrigin[1] + 30 > MapHeight){
     width = MapHeight;
+  }else if(CurrentOrigin[0]<0){
+    height = 30;
+  }else if(CurrentOrigin[1]<0){
+    width = 30;
   }else{
      height = 30 + CurrentOrigin[1];
      width = 30 + CurrentOrigin[0];
