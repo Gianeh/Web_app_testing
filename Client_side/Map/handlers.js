@@ -53,15 +53,15 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
      width = 30 + CurrentOrigin[0];
   }
 
-  console.log(height);
-  console.log(width);
+  console.log("height: ",height);
+  console.log("width: ",width);
 
   //Create the entire table
   for (let i = CurrentOrigin[1]; i < height; i++) {
     let row = table.insertRow();
     for ( let j = CurrentOrigin[0]; j < width; j++) {
       // Draw player village cell
-      if (i == player["x"] && j == player["y"]) {
+      if (j == player["x"] && i == player["y"]) {
         let cell = row.insertCell();
         cell.className = "PlayerVillage";
         cell.id = "playerVillage";
@@ -71,7 +71,7 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
 
       //Draw enemy villages cells
       for (let k in enemypos) {
-        if (i == enemypos[k]["x"] && j == enemypos[k]["y"]) {
+        if (j == enemypos[k]["x"] && i == enemypos[k]["y"]) {
           cell.className = "enemyVillage";
           cell.id = "EnemyVillage" + enemypos[k]["username"];
         }
