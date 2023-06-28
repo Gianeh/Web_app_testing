@@ -36,9 +36,6 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
   let table = document.getElementById("WarMap");
 
   // Set the current origin
-  let j = CurrentOrigin[0];
-  let i = CurrentOrigin[1];
- 
   
   let width = 0;
   let height = 0;
@@ -57,9 +54,9 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
   console.log(width);
 
   //Create the entire table
-  for ( i = 0; i < width; i++) {
+  for (let i= CurrentOrigin[1] ; i < width; i++) {
     let row = table.insertRow();
-    for ( j = 0; j < height; j++) {
+    for (let j = CurrentOrigin[0] ; j < height; j++) {
       
       // Draw player village cell
       if (i == player["x"] && j == player["y"]) {
