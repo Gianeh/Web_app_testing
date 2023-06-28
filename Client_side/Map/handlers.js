@@ -53,6 +53,9 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
      width = 30 + CurrentOrigin[0];
   }
 
+  console.log(height);
+  console.log(width);
+
   //Create the entire table
   for ( i = 0; i < width; i++) {
     let row = table.insertRow();
