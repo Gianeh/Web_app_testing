@@ -135,7 +135,7 @@ export function moveTable(event) {
       // delete the last row
       table.deleteRow(29);
 
-      // move the entire table Up of 1 row
+      // move the entire table down of 1 row
       for (let i = 0; i < RowSize; i++) {
 
         // here i move the entire table up of 1 row
