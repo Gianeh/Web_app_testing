@@ -19,8 +19,11 @@ export function setHandlers(x, y, cellSize) {
   closeOverlay.addEventListener("click", overlayCloseHandler);
 
   // add event listeners to player village
-  let player = document.getElementById("playerVillage");
-  player.addEventListener("click", playerHandler);
+  let playerCell = document.getElementById("playerVillage");
+  playerCell.addEventListener("click", playerHandler);
+
+  let button = document.getElementById("button");
+  button.addEventListener("click", playerHandler);
 
   //add event listener to return to village button
   let villages = document.getElementById("ReturnToVillage")
