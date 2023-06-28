@@ -39,7 +39,8 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
   let i = CurrentOrigin["x"];
   let j = CurrentOrigin["y"];
   
-
+  let width = 0;
+  let height = 0;
 
   // Set the height and width of the table
   if (CurrentOrigin["x"] + 40 > MapWidth) {
@@ -47,8 +48,8 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
   }else if(CurrentOrigin["y"] + 40 > MapHeight){
     width = MapHeight;
   }else{
-    let height = 40 + CurrentOrigin["y"];
-    let width = 40 + CurrentOrigin["x"];
+     height = 40 + CurrentOrigin["y"];
+     width = 40 + CurrentOrigin["x"];
   }
   
   //Create the entire table
