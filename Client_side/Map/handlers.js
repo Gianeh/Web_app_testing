@@ -53,9 +53,9 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
   console.log(width);
 
   //Create the entire table
-  for (let i = CurrentOrigin[1]; i < width; i++) {
+  for (let i = CurrentOrigin[1]; i < height; i++) {
     let row = table.insertRow();
-    for ( let j = CurrentOrigin[0]; j < height; j++) {
+    for ( let j = CurrentOrigin[0]; j < width; j++) {
       // Draw player village cell
       if (i == player["x"] && j == player["y"]) {
         let cell = row.insertCell();
