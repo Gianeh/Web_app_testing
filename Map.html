@@ -136,18 +136,23 @@
         }
 
         .arrowButton {
-            width: 30px;
+            width: 50px;
             height: 30px;
             margin: 0 5px;
             background-color: #ccc;
             border: none;
         }
+        .moveButton{
+            align-items: center;
+        }
+        
     </style>
 </head>
 
 <body>
     <div class="RefocusDiv"><button class="fancy-button" id="PlayerRefocus">Refocus on Village</button><button
-            class="fancy-button" id="ReturnToVillage">Return To Village</button></div>
+            class="fancy-button" id="ReturnToVillage">Return To Village</button>
+    </div>
     <div id="infoDiv" style="margin:auto">
         <h1 style="text-align: center;" id="info">Loading your War Map !!</h1>
     </div>
@@ -155,19 +160,12 @@
         <table id="WarMap">
         </table>
     </div>
-    <button class="arrowButton" id="buttonUp">up</button>
-    <button class="arrowButton" id="buttonDown">down</button>
-    <button class="arrowButton" id="bittonLeft">left</button>
-    <button class="arrowButton" id="buttonRight">right</button>
-    </div>
-    <div id="overlay">
-        <div id="overlay-content">
-            <h2>Attack</h2>
-            <p>Bho roba giusto per riempire</p>
-            <button id="overlayClose">Close</button>
-        </div>
+    <div class="moveButton">
+        <button class="arrowButton" id="buttonUp">up</button>
+        <button class="arrowButton" id="buttonDown">down</button>
+        <button class="arrowButton" id="bittonLeft">left</button>
+        <button class="arrowButton" id="buttonRight">right</button>
     </div>
     </div>
 </body>
-
 </html>
