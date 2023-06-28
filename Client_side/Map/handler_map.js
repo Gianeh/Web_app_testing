@@ -26,8 +26,8 @@ export function onLoad() {
   // If the limit is more than 500 or less than 0 it will table will not be centrered on the player village
 
   //set current origin
-  CurrentOrigin[0] = player["x"]-19;
-  CurrentOrigin[1] = player["y"]-19;
+  CurrentOrigin[0] = player["x"]-15;
+  CurrentOrigin[1] = player["y"]-15;
   console.log("CurrentOrigin: " + CurrentOrigin[0] + ", " + CurrentOrigin[1]);
 
   // execute the query to get enemy data and not the player data

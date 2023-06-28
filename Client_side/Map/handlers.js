@@ -43,13 +43,13 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
   let height = 0;
 
   // Set the height and width of the table
-  if (CurrentOrigin[1] + 40 > MapWidth) {
+  if (CurrentOrigin[1] + 30 > MapWidth) {
     height = MapWidth;
-  }else if(CurrentOrigin[0] + 40 > MapHeight){
+  }else if(CurrentOrigin[0] + 30 > MapHeight){
     width = MapHeight;
   }else{
-     height = 40 + CurrentOrigin[1];
-     width = 40 + CurrentOrigin[0];
+     height = 30 + CurrentOrigin[1];
+     width = 30 + CurrentOrigin[0];
   }
 
   //Create the entire table
