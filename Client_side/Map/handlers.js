@@ -68,7 +68,7 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
       
       // Draw player village cell
       if (j == player["x"] && i == player["y"]) {
-        cell.className = "PlayerVillage";
+        cell.className = "playerVillage";
         cell.id = "playerVillage";
         cell.innerHTML = "P";
       }
@@ -112,7 +112,7 @@ function playerHandler(event) {
 
   // show overlay
   overlay.style.display = "block";
-
+  console.log("player clicked");
 }
 
 //function to return to village
