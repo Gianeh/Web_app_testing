@@ -7,6 +7,7 @@ export function PlayerFocus(cellSize, x, y) {
 
 }
 
+
 export function setHandlers(x, y, cellSize) {
 
   // add event listeners to refocus button

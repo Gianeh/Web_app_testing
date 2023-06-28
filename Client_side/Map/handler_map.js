@@ -4,7 +4,6 @@ import { PlayerFocus, setHandlers, HandlerCreateTable } from "./handlers.js";
 
 let CurrentOrigin = [0, 0];
 
-
 export function onLoad() {
   // let table = document.getElementById("WarMap");
   let player = getLocalData("player", "map");           // search in local cache player data
