@@ -65,5 +65,14 @@ function setHandlers() {
   let villages = document.getElementById("ReturnToVillage")
   villages.addEventListener("click", VillageClick);
 
+  // add event listener to move the table
+  let buttonUp = document.getElementById("buttonUp");
+  buttonUp.addEventListener("click", moveTable);
+  let buttonDown = document.getElementById("buttonDown");
+  buttonDown.addEventListener("click", moveTable);
+  let buttonLeft = document.getElementById("buttonLeft");
+  buttonLeft.addEventListener("click", moveTable);
+  let buttonRight = document.getElementById("buttonRight");
+  buttonRight.addEventListener("click", moveTable);
 
 }
