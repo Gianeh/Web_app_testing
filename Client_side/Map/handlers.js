@@ -62,16 +62,16 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
   for (let i = CurrentOrigin[1]; i < height; i++) {
     let row = table.insertRow();
     for ( let j = CurrentOrigin[0]; j < width; j++) {
+       // draw empty cells
+       let cell = row.insertCell();
+       cell.className = "square";
+      
       // Draw player village cell
       if (j == player["x"] && i == player["y"]) {
-        let cell = row.insertCell();
         cell.className = "PlayerVillage";
         cell.id = "playerVillage";
-      }else{
-      // draw empty cells
-      let cell = row.insertCell();
-      cell.className = "square";
       }
+     
       //Draw enemy villages cells
       for (let k in enemypos) {
         if (j == enemypos[k]["x"] && i == enemypos[k]["y"]) {
