@@ -6,6 +6,9 @@
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
+
+        // here a function to copy cache to database should be called
+
         session_destroy();
         echo json_encode(array("status" => "success", "message" => "User logged out"));
         exit();

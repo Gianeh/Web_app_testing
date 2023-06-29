@@ -117,6 +117,24 @@
 
         }
 
+        // a specific function to gather all the updates (to be displayed in frontend and refresh cache from database) is needed
+        // this function should parse the buffer file and create the token based on user_id and $event_type (i.e. "townhall_upgrade", "archer_training", etc.)
+        public function getUpdates($event_type){
+            // parse the buffer txt file to get every updates that include the event_type befor | separator
+            $buffer = fopen("buffer.txt", "r");
+            $updates = array();
+            while(!feof($buffer)){
+                $line = fgets($buffer);
+                $line = explode("|", $line);
+                if($line[0] == $event_type){
+                    array_push($updates, $line[1]);
+                }
+            }
+            for($i = 0; $i < count($updates); $i++){
+                $updates[$i] = $this->acquireData($event_type, $updates[$i]);
+            }
+        }
+
 
         // a function that sets specific data in the cache
         public function setData($dataName, $data, $token){
@@ -176,6 +194,10 @@
 
         To prevent concurrecy issues, while a user is online ($_SESSION["user_id"] is set) the daemon should not update the events, those might be completely stored in cache
         and updated accordingly by backend functions (like the one above) and the daemon should only update the database when the user logs out (or when the session expires)
+        but some data needs to be added to database also while user is online, this mean having 2 scheduled methods by daemon:
+            user logout: updates are all added to database, daemon handle them as always
+            user online: backend keeps track of the updates and completion is reached completion and modified data is added to database
+            updates are stored both on cache and in a file while user is online and daemon periodically 
         */
 
 

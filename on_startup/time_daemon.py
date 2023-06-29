@@ -43,3 +43,11 @@ while True:
 /// SE CI SONO AZIONI GIà TERMINATE PRIMA CHE IL DAEMON SI ACC0RGA E L'UTENTE è ONLINE L'AGGIORNAMENTO DEVE ESSERE FATTO IN QUEL MOMENTO
 /// E LA ACTION RIMOSSA DA CACHE E DATABASE ---> HOW??
 '''
+
+
+'''
+This daemon needs to periodically check 3 things:
+1) if there are any action in the database that are expired -> update database tables accordingly
+2) if there are any action in a txt file that are relative to online players -> update database tables accordingly
+3) if a war starts -> make sure to immediately update database based on the txt file
+'''

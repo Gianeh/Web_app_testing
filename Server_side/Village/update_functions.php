@@ -8,7 +8,8 @@
     include_once('../database_query.php');
 
 
-    // a function to add an upgrade event to events table in the database
+    // a function to add an upgrade event to events table in the cache
+    /*
     function addUpgrade($event_type, $level){
         $db = new DatabaseQuery();
         // parse requirements json to get the duration of the event
@@ -23,14 +24,13 @@
         // add the event to the database
         $db->insert("events", "event_id, user_id, event_type, event_completion, finished", "'".$event_id."', '".$_SESSION['user_id']."', '".$event_type."', '".$completion."', 0"); // 0 means that the event is not finished yet
     }
-
-    // a function to add a training event to events table in the database
-    function addTraining($event_type, $level){
-        $db = new DatabaseQuery();
+    */
+    // a function to add a training event to events table in the cache
+    function addTraining($event_type, $cache){
         // if a training event for this player already exists this event will have a completion_date calculated from the last event completion date
-        // query database to get the last event completion date
-        $ongoing_training = $db->select("events", "event_completion", "user_id = '".$_SESSION['user_id']."' AND finished = 0");
-        // get ongoing completion_date
+        $ongoing_training = $cache->getUpdates($event_type);    // this function returns an array of all the events of the same type that are not finished yet for this user -- STILL TO BE IMPLEMENTED
+        // cronological order is free as the append action on buffer is intrinsically ordered
+
         // parse requirements json to get the duration of the event
         $json = file_get_contents('../requirements.json');
         $requirements = json_decode($json, true);
@@ -39,8 +39,32 @@
         else $completion = time() + $requirements[$event_type]["duration"];
         // compute event_id
         $event_id = hash("sha256", $event_type.$_SESSION['user_id'].$completion);
-        // add the event to the database
-        $db->insert("events", "event_id, user_id, event_type, event_completion, finished", "'".$event_id."', '".$_SESSION['user_id']."', '".$event_type."', '".$completion."', 0"); // 0 means that the event is not finished yet
+        // add the event to the cache
+        //$db->insert("events", "event_id, user_id, event_type, event_completion, finished", "'".$event_id."', '".$_SESSION['user_id']."', '".$event_type."', '".$completion."', 0"); // 0 means that the event is not finished yet
+        $cache->setData($event_type, array("event_id" => $event_id, "event_completion" => $completion, "event_type" => $event_type, "finished" => 0), $event_id);
+        // $event_id becomes the partial key for the event in cache (final key will be $event_type+"_data_"+$event_id), this needs to be saved in a buffer file to let daemon recollect events and add accordingly in database
+        $buffer = fopen("../updates_buffer.txt", "a");
+        fwrite($buffer, $event_type."|".$event_id."|".$_SESSION["user_id"]."\n");
+        fclose($buffer);
+    }
+
+
+    function addUpgrade($event_type, $level, $cache){
+        // parse requirements json to get the duration of the event
+        $json = file_get_contents('../requirements.json');
+        $requirements = json_decode($json, true);
+        // add the duration to the current date and time
+        // get current date and time
+        $now = time();
+        $completion = $now + $requirements[$event_type][$level]["duration"];
+        // compute event_id
+        $event_id = hash("sha256", $event_type.$_SESSION['user_id'].$completion);
+        // add event in cache
+        $cache->setData($event_type, array("event_id" => $event_id, "event_completion" => $completion, "event_type" => $event_type, "finished" => 0), $event_id);
+        // $event_id becomes the partial key for the event in cache (final key will be $event_type+"_data_"+$event_id), this needs to be saved in a buffer file to let daemon recollect events and add accordingly in database
+        $buffer = fopen("../updates_buffer.txt", "a");
+        fwrite($buffer, $event_type."|".$event_id."|".$_SESSION["user_id"]."\n");
+        fclose($buffer);
     }
 
     // example rule: the player needs to have 10 food to add 1 population to village

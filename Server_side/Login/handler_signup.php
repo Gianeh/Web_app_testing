@@ -48,16 +48,6 @@
         $existingPositions[$key] = array($value["x"], $value["y"]);
     }
 
-    /*
-    $x = rand(0, 99);
-    $y = rand(0, 99);
-    $position = array($x, $y);
-    
-    while (in_array($position, $existingPositions)) {
-        $x = rand(0, 99);
-        $y = rand(0, 99);
-        $position = array($x, $y);
-    }*/
 
     // Following code is incomplete, after a first spawn the next player won't be able to spawn covering the whole map but just in a $MAX_DISTANCE radius from the first player
     if(count($existingPositions) == 0){
