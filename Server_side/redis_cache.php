@@ -126,13 +126,14 @@
             while(!feof($buffer)){
                 $line = fgets($buffer);
                 $line = explode("|", $line);
-                if($line[0] == $event_type){
+                if($line[0] == $event_type && $line[2] == $_SESSION["user_id"]){
                     array_push($updates, $line[1]);
                 }
             }
             for($i = 0; $i < count($updates); $i++){
                 $updates[$i] = $this->acquireData($event_type, $updates[$i]);
             }
+            return $updates;
         }
 
 
