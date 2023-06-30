@@ -126,16 +126,13 @@
             background-color: #ccc;
             border: none;
         }
-        .DivMovButton{
+        .DivMoveButton{
             width: 1000px;
             height: 35px;
-            border: 2px solid black;
-            border-radius: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 50px auto;
-            z-index: 9999;
         }
     </style>
 </head>
@@ -151,7 +148,7 @@
         <table id="WarMap">
         </table>
     </div>
-    <div class="DivMoveButton" style="margin:auto">
+    <div class="DivMoveButton">
         <button class="moveButton" id="buttonUp">up</button>
         <button class="moveButton" id="buttonDown">down</button>
         <button class="moveButton" id="bittonLeft">left</button>
@@ -159,10 +156,8 @@
     </div>
 
     <div id="PlayerOverlay">
-        <div id="PlayerOverlayContent">
             <h1>This is player overlay</h1>
             <button id="OverlayCloseButton">Close</button>
-        </div>
     </div>
 </body>
 
