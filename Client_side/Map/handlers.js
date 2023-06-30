@@ -171,12 +171,11 @@ export function moveTable(event) {
       // modify current origin cause i move up so i increase the y coordinate
       CurrentOrigin["y"] += 1;
       localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
-
+      console.log("CurrentOrigin: " + CurrentOrigin["x"] + " " + CurrentOrigin["y"]);
       // insert a new row at the top
       const newTopRow = table.insertRow(0);
       for (let j = 0; j < ColSize; j++) {
         const newCell = newTopRow.insertCell();
-        console.log(CurrentOrigin["x"]); 
         // i have to check if at the top there is the player village 
         if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"] == player["y"]) {
           newCell.className = "playerVillage";
