@@ -108,6 +108,7 @@ export function VillageClick(event) {
 
 export function moveTable(event) {
   // get elemnt id who trigger the event
+  console.log("yo");
   let id = event.target.id;
   let table = document.getElementById("WarMap");
   console.log("id: " + id);
