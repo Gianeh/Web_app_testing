@@ -177,7 +177,7 @@ export function moveTable(event) {
         const newCell = newTopRow.insertCell();
 
         // i have to check if at the top there is the player village 
-        if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"] + RowSize == player["y"]) {
+        if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"] == player["y"]) {
           newCell.className = "playerVillage";
           newCell.id = "playerVillage";
           newCell.innerHTML = "P";
@@ -207,7 +207,7 @@ export function moveTable(event) {
     case "buttonDown":
 
       // traslate the table up by one row starting from the second row from the bottom
-      for (let i = 1; i < table.rows.length - 1; i++) {
+      for (let i = 0; i < table.rows.length - 1; i++) {
         for (let j = 0; j < 30; j++) {
           const currentCell = table.rows[i].cells[j];
           const prevCell = table.rows[i + 1].cells[j];
