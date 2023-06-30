@@ -71,7 +71,6 @@ export function overlayCloseHandler(event) {
 //function to open the overlay for player
 export function playerHandler(event) {
   // open the overlay
-  console.log("player clicked");
   let overlay = document.getElementById("PlayerOverlay");
 
   // get top, left player village position on screen
