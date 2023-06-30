@@ -46,10 +46,6 @@ export function onLoad() {
 }
 
 function setHandlers() {
-  
-  // add event listeners to overlay close button
-  let closeOverlay = document.getElementById("overlayClose");
-  closeOverlay.addEventListener("click", overlayCloseHandler);
 
   // add event listeners to player village
   let playerCell = document.getElementById("playerVillage");

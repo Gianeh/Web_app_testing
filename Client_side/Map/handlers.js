@@ -102,7 +102,7 @@ export function moveTable(event) {
   // get elemnt id who trigger the event
   let id = event.target.id;
   let table = document.getElementById("WarMap");
-
+  console.log("id: " + id);
   //I need a function to save the list of the enemy player and theyr postion
   //I need to save the player position
   //I need to save the current origin
