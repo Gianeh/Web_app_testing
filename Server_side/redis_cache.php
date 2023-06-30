@@ -1,7 +1,9 @@
 <?php
     ini_set('display_errors', 1);
     include_once('database_query.php');
-    session_start();
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
 
 
     class Cache{
