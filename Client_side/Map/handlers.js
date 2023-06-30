@@ -14,7 +14,7 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
   let width = 0;
   let height = 0;
 
-  // Set the height and width of the table
+  // Set the height and width of the table CHECK SPAWN POSIION POLICY
   if (CurrentOrigin[0] + 30 > MapWidth) {
     height = MapWidth;
   } else if (CurrentOrigin[1] + 30 > MapHeight) {
@@ -62,12 +62,26 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
 
 }
 
+
+
+
+
+
+
 //close the overlay
 export function overlayCloseHandler(event) {
   // close the overlay
   let overlay = document.getElementById("PlayerOverlay");
   overlay.style.display = "none";
 }
+
+
+
+
+
+
+
+
 
 //function to open the overlay for player
 export function playerHandler() {
@@ -93,6 +107,14 @@ export function playerHandler() {
 
 }
 
+
+
+
+
+
+
+
+
 //funxtion that close the player overlay
 export function ClosePlayerHandlrer() {
 
@@ -102,22 +124,34 @@ export function ClosePlayerHandlrer() {
 }
 
 
+
+
+
 //function to return to village
 export function VillageClick(event) {
   window.location.href = "Village.html";
 }
 
+
+
+
+
+// function that handle movement inside the map
 export function moveTable(event) {
-  // get elemnt id who trigger the event
+ 
+  // get elemnt id of the button clicked
   let id = event.target.id;
   let table = document.getElementById("WarMap");
-  //I need a function to save the list of the enemy player and theyr postion
-  //I need to save the player position
-  //I need to save the current origin
-  //I need to save the current width and height of the table
+  
+  // get the current origin, player position and enemy position from local-storage
+  let CurrentOrigin = JSON.parse(localStorage.getItem("CurrentOrigin"));
+  let player = JSON.parse(localStorage.getItem("player"));
+  let enemypos = JSON.parse(localStorage.getItem("enemypos"));
 
   // chose differnt action depending on the id
   switch (id) {
+
+    //CASE I MOVE UP
     case "buttonUp":
 
       // delete the last row
@@ -131,27 +165,45 @@ export function moveTable(event) {
           currentCell.className = prevCell.className;
           currentCell.innerHTML = prevCell.innerHTML;
           currentCell.id = prevCell.id;
-          // Copy any other desired styles from the previous cell to the current cell
         }
       }
 
+      // modify current origin cause i move up so i increase the y coordinate
+      CurrentOrigin[1] += 1;
+
       // insert a new row at the top
       const newTopRow = table.insertRow(0);
-      for (let j = 0; j < 30; j++) {
+      for (let j = 0; j < ColSize; j++) {
         const newCell = newTopRow.insertCell();
-        newCell.innerText = "NC";
+
+        // i have to check if at the top there is the player village 
+        if (CurrentOrigin[0] + RowSize == player["x"] && i + CurrentOrigin[1] == player["y"]) {
+          newCell.className = "playerVillage";
+          newCell.id = "playerVillage";
+          newCell.innerHTML = "P";
+        } else {
+          newCell.innerText = "";
+          newCell.className = "square";
+        }
+
+        // check if there is an enemy village
+        for (let k in enemypos) {
+          if (CurrentOrigin[0] + RowSize == enemypos[k]["x"] && i + CurrentOrigin[1] == enemypos[k]["y"]) {
+            cell.className = "enemyVillage";
+            cell.id = "EnemyVillage" + enemypos[k]["username"];
+            cell.innerHTML = "E";
+          }
+        }
       }
 
-      // check if i need add enemuy village or village in the new row
-      for (let i = 0; i < ColSize; i++) {
-
-        // here i v've to check if i need to add a new enemy village or player village
-        // i need to scroll i considering the CurrentOrigin[1] ("y") + ColSize
-        // chek if i need to add a new enemy village or player village in this row 
-
-      }
+      // reset the event listener on the overlay
+      const overlay = document.getElementById("PlayerOverlay");
+      // overlay.removeEventListener("click", playerHandler);
+      overlay.addEventListener("click", playerHandler);
 
       break;
+
+    // CASE I MOVE DOWN
     case "buttonDown":
       // delete the first row
       table.deleteRow(29);
@@ -170,11 +222,15 @@ export function moveTable(event) {
         }
       }
 
+      // modify current origin cause i move down so i decrease the y coordinate
+      CurrentOrigin[1] -= 1;
+
       // insert a new row at the bootom
       const newBottomRow = table.insertRow(29);
       for (let j = 0; j < 30; j++) {
         const newCell = newBottomRow.insertCell();
         newCell.innerText = "NC";
+        newCell.className = "square";
       }
 
       // insert a new row at the bottom
