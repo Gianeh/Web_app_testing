@@ -14,7 +14,6 @@ BEGIN
     CREATE TABLE player (
         user_id varchar(64) PRIMARY KEY,
         username varchar(20) NOT NULL,
-        password varchar(20) NOT NULL,
         x INTEGER NOT NULL,
         y INTEGER NOT NULL
         FOREIGN KEY (user_id) REFERENCES users(user_id)

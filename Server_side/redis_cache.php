@@ -76,6 +76,7 @@
                     break;
 
                 // add more cases for other objects as needed
+                // also remember to add the logout copy instance!
 
                 default:
                     // handle error
@@ -129,6 +130,12 @@
                 if($line[0] == $event_type && $line[2] == $_SESSION["user_id"]){
                     array_push($updates, $line[1]);
                 }
+            }
+            fclose($buffer);
+            if(count($updates) == 1){
+                return $this->acquireData($event_type, $updates[0]);
+            }else if(count($updates) == 0){
+                return false;
             }
             for($i = 0; $i < count($updates); $i++){
                 $updates[$i] = $this->acquireData($event_type, $updates[$i]);

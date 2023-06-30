@@ -1,13 +1,15 @@
 <?php
     //log the error
     ini_set('display_errors', 1);
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
+    $secret_key = '6Lc6BqUUAAAAAFCZ3Z4Z3Z4Z3Z4Z3Z4Z3Z4Z3Z4Z';
     
     if(isset($_POST["logout"])){
-        if (session_status() !== PHP_SESSION_ACTIVE) {
-            session_start();
-        }
-
-        // here a function to copy cache to database should be called
+        include_once("../Login/handler_logout.php");
+        // a function to copy cache to database
+        logout($secret_key);
 
         session_destroy();
         echo json_encode(array("status" => "success", "message" => "User logged out"));
@@ -22,7 +24,7 @@
     if (session_status() !== PHP_SESSION_ACTIVE) {
         session_start();
     }
-    $secret_key = '6Lc6BqUUAAAAAFCZ3Z4Z3Z4Z3Z4Z3Z4Z3Z4Z3Z4Z';
+    
     $user_id = $_SESSION['user_id'];    // retrieve user_id from session
     $_SESSION['user_id'] = $user_id;    // update session to increase lifetime
     $token = hash("sha256", $secret_key.$user_id);
