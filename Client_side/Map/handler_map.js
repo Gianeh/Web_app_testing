@@ -1,5 +1,5 @@
 import { pickRecords,  getLocalData, getDataWithParameter } from "../helper.js";
-import { PlayerFocus, HandlerCreateTable,PlayerFocus,playerHandler, setHandlers } from "./handlers.js";
+import { PlayerFocus, HandlerCreateTable,playerHandler, setHandlers } from "./handlers.js";
 //use only getLocalData to get info
 
 let CurrentOrigin = [0, 0];
