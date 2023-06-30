@@ -12,7 +12,7 @@ import { pickRecords,  getLocalData, getDataWithParameter } from "../helper.js";
 import { HandlerCreateTable, playerHandler, moveTable,ClosePlayerHandlrer, VillageClick } from "./handlers.js";
 //use only getLocalData to get info
 
-let CurrentOrigin = [0, 0];
+let CurrentOrigin = {x: 0, y: 0};
 
 export function onLoad() {
 
@@ -29,9 +29,9 @@ export function onLoad() {
   console.log("player username: " + player["username"]);
 
   //set current origin
-  CurrentOrigin[0] = player["x"]-15;
-  CurrentOrigin[1] = player["y"]-15;
-  console.log("CurrentOrigin: " + CurrentOrigin[0] + ", " + CurrentOrigin[1]);
+  CurrentOrigin["x"] = player["x"]-15;
+  CurrentOrigin["y"] = player["y"]-15;
+  console.log("CurrentOrigin: " + CurrentOrigin["x"] + ", " + CurrentOrigin["y"]);
 
   // execute the query to get enemy data and not the player data
   let enemypos = getDataWithParameter("player", " username  <> '" + player["username"] + "'", "x, y, username");   
