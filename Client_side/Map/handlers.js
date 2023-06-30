@@ -87,7 +87,7 @@ export function playerHandler(event) {
   console.log("player left: " + left);
   overlay.style.top = top + "px";
   overlay.style.left = left + "px";
-  overlay.zIndex = 9999;s
+  overlay.zIndex = 9999;
   // show overlay
   overlay.style.display = "block";
 
