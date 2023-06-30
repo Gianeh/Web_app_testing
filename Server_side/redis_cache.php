@@ -124,6 +124,11 @@
         // this function should parse the buffer file and create the token based on user_id and $event_type (i.e. "townhall_upgrade", "archer_training", etc.)
         public function getUpdates($event_type){
             // parse the buffer txt file to get every updates that include the event_type befor | separator
+            // if file does not exist create it
+            if(!file_exists("./updates_buffer.txt")){
+                $buffer = fopen("./updates_buffer.txt", "w");
+                fclose($buffer);
+            }
             $buffer = fopen("./updates_buffer.txt", "r");
             $updates = array();
             while(!feof($buffer)){
