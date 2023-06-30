@@ -170,6 +170,7 @@ export function moveTable(event) {
 
       // modify current origin cause i move up so i increase the y coordinate
       CurrentOrigin["y"] += 1;
+      localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
 
       // insert a new row at the top
       const newTopRow = table.insertRow(0);
@@ -224,6 +225,7 @@ export function moveTable(event) {
 
       // modify current origin cause i move down so i decrease the y coordinate
       CurrentOrigin["y"] -= 1;
+      localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
 
       // insert a new row at the bootom
       const newBottomRow = table.insertRow(29);
