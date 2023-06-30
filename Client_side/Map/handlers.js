@@ -129,6 +129,7 @@ export function moveTable(event) {
           const currentCell = table.rows[i].cells[j];
           const prevCell = table.rows[i - 1].cells[j];
           currentCell.className = prevCell.className;
+          currentCell.innerHTML = prevCell.innerHTML;
           currentCell.id = prevCell.id;
           // Copy any other desired styles from the previous cell to the current cell
         }
@@ -161,9 +162,9 @@ export function moveTable(event) {
         for (let j = 0; j < 30; j++) {
           const currentCell = table.rows[i].cells[j];
           const prevCell = table.rows[i + 1].cells[j];
+          currentCell.className = prevCell.className;
           currentCell.innerHTML = prevCell.innerHTML;
-          currentCell.style.backgroundColor = prevCell.style.backgroundColor;
-          currentCell.style.color = prevCell.style.color;
+          currentCell.id = prevCell.id;
           // currentCell.id = prevCell.id;
           // Copy any other desired styles from the previous cell to the current cell
         }
