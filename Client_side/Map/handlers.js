@@ -4,11 +4,6 @@ const MapHeight = 500;
 const RowSize = 30; //number of rows
 const ColSize = 30; //number of columns
 
-// Player_Focus function to focus on the player cell
-export function PlayerFocus(cellSize, x, y) {
-
-}
-
 // HandlerDrawMap function to draw the map
 export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
 
