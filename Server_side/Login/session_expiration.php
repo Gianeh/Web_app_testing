@@ -1,15 +1,14 @@
 <?php
-    class MySessionHandler extends SessionHandler {
-        public function gc($maxLifetime) {
-          // call the parent gc() method to perform the default garbage collection
-          parent::gc($maxLifetime);
-      
-          // add your custom logic for handling session expiration here
-          // for example, you could check the session expiration time and perform some action if the session is about to expire
-          if ($_SESSION['expiry'] - time() < 60) {
-            // session is about to expire, do something
-          }
-        }
-      }
+class CustomSessionHandler extends SessionHandler {
+    public function gc($maxlifetime) {
+        // Perform your custom actions before garbage collection
 
-?>
+        // Call the parent gc() method to execute the default garbage collection
+        parent::gc($maxlifetime);
+
+        // Perform additional actions after garbage collection if needed
+
+        // Return true to indicate successful garbage collection
+        return true;
+    }
+}

@@ -40,7 +40,6 @@
         // compute event_id
         $event_id = hash("sha256", $event_type.$_SESSION['user_id'].$completion);
         // add the event to the cache
-        //$db->insert("events", "event_id, user_id, event_type, event_completion, finished", "'".$event_id."', '".$_SESSION['user_id']."', '".$event_type."', '".$completion."', 0"); // 0 means that the event is not finished yet
         $cache->setData($event_type, array("event_id" => $event_id, "event_completion" => $completion, "event_type" => $event_type, "finished" => 0), $event_id);
         // $event_id becomes the partial key for the event in cache (final key will be $event_type+"_data_"+$event_id), this needs to be saved in a buffer file to let daemon recollect events and add accordingly in database
         $buffer = fopen("../updates_buffer.txt", "a");
