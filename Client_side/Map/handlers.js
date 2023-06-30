@@ -154,7 +154,7 @@ export function moveTable(event) {
     //CASE I MOVE UP
     case "buttonUp":
 
-      // traslate the table down by one row
+      // traslate the table down by one row starting by the last row to the first
       for (let i = table.rows.length - 1; i > 0; i--) {
         for (let j = 0; j < 30; j++) {
           const currentCell = table.rows[i].cells[j];
@@ -177,7 +177,7 @@ export function moveTable(event) {
         const newCell = newTopRow.insertCell();
 
         // i have to check if at the top there is the player village 
-        if (CurrentOrigin[0] + RowSize == player["x"] && i + CurrentOrigin[1] == player["y"]) {
+        if (CurrentOrigin["0"] + RowSize == player["x"] && i + CurrentOrigin["1"] == player["y"]) {
           newCell.className = "playerVillage";
           newCell.id = "playerVillage";
           newCell.innerHTML = "P";
@@ -188,7 +188,7 @@ export function moveTable(event) {
 
         // check if there is an enemy village
         for (let k in enemypos) {
-          if (CurrentOrigin[0] + RowSize == enemypos[k]["x"] && i + CurrentOrigin[1] == enemypos[k]["y"]) {
+          if (CurrentOrigin["0"] + RowSize == enemypos[k]["x"] && i + CurrentOrigin["1"] == enemypos[k]["y"]) {
             cell.className = "enemyVillage";
             cell.id = "EnemyVillage" + enemypos[k]["username"];
             cell.innerHTML = "E";
@@ -206,7 +206,7 @@ export function moveTable(event) {
     // CASE I MOVE DOWN
     case "buttonDown":
 
-      // traslate the table up by one row
+      // traslate the table up by one row starting from the second row from the bottom
       for (let i = 1; i < table.rows.length - 1; i++) {
         console.log(i);
         for (let j = 0; j < 30; j++) {
@@ -230,7 +230,7 @@ export function moveTable(event) {
       const newBottomRow = table.insertRow(29);
       for (let j = 0; j < 30; j++) {
         const newCell = newBottomRow.insertCell();
-        newCell.innerText = "NC";
+        newCell.innerText = "";
         newCell.className = "square";
       }
 

@@ -15,16 +15,17 @@ import { HandlerCreateTable, playerHandler, moveTable,ClosePlayerHandlrer, Villa
 let CurrentOrigin = [0, 0];
 
 export function onLoad() {
-  // let table = document.getElementById("WarMap");
-  let player = getLocalData("player", "map");             // search in local cache player data
-  player = pickRecords(player, ["username", "x", "y"]);   // pick only username, x and y from player data
+
+  // search in local cache player data
+  let player = getLocalData("player", "map");       
+  // pick only username, x and y from player data      
+  player = pickRecords(player, ["username", "x", "y"]);   
 
   //get the username of the player
   let username = getLocalData("player", "map");
   username = pickRecords(username, ["username"]);
 
-  console
-  .log("player position: " + player["x"] + ", " + player["y"]);
+  console.log("player position: " + player["x"] + ", " + player["y"]);
   console.log("player username: " + player["username"]);
 
   //set current origin
@@ -33,7 +34,7 @@ export function onLoad() {
   console.log("CurrentOrigin: " + CurrentOrigin[0] + ", " + CurrentOrigin[1]);
 
   // execute the query to get enemy data and not the player data
-  let enemypos = getDataWithParameter("player", " username  <> '" + player["username"] + "'", "x, y, username")      // search in local cache enemy data
+  let enemypos = getDataWithParameter("player", " username  <> '" + player["username"] + "'", "x, y, username");   
   console.log(enemypos);
 
   // draw the map
@@ -76,5 +77,10 @@ function setHandlers() {
   let buttonRight = document.getElementById("buttonRight");
   buttonRight.addEventListener("click", moveTable);
 
+  // clear local storage on unload
+  window.addEventListener("beforeunload", function () {
+    // empties the local storage
+    localStorage.clear();
+});
 
 }
