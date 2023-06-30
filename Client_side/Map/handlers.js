@@ -92,7 +92,7 @@ export function playerHandler(event) {
   console.log("player left: " + left);
   overlay.style.top = top + "px";
   overlay.style.left = left + "px";
-  overlay.zIndex = 9999;
+  overlay.zIndex = 9999;s
   // show overlay
   overlay.style.display = "block";
 
@@ -113,36 +113,34 @@ export function moveTable(event) {
   //I need to save the current origin
   //I need to save the current width and height of the table
 
-  //PROBLEMS
-
-  //1) i need to traslate the entire table
-  //2) i need to quick acces to the player village and enemy village position
-  //3) player is not very quick moving the map
-
-
-  //PROS 
-
-   //1) map remain very small
-   //2) overall is very fast compared to the other solution
-   //3) withount the scollbar looks smother
-   //4) i can use the same function to move the map in all direction
-
-
   // chose differnt action depending on the id
   switch (id) {
     case "buttonUp":
 
       // delete the last row
-      table.deleteRow(29);
+      table.deleteRow(0);
 
-      // move the entire table down of 1 row
-      for (let i = 0; i < RowSize; i++) {
-
-        // here i move the entire table up of 1 row
-
+      // traslate the table down by one row
+      for (let i = table.rows.length - 1; i > 0; i--) {
+          for (let j = 0; j < 30; j++) {
+              const currentCell = table.rows[i].cells[j];
+              const prevCell = table.rows[i - 1].cells[j];
+              currentCell.innerHTML = prevCell.innerHTML;
+              currentCell.style.backgroundColor = prevCell.style.backgroundColor;
+              currentCell.style.color = prevCell.style.color;
+              currentCell.id = prevCell.id;
+              // Copy any other desired styles from the previous cell to the current cell
+          }
       }
 
-      // check if i need add enemuy village or village
+      // insert a new row at the top
+      const newRow = table.insertRow(0);
+      for (let j = 0; j < 30; j++) {
+          const newCell = newRow.insertCell();
+          newCell.innerText = "T";
+      }
+
+      // check if i need add enemuy village or village in the new row
       for (let i = 0; i < ColSize; i++) {
 
         // here i v've to check if i need to add a new enemy village or player village
