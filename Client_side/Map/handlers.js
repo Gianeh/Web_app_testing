@@ -138,11 +138,11 @@ export function VillageClick(event) {
 
 // function that handle movement inside the map
 export function moveTable(event) {
- 
+
   // get elemnt id of the button clicked
   let id = event.target.id;
   let table = document.getElementById("WarMap");
-  
+
   // get the current origin, player position and enemy position from local-storage
   let CurrentOrigin = JSON.parse(localStorage.getItem("CurrentOrigin"));
   let player = JSON.parse(localStorage.getItem("player"));
@@ -154,9 +154,6 @@ export function moveTable(event) {
     //CASE I MOVE UP
     case "buttonUp":
 
-      // delete the last row
-      table.deleteRow(0);
-
       // traslate the table down by one row
       for (let i = table.rows.length - 1; i > 0; i--) {
         for (let j = 0; j < 30; j++) {
@@ -167,6 +164,9 @@ export function moveTable(event) {
           currentCell.id = prevCell.id;
         }
       }
+
+      // delete the last row
+      table.deleteRow(0);
 
       // modify current origin cause i move up so i increase the y coordinate
       CurrentOrigin[1] += 1;
@@ -205,8 +205,6 @@ export function moveTable(event) {
 
     // CASE I MOVE DOWN
     case "buttonDown":
-      // delete the first row
-      table.deleteRow(29);
 
       // traslate the table up by one row
       for (let i = 1; i < table.rows.length - 1; i++) {
@@ -221,6 +219,9 @@ export function moveTable(event) {
           // Copy any other desired styles from the previous cell to the current cell
         }
       }
+
+      // delete the first row
+      table.deleteRow(29);
 
       // modify current origin cause i move down so i decrease the y coordinate
       CurrentOrigin[1] -= 1;
