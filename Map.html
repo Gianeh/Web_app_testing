@@ -126,13 +126,23 @@
             background-color: #ccc;
             border: none;
         }
+        .DivMovButton{
+            width: 1000px;
+            height: 35px;
+            border: 2px solid black;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50px auto;
+            z-index: 9999;
+        }
     </style>
 </head>
 
 <body>
-    <div class="RefocusDiv"><button class="fancy-button" id="PlayerRefocus">Refocus on Village</button><button
-            class="fancy-button" id="ReturnToVillage">Return To Village</button><button class="fancy-button"
-            id="button">Overlay</button>
+    <div class="RefocusDiv">
+        <button class="fancy-button" id="ReturnToVillage">Return To Village</button>
     </div>
     <div id="infoDiv" style="margin:auto">
         <h1 style="text-align: center;" id="info">Loading your War Map !!</h1>
@@ -141,7 +151,7 @@
         <table id="WarMap">
         </table>
     </div>
-    <div class="moveButton">
+    <div class="DivMoveButton">
         <button class="moveButton" id="buttonUp">up</button>
         <button class="moveButton" id="buttonDown">down</button>
         <button class="moveButton" id="bittonLeft">left</button>

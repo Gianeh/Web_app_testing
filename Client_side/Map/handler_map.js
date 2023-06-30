@@ -46,11 +46,7 @@ export function onLoad() {
 }
 
 function setHandlers() {
-
-  // add event listeners to refocus button
-  let PlayerReFocus = document.getElementById("PlayerRefocus");
-  PlayerReFocus.addEventListener("click", PlayerFocus(1,1,1));
-
+  
   // add event listeners to overlay close button
   let closeOverlay = document.getElementById("overlayClose");
   closeOverlay.addEventListener("click", overlayCloseHandler);
