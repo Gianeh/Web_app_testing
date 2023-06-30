@@ -24,8 +24,8 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
   } else if (CurrentOrigin["y"] + 30 < 0) {
     width = 30;
   } else {
-    height = 30 + CurrentOrigin[1];
-    width = 30 + CurrentOrigin[0];
+    height = 30 + CurrentOrigin["y"];
+    width = 30 + CurrentOrigin["x"];
   }
 
   console.log("height: " + height);
