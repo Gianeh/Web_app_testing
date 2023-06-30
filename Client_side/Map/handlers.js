@@ -69,7 +69,7 @@ export function overlayCloseHandler(event) {
 }
 
 //function to open the overlay for player
-export function playerHandler(event) {
+export function playerHandler() {
   // open the overlay
   let overlay = document.getElementById("PlayerOverlay");
 
@@ -80,8 +80,8 @@ export function playerHandler(event) {
   let left = rect.left;
 
   // set the overlay position
-  top += 20;
-  left += 20;
+  top += 50;
+  left += 50;
   console.log("player top: " + top);
   console.log("player left: " + left);
   overlay.style.top = top + "px";
@@ -91,6 +91,15 @@ export function playerHandler(event) {
   overlay.style.display = "block";
 
 }
+
+//funxtion that close the player overlay
+export function ClosePlayerHandlrer() {
+  
+  let overlay = document.getElementById("PlayerOverlay");
+  overlay.style.display = "none";
+
+}
+
 
 //function to return to village
 export function VillageClick(event) {
@@ -131,7 +140,7 @@ export function moveTable(event) {
       const newRow = table.insertRow(0);
       for (let j = 0; j < 30; j++) {
           const newCell = newRow.insertCell();
-          newCell.innerText = "T";
+          newCell.innerText = "NC";
       }
 
       // check if i need add enemuy village or village in the new row

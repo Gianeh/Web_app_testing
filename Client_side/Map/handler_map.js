@@ -1,5 +1,5 @@
 import { pickRecords,  getLocalData, getDataWithParameter } from "../helper.js";
-import { HandlerCreateTable, playerHandler, moveTable } from "./handlers.js";
+import { HandlerCreateTable, playerHandler, moveTable,ClosePlayerHandlrer } from "./handlers.js";
 //use only getLocalData to get info
 
 let CurrentOrigin = [0, 0];
@@ -51,8 +51,8 @@ function setHandlers() {
   let playerCell = document.getElementById("playerVillage");
   playerCell.addEventListener("click", playerHandler);
 
-  let button = document.getElementById("button");
-  button.addEventListener("click", playerHandler);
+  let button = document.getElementById("ClosePlayerVillage");
+  button.addEventListener("click", ClosePlayerHandlrer);
 
   //add event listener to return to village button
   let villages = document.getElementById("ReturnToVillage")
@@ -67,5 +67,6 @@ function setHandlers() {
   buttonLeft.addEventListener("click", moveTable);
   let buttonRight = document.getElementById("buttonRight");
   buttonRight.addEventListener("click", moveTable);
+
 
 }
