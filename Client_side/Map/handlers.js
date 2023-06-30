@@ -40,6 +40,7 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
       // draw empty cells
       let cell = row.insertCell();
       cell.className = "square";
+      cell.id = "terrain";
 
       // Draw player village cell
       if (j == player["x"] && i == player["y"]) {
@@ -94,7 +95,7 @@ export function playerHandler() {
 
 //funxtion that close the player overlay
 export function ClosePlayerHandlrer() {
-  
+
   let overlay = document.getElementById("PlayerOverlay");
   overlay.style.display = "none";
 
@@ -108,10 +109,8 @@ export function VillageClick(event) {
 
 export function moveTable(event) {
   // get elemnt id who trigger the event
-  console.log("yo");
   let id = event.target.id;
   let table = document.getElementById("WarMap");
-  console.log("id: " + id);
   //I need a function to save the list of the enemy player and theyr postion
   //I need to save the player position
   //I need to save the current origin
@@ -126,22 +125,20 @@ export function moveTable(event) {
 
       // traslate the table down by one row
       for (let i = table.rows.length - 1; i > 0; i--) {
-          for (let j = 0; j < 30; j++) {
-              const currentCell = table.rows[i].cells[j];
-              const prevCell = table.rows[i - 1].cells[j];
-              currentCell.innerHTML = prevCell.innerHTML;
-              currentCell.style.backgroundColor = prevCell.style.backgroundColor;
-              currentCell.style.color = prevCell.style.color;
-              currentCell.id = prevCell.id;
-              // Copy any other desired styles from the previous cell to the current cell
-          }
+        for (let j = 0; j < 30; j++) {
+          const currentCell = table.rows[i].cells[j];
+          const prevCell = table.rows[i - 1].cells[j];
+          currentCell.className = prevCell.className;
+          currentCell.id = prevCell.id;
+          // Copy any other desired styles from the previous cell to the current cell
+        }
       }
 
       // insert a new row at the top
-      const newRow = table.insertRow(0);
+      const newTopRow = table.insertRow(0);
       for (let j = 0; j < 30; j++) {
-          const newCell = newRow.insertCell();
-          newCell.innerText = "NC";
+        const newCell = newTopRow.insertCell();
+        newCell.innerText = "NC";
       }
 
       // check if i need add enemuy village or village in the new row
@@ -156,8 +153,31 @@ export function moveTable(event) {
       break;
     case "buttonDown":
       // delete the first row
-      table.deleteRow(0);
+      table.deleteRow(29);
+
+      // traslate the table up by one row
+      for (let i = 1; i < table.rows.length - 1; i++) {
+        console.log(i);
+        for (let j = 0; j < 30; j++) {
+          const currentCell = table.rows[i].cells[j];
+          const prevCell = table.rows[i + 1].cells[j];
+          currentCell.innerHTML = prevCell.innerHTML;
+          currentCell.style.backgroundColor = prevCell.style.backgroundColor;
+          currentCell.style.color = prevCell.style.color;
+          // currentCell.id = prevCell.id;
+          // Copy any other desired styles from the previous cell to the current cell
+        }
+      }
+
+      // insert a new row at the bootom
+      const newBottomRow = table.insertRow(29);
+      for (let j = 0; j < 30; j++) {
+        const newCell = newBottomRow.insertCell();
+        newCell.innerText = "NC";
+      }
+
       // insert a new row at the bottom
+
 
       break;
 

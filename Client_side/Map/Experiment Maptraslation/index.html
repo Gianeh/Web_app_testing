@@ -42,24 +42,29 @@
             let table = document.getElementById('table');
 
 
-            table.deleteRow(0);
+            table.deleteRow(29);
 
-            for (let i = table.rows.length - 1; i > 0; i--) {
+            // traslate the table down by one row
+            for (let i = 1; i < table.rows.length - 1; i++) {
+                console.log(i);
                 for (let j = 0; j < 30; j++) {
                     const currentCell = table.rows[i].cells[j];
-                    const prevCell = table.rows[i - 1].cells[j];
+                    const prevCell = table.rows[i+1].cells[j];
                     currentCell.innerHTML = prevCell.innerHTML;
                     currentCell.style.backgroundColor = prevCell.style.backgroundColor;
                     currentCell.style.color = prevCell.style.color;
+                   // currentCell.id = prevCell.id;
                     // Copy any other desired styles from the previous cell to the current cell
                 }
             }
 
-            const newRow = table.insertRow(0);
+            // insert a new row at the top
+            const newRow = table.insertRow(29);
             for (let j = 0; j < 30; j++) {
                 const newCell = newRow.insertCell();
-                newCell.innerText = "T";
+                newCell.innerText = "NC";
             }
+
 
         }
     </script>
