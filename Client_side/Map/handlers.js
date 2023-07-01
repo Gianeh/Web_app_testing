@@ -226,15 +226,31 @@ export function moveTable(event) {
       // modify current origin cause i move down so i decrease the y coordinate
       CurrentOrigin["y"] -= 1;
       localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
+      console.log("CurrentOrigin: " + CurrentOrigin["x"] + " " + CurrentOrigin["y"]); 
 
       // insert a new row at the bootom
       const newBottomRow = table.insertRow(29);
       for (let j = 0; j < 30; j++) {
-        const newCell = newBottomRow.insertCell();
-        newCell.innerText = "";
-        newCell.className = "square";
-      }
+        const newCell = newTopRow.insertCell();
+        // i have to check if at the top there is the player village 
+        if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"]+RowSize == player["y"]) {
+          newCell.className = "playerVillage";
+          newCell.id = "playerVillage";
+          newCell.innerHTML = "P";
+        } else {
+          newCell.innerText = "";
+          newCell.className = "square";
+        }
 
+        // check if there is an enemy village
+        for (let k in enemypos) {
+          if (CurrentOrigin["x"] + j == enemypos[k]["x"] && CurrentOrigin["y"]+RowSize == enemypos[k]["y"]) {
+            cell.className = "enemyVillage";
+            cell.id = "EnemyVillage" + enemypos[k]["username"];
+            cell.innerHTML = "E";
+          }
+        }
+      }
       // insert a new row at the bottom
 
 
