@@ -21,7 +21,7 @@ export function onLoad() {
   player = pickRecords(player, ["username", "x", "y"]);   
 
   // get the username
-  username = player["username"]
+  let username = player["username"]
 
   console.log("player position: " + player["x"] + ", " + player["y"]);
   console.log("player username: " + username);
