@@ -1,11 +1,11 @@
 const MapWidth = 500;
 const MapHeight = 500;
 
-const RowSize = 30; //number of rows
-const ColSize = 30; //number of columns
+const Rows = 30; //number of rows
+const Cols = 30; //number of columns
 
 // HandlerDrawMap function to draw the map
-export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
+export function createTable(player, enemypos) {
 
   // Get the table
   let table = document.getElementById("WarMap");
@@ -14,18 +14,26 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
   let width = 0;
   let height = 0;
 
-  // Set the height and width of the table CHECK SPAWN POSIION POLICY
-  if (CurrentOrigin["x"] + 30 > MapWidth) {
-    height = MapWidth;
-  } else if (CurrentOrigin["y"] + 30 > MapHeight) {
-    width = MapHeight;
-  } else if (CurrentOrigin["x"] + 30 < 0) {
-    height = 30;
-  } else if (CurrentOrigin["y"] + 30 < 0) {
-    width = 30;
-  } else {
-    height = 30 + CurrentOrigin["y"];
-    width = 30 + CurrentOrigin["x"];
+  // Set the height and width of the relative table CHECK SPAWN POSIION POLICY
+  let CurrentOrigin = { x: player["x"] - Cols/2, y: player["y"] - Rows/2 };
+  height = Rows + CurrentOrigin["y"];
+  width = Cols + CurrentOrigin["x"];
+
+  if (CurrentOrigin["x"] + Cols > MapWidth) {
+    width = MapWidth;
+    CurrentOrigin["x"] = MapWidth - Cols;
+  }
+  if (CurrentOrigin["y"] + Rows > MapHeight) {
+    height = MapHeight;
+    CurrentOrigin["y"] = MapHeight - Rows;
+  }
+  if (CurrentOrigin["x"] < 0) {
+    width = Cols;
+    CurrentOrigin["x"] = 0;
+  }
+  if (CurrentOrigin["y"] < 0) {
+    height = Rows;
+    CurrentOrigin["y"] = 0;
   }
 
   console.log("height: " + height);
@@ -59,6 +67,7 @@ export function HandlerCreateTable(CurrentOrigin, player, enemypos) {
       }
     }
   }
+  return CurrentOrigin;
 
 }
 
@@ -141,7 +150,7 @@ export function moveTable(event) {
 
   console.log("moveTable, id: " + event.target.id);
 
-  // get elemnt id of the button clicked
+  // get element id of the button clicked
   let id = event.target.id;
   let table = document.getElementById("WarMap");
 
@@ -160,9 +169,15 @@ export function moveTable(event) {
     //CASE I MOVE UP
     case "buttonUp":
 
+      // check if i can move up
+      if (CurrentOrigin["y"] + Rows + 1> MapHeight) {
+        console.log("I can't move up");
+        break;
+      }
+
       // traslate the table down by one row starting by the last row to the first
-      for (let i = RowSize - 1; i > 0; i--) {
-        for (let j = 0; j < ColSize - 1; j++) {
+      for (let i = Rows - 1; i > 0; i--) {
+        for (let j = 0; j < Cols; j++) {
           currentCell = table.rows[i].cells[j];
           prevCell = table.rows[i - 1].cells[j];
           currentCell.className = prevCell.className;
@@ -171,7 +186,7 @@ export function moveTable(event) {
         }
       }
 
-      // delete the last row
+      // delete the first row
       table.deleteRow(0);
 
       // modify current origin cause i move up so i increase the y coordinate
@@ -179,12 +194,12 @@ export function moveTable(event) {
       localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
       console.log("CurrentOrigin: " + CurrentOrigin["x"] + " " + CurrentOrigin["y"]);
       // insert a new row at the top
-      const newTopRow = table.insertRow(0);
+      let newTopRow = table.insertRow(0);
 
-      for (let j = 0; j < ColSize; j++) {
+      for (let j = 0; j < Cols; j++) {
         newCell = newTopRow.insertCell();
         // i have to check if at the top there is the player village 
-        if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"] + RowSize == player["y"]) {
+        if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"] + Rows == player["y"]) {
           newCell.className = "playerVillage";
           newCell.id = "playerVillage";
           newCell.innerHTML = "P";
@@ -195,23 +210,27 @@ export function moveTable(event) {
 
         // check if there is an enemy village
         for (let k in enemypos) {
-          if (CurrentOrigin["x"] + j == enemypos[k]["x"] && CurrentOrigin["y"] + RowSize == enemypos[k]["y"]) {
+          if (CurrentOrigin["x"] + j == enemypos[k]["x"] && CurrentOrigin["y"] + Rows == enemypos[k]["y"]) {
             cell.className = "enemyVillage";
             cell.id = "EnemyVillage" + enemypos[k]["username"];
             cell.innerHTML = "E";
           }
         }
       }
-
-      // reset the event listener on the overlay
       break;
 
     // CASE I MOVE DOWN
     case "buttonDown":
 
-      // traslate the table up by one row starting from the second row from the bottom
-      for (let i = 0; i < table.rows.length - 1; i++) {
-        for (let j = 0; j < ColSize - 1; j++) {
+      // check if i can move down
+      if (CurrentOrigin["y"] - 1 < 0) {
+        console.log("I can't move down");
+        break;
+      }
+
+      // translate the table up by one row starting from the second row from the bottom
+      for (let i = 0; i < Rows - 1; i++) {
+        for (let j = 0; j < Cols; j++) {
           currentCell = table.rows[i].cells[j];
           prevCell = table.rows[i + 1].cells[j];
           currentCell.className = prevCell.className;
@@ -220,8 +239,8 @@ export function moveTable(event) {
         }
       }
 
-      // delete the first row
-      table.deleteRow(29);
+      // delete the last row
+      table.deleteRow(Rows-1);
 
       // modify current origin cause i move down so i decrease the y coordinate
       CurrentOrigin["y"] -= 1;
@@ -229,10 +248,10 @@ export function moveTable(event) {
       console.log("CurrentOrigin: " + CurrentOrigin["x"] + " " + CurrentOrigin["y"]);
 
       // insert a new row at the bottom
-      const newBottomRow = table.insertRow(29);
+      let newBottomRow = table.insertRow(Rows-1);
 
 
-      for (let j = 0; j < ColSize; j++) {
+      for (let j = 0; j < Cols; j++) {
         newCell = newBottomRow.insertCell();
         // i have to check if at the top there is the player village 
         if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"] == player["y"]) {
@@ -253,16 +272,20 @@ export function moveTable(event) {
           }
         }
       }
-
-
       break;
 
     // CASE I MOVE LEFT
     case "buttonLeft":
 
+      // check if i can move left
+      if (CurrentOrigin["x"] - 1 < 0) {
+        console.log("I can't move left");
+        break;
+      }
+
       // Move the entire table to the right by one column
-      for (let i = 0; i < RowSize - 1; i++) {
-        for (let j = ColSize - 1; j > 0; j--) {
+      for (let j = Cols-1; j > 0; j--) {
+        for (let i = 0; i < Rows - 1; i++) {
           currentCell = table.rows[i].cells[j];
           prevCell = table.rows[i].cells[j - 1];
           currentCell.className = prevCell.className;
@@ -271,9 +294,9 @@ export function moveTable(event) {
         }
       }
 
-      // delete the last column
-      for (let i = 0; i < RowSize; i++) {
-        table.rows[i].deleteCell(29);
+      // delete the first column
+      for (let i = 0; i < Rows; i++) {
+        table.rows[i].deleteCell(0);
       }
 
       // modify current origin cause i move left so i decrease the x coordinate
@@ -281,10 +304,10 @@ export function moveTable(event) {
       localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
 
       // insert a new column at the left
-      for (let i = 0; i < RowSize; i++) {
+      for (let i = 0; i < Rows; i++) {
         newCell = table.rows[i].insertCell(0);
         // i have to check if at the top there is the player village
-        if (CurrentOrigin["x"] == player["x"] && CurrentOrigin["y"] + i == player["y"]) {
+        if (CurrentOrigin["x"] == player["x"] && CurrentOrigin["y"] + Rows - i == player["y"]) {
           newCell.className = "playerVillage";
           newCell.id = "playerVillage";
           newCell.innerHTML = "P";
@@ -294,7 +317,7 @@ export function moveTable(event) {
         }
         // check if there is an enemy village
         for (k in enemypos) {
-          if (CurrentOrigin["x"] == enemypos[k]["x"] && CurrentOrigin["y"] + i == enemypos[k]["y"]) {
+          if (CurrentOrigin["x"] == enemypos[k]["x"] && CurrentOrigin["y"] + Rows - i == enemypos[k]["y"]) {
             newCell.className = "enemyVillage";
             newCell.id = "EnemyVillage" + enemypos[k]["username"];
             newCell.innerHTML = "E";
@@ -307,9 +330,15 @@ export function moveTable(event) {
     // CASE I MOVE RIGHT
     case "buttonRight":
 
+      // check if i can move right
+      if (CurrentOrigin["x"] + Cols + 1 > MapWidth) {
+        console.log("I can't move right");
+        break;
+      }
+
       // Move the entire table to the left by one column
-      for (let i = 0; i < RowSize - 1; i++) {
-        for (let j = 0; j < table.rows[i].cells.length - 1; j++) {
+      for (let j = 0; j < Cols - 1; j++) {
+        for (let i = 0; i < Rows; i++) {
           currentCell = table.rows[i].cells[j];
           prevCell = table.rows[i].cells[j + 1];
           currentCell.className = prevCell.className;
@@ -318,9 +347,9 @@ export function moveTable(event) {
         }
       }
 
-      // delete the first column
-      for (let i = 0; i < RowSize; i++) {
-        table.rows[i].deleteCell(0);
+      // delete the last column
+      for (let i = 0; i < Rows; i++) {
+        table.rows[i].deleteCell(Cols - 1);
       }
 
       // modify current origin cause i move right so i increase the x coordinate
@@ -328,10 +357,10 @@ export function moveTable(event) {
       localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
 
       // insert a new column at the right
-      for (let i = 0; i < RowSize; i++) {
+      for (let i = 0; i < Rows; i++) {
         newCell = table.rows[i].insertCell(29);
         // i have to check if at the top there is the player village
-        if (CurrentOrigin["x"] + ColSize - 1 == player["x"] && CurrentOrigin["y"] + i == player["y"]) {
+        if (CurrentOrigin["x"] + Cols - 1 == player["x"] && CurrentOrigin["y"] + Rows - 1 == player["y"]) {
           newCell.className = "playerVillage";
           newCell.id = "playerVillage";
           newCell.innerHTML = "P";
@@ -342,7 +371,7 @@ export function moveTable(event) {
 
         // check if there is an enemy village
         for (k in enemypos) {
-          if (CurrentOrigin["x"] + ColSize - 1 == enemypos[k]["x"] && CurrentOrigin["y"] + i == enemypos[k]["y"]) {
+          if (CurrentOrigin["x"] + Cols - 1 == enemypos[k]["x"] && CurrentOrigin["y"] + Rows - 1 == enemypos[k]["y"]) {
             newCell.className = "enemyVillage";
             newCell.id = "EnemyVillage" + enemypos[k]["username"];
             newCell.innerHTML = "E";

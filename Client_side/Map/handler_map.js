@@ -9,10 +9,9 @@
 
 
 import { pickRecords,  getLocalData, getDataWithParameter } from "../helper.js";
-import { HandlerCreateTable, playerHandler, moveTable,ClosePlayerHandlrer, VillageClick } from "./handlers.js";
+import { createTable, playerHandler, moveTable,ClosePlayerHandlrer, VillageClick } from "./handlers.js";
 //use only getLocalData to get info
 
-let CurrentOrigin = {x: 0, y: 0};
 
 export function onLoad() {
 
@@ -21,35 +20,33 @@ export function onLoad() {
   // pick only username, x and y from player data      
   player = pickRecords(player, ["username", "x", "y"]);   
 
-  //get the username of the player
-  let username = getLocalData("player", "map");
-  username = pickRecords(username, ["username"]);
+  // get the username
+  username = player["username"]
 
   console.log("player position: " + player["x"] + ", " + player["y"]);
-  console.log("player username: " + player["username"]);
+  console.log("player username: " + username);
 
-  //set current origin
-  CurrentOrigin["x"] = player["x"]-15;
-  CurrentOrigin["y"] = player["y"]-15;
-  console.log("CurrentOrigin: " + CurrentOrigin["x"] + ", " + CurrentOrigin["y"]);
+
 
   // execute the query to get enemy data and not the player data
   let enemypos = getDataWithParameter("player", " username  <> '" + player["username"] + "'", "x, y, username");   
   console.log(enemypos);
 
   // draw the map
-  HandlerCreateTable(CurrentOrigin,player, enemypos);
+  
+  let CurrentOrigin = createTable(player, enemypos);
+  console.log("CurrentOrigin: " + CurrentOrigin["x"] + ", " + CurrentOrigin["y"]);
 
-  // insert in localstiorage the current origin
+  // insert in localstorage the current origin
   localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
-  // insert in localstiorage the player data
+  // insert in localstorage the player data
   localStorage.setItem("player", JSON.stringify(player));
-  // insert in localstiorage the enemy data
+  // insert in localstorage the enemy data
   localStorage.setItem("enemypos", JSON.stringify(enemypos));
 
   // set the infoDiv to display the welcome message
   let info = document.getElementById("info");
-  info.innerHTML = "Welcome to your War Map " + player["username"] + ", are you are ready to conquer the world?";
+  info.innerHTML = "Welcome to your War Map " + username + ", are you ready to conquer the world?";
 
   setHandlers();
 }
