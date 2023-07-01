@@ -230,7 +230,7 @@ export function moveTable(event) {
       const newBottomRow = table.insertRow(29);
 
 
-      for (let j = 0; j < ColSize - 1; j++) {
+      for (let j = 0; j < ColSize; j++) {
         newCell = newBottomRow.insertCell();
         // i have to check if at the top there is the player village 
         if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"] == player["y"]) {
@@ -270,7 +270,7 @@ export function moveTable(event) {
       }
 
       // delete the last column
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < RowSize; i++) {
         table.rows[i].deleteCell(29);
       }
 
@@ -317,7 +317,7 @@ export function moveTable(event) {
       }
 
       // delete the first column
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < RowSize; i++) {
         table.rows[i].deleteCell(0);
       }
 
