@@ -68,7 +68,7 @@ BEGIN
     CREATE TABLE events (
         event_id varchar(64) PRIMARY KEY,
         user_id varchar(64) NOT NULL,
-        event_type INTEGER NOT NULL,
+        event_type varchar(20) NOT NULL,
         level integer,
         event_completion_date INT NOT NULL,
         online BIT NOT NULL,
