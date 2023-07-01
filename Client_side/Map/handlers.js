@@ -156,7 +156,7 @@ export function moveTable(event) {
 
       // traslate the table down by one row starting by the last row to the first
       for (let i = table.rows.length - 1; i > 0; i--) {
-        for (let j = 0; j < 30; j++) {
+        for (let j = 0; j < ColSize-1; j++) {
           const currentCell = table.rows[i].cells[j];
           const prevCell = table.rows[i - 1].cells[j];
           currentCell.className = prevCell.className;
@@ -175,7 +175,7 @@ export function moveTable(event) {
       // insert a new row at the top
       const newTopRow = table.insertRow(0);
 
-      for (let j = 0; j < ColSize; j++) {
+      for (let j = 0; j < ColSize-1; j++) {
         const newCell = newTopRow.insertCell();
         // i have to check if at the top there is the player village 
         if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"]+RowSize == player["y"]) {
@@ -209,7 +209,7 @@ export function moveTable(event) {
 
       // traslate the table up by one row starting from the second row from the bottom
       for (let i = 0; i < table.rows.length - 1; i++) {
-        for (let j = 0; j < 30; j++) {
+        for (let j = 0; j < ColSize-1; j++) {
           const currentCell = table.rows[i].cells[j];
           const prevCell = table.rows[i + 1].cells[j];
           currentCell.className = prevCell.className;
@@ -230,7 +230,7 @@ export function moveTable(event) {
 
       // insert a new row at the bootom
       const newBottomRow = table.insertRow(29);
-      for (let j = 0; j < 30; j++) {
+      for (let j = 0; j < ColSize-1; j++) {
         const newCell = newTopRow.insertCell();
         // i have to check if at the top there is the player village 
         if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"]+RowSize == player["y"]) {
