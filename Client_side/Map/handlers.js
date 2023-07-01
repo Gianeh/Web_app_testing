@@ -215,8 +215,6 @@ export function moveTable(event) {
           currentCell.className = prevCell.className;
           currentCell.innerHTML = prevCell.innerHTML;
           currentCell.id = prevCell.id;
-          // currentCell.id = prevCell.id;
-          // Copy any other desired styles from the previous cell to the current cell
         }
       }
 
@@ -228,12 +226,14 @@ export function moveTable(event) {
       localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
       console.log("CurrentOrigin: " + CurrentOrigin["x"] + " " + CurrentOrigin["y"]); 
 
-      // insert a new row at the bootom
+      // insert a new row at the bottom
       const newBottomRow = table.insertRow(29);
+
+      
       for (let j = 0; j < ColSize-1; j++) {
         const newCell = newTopRow.insertCell();
         // i have to check if at the top there is the player village 
-        if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"]+RowSize == player["y"]) {
+        if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"] + RowSize == player["y"]) {
           newCell.className = "playerVillage";
           newCell.id = "playerVillage";
           newCell.innerHTML = "P";
@@ -251,8 +251,6 @@ export function moveTable(event) {
           }
         }
       }
-      // insert a new row at the bottom
-
 
       break;
 
