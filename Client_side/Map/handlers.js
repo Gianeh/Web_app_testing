@@ -179,7 +179,7 @@ export function moveTable(event) {
       // insert a new row at the top
       const newTopRow = table.insertRow(0);
 
-      for (let j = 0; j < ColSize - 1; j++) {
+      for (let j = 0; j < ColSize; j++) {
         newCell = newTopRow.insertCell();
         // i have to check if at the top there is the player village 
         if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"] + RowSize == player["y"]) {
@@ -231,7 +231,7 @@ export function moveTable(event) {
 
 
       for (let j = 0; j < ColSize - 1; j++) {
-        newCell = newTopRow.insertCell();
+        newCell = newBottomRow.insertCell();
         // i have to check if at the top there is the player village 
         if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"] + RowSize == player["y"]) {
           newCell.className = "playerVillage";
@@ -279,7 +279,7 @@ export function moveTable(event) {
       localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
 
       // insert a new column at the left
-      for (let i = 0; i < RowSize - 1; i++) {
+      for (let i = 0; i < RowSize; i++) {
         newCell = table.rows[i].insertCell(0);
         // i have to check if at the top there is the player village
         if (CurrentOrigin["x"] == player["x"] && CurrentOrigin["y"] + i == player["y"]) {
