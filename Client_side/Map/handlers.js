@@ -326,7 +326,7 @@ export function moveTable(event) {
       localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
 
       // insert a new column at the right
-      for (let i = 0; i < RowSize - 1; i++) {
+      for (let i = 0; i < RowSize; i++) {
         newCell = table.rows[i].insertCell(29);
         // i have to check if at the top there is the player village
         if (CurrentOrigin["x"] + ColSize - 1 == player["x"] && CurrentOrigin["y"] + i == player["y"]) {
@@ -350,6 +350,7 @@ export function moveTable(event) {
 
       break;
   }
+  
 
   // reset the event listener on the overlay
   let overlay = document.getElementById("playerVillage");
