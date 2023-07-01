@@ -139,6 +139,8 @@ export function VillageClick(event) {
 // function that handle movement inside the map
 export function moveTable(event) {
 
+  console.log("moveTable, id: " + event.target.id);
+
   // get elemnt id of the button clicked
   let id = event.target.id;
   let table = document.getElementById("WarMap");
@@ -159,7 +161,7 @@ export function moveTable(event) {
     case "buttonUp":
 
       // traslate the table down by one row starting by the last row to the first
-      for (let i = table.rows.length - 1; i > 0; i--) {
+      for (let i = RowSize - 1; i > 0; i--) {
         for (let j = 0; j < ColSize - 1; j++) {
           currentCell = table.rows[i].cells[j];
           prevCell = table.rows[i - 1].cells[j];
@@ -244,7 +246,7 @@ export function moveTable(event) {
 
         // check if there is an enemy village
         for (let k in enemypos) {
-          if (CurrentOrigin["x"] + j == enemypos[k]["x"] && CurrentOrigin["y"] + RowSize == enemypos[k]["y"]) {
+          if (CurrentOrigin["x"] + j == enemypos[k]["x"] && CurrentOrigin["y"] == enemypos[k]["y"]) {
             cell.className = "enemyVillage";
             cell.id = "EnemyVillage" + enemypos[k]["username"];
             cell.innerHTML = "E";
@@ -260,7 +262,7 @@ export function moveTable(event) {
 
       // Move the entire table to the right by one column
       for (let i = 0; i < RowSize - 1; i++) {
-        for (let j = table.rows[i].cells.length - 1; j > 0; j--) {
+        for (let j = ColSize - 1; j > 0; j--) {
           currentCell = table.rows[i].cells[j];
           prevCell = table.rows[i].cells[j - 1];
           currentCell.className = prevCell.className;
