@@ -178,7 +178,7 @@ export function moveTable(event) {
       for (let j = 0; j < ColSize; j++) {
         const newCell = newTopRow.insertCell();
         // i have to check if at the top there is the player village 
-        if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"] == player["y"]) {
+        if (CurrentOrigin["x"] + j == player["x"] && CurrentOrigin["y"]+RowSize == player["y"]) {
           newCell.className = "playerVillage";
           newCell.id = "playerVillage";
           newCell.innerHTML = "P";
