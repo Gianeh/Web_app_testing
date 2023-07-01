@@ -171,9 +171,10 @@ export function moveTable(event) {
       // modify current origin cause i move up so i increase the y coordinate
       CurrentOrigin["y"] += 1;
       localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
-      console.log("CurrentOrigin: " + CurrentOrigin["x"] + " " + CurrentOrigin["y"]);
+      console.log("CurrentOrigin: " + CurrentOrigin["x"] + " " + CurrentOrigin["y"]); 
       // insert a new row at the top
       const newTopRow = table.insertRow(0);
+
       for (let j = 0; j < ColSize; j++) {
         const newCell = newTopRow.insertCell();
         // i have to check if at the top there is the player village 
@@ -188,7 +189,7 @@ export function moveTable(event) {
 
         // check if there is an enemy village
         for (let k in enemypos) {
-          if (CurrentOrigin["x"] + RowSize == enemypos[k]["x"] && i + CurrentOrigin["y"] == enemypos[k]["y"]) {
+          if (CurrentOrigin["x"] + j == enemypos[k]["x"] && CurrentOrigin["y"]+RowSize == enemypos[k]["y"]) {
             cell.className = "enemyVillage";
             cell.id = "EnemyVillage" + enemypos[k]["username"];
             cell.innerHTML = "E";
