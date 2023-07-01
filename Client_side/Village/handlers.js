@@ -132,6 +132,8 @@ export function upgradeTownhall(event) {
     }
     // send update to the server
     sendData("upgradeTownhall");
+    // remove data from local storage relative to townhall_upgrade
+    localStorage.removeItem("townhall_upgrade");
     townhallClick();
 }
 

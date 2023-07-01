@@ -88,6 +88,9 @@
         $resources = $cache->acquireData("player", $token);
         $townhall = $cache->acquireData("townhall", $token);
 
+        // make sure to remove upgrade event from cache as it's first added onclick
+        $cache->deleteData("townhall_upgrade", $token);
+
         // frontend should check this requirements too, a json requirements file should be created
         if ($resources["wood"] >= 100 && $resources["rock"] >= 100 && $resources["iron"] >= 100) {
             // if the player has enough food, update the townhall level
