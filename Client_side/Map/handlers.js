@@ -148,9 +148,9 @@ export function moveTable(event) {
   let player = JSON.parse(localStorage.getItem("player"));
   let enemypos = JSON.parse(localStorage.getItem("enemypos"));
 
-  const newCell = null;
-  const currentCell = null;
-  const prevCell = null;
+  let newCell = null;
+  let currentCell = null;
+  let prevCell = null;
 
   // chose differnt action depending on the id
   switch (id) {
@@ -352,7 +352,7 @@ export function moveTable(event) {
   }
 
   // reset the event listener on the overlay
-  const overlay = document.getElementById("playerVillage");
+  let overlay = document.getElementById("playerVillage");
   // overlay.removeEventListener("click", playerHandler);
   overlay.addEventListener("click", playerHandler);
 
