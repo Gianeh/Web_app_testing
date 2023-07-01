@@ -95,6 +95,8 @@ export function townhallClick(event) {
     upgrade.classList.add("button");
     buttons.appendChild(upgrade);
 
+    // retieve the upgrade data from starage and append remaining time to upgrade span
+    setUpgradeSpan("townhall_upgrade");
 
 }
 
@@ -148,4 +150,24 @@ function setInfoDiv(color){
     // write a temporary message
     info.innerHTML = "Loading...";
     return info;
+}
+
+function setUpgradeSpan($upgrade){
+    let upgradeData = getLocalData($upgrade, "village");
+    let upgradeSpan = document.getElementById("upgrade");
+    if (upgradeData["status"] != "success"){
+        upgradeSpan.innerHTML = "Structure is not being upgraded";
+    }else{
+        upgradeSpan.innerHTML = "remaining time: " + upgradeData["remaining_time"];
+    }
+}
+
+export function updateUpgrades(){
+    for(let key in localStorage){
+        if(key.includes("upgrade")){
+            localStorage[key]["remaining_time"] -= 1;
+        }
+        // if the remaining time is 0, call the backend check function
+        // to be implemented
+    }
 }

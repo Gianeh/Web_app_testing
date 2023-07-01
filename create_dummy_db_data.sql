@@ -69,7 +69,9 @@ BEGIN
         event_id varchar(64) PRIMARY KEY,
         user_id varchar(64) NOT NULL,
         event_type INTEGER NOT NULL,
+        level integer,
         event_completion_date INT NOT NULL,
+        online BIT NOT NULL,
         finished BIT NOT NULL,
         FOREIGN KEY (user_id) REFERENCES player(user_id)
     );
@@ -129,7 +131,6 @@ DROP TABLE structures;
 DROP TABLE player;
 DROP TABLE users;
 */
-
 
 
 

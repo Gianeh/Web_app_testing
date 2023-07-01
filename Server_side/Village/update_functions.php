@@ -48,7 +48,7 @@
     }
 
 
-    function addUpgrade($event_type, $level, $cache){
+    function addUpgrade($event_type, $level, $database){
         // parse requirements json to get the duration of the event
         $json = file_get_contents('../requirements.json');
         $requirements = json_decode($json, true);
@@ -58,12 +58,9 @@
         $completion = $now + $requirements[$event_type][$level]["duration"];
         // compute event_id
         $event_id = hash("sha256", $event_type.$_SESSION['user_id'].$completion);
-        // add event in cache
-        $cache->setData($event_type, array("event_id" => $event_id, "event_completion" => $completion, "event_type" => $event_type, "finished" => 0), $event_id);
-        // $event_id becomes the partial key for the event in cache (final key will be $event_type+"_data_"+$event_id), this needs to be saved in a buffer file to let daemon recollect events and add accordingly in database
-        $buffer = fopen("../updates_buffer.txt", "a");
-        fwrite($buffer, $event_type."|".$event_id."|".$_SESSION["user_id"]."\n");
-        fclose($buffer);
+        // add event in database
+        //$db->setData($event_type, array("event_id" => $event_id, "event_completion" => $completion, "event_type" => $event_type, "finished" => 0, "level" => $level), $token);
+        $database->insert("events", "(event_id, user_id, event_type, level, event_completion, online, finished)", "('".$event_id."', '".$_SESSION['user_id']."', '".$event_type."', '".$level."', '".$completion."', 1, 0)"); // 0 means that the event is not finished yet
     }
 
     // example rule: the player needs to have 10 food to add 1 population to village
@@ -104,9 +101,12 @@
             // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
 
             $cache->setData("player", $resources, $token);
+            unset($cache);
+            $db = new databaseQuery();
 
             // the update is added to the events table in the database
-            $cache->setData("townhall", $townhall, $token);
+            addUpgrade("townhall_upgrade", $townhall["level"] + 1, $db);
+            //$cache->setData("townhall", $townhall, $token);
             return true;
         } else {
             // if the player doesn't have enough food, return false

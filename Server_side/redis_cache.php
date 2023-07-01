@@ -80,6 +80,16 @@
                 // add more cases for other objects as needed
                 // also remember to add the logout copy instance!
 
+                case "townhall_upgrade":
+                    $upgrade = $this->db->select("*","events", "events.user_id = '$user_id' AND events.event_type = 'townhall_upgrade'");
+                    if(count($upgrade) == 0) {
+                        $output = array("status" => "no data found");
+                        break;
+                    }
+                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $output = array_merge($upgrade->get_data(), ["status" => "success"]);
+                    break;
+
                 default:
                     // handle error
                     $output = array("error" => "invalid data requested");

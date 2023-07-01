@@ -31,7 +31,7 @@
 
     if(!isset($_POST["function"])){ // retrieve data!
         // create a new cache object
-        $cache = new Cache(array("player", "structures"));
+        $cache = new Cache(array("player", "structures", "event"));
 
         // get the requested data from frontend (handler.js) inside the POST request and search for the data in the cache
 
