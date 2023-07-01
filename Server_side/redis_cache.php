@@ -130,37 +130,6 @@
 
         }
 
-        // a specific function to gather all the updates (to be displayed in frontend and refresh cache from database) is needed
-        // this function should parse the buffer file and create the token based on user_id and $event_type (i.e. "townhall_upgrade", "archer_training", etc.)
-        public function getUpdates($event_type){
-            // parse the buffer txt file to get every updates that include the event_type befor | separator
-            // if file does not exist create it
-            if(!file_exists("./updates_buffer.txt")){
-                $buffer = fopen("./updates_buffer.txt", "w");
-                fclose($buffer);
-            }
-            $buffer = fopen("./updates_buffer.txt", "r");
-            $updates = array();
-            while(!feof($buffer)){
-                $line = fgets($buffer);
-                $line = explode("|", $line);
-                if($line[0] == $event_type && $line[2] == $_SESSION["user_id"]){
-                    array_push($updates, $line[1]);
-                }
-            }
-            fclose($buffer);
-            if(count($updates) == 1){
-                return $this->acquireData($event_type, $updates[0]);
-            }else if(count($updates) == 0){
-                return false;
-            }
-            for($i = 0; $i < count($updates); $i++){
-                $updates[$i] = $this->acquireData($event_type, $updates[$i]);
-            }
-            return $updates;
-        }
-
-
         // a function that sets specific data in the cache
         public function setData($dataName, $data, $token){
             if($this->redis === null){
