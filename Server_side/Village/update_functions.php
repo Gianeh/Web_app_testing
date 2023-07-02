@@ -59,8 +59,7 @@
         // compute event_id
         $event_id = hash("sha256", $event_type.$_SESSION['user_id'].$completion);
         // add event in database
-        //$db->setData($event_type, array("event_id" => $event_id, "event_completion" => $completion, "event_type" => $event_type, "finished" => 0, "level" => $level), $token);
-        $database->insert("events", "event_id, user_id, event_type, level, event_completion, online, finished", $event_id.", ".$_SESSION['user_id'].", ".$event_type.", ".$level.", ".$completion.", 1, 0"); // 0 means that the event is not finished yet
+        $database->insert("events", "event_id, user_id, event_type, level, event_completion, online, finished", "'".$event_id."', '".$_SESSION['user_id']."', '".$event_type."', '".$level."', '".$completion."', 1, 0"); // 0 means that the event is not finished yet
     }
 
     // example rule: the player needs to have 10 food to add 1 population to village
