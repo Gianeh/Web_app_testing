@@ -47,7 +47,7 @@
 
     // a function that deletes the events records from cache and triggers a new databse call trough the acquireData function
     function updateEvents($token){
-        $cache = new Cache(array("player", "structures"));
+        $cache = new Cache(array("player", "structures", "events"));
         $cache->deleteData("townhall_upgrade", $token);
         $cache->deleteData("barracks_upgrade", $token);
         $cache->deleteData("farm_upgrade", $token);
