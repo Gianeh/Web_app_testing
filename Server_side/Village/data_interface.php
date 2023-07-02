@@ -4,30 +4,24 @@
     if (session_status() !== PHP_SESSION_ACTIVE) {
         session_start();
     }
+    // include memory handlers classes
+    include_once('update_functions.php');
+    include_once('../redis_cache.php');
+
     $secret_key = '6Lc6BqUUAAAAAFCZ3Z4Z3Z4Z3Z4Z3Z4Z3Z4Z3Z4Z';
-    
+    $user_id = $_SESSION['user_id'];    // retrieve user_id from session
+    $_SESSION['user_id'] = $user_id;    // update session to increase lifetime
+    $token = hash("sha256", $secret_key.$user_id);
+
     if(isset($_POST["logout"])){
         include_once("../Login/handler_logout.php");
         // a function to copy cache to database
-        logout($secret_key);
+        logout($token);
 
         session_destroy();
         echo json_encode(array("status" => "success", "message" => "User logged out"));
         exit();
     }
-    
-    // include the chache class
-    include_once('update_functions.php');
-    include_once('../redis_cache.php');
-
-
-    if (session_status() !== PHP_SESSION_ACTIVE) {
-        session_start();
-    }
-    
-    $user_id = $_SESSION['user_id'];    // retrieve user_id from session
-    $_SESSION['user_id'] = $user_id;    // update session to increase lifetime
-    $token = hash("sha256", $secret_key.$user_id);
 
     if(!isset($_POST["function"])){ // retrieve data!
         // create a new cache object

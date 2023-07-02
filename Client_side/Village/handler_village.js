@@ -50,7 +50,7 @@ export function onLoad() {
         }
     }
     setHandlers();
-    setInterval(updateUpgrades, 1000);
+    setInterval(updateUpgrades, 999);
 }
 
 

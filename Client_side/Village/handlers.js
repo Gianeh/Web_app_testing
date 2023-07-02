@@ -167,6 +167,8 @@ export function updateUpgrades(){
             let upgrade = JSON.parse(localStorage[key]);
             upgrade["remaining_time"] -= 1;
             localStorage[key] = JSON.stringify(upgrade);
+
+            // if the remaining time is 0, call the backend check function
         }
         // if the remaining time is 0, call the backend check function
         // to be implemented
