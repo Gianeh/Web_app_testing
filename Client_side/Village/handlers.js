@@ -101,7 +101,7 @@ export function townhallClick(event) {
     buttons.appendChild(upgrade);
 
     // retieve the upgrade data from starage and append remaining time to upgrade span
-    upgrade_id = setInterval(function(){ setUpgradeSpan("townhall_upgrade"); }, 1000);
+    upgrade_id = setInterval(function(){ setUpgradeSpan("townhall_upgrade"); }, 999);
 
 }
 
