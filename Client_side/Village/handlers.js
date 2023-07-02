@@ -139,6 +139,9 @@ function setInfoDiv(color){
     // empties the buttons div
     let buttons = document.getElementById("buttons");
     buttons.innerHTML = "";
+    // empties the upgrade span
+    let upgradeSpan = document.getElementById("upgrade");
+    upgradeSpan.innerHTML = "";
     // get the info div
     let info = document.getElementById("info");
     // empties the info div
@@ -174,3 +177,5 @@ export function updateUpgrades(){
         // to be implemented
     }
 }
+
+// a function that every 5 seconds call the sendData function to trigger a cache update

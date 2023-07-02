@@ -7,24 +7,6 @@
     include_once('../redis_cache.php');
     include_once('../database_query.php');
 
-
-    // a function to add an upgrade event to events table in the cache
-    /*
-    function addUpgrade($event_type, $level){
-        $db = new DatabaseQuery();
-        // parse requirements json to get the duration of the event
-        $json = file_get_contents('../requirements.json');
-        $requirements = json_decode($json, true);
-        // add the duration to the current date and time
-        // get current date and time
-        $now = time();
-        $completion = $now + $requirements[$event_type][$level]["duration"];
-        // compute event_id
-        $event_id = hash("sha256", $event_type.$_SESSION['user_id'].$completion);
-        // add the event to the database
-        $db->insert("events", "event_id, user_id, event_type, event_completion, finished", "'".$event_id."', '".$_SESSION['user_id']."', '".$event_type."', '".$completion."', 0"); // 0 means that the event is not finished yet
-    }
-    */
     // a function to add a training event to events table in the cache
     function addTraining($event_type, $cache){
         // if a training event for this player already exists this event will have a completion_date calculated from the last event completion date
@@ -60,6 +42,27 @@
         $event_id = hash("sha256", $event_type.$_SESSION['user_id'].$completion);
         // add event in database
         $database->insert("events", "event_id, user_id, event_type, level, event_completion, online, finished", "'".$event_id."', '".$_SESSION['user_id']."', '".$event_type."', '".$level."', '".$completion."', 1, 0"); // 0 means that the event is not finished yet
+    }
+
+
+    // a function that deletes the events records from cache and triggers a new databse call trough the acquireData function
+    function updateEvents($token){
+        $cache = new Cache(array("player", "structures"));
+        $cache->deleteData("townhall_upgrade", $token);
+        $cache->deleteData("barracks_upgrade", $token);
+        $cache->deleteData("farm_upgrade", $token);
+        $cache->deleteData("woodchopper_upgrade", $token);
+        $cache->deleteData("rockmine_upgrade", $token);
+        $cache->deleteData("ironmine_upgrade", $token);
+        // training will need this feature too
+        $cache->acquireData("townhall_upgrade", $token);
+        $cache->acquireData("barracks_upgrade", $token);
+        $cache->acquireData("farm_upgrade", $token);
+        $cache->acquireData("woodchopper_upgrade", $token);
+        $cache->acquireData("rockmine_upgrade", $token);
+        $cache->acquireData("ironmine_upgrade", $token);
+        unset($cache);
+        return true;
     }
 
     // example rule: the player needs to have 10 food to add 1 population to village

@@ -51,6 +51,9 @@ export function onLoad() {
     }
     setHandlers();
     setInterval(updateUpgrades, 999);
+    setInterval(function{
+        sendData("updateEvents", "village");
+    }, 5000)
 }
 
 

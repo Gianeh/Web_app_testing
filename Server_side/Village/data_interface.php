@@ -40,6 +40,11 @@
     }else{                          // send data!
         // get the requested data from frontend (handler.js) inside the POST request and search for the appropriate function
         switch($_POST["function"]){
+            // a case that handles the events updates to refresh remaining time in case user reloads the page
+            case "updateEvents":
+                $status = updateEvents($token);
+                break;
+
             case "addPopulation":
                 $status = addPopulation($token);
                 break;

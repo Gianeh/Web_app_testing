@@ -82,7 +82,6 @@ export function getDataWithParameter(dataName, parameter, colums) {
   return output;
 }
 
-
 // a function to send new data to the backend
 export function sendData(func="none", password="", path="") {
     if(path == "village") path = backend_village;
