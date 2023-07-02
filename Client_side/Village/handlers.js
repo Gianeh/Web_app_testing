@@ -163,7 +163,7 @@ function setUpgradeSpan($upgrade){
 
 export function updateUpgrades(){
     for(let key in localStorage){
-        if(key.includes("upgrade") && localStorage[key]["status"] == "success"){
+        if(key.includes("upgrade") && JSON.parse(localStorage[key])["status"] == "success"){
             localStorage[key]["remaining_time"] -= 1;
         }
         // if the remaining time is 0, call the backend check function
