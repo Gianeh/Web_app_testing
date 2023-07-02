@@ -80,7 +80,7 @@ function setHandlers() {
   document.addEventListener("keydown", moveTable);
 
   // add event listener to resixe the map when the window is resized
-  window.addEventListener("resize", resizeHandler);
+//  window.addEventListener("resize", resizeHandler);
 
   // clear local storage on unload
   window.addEventListener("beforeunload", function () {
