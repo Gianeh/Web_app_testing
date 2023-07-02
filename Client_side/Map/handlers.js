@@ -58,7 +58,7 @@ export function createTable(player, enemypos) {
   let height = 0;
 
   // Set the height and width of the relative table CHECK SPAWN POSIION POLICY
-  let CurrentOrigin = { x: player["x"] - Cols/2, y: player["y"] - Rows/2 };
+  let CurrentOrigin = { x: player["x"] - Math.floor(Cols/2), y: player["y"] - Math.floor(Rows/2) };
   height = Rows + CurrentOrigin["y"];
   width = Cols + CurrentOrigin["x"];
 
