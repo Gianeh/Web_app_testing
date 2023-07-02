@@ -13,10 +13,8 @@ let Cols = 0; //number of columns
 // Calculate the number of rows and columns are drawable in the container
  export function SetDimension() {
     let container = document.getElementById("MapContainer");
-    let width = container.width;
-    let height = container.height;
-    Rows = Math.floor(width / CellWidth);
-    Cols = Math.floor(width / CellWidth);
+    Rows = Math.floor(container.height / CellWidth);
+    Cols = Math.floor(container.width / CellWidth);
 }
 
 
