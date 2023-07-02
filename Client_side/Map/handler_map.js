@@ -9,7 +9,7 @@
 
 
 import { pickRecords,  getLocalData, getDataWithParameter } from "../helper.js";
-import { createTable, playerHandler, moveTable,ClosePlayerHandlrer, VillageClick } from "./handlers.js";
+import { createTable, playerHandler, moveTable,ClosePlayerHandlrer, VillageClick, SetDimension, resizeHandler } from "./handlers.js";
 //use only getLocalData to get info
 
 
@@ -32,8 +32,10 @@ export function onLoad() {
   let enemypos = getDataWithParameter("player", " username  <> '" + player["username"] + "'", "x, y, username");   
   console.log(enemypos);
 
+  // set the dimension of the table considering the container dimension
+  SetDimension();
+
   // draw the map
-  
   let CurrentOrigin = createTable(player, enemypos);
   console.log("CurrentOrigin: " + CurrentOrigin["x"] + ", " + CurrentOrigin["y"]);
 
@@ -64,7 +66,7 @@ function setHandlers() {
   let villages = document.getElementById("ReturnToVillage")
   villages.addEventListener("click", VillageClick);
 
-  // add event listener to move the table
+  // add event listener to move the table by buttons
   let buttonUp = document.getElementById("buttonUp");
   buttonUp.addEventListener("click", moveTable);
   let buttonDown = document.getElementById("buttonDown");
@@ -73,6 +75,12 @@ function setHandlers() {
   buttonLeft.addEventListener("click", moveTable);
   let buttonRight = document.getElementById("buttonRight");
   buttonRight.addEventListener("click", moveTable);
+
+  // add event listener to move the table by keyboard
+  document.addEventListener("keydown", moveTable);
+
+  // add event listener to resixe the map when the window is resized
+  window.addEventListener("resize", resizeHandler);
 
   // clear local storage on unload
   window.addEventListener("beforeunload", function () {

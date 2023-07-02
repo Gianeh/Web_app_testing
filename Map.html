@@ -53,12 +53,34 @@
         }
 
         .MapContainer {
-            width: 1000px;
-            height: 1000px;
+            max-width: 1500px;
+            max-height: 1000px;
             overflow: auto;
             margin: auto;
             position: relative;
             border: 2px solid black;
+        }
+
+        @media (max-width: 768px) {
+
+            /* Adjust the max-width breakpoint value based on your desired screen resolution */
+            #container {
+                max-width: 400px;
+                max-height: 300px;
+                /* Adjust the container's width for smaller screens */
+            }
+        
+        }
+
+        @media (max-width: 1000px) {
+
+            /* Adjust the max-width breakpoint value based on your desired screen resolution */
+            #container {
+                max-width: 700px;
+                max-height: 500px;
+                /* Adjust the container's width for smaller screens */
+            }
+        
         }
 
         .square {
@@ -126,7 +148,8 @@
             background-color: #ccc;
             border: none;
         }
-        .DivMoveButton{
+
+        .DivMoveButton {
             width: 1000px;
             height: 35px;
             display: flex;
@@ -156,8 +179,8 @@
     </div>
 
     <div class="PlayerOverlay" id="PlayerOverlay">
-            <h1>This is player overlay</h1>
-            <button id="ClosePlayerVillage">Close</button>
+        <h1>This is player overlay</h1>
+        <button id="ClosePlayerVillage">Close</button>
     </div>
 </body>
 

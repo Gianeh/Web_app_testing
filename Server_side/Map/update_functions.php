@@ -20,7 +20,7 @@ include_once('../redis_cache.php');
      }  
  }
 
-
+// im not using this function right now
  function PlayerPosition($token){
     $cache = new Cache(array("player"));
     $PlayerPosition = $cache->acquireData("player", $token);

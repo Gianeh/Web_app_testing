@@ -1,8 +1,42 @@
+// map constant
 const MapWidth = 500;
 const MapHeight = 500;
 
-const Rows = 30; //number of rows
-const Cols = 30; //number of columns
+// cell constant
+const CellWidth = 30; // width of the cell in px
+
+let Rows = 0; //number of rows
+let Cols = 0; //number of columns
+
+
+
+// Calculate the number of rows and columns are drawable in the container
+ export function SetDimension() {
+    let container = document.getElementById("MapContainer");
+    let width = container.offsetWidth;
+    Rows = Math.floor(width / CellWidth);
+    Cols = Math.floor(width / CellWidth);
+}
+
+
+
+// Resize Handler
+export function resizeHandler() {
+  let enemypos = JSON.parse(localStorage.getItem("enemypos"));
+  let player = JSON.parse(localStorage.getItem("player"));
+
+  // set the dimension of the table considering the container dimension
+  SetDimension();
+
+  // draw the map
+  let CurrentOrigin = createTable(player, enemypos);
+
+  // insert in localstorage the current origin
+  localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
+}
+
+
+
 
 // HandlerDrawMap function to draw the map
 export function createTable(player, enemypos) {
@@ -74,20 +108,12 @@ export function createTable(player, enemypos) {
 
 
 
-
-
-
 //close the overlay
 export function overlayCloseHandler(event) {
   // close the overlay
   let overlay = document.getElementById("PlayerOverlay");
   overlay.style.display = "none";
 }
-
-
-
-
-
 
 
 
@@ -120,10 +146,6 @@ export function playerHandler() {
 
 
 
-
-
-
-
 //funxtion that close the player overlay
 export function ClosePlayerHandlrer() {
 
@@ -131,7 +153,6 @@ export function ClosePlayerHandlrer() {
   overlay.style.display = "none";
 
 }
-
 
 
 
@@ -144,14 +165,16 @@ export function VillageClick(event) {
 
 
 
-
 // function that handle movement inside the map
 export function moveTable(event) {
 
   console.log("moveTable, id: " + event.target.id);
 
-  // get element id of the button clicked
+  // get key or the elemnt id of the button clicked
   let id = event.target.id;
+  if(event.target.id == ""){
+    let id = event.key;  // getting the key pressed
+  }
   let table = document.getElementById("WarMap");
 
   // get the current origin, player position and enemy position from local-storage
@@ -167,7 +190,7 @@ export function moveTable(event) {
   switch (id) {
 
     //CASE I MOVE UP
-    case "buttonUp":
+    case "buttonUp" || "W":
 
       // check if i can move up
       if (CurrentOrigin["y"] + Rows + 1> MapHeight) {
@@ -220,7 +243,7 @@ export function moveTable(event) {
       break;
 
     // CASE I MOVE DOWN
-    case "buttonDown":
+    case "buttonDown" || "S":
 
       // check if i can move down
       if (CurrentOrigin["y"] - 1 < 0) {
@@ -275,7 +298,7 @@ export function moveTable(event) {
       break;
 
     // CASE I MOVE LEFT
-    case "buttonLeft":
+    case "buttonLeft" || "A":
 
       // check if i can move left
       if (CurrentOrigin["x"] - 1 < 0) {
@@ -328,7 +351,7 @@ export function moveTable(event) {
       break;
 
     // CASE I MOVE RIGHT
-    case "buttonRight":
+    case "buttonRight" || "D":
 
       // check if i can move right
       if (CurrentOrigin["x"] + Cols + 1 > MapWidth) {

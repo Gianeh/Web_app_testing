@@ -10,12 +10,12 @@
         public $finished;
         public $remaining_time;
         function __construct($event_id, $event_type, $event_completion, $finished){
-            $this->event_id = $event_id;
-            $this->event_type = $event_type;
-            $this->event_completion = $event_completion;
-            $this->finished = $finished;
-            $this->remaining_time = $event_completion - time();
-        }
+            $this->event_id = $event_id;                 // id event 
+            $this->event_type = $event_type;             // type of event
+            $this->event_completion = $event_completion; // time of completion
+            $this->finished = $finished;                 // 0 if not finished, 1 if finished
+            $this->remaining_time = $event_completion - time(); // remaining time in seconds
+         }
     }
 
     class Upgrade extends Event{
