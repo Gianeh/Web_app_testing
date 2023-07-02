@@ -13,13 +13,20 @@ let Cols = 0; //number of columns
 // Calculate the number of rows and columns are drawable in the container
  export function SetDimension() {
     let container = document.getElementById("MapContainer");
-    container.innerHTML = "";                                 // clear the container
     let width = container.offsetWidth;
     let height = container.offsetHeight;
     Rows = Math.floor(width / CellWidth);
     Cols = Math.floor(width / CellWidth);
 }
 
+
+// a function that cancel all the row in the table
+export function ResetTable() {
+  let table = document.getElementById("WarMap");
+  for (let i = Rows; i >= 0; i--) {
+    table.deleteRow(i);
+  }
+}
 
 
 // Resize Handler
@@ -29,7 +36,7 @@ export function resizeHandler() {
 
   // set the dimension of the table considering the container dimension
   SetDimension();
-
+  ResetTable();
   // draw the map
   let CurrentOrigin = createTable(player, enemypos);
 
