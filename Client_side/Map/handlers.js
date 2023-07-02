@@ -13,8 +13,8 @@ let Cols = 0; //number of columns
 // Calculate the number of rows and columns are drawable in the container
  export function SetDimension() {
     let container = document.getElementById("MapContainer");
-    let width = container.offsetWidth;
-    let height = container.offsetHeight;
+    let width = container.width;
+    let height = container.height;
     Rows = Math.floor(width / CellWidth);
     Cols = Math.floor(width / CellWidth);
 }
@@ -417,8 +417,12 @@ export function moveTable(event) {
 
   // reset the event listener on the overlay
   let overlay = document.getElementById("playerVillage");
-  // overlay.removeEventListener("click", playerHandler);
-  overlay.addEventListener("click", playerHandler);
+  
+  // player can desappear if he is not in the map
+  if (overlay != null) {
+    overlay.addEventListener("click", playerHandler);
+  }
+  
 
 
 
