@@ -14,6 +14,7 @@ let Cols = 0; //number of columns
  export function SetDimension() {
     let container = document.getElementById("MapContainer");
     let width = container.offsetWidth;
+    let height = container.offsetHeight;
     Rows = Math.floor(width / CellWidth);
     Cols = Math.floor(width / CellWidth);
 }
