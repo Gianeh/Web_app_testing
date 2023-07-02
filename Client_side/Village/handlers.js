@@ -164,7 +164,9 @@ function setUpgradeSpan($upgrade){
 export function updateUpgrades(){
     for(let key in localStorage){
         if(key.includes("upgrade") && JSON.parse(localStorage[key])["status"] == "success"){
-            localStorage[key]["remaining_time"] -= 1;
+            let upgrade = JSON.parse(localStorage[key]);
+            upgrade["remaining_time"] -= 1;
+            localStorage[key] = JSON.stringify(upgrade);
         }
         // if the remaining time is 0, call the backend check function
         // to be implemented
