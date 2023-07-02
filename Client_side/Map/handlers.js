@@ -199,7 +199,7 @@ export function moveTable(event) {
   switch (id) {
 
     //CASE I MOVE UP
-    case "buttonUp" || "W":
+    case "buttonUp" || "w":
 
       // check if i can move up
       if (CurrentOrigin["y"] + Rows + 1> MapHeight) {
@@ -252,7 +252,7 @@ export function moveTable(event) {
       break;
 
     // CASE I MOVE DOWN
-    case "buttonDown" || "S":
+    case "buttonDown" || "s":
 
       // check if i can move down
       if (CurrentOrigin["y"] - 1 < 0) {
@@ -307,7 +307,7 @@ export function moveTable(event) {
       break;
 
     // CASE I MOVE LEFT
-    case "buttonLeft" || "A":
+    case "buttonLeft" || "a":
 
       // check if i can move left
       if (CurrentOrigin["x"] - 1 < 0) {
@@ -360,7 +360,7 @@ export function moveTable(event) {
       break;
 
     // CASE I MOVE RIGHT
-    case "buttonRight" || "D":
+    case "buttonRight" || "d":
 
       // check if i can move right
       if (CurrentOrigin["x"] + Cols + 1 > MapWidth) {
