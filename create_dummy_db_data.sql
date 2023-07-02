@@ -70,7 +70,7 @@ BEGIN
         user_id varchar(64) NOT NULL,
         event_type varchar(20) NOT NULL,
         level integer,
-        event_completion_date INT NOT NULL,
+        event_completion INT NOT NULL,
         online BIT NOT NULL,
         finished BIT NOT NULL,
         FOREIGN KEY (user_id) REFERENCES player(user_id)

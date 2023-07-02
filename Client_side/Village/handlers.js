@@ -1,5 +1,7 @@
 import { pickRecords, printData, getLocalData, sendData } from "../helper.js";
 
+var upgrade_id = 0;
+
 // a function to handle the woodchopper click
 export function woodchopperClick(event) {
     let info = setInfoDiv("brown");
@@ -72,6 +74,9 @@ export function barracksClick(event) {
 
 // a function to handle the townhall click
 export function townhallClick(event) {
+    // reset the upgrade span updater
+    if(upgrade_id != 0) clearInterval(upgrade_id);
+    // get the buttons div
     let info = setInfoDiv("lightblue");
     // call the getData function to get the townhall data
     let data = getLocalData("townhall", "village");
@@ -96,17 +101,9 @@ export function townhallClick(event) {
     buttons.appendChild(upgrade);
 
     // retieve the upgrade data from starage and append remaining time to upgrade span
-    setUpgradeSpan("townhall_upgrade");
+    upgrade_id = setInterval(function(){ setUpgradeSpan("townhall_upgrade"); }, 1000);
 
 }
-
-/// GLI UPGRADE POTREBBERO AVERE DEI REQUIREMENTS IN UN JSON CHE VIENE CONTROLLATO SIA IN BACKEND CHE IN FRONTEND PER AGGIORNARE
-/// I BOTTONI IN REAL TIME DI COLORI DIVERSI SE LE RICHIESTE SONO SODDISFATTE O MENO,
-/// IL CLICK DEVE TRIGGERARE DATA INTERFACE E A SUA VOLTA QUESTO DEVE AGGIUNGERE LA ACTION CON I DATI DI DURATA E FINE IN CACHE E DATABASE
-/// IL DATO IN CACHE PUò ESSERE USATO PER AGGIORNARE DEI COUNTDOWN IN FRONTEND
-/// VA STABILITO IL MECCANISMO DI CANCELLAZIONE DELLA ACTION IN CACHE, IL TIME DAEMON CONTROLLERà ANCHE CON USER OFFLINE OGNI X SECONDI
-/// SE CI SONO AZIONI GIà TERMINATE PRIMA CHE IL DAEMON SI ACC0RGA E L'UTENTE è ONLINE L'AGGIORNAMENTO DEVE ESSERE FATTO IN QUEL MOMENTO
-/// E LA ACTION RIMOSSA DA CACHE E DATABASE ---> HOW??
 
 export function warmapClick(event) {
     window.location.href = "Map.html";
