@@ -43,7 +43,8 @@ table {
 
     width: 1500px;
     height: 1200px;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
     margin: auto;
     position: relative;
     border: 2px solid black;
