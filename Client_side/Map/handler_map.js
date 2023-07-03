@@ -29,7 +29,7 @@ export function onLoad() {
 
 
   // execute the query to get enemy data and not the player data
-  let enemypos = getDataWithParameter("player", " username  <> '" + player["username"] + "'", "x, y, username");   
+  let enemypos = getDataWithParameter("player", " username  <> '" + player["username"] + "'", "*");   
   console.log(enemypos);
 
   // set the dimension of the table considering the container dimension

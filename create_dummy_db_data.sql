@@ -77,6 +77,10 @@ BEGIN
     );
 END
 
+ALTER TABLE player ADD COLUMN level INTEGER;
+
+
+
 /*
 -- create a table wars containing the player's wars (user_id_attack, user_id_defend, user_id_winner)
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'wars')

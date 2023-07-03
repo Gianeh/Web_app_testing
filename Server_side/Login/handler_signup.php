@@ -80,8 +80,8 @@
     $user_id = encode($username);
     // if everything is ok, insert the new user in the database
     $connection->insert("users", "user_id, username, password", "'$user_id','$username', '$password'");
-    $connection->insert("player", "user_id, username, x, y", "'$user_id', '$username', '$x', '$y'");
-    $connection->insert("structures", "user_id, townhall, farm, woodchopper, rockmine, ironmine, barracks", "'$user_id', 1, 1, 1, 1, 1, 1");
+    $connection->insert("player", "user_id, username, x, y, level", "'$user_id', '$username', '$x', '$y',0");
+    $connection->insert("structures", "user_id, townhall, farm, woodchopper, rockmine, ironmine, barracks", "'$user_id', 0, 0, 0, 0, 0, 0");
     $connection->insert("resources", "user_id, iron, food, wood, rock, population", "'$user_id', 200, 200, 200, 200, 50");
     $connection->insert("troops", "user_id, archer, infantry, cavalry", "'$user_id', 0, 0, 0");
     // every new table rows needs to be added here
