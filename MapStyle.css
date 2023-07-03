@@ -42,6 +42,12 @@
     border: 2px solid black;
 }
 
+.MapTable{
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+}
 
 .square {
     border: 1px solid black;
