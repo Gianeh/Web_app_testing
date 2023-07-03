@@ -20,34 +20,6 @@ export function SetDimension() {
 }
 
 
-// a function that cancel all the row in the table
-export function ResetTable() {
-  let table = document.getElementById("WarMap");
-  for (let i = Rows-1; i >= 0; i--) {
-    table.deleteRow(i);
-  }
-}
-
-
-// Resize Handler
-export function resizeHandler() {
-  let enemypos = JSON.parse(localStorage.getItem("enemypos"));
-  let player = JSON.parse(localStorage.getItem("player"));
-
-  // set the dimension of the table considering the container dimension
-  ResetTable();
-  SetDimension();
-
-  // draw the map
-  let CurrentOrigin = createTable(player, enemypos);
-
-  // insert in localstorage the current origin
-  localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
-}
-
-
-
-
 // HandlerDrawMap function to draw the map
 export function createTable(player, enemypos) {
 

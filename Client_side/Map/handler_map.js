@@ -9,7 +9,7 @@
 
 
 import { pickRecords,  getLocalData, getDataWithParameter } from "../helper.js";
-import { createTable, playerHandler, moveTable,ClosePlayerHandlrer, VillageClick, SetDimension, resizeHandler } from "./handlers.js";
+import { createTable, playerHandler, moveTable,ClosePlayerHandlrer, VillageClick, SetDimension } from "./handlers.js";
 //use only getLocalData to get info
 
 
@@ -78,9 +78,6 @@ function setHandlers() {
 
   // add event listener to move the table by keyboard
   document.addEventListener("keydown", moveTable);
-
-  // add event listener to resixe the map when the window is resized
-  window.addEventListener("resize", resizeHandler);
 
   // clear local storage on unload
   window.addEventListener("beforeunload", function () {
