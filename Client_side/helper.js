@@ -55,7 +55,7 @@ export function parseRequirements(data, level=0){
           }else{
             for (let key2 in array[key][level]){
                 if(key2 == "duration"){
-                    text += array[key][key2][level-1] + " seconds]";
+                    text += array[key][level][key2] + " seconds]";
                     continue;
                 }
                 text += key2 + ": " + array[key][level][key2] + ", ";
