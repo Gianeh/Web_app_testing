@@ -33,12 +33,10 @@
 }
 
 table {
-
-    border-collapse: collapse;
-    table-layout: auto;
     width: 100%;
     height: 100%;
-
+    table-layout: fixed;
+    border-collapse: collapse;
 }
 
 .MapContainer {
