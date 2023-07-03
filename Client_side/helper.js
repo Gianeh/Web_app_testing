@@ -40,6 +40,7 @@ export function parseRequirements(data, level=0){
             console.log("Error occurred: " + xhr.status);
         }
     }
+    xhr.send(null);
     let text = "[";
     for (let key in array){
         if(key == data){
