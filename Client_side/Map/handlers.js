@@ -1,4 +1,4 @@
-import { getDataWithParameter } from "../helper";
+import { getDataWithParameter } from "../helper.js";
 
 // map constant
 const MapWidth = 500;
