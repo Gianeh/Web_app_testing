@@ -435,5 +435,8 @@ export function moveTable(event) {
   if (overlay != null) {
     overlay.addEventListener("click", playerHandler);
   }
+  
 }
+
+
 
