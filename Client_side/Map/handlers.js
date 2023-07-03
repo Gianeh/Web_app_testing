@@ -150,11 +150,11 @@ export function VillageClick(event) {
 // function that handle movement inside the map
 export function moveTable(event) {
 
-  console.log("moveTable, id: " + event.target.id);
+
 
   // get key or the elemnt id of the button clicked
   let id = event.target.id;
-  if (event.target.id == null) {
+  if (event.target.id != null) {
     id = event.key;  // getting the key pressed
     switch (id) {
       case "w":
@@ -171,6 +171,7 @@ export function moveTable(event) {
         break;
     }
   }
+  console.log("moveTable, id: " + event.target.id);
   let table = document.getElementById("WarMap");
 
   // get the current origin, player position and enemy position from local-storage
