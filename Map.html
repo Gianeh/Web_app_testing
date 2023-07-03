@@ -6,138 +6,16 @@
     <script type="module">
         import { onLoad } from './Client_side/Map/handler_map.js';
         window.onload = onLoad;
+
     </script>
+<!--Css dependencies-->
+<link rel="stylesheet" href="./Client_side/Map/MapStyle.css">  
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
-    <style>
-        .infoDiv {
-            width: 1000px;
-            height: 35px;
-            border: 2px solid black;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 50px auto;
-            z-index: 9999;
-        }
+<!--Js dependencies-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  
 
-        .PlayerOverlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 80 px;
-            height: 80 px;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: none;
-        }
-
-
-        .RefocusDiv {
-            width: 1000px;
-            height: 75px;
-            border: 2px solid black;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 50px auto;
-        }
-
-        table {
-
-            border-collapse: collapse;
-            table-layout: auto;
-            width: 100%;
-            height: 100%;
-
-        }
-
-        .MapContainer {
-
-            width: 1500px;
-            height: 1200px;
-            overflow: hidden;
-            margin: auto;
-            position: relative;
-            border: 2px solid black;
-        }
-
-
-        .square {
-            border: 1px solid black;
-            width: 30px;
-            height: 30px;
-            background-color: lightgreen;
-            border-radius: 3px;
-        }
-
-        tr {
-            border: 1px solid black;
-            width: 30px;
-            height: 30px;
-            border-radius: 3px;
-        }
-
-        .playerVillage {
-            background-color: blue;
-            width: 30px;
-            height: 30px;
-            text-align: center;
-            border: 1px solid black;
-        }
-
-        .enemyVillage {
-            background-color: red;
-            width: 30px;
-            height: 30px;
-            text-align: center;
-            border: 1px solid black;
-        }
-
-        .fancy-button {
-            background-color: #4CAF50;
-            /* Green */
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            transition-duration: 0.4s;
-            cursor: pointer;
-            border-radius: 8px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        }
-
-        .fancy-button:hover {
-            background-color: #3e8e41;
-            box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.2);
-        }
-
-        .moveButton:hover {
-            background-color: #ddd;
-            box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.2);
-        }
-
-        .moveButton {
-            width: 50px;
-            height: 30px;
-            margin: 0 5px;
-            background-color: #ccc;
-            border: none;
-        }
-
-        .DivMoveButton {
-            width: 1000px;
-            height: 35px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 50px auto;
-        }
-    </style>
 </head>
 
 <body>
@@ -147,7 +25,7 @@
     <div id="infoDiv" style="margin:auto">
         <h1 style="text-align: center;" id="info">Loading your War Map !!</h1>
     </div>
-    <div class="MapContainer" id="MapContainer">
+    <div class="MapContainer,container-md" id="MapContainer">
         <table id="WarMap">
         </table>
     </div>
