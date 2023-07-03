@@ -23,7 +23,7 @@ export function SetDimension() {
 // a function that cancel all the row in the table
 export function ResetTable() {
   let table = document.getElementById("WarMap");
-  for (let i = Rows; i >= 0; i--) {
+  for (let i = Rows-1; i >= 0; i--) {
     table.deleteRow(i);
   }
 }
@@ -35,8 +35,9 @@ export function resizeHandler() {
   let player = JSON.parse(localStorage.getItem("player"));
 
   // set the dimension of the table considering the container dimension
-  SetDimension();
   ResetTable();
+  SetDimension();
+
   // draw the map
   let CurrentOrigin = createTable(player, enemypos);
 
