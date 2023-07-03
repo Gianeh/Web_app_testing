@@ -70,17 +70,20 @@
         // retrieve data from cache to check if the player has enough food
         $cache = new Cache(array("player"));
         $resources = $cache->acquireData("player", $token);
-        if ($resources["food"] >= 10) {
-            // if the player has enough food, update the population
-            $resources["population"] += 1;
-            // update the food
-            $resources["food"] -= 10;
-            $cache->setData("player", $resources, $token);
-            return true;
-        } else {
-            // if the player doesn't have enough food, return false
-            return false;
+        $json = file_get_contents('../requirements.json');
+        $requirements = json_decode($json, true)["add_population"];
+        foreach ($requirements as $key => $value) {
+            if($resources[$key] < $value) return false;
         }
+        // add population as duration is 0
+        $resources["population"] += 1;
+        // update the resources
+        foreach ($requirements as $key => $value) {
+            $resources[$key] -= $value;
+        }
+        $resources["food"] -= 10;
+        $cache->setData("player", $resources, $token);
+        return true;
 
     }
 
@@ -94,29 +97,28 @@
         $cache->deleteData("townhall_upgrade", $token);
 
         // frontend should check this requirements too, a json requirements file should be created
-        if ($resources["wood"] >= 100 && $resources["rock"] >= 100 && $resources["iron"] >= 100) {
-            // if the player has enough food, update the townhall level
-            $townhall["level"] += 1;
-            // update the resources
-            $resources["wood"] -= 100;
-            $resources["rock"] -= 100;
-            $resources["iron"] -= 100;
 
-            // resources can and should be updated as soon as the player clicks the upgrade button but 
-            // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
-
-            $cache->setData("player", $resources, $token);
-            unset($cache);
-            $db = new databaseQuery();
-
-            // the update is added to the events table in the database
-            addUpgrade("townhall_upgrade", $townhall["level"] + 1, $db);
-            //$cache->setData("townhall", $townhall, $token);
-            return true;
-        } else {
-            // if the player doesn't have enough food, return false
-            return false;
+        //parse the requirements json file
+        $json = file_get_contents('../requirements.json');
+        $requirements = json_decode($json, true)["townhall_upgrade"][$townhall["level"] + 1];
+        foreach ($requirements as $key => $value) {
+            if($resources[$key] < $value) return false;
         }
+        // update the resources
+        foreach ($requirements as $key => $value) {
+            $resources[$key] -= $value;
+        }
+        // resources can and should be updated as soon as the player clicks the upgrade button but 
+        // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
+
+        $cache->setData("player", $resources, $token);
+        unset($cache);
+        $db = new databaseQuery();
+
+        // the update is added to the events table in the database
+        addUpgrade("townhall_upgrade", $townhall["level"] + 1, $db);
+        //$cache->setData("townhall", $townhall, $token);
+        return true;
 
     }
 
