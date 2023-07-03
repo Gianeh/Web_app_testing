@@ -58,7 +58,7 @@ export function parseRequirements(data, level=0){
                     text += array[key][key2][level-1] + " seconds]";
                     continue;
                 }
-                text += key2 + ": " + array[key][key2][level] + ", ";
+                text += key2 + ": " + array[key][level][key2] + ", ";
             }
           }
             
