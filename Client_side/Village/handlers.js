@@ -111,7 +111,7 @@ export function townhallClick(event) {
     pop.addEventListener("click", addPopulation);
     buttons.appendChild(pop);
     let upgrade = document.createElement("button");
-    upgrade.innerHTML = "Upgrade Townhall " + parseRequirements("townhall_upgrade", data["level"]+1);
+    upgrade.innerHTML = "Upgrade Townhall " + parseRequirements("townhall_upgrade", (parseInt(data["level"])+1).toString());
     upgrade.addEventListener("click", upgradeTownhall);
     upgrade.classList.add("button");
     buttons.appendChild(upgrade);
