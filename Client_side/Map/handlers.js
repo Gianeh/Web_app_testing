@@ -150,8 +150,6 @@ export function VillageClick(event) {
 // function that handle movement inside the map
 export function moveTable(event) {
 
-
-
   // get key or the elemnt id of the button clicked
   let id = event.target.id;
   if (event.target.id != null) {
@@ -408,6 +406,10 @@ export function moveTable(event) {
   // player can desappear if he is not in the map
   if (overlay != null) {
     overlay.addEventListener("click", playerHandler);
+    // if the overlay is active move it 
+    if (overlay.style.display == "block") {
+      playerHandler();
+    }
   }
 
 }
