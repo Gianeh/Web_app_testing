@@ -181,7 +181,7 @@ export function moveTable(event) {
 
   // get key or the elemnt id of the button clicked
   let id = event.target.id;
-  if(event.target.id == ""){
+  if(event.target.id == null){
     let id = event.key;  // getting the key pressed
     switch (id) {
       case "w" :
