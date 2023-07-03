@@ -36,8 +36,11 @@ export function parseRequirements(data, level=0){
                 console.log(xhr.responseText);
                 array = JSON.parse(xhr.responseText);
             }
+        }else{
+            console.log("Error occurred: " + xhr.status);
         }
     }
+    xhr.send(null);
     let text = "[";
     for (let key in array){
         if(key == data){
@@ -52,10 +55,10 @@ export function parseRequirements(data, level=0){
           }else{
             for (let key2 in array[key][level]){
                 if(key2 == "duration"){
-                    text += array[key][key2][level-1] + " seconds]";
+                    text += array[key][level][key2] + " seconds]";
                     continue;
                 }
-                text += key2 + ": " + array[key][key2][level] + ", ";
+                text += key2 + ": " + array[key][level][key2] + ", ";
             }
           }
             
