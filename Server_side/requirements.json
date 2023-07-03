@@ -1,7 +1,26 @@
 {
+
+    "infantry_training": {
+        "iron": 10,
+        "food": 10,
+        "duration": 10
+    },
+    "archer_training": {
+        "wood": 10,
+        "food": 15,
+        "duration": 10
+    },
+    "cavalry_training": {
+        "iron": 20,
+        "wood": 10,
+        "food": 30,
+        "duration": 20
+    },
+    "add_population": {
+        "food": 10,
+        "duration": 0
+    },
     "townhall_upgrade": {
-        "comment" : "Townhall upgrade time in seconds, thid is a temporary solution",
-        
         "1": {
             "rock": 100,
             "wood": 100,

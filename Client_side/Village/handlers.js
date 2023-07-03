@@ -1,9 +1,11 @@
-import { pickRecords, printData, getLocalData, sendData } from "../helper.js";
+import { pickRecords, printData, getLocalData, sendData, parseRequirements } from "../helper.js";
 
 var upgrade_id = 0;
 
 // a function to handle the woodchopper click
 export function woodchopperClick(event) {
+    // reset the upgrade span updater
+    if(upgrade_id != 0) clearInterval(upgrade_id);
     let info = setInfoDiv("brown");
     // call the getData function to get the woodchopper data
     let data = getLocalData("woodchopper", "village");
@@ -18,6 +20,8 @@ export function woodchopperClick(event) {
 
 // a function to handle the rockmine click
 export function rockmineClick(event) {
+    // reset the upgrade span updater
+    if(upgrade_id != 0) clearInterval(upgrade_id);
     let info = setInfoDiv("grey");
     // call the getData function to get the rockmine data
     let data = getLocalData("rockmine", "village");
@@ -32,6 +36,8 @@ export function rockmineClick(event) {
 
 // a function to handle the ironmine click
 export function ironmineClick(event) {
+    // reset the upgrade span updater
+    if(upgrade_id != 0) clearInterval(upgrade_id);
     let info = setInfoDiv("silver");
     // call the getData function to get the ironmine data
     let data = getLocalData("ironmine", "village");
@@ -46,6 +52,8 @@ export function ironmineClick(event) {
 
 // a function to handle the farm click
 export function farmClick(event) {
+    // reset the upgrade span updater
+    if(upgrade_id != 0) clearInterval(upgrade_id);
     let info = setInfoDiv("yellow");
     // call the getData function to get the farm data
     let data = getLocalData("farm", "village");
@@ -60,6 +68,8 @@ export function farmClick(event) {
 
 // a function to handle the barracks click
 export function barracksClick(event) {
+    // reset the upgrade span updater
+    if(upgrade_id != 0) clearInterval(upgrade_id);
     let info = setInfoDiv("red");
     // call the getData function to get the barracks data
     let data = getLocalData("barracks", "village");
@@ -70,6 +80,12 @@ export function barracksClick(event) {
     let text = Object.assign(data, player);
     // set the info div to the data
     info.innerHTML = printData(text);
+
+    //spawn a button inside the buttons div
+    let infantry = document.createElement("button");
+    infantry.innerHTML = "Train Infantry + 1 [10 iron, 10 food]";
+
+
 }
 
 // a function to handle the townhall click
@@ -90,12 +106,12 @@ export function townhallClick(event) {
 
     //spawn a button inside the buttons div
     let pop = document.createElement("button");
-    pop.innerHTML = "Add Population + 1 [10 food]";
+    pop.innerHTML = "Add Population + 1 " + parseRequirements("add_population");
     pop.classList.add("button");
     pop.addEventListener("click", addPopulation);
     buttons.appendChild(pop);
     let upgrade = document.createElement("button");
-    upgrade.innerHTML = "Upgrade Townhall [100 iron, 100 wood, 100 rock]";
+    upgrade.innerHTML = "Upgrade Townhall " + parseRequirements("townhall_upgrade", data["level"]+1);
     upgrade.addEventListener("click", upgradeTownhall);
     upgrade.classList.add("button");
     buttons.appendChild(upgrade);

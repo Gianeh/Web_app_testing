@@ -17,7 +17,7 @@
 
         $upgrades = array($townhall, $barracks, $ironmine, $farm, $rockmine, $woodchopper);
 
-        // update upgrade events to database table events
+        // update upgrade events into database table events
         foreach($upgrades as $upgrade){
             if ($upgrade["status"] != "success") continue; // cache returns a status for upgrades events to prevent not found errors
             $db->update("events", "event_id, user_id, event_type, event_completion, finished", $upgrade['event_id'].", ". $_SESSION['user_id'].", ". $upgrade['event_type'].", ". $upgrade['event_completion'].", ". $upgrade['finished'].", 0", "user_id = '". $_SESSION['user_id'] ."'");

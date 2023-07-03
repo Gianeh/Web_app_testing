@@ -23,6 +23,47 @@ export function printData(data){
     return text;
 }
 
+// a function that parses the requirements.json file and returns resources and duration in the string format: "[resource1, resource2, ..., duration seconds]"
+export function parseRequirements(data, level=0){
+    // open file
+    let xhr = new XMLHttpRequest();
+    let path = "../Server_side/requirements.json";
+    let array;
+    xhr.open("GET", path, false);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200 || xhr.status === 0) {
+                //console.log(xhr.responseText);
+                array = JSON.parse(xhr.responseText);
+            }
+        }
+    }
+    let text = "[";
+    for (let key in array){
+        if(key == data){
+          if(level == 0){
+            for (let key2 in array[key]){
+                if(key2 == "duration"){
+                    text += array[key][key2] + " seconds]";
+                    continue;
+                }
+                text += key2 + ": " + array[key][key2] + ", ";
+            }
+          }else{
+            for (let key2 in array[key][level]){
+                if(key2 == "duration"){
+                    text += array[key][key2][level-1] + " seconds]";
+                    continue;
+                }
+                text += key2 + ": " + array[key][key2][level] + ", ";
+            }
+          }
+            
+        }
+    }
+    return text;
+}
+
 // a function to handle requests for a specific objects to the backend
 export function getData(dataName, path) {
     let xhr = new XMLHttpRequest();
