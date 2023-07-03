@@ -182,7 +182,7 @@ export function moveTable(event) {
   // get key or the elemnt id of the button clicked
   let id = event.target.id;
   if(event.target.id == null){
-    let id = event.key;  // getting the key pressed
+    id = event.key;  // getting the key pressed
     switch (id) {
       case "w" :
         id = "buttonUp";
@@ -431,5 +431,10 @@ export function moveTable(event) {
 
   // reset the event listener on the overlay
   let overlay = document.getElementById("playerVillage");
-
+    // player can desappear if he is not in the map
+    if (overlay != null) {
+      overlay.addEventListener("click", playerHandler);
+    }
+    
+  
 }
