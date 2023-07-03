@@ -36,6 +36,8 @@ export function parseRequirements(data, level=0){
                 console.log(xhr.responseText);
                 array = JSON.parse(xhr.responseText);
             }
+        }else{
+            console.log("Error occurred: " + xhr.status);
         }
     }
     let text = "[";
