@@ -20,6 +20,15 @@
     display: none;
 }
 
+.EnemyOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80 px;
+    height: 80 px;
+    background-color: rgba(180, 0, 0, 0.5);
+    display: none;
+}
 
 .RefocusDiv {
     width: 1000px;
@@ -34,7 +43,7 @@
 
 .MapContainer {
     width: 1500px;
-    height: 1200px;
+    height: 800px;
     overflow-x: hidden;
     overflow-y: hidden;
     margin: auto;
