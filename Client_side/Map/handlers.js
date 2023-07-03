@@ -156,20 +156,21 @@ export function moveTable(event) {
     id = event.key;  // getting the key pressed
     switch (id) {
       case "w":
-        id = "buttonUp";
-        break;
-      case "a":
-        id = "buttonLeft";
-        break;
-      case "s":
         id = "buttonDown";
         break;
-      case "d":
+      case "a":
         id = "buttonRight";
+        break;
+      case "s":
+        id = "buttonUp";
+        break;
+      case "d":
+        id = "buttonleft";
         break;
     }
   }
-  console.log("moveTable, id: " + event.target.id);
+  console.log("moveTable, id: " + id);
+  
   let table = document.getElementById("WarMap");
 
   // get the current origin, player position and enemy position from local-storage
