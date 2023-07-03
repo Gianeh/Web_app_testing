@@ -431,13 +431,5 @@ export function moveTable(event) {
 
   // reset the event listener on the overlay
   let overlay = document.getElementById("playerVillage");
-  
-  // player can desappear if he is not in the map
-  if (overlay != null) {
-    overlay.addEventListener("click", playerHandler);
-  }
-  
-
-
 
 }
