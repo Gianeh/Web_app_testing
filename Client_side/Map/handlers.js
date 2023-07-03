@@ -1,3 +1,5 @@
+import { getDataWithParameter } from "../helper";
+
 // map constant
 const MapWidth = 500;
 const MapHeight = 500;
@@ -18,6 +20,8 @@ export function SetDimension() {
   console.log("Rows: " + Rows);
   console.log("Cols: " + Cols);
 }
+
+
 
 
 // HandlerDrawMap function to draw the map
@@ -77,8 +81,8 @@ export function createTable(player, enemypos) {
       for (let k in enemypos) {
         if (j == enemypos[k]["x"] && i == enemypos[k]["y"]) {
           cell.className = "enemyVillage";
-          cell.id = "EnemyVillage" + enemypos[k]["username"];
-          cell.innerHTML = "E";
+            cell.id = "enemyVillage";
+            cell.innerHTML = "E";
         }
       }
     }
@@ -89,13 +93,6 @@ export function createTable(player, enemypos) {
 
 
 
-
-//close the overlay
-export function overlayCloseHandler(event) {
-  // close the overlay
-  let overlay = document.getElementById("PlayerOverlay");
-  overlay.style.display = "none";
-}
 
 
 
@@ -126,6 +123,62 @@ export function playerHandler() {
 
 
 
+// function to open the overlay for enemy
+export function enemyHandler(event) {
+
+  // get the enemy village
+  let enemy = event.target;
+
+  // this specific enemy position
+  let x = enemy.cellIndex;
+  let y = enemy.parentNode.rowIndex;
+
+  // get the enemy position
+  let enemypos = JSON.parse(localStorage.getItem("enemypos"));
+
+  for(let k in enemypos){
+    if(enemypos[k]["x"] == x && enemypos[k]["y"] == y){
+      // set enemy overlay
+      let overlay = document.getElementById("EnemyOverlay");
+      let top = enemy.offsetTop;
+      let left = enemy.offsetLeft;
+      top += 50;
+      left += 50;
+      overlay.style.top = top + "px";
+      overlay.style.left = left + "px";
+      overlay.zIndex = 9999;
+
+      //set enemy data
+      let enemyName = document.getElementById("enemyName");
+      enemyName.innerHTML = enemypos[k]["name"];
+
+      let enemyLevel = document.getElementById("enemyLevel");
+      enemyLevel.innerHTML = enemypos[k]["level"];
+
+      // get enemy structures data
+      let enemyResurces= getDataWithParameter("resurces","user_id ="+ enemypos[k]["user_id"],"*");   
+
+      // set enemy resurces data
+      let enemyWoood = document.getElementById("enemyWood");
+      enemyWoood.innerHTML = enemyResurces[0]["wood"];
+
+      let enemyRock = document.getElementById("enemyStone");
+      enemyStone.innerHTML = enemyResurces[0]["Rock"];
+
+      let enemyIron = document.getElementById("enemyIron");
+      enemyIron.innerHTML = enemyResurces[0]["iron"];
+
+      let enemyFood = document.getElementById("enemyFood");
+      enemyFood.innerHTML = enemyResurces[0]["food"];
+
+    }
+  }
+  //open the overlay
+  let overlay = document.getElementById("EnemyOverlay");
+  // get top, left enemy village position on screen
+
+}
+
 
 
 //funxtion that close the player overlay
@@ -137,6 +190,13 @@ export function ClosePlayerHandlrer() {
 }
 
 
+// function that close the enemy overlay
+export function CloseEnemyHandlrer() {
+
+  let overlay = document.getElementById("EnemyOverlay");
+  overlay.style.display = "none";
+
+}
 
 
 //function to return to village
@@ -153,8 +213,8 @@ export function moveTable(event) {
   // get key or the elemnt id of the button clicked
   let id = event.target.id;
   if (event.target.id != null) {
-    id = event.key;  // getting the key pressed
-    switch (id) {
+    let key = event.key;  // getting the key pressed
+    switch (key) {
       case "w":
         id = "buttonDown";
         break;
@@ -170,7 +230,7 @@ export function moveTable(event) {
     }
   }
   console.log("moveTable, id: " + id);
-  
+
   let table = document.getElementById("WarMap");
 
   // get the current origin, player position and enemy position from local-storage
@@ -231,7 +291,7 @@ export function moveTable(event) {
         for (let k in enemypos) {
           if (CurrentOrigin["x"] + j == enemypos[k]["x"] && CurrentOrigin["y"] + Rows == enemypos[k]["y"]) {
             cell.className = "enemyVillage";
-            cell.id = "EnemyVillage" + enemypos[k]["username"];
+            cell.id = "enemyVillage";
             cell.innerHTML = "E";
           }
         }
@@ -286,7 +346,7 @@ export function moveTable(event) {
         for (let k in enemypos) {
           if (CurrentOrigin["x"] + j == enemypos[k]["x"] && CurrentOrigin["y"] == enemypos[k]["y"]) {
             cell.className = "enemyVillage";
-            cell.id = "EnemyVillage" + enemypos[k]["username"];
+            cell.id = "enemyVillage";
             cell.innerHTML = "E";
           }
         }
@@ -337,9 +397,9 @@ export function moveTable(event) {
         // check if there is an enemy village
         for (k in enemypos) {
           if (CurrentOrigin["x"] == enemypos[k]["x"] && CurrentOrigin["y"] + Rows - i == enemypos[k]["y"]) {
-            newCell.className = "enemyVillage";
-            newCell.id = "EnemyVillage" + enemypos[k]["username"];
-            newCell.innerHTML = "E";
+            cell.className = "enemyVillage";
+            cell.id = "enemyVillage";
+            cell.innerHTML = "E";
           }
         }
       }
@@ -391,9 +451,9 @@ export function moveTable(event) {
         // check if there is an enemy village
         for (k in enemypos) {
           if (CurrentOrigin["x"] + Cols - 1 == enemypos[k]["x"] && CurrentOrigin["y"] + Rows - i == enemypos[k]["y"]) {
-            newCell.className = "enemyVillage";
-            newCell.id = "EnemyVillage" + enemypos[k]["username"];
-            newCell.innerHTML = "E";
+            cell.className = "enemyVillage";
+            cell.id = "enemyVillage";
+            cell.innerHTML = "E";
           }
         }
       }
@@ -402,7 +462,7 @@ export function moveTable(event) {
   }
 
 
-  // reset the event listener on the overlay
+  // reset the event listener on the overlay of the player village
   let overlay = document.getElementById("playerVillage");
   // player can desappear if he is not in the map
   if (overlay != null) {
@@ -410,6 +470,17 @@ export function moveTable(event) {
     // if the overlay is active move it 
     if (overlay.style.display == "block") {
       playerHandler();
+    }
+  }
+
+  // reset the event listener on the overlay of the enemy village
+  let enemyOverlay = document.getElementById("enemyVillage");
+  // enemy can desappear if he is not in the map
+  if (enemyOverlay != null) {
+    enemyOverlay.addEventListener("click", enemyHandler);
+    // if the overlay is active move it 
+    if (enemyOverlay.style.display == "block") {
+      enemyHandler();
     }
   }
 
