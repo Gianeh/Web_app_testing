@@ -13,7 +13,7 @@ let Cols = 0; //number of columns
 // Calculate the number of rows and columns are drawable in the container
  export function SetDimension() {
     let container = document.getElementById("MapContainer");
-    Rows = Math.floor(container.offsetHeight / CellWidth);
+    Rows = Math.floor(container.offsetHeight/ CellWidth);
     Cols = Math.floor(container.offsetWidth/ CellWidth);
     console.log("Rows: " + Rows);
     console.log("Cols: " + Cols);
@@ -183,6 +183,20 @@ export function moveTable(event) {
   let id = event.target.id;
   if(event.target.id == ""){
     let id = event.key;  // getting the key pressed
+    switch (id) {
+      case "w" :
+        id = "buttonUp";
+        break;
+      case "a" :
+        id = "buttonLeft";
+        break;
+      case "s" :
+        id = "buttonDown";
+        break;
+      case "d" :
+        id = "buttonRight";
+        break;
+    }
   }
   let table = document.getElementById("WarMap");
 
@@ -199,7 +213,7 @@ export function moveTable(event) {
   switch (id) {
 
     //CASE I MOVE UP
-    case "buttonUp" || "w":
+    case "buttonUp" :
 
       // check if i can move up
       if (CurrentOrigin["y"] + Rows + 1> MapHeight) {
@@ -252,7 +266,7 @@ export function moveTable(event) {
       break;
 
     // CASE I MOVE DOWN
-    case "buttonDown" || "s":
+    case "buttonDown" :
 
       // check if i can move down
       if (CurrentOrigin["y"] - 1 < 0) {
@@ -307,7 +321,7 @@ export function moveTable(event) {
       break;
 
     // CASE I MOVE LEFT
-    case "buttonLeft" || "a":
+    case "buttonLeft" :
 
       // check if i can move left
       if (CurrentOrigin["x"] - 1 < 0) {
@@ -360,7 +374,7 @@ export function moveTable(event) {
       break;
 
     // CASE I MOVE RIGHT
-    case "buttonRight" || "d":
+    case "buttonRight" :
 
       // check if i can move right
       if (CurrentOrigin["x"] + Cols + 1 > MapWidth) {
