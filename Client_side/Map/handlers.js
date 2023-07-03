@@ -11,12 +11,12 @@ let Cols = 0; //number of columns
 
 
 // Calculate the number of rows and columns are drawable in the container
- export function SetDimension() {
-    let container = document.getElementById("MapContainer");
-    Rows = Math.floor(container.offsetHeight/ CellWidth);
-    Cols = Math.floor(container.offsetWidth/ CellWidth);
-    console.log("Rows: " + Rows);
-    console.log("Cols: " + Cols);
+export function SetDimension() {
+  let container = document.getElementById("MapContainer");
+  Rows = Math.floor(container.offsetHeight / CellWidth);
+  Cols = Math.floor(container.offsetWidth / CellWidth);
+  console.log("Rows: " + Rows);
+  console.log("Cols: " + Cols);
 }
 
 
@@ -58,7 +58,7 @@ export function createTable(player, enemypos) {
   let height = 0;
 
   // Set the height and width of the relative table CHECK SPAWN POSIION POLICY
-  let CurrentOrigin = { x: player["x"] - Math.floor(Cols/2), y: player["y"] - Math.floor(Rows/2) };
+  let CurrentOrigin = { x: player["x"] - Math.floor(Cols / 2), y: player["y"] - Math.floor(Rows / 2) };
   height = Rows + CurrentOrigin["y"];
   width = Cols + CurrentOrigin["x"];
 
@@ -181,19 +181,19 @@ export function moveTable(event) {
 
   // get key or the elemnt id of the button clicked
   let id = event.target.id;
-  if(event.target.id == null){
+  if (event.target.id == null) {
     id = event.key;  // getting the key pressed
     switch (id) {
-      case "w" :
+      case "w":
         id = "buttonUp";
         break;
-      case "a" :
+      case "a":
         id = "buttonLeft";
         break;
-      case "s" :
+      case "s":
         id = "buttonDown";
         break;
-      case "d" :
+      case "d":
         id = "buttonRight";
         break;
     }
@@ -213,10 +213,10 @@ export function moveTable(event) {
   switch (id) {
 
     //CASE I MOVE UP
-    case "buttonUp" :
+    case "buttonUp":
 
       // check if i can move up
-      if (CurrentOrigin["y"] + Rows + 1> MapHeight) {
+      if (CurrentOrigin["y"] + Rows + 1 > MapHeight) {
         console.log("I can't move up");
         break;
       }
@@ -266,7 +266,7 @@ export function moveTable(event) {
       break;
 
     // CASE I MOVE DOWN
-    case "buttonDown" :
+    case "buttonDown":
 
       // check if i can move down
       if (CurrentOrigin["y"] - 1 < 0) {
@@ -286,7 +286,7 @@ export function moveTable(event) {
       }
 
       // delete the last row
-      table.deleteRow(Rows-1);
+      table.deleteRow(Rows - 1);
 
       // modify current origin cause i move down so i decrease the y coordinate
       CurrentOrigin["y"] -= 1;
@@ -294,7 +294,7 @@ export function moveTable(event) {
       console.log("CurrentOrigin: " + CurrentOrigin["x"] + " " + CurrentOrigin["y"]);
 
       // insert a new row at the bottom
-      let newBottomRow = table.insertRow(Rows-1);
+      let newBottomRow = table.insertRow(Rows - 1);
 
 
       for (let j = 0; j < Cols; j++) {
@@ -321,7 +321,7 @@ export function moveTable(event) {
       break;
 
     // CASE I MOVE LEFT
-    case "buttonLeft" :
+    case "buttonLeft":
 
       // check if i can move left
       if (CurrentOrigin["x"] - 1 < 0) {
@@ -330,7 +330,7 @@ export function moveTable(event) {
       }
 
       // Move the entire table to the right by one column
-      for (let j = Cols-1; j > 0; j--) {
+      for (let j = Cols - 1; j > 0; j--) {
         for (let i = 0; i < Rows - 1; i++) {
           currentCell = table.rows[i].cells[j];
           prevCell = table.rows[i].cells[j - 1];
@@ -374,7 +374,7 @@ export function moveTable(event) {
       break;
 
     // CASE I MOVE RIGHT
-    case "buttonRight" :
+    case "buttonRight":
 
       // check if i can move right
       if (CurrentOrigin["x"] + Cols + 1 > MapWidth) {
@@ -427,14 +427,13 @@ export function moveTable(event) {
 
       break;
   }
-  
+
 
   // reset the event listener on the overlay
   let overlay = document.getElementById("playerVillage");
-    // player can desappear if he is not in the map
-    if (overlay != null) {
-      overlay.addEventListener("click", playerHandler);
-    }
-    
-  
+  // player can desappear if he is not in the map
+  if (overlay != null) {
+    overlay.addEventListener("click", playerHandler);
+  }
 }
+
