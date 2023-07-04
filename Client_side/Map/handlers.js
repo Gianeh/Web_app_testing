@@ -246,7 +246,7 @@ export function moveTable(event) {
         id = "buttonUp";
         break;
       case "d":
-        id = "buttonleft";
+        id = "buttonLeft";
         break;
     }
     key = null;
