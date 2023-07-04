@@ -486,14 +486,11 @@ export function moveTable(event) {
 
 
   // reset the event listener on the overlay of the player village
-  overlay = document.getElementById("playerVillage");
+ 
   // player can desappear if he is not in the map
-  if (overlay != null) {
+  if (playerOverlay != null) {
     overlay.addEventListener("click", playerHandler);
   }
-
-  // reset the event listener on the overlay of the enemy village
-  enemyOverlay = document.getElementById("enemyVillage");
   // enemy can desappear if he is not in the map
   if (enemyOverlay != null) {
     enemyOverlay.addEventListener("click", enemyHandler);
