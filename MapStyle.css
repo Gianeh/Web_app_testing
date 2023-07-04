@@ -89,6 +89,23 @@ tr {
     border: 1px solid black;
 }
 
+.AttackButton{
+    background-color: #d61616;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
 .fancy-button {
     background-color: #4CAF50;
     /* Green */
