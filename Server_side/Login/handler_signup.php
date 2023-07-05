@@ -67,15 +67,18 @@
     }else{
         $near = true;
         while ($near) {
-            $x = rand(0, $MAP_WIDTH - 1);
-            $y = rand(0, $MAP_HEIGHT - 1);
+            $lastElement = end($existingPositions);                                        // get the last player position
+            $x = rand($lastElement[0] - $MAX_DISTANCE, $lastElement[0] + $MAX_DISTANCE);   // generate a random position for the new player considering the last player position
+            $y = rand($lastElement[1] - $MAX_DISTANCE, $lastElement[1] + $MAX_DISTANCE);   
             $within_range = true;
-            foreach($existingPositions as $key => $value){
-                $distance = sqrt(($value[0] - $x) ** 2 + ($value[1] - $y) ** 2);
+            foreach($existingPositions as $key => $value){                
+                if($x != $value[0] && $y != $value[1]){                                      // check if the new player position is not the same of one of the player position
+                $distance = sqrt(($value[0] - $x) ** 2 + ($value[1] - $y) ** 2);             
                 if ($distance < $MIN_DISTANCE || $distance > $MAX_DISTANCE) {
                     $within_range = false;
                     break;
                 }
+            }
             }
 
             if ($within_range) {
