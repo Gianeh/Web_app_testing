@@ -74,8 +74,8 @@
             foreach($existingPositions as $key => $value){                
                 if($x != $value[0] && $y != $value[1]){                                      // check if the new player position is not the same of one of the player position
                 $distance = sqrt(($value[0] - $x) ** 2 + ($value[1] - $y) ** 2);             
-                if ($distance < $MIN_DISTANCE || $distance > $MAX_DISTANCE) {
-                    $within_range = false;
+                if ($distance > $MIN_DISTANCE || $distance < $MAX_DISTANCE) {
+                    $within_range = true;
                     break;
                 }
             }
