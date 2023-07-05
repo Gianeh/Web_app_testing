@@ -489,7 +489,7 @@ export function moveTable(event) {
  
   // player can desappear if he is not in the map
   if (playerOverlay != null) {
-    overlay.addEventListener("click", playerHandler);
+    playerOverlay.addEventListener("click", playerHandler);
   }
   // enemy can desappear if he is not in the map
   if (enemyOverlay != null) {
