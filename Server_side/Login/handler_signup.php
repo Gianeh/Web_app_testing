@@ -49,6 +49,16 @@
     }
 
 
+    //idea for player spawn
+
+    // The spawn will be generrate randomy by the last player that joined the game
+    // The first player will spawn in the middle of the map as it is
+    // The second player will spawn in a random position that is at least $MIN_DISTANCE away from the first player
+    // The third player will spawn in a random position that is at least $MIN_DISTANCE in every direction away from teh second player
+
+    // i need to check ifthe new player dose not spawn in a position where there is already a player
+
+
     // Following code is incomplete, after a first spawn the next player won't be able to spawn covering the whole map but just in a $MAX_DISTANCE radius from the first player
     if(count($existingPositions) == 0){
         $x = floor($MAP_WIDTH/2);
