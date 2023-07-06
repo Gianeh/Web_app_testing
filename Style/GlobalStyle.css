@@ -33,8 +33,6 @@
 
 .terrain_cell{
     background-image: url("https://aos-web-testing.azurewebsites.net/Style/bitmap/terrain.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
     width: 30px;
     height: 30px;
 }
