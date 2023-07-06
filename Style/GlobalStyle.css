@@ -37,8 +37,10 @@
     height: 30px;
 }
 
-.montain_cell{
-    
+.rock_cell{
+    background-image: url("https://aos-web-testing.azurewebsites.net/Style/bitmap/rock.png");
+    width: 30 px;
+    height: 30 px;
 }
 
 .forest_cell{

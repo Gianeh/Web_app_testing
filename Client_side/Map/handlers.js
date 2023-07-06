@@ -171,9 +171,9 @@ export function enemyHandler(event) {
 
       // set enemy resurces data
       let enemyWoood = document.getElementById("enemyWood");
-      enemyWoood.innerHTML = enemyResurces[0]["wood"];
+      enemyWoood.innerText = enemyResurces[0]["wood"];
 
-      let enemyRock = document.getElementById("enemyStone");
+      let enemyRock = document.getElementById("enemyRock");
       enemyRock.innerHTML = enemyResurces[0]["rock"];
 
       let enemyIron = document.getElementById("enemyIron");

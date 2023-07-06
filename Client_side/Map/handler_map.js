@@ -9,7 +9,8 @@
 
 
 import { pickRecords,  getLocalData, getDataWithParameter } from "../helper.js";
-import { createTable, playerHandler, enemyHandler, moveTable,ClosePlayerHandlrer, VillageClick, SetDimension } from "./handlers.js";
+import { createTable, playerHandler, enemyHandler, moveTable, ClosePlayerHandlrer, VillageClick, SetDimension } from "./handlers.js";
+import { drawRock } from "./Graphical_function.js";
 //use only getLocalData to get info
 
 
@@ -41,6 +42,9 @@ export function onLoad() {
   // draw the map
   let CurrentOrigin = createTable(player, enemypos);
   console.log("CurrentOrigin: " + CurrentOrigin["x"] + ", " + CurrentOrigin["y"]);
+
+  // draw rock inside the map
+  drawRock();
 
   // insert in localstorage the current origin
   localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
