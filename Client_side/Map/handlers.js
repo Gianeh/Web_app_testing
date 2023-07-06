@@ -165,7 +165,7 @@ export function enemyHandler(event) {
       enemyLevel.innerHTML = enemypos[k]["level"];
 
       // get enemy structures data
-      let enemyResurces= getDataWithParameter("resurces","user_id ="+ enemypos[k]["user_id"],"*");   
+      let enemyResurces= getDataWithParameter("resources","user_id ="+ enemypos[k]["user_id"],"*");   
 
       // set enemy resurces data
       let enemyWoood = document.getElementById("enemyWood");
