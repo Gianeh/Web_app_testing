@@ -138,6 +138,9 @@ export function enemyHandler(event) {
   let x = enemy.cellIndex;
   let y = enemy.parentNode.rowIndex;
 
+  console.log("enemyCellIndex: " + x);
+  console.log("enemyRowIndex: " + y);
+
   // get the enemy position
   let enemypos = JSON.parse(localStorage.getItem("enemypos"));
 
