@@ -165,7 +165,7 @@ export function enemyHandler(event) {
       enemyLevel.innerHTML = enemypos[k]["level"];
 
       // get enemy structures data
-      let enemyResurces= getDataWithParameter("resources","user_id ="+ enemypos[k]["user_id"],"wood, rock, iron, food");   
+      let enemyResurces= getDataWithParameter("resources"," user_id = '" + enemypos[k]["user_id"] + "'","wood, rock, iron, food");   
 
       console.log(enemyResurces); 
 
