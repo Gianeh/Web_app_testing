@@ -141,11 +141,12 @@ export function enemyHandler(event) {
   console.log("enemyCellIndex: " + x);
   console.log("enemyRowIndex: " + y);
 
-  // get the enemy position
+  // get the enemy position and current origin
   let enemypos = JSON.parse(localStorage.getItem("enemypos"));
+  let CurrentOrigin = JSON.parse(localStorage.getItem("CurrentOrigin"));
 
   for(let k in enemypos){
-    if(enemypos[k]["x"] == x && enemypos[k]["y"] == y){
+    if((enemypos[k]["x"]+CurrentOrigin["x"]) == x && (enemypos[k]["y"]+CurrentOrigin["y"]) == y){
       // set enemy overlay
       let overlay = document.getElementById("EnemyOverlay");
       let top = enemy.offsetTop;

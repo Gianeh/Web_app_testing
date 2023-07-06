@@ -53,13 +53,13 @@ WHERE p.x < g.x - 20
 
 --
 SELECT p.username FROM players p
-WHERE p.user_id = chat.sender_id AND chat.text = 'u mom'
+WHERE p.user_id = chat.sender_id AND chat.text = 'Hi,How are you?'
 
 --
 CREATE VIEW player_ranking AS
-SELECT u.username, u.user_id, u.playing_hours, t.cavalry_quantity
-FROM player p
-JOIN structures s ON u.user_id = s.user_id
+SELECT p.username, p.user_id, p.playing_hours, t.cavalry
+FROM player p, troops t
+JOIN structures s ON p.user_id = s.user_id
 ORDER BY s.townhall_level DESC;
 
 SELECT * FROM player_ranking;

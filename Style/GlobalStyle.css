@@ -1,0 +1,71 @@
+.navigation_menu{
+    width: 1000px;
+    height: 75px;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+}
+
+.terrain_celll{
+
+}
+
+.montain_cell{
+    
+}
+
+.forest_cell{
+    
+}
+
+.water_cell{
+    
+}
+
+.loading_circle{
+    position: absolute;
+    top: 46%;
+    left: 48%;
+    width: 100px;
+    height: 100px;
+    border: 6px solid gray;
+    border-top: 6px solid #4CAF50;
+    border-radius: 50%;
+    animation: loader-spin 2s linear infinite;
+    z-index: 9999;
+}
+
+@keyframes loader-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+
+}
+
+.navigation_button {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.navigation_button:hover {
+    background-color: #3e8e41;
+    box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.2);
+}

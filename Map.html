@@ -10,18 +10,20 @@
     </script>
     <!--Css dependencies-->
     <link rel="stylesheet" href="./Style/MapStyle.css">
+    <link rel="stylesheet" href="./Style/GlobalStyle.css">
     
 </head>
 
 <body>
-    <div class="RefocusDiv">
-        <button class="fancy-button" id="ReturnToVillage">Return To Village</button>
+    <div class="navigation_menu">
+        <button class="navigation_button" id="ReturnToVillage">Return To Village</button>
     </div>
     <div id="infoDiv" style="margin:auto">
-        <h1 style="text-align: center;" id="info">Loading your War Map !!</h1>
+        <h1 style="text-align: center; vertical-align: middle;" id="info">Loading your War Map !!</h1>
     </div>
     <div class="MapContainer" id="MapContainer">
-        <table class="MapTable" id="WarMap">
+        <div class="loading_circle" id="loading_circle"></div>
+        <table class="MapTable" id="WarMap">   
         </table>
     </div>
     <div class="DivMoveButton">

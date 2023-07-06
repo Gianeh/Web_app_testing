@@ -32,6 +32,9 @@ export function onLoad() {
   let enemypos = getDataWithParameter("player", " username  <> '" + player["username"] + "'", "*");   
   console.log(enemypos);
 
+  let loading = document.getElementById("loading_circle");
+  loading.style.display = "none";
+
   // set the dimension of the table considering the container dimension
   SetDimension();
 
