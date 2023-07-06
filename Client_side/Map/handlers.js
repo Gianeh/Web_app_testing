@@ -146,7 +146,7 @@ export function enemyHandler(event) {
   let CurrentOrigin = JSON.parse(localStorage.getItem("CurrentOrigin"));
 
   for(let k in enemypos){
-    if((enemypos[k]["x"]+CurrentOrigin["x"]) == x && (enemypos[k]["y"]+CurrentOrigin["y"]) == y){
+    if(enemypos[k]["x"]== (x+CurrentOrigin["x"]) && enemypos[k]["y"] == (y+CurrentOrigin["y"])){
       // set enemy overlay
       let overlay = document.getElementById("EnemyOverlay");
       let top = enemy.offsetTop;
