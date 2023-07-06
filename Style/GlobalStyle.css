@@ -35,7 +35,6 @@
     background-image: url("https://aos-web-testing.azurewebsites.net/Style/bitmap/terrain.png");
     background-repeat: no-repeat;
     background-size: 100%;
-    border: 1px solid black;
     width: 30px;
     height: 30px;
 }
