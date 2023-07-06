@@ -165,7 +165,7 @@ export function enemyHandler(event) {
       enemyLevel.innerHTML = enemypos[k]["level"];
 
       // get enemy structures data
-      let enemyResurces= getDataWithParameter("resources","user_id ="+ enemypos[k]["user_id"],"*");   
+      let enemyResurces= getDataWithParameter("resources","user_id ="+ enemypos[k]["user_id"],"wood, rock, iron, food");   
 
       console.log(enemyResurces); 
 
@@ -174,7 +174,7 @@ export function enemyHandler(event) {
       enemyWoood.innerHTML = enemyResurces[0]["wood"];
 
       let enemyRock = document.getElementById("enemyStone");
-      enemyStone.innerHTML = enemyResurces[0]["Rock"];
+      enemyStone.innerHTML = enemyResurces[0]["rock"];
 
       let enemyIron = document.getElementById("enemyIron");
       enemyIron.innerHTML = enemyResurces[0]["iron"];
