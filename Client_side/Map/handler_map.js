@@ -9,7 +9,7 @@
 
 
 import { pickRecords,  getLocalData, getDataWithParameter } from "../helper.js";
-import { createTable, playerHandler, moveTable,ClosePlayerHandlrer, VillageClick, SetDimension } from "./handlers.js";
+import { createTable, playerHandler, enemyHandler, moveTable,ClosePlayerHandlrer, VillageClick, SetDimension } from "./handlers.js";
 //use only getLocalData to get info
 
 
@@ -59,6 +59,12 @@ function setHandlers() {
   let playerCell = document.getElementById("playerVillage");
   playerCell.addEventListener("click", playerHandler);
 
+  //add event listeners to enemy villages 
+  let enemyCells = document.getElementsByClassName("enemyVillage");
+  for (let i = 0; i < enemyCells.length; i++) { 
+    enemyCells[i].addEventListener("click", enemyHandler);
+  }
+  // add event listener to close player village overlay
   let button = document.getElementById("ClosePlayerVillage");
   button.addEventListener("click", ClosePlayerHandlrer);
 
@@ -77,7 +83,7 @@ function setHandlers() {
   buttonRight.addEventListener("click", moveTable);
 
   // add event listener to move the table by keyboard
-  document.addEventListener("keydown", moveTable);
+  document.addEventListener("keydown", moveTable);1
 
   // clear local storage on unload
   window.addEventListener("beforeunload", function () {

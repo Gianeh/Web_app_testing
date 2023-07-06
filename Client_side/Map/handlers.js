@@ -493,7 +493,9 @@ export function moveTable(event) {
   }
   // enemy can desappear if he is not in the map
   if (enemyOverlay != null) {
-    enemyOverlay.addEventListener("click", enemyHandler);
+    for (let i = 0; i < enemyOverlay.length; i++) {
+      enemyOverlay[i].addEventListener("click", enemyHandler);
+    }
   }
 
 }
