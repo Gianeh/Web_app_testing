@@ -167,6 +167,8 @@ export function enemyHandler(event) {
       // get enemy structures data
       let enemyResurces= getDataWithParameter("resources","user_id ="+ enemypos[k]["user_id"],"*");   
 
+      console.log(enemyResurces);
+
       // set enemy resurces data
       let enemyWoood = document.getElementById("enemyWood");
       enemyWoood.innerHTML = enemyResurces[0]["wood"];
