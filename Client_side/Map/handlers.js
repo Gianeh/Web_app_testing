@@ -7,7 +7,7 @@ const MapWidth = 500;
 const MapHeight = 500;
 
 // cell constant
-const CellWidth = 50; // width of the cell in px
+const CellWidth = 40; // width of the cell in px
 
 let Rows = 0; //number of rows
 let Cols = 0; //number of columns
