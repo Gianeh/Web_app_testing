@@ -72,7 +72,7 @@ export function createTable(player, enemypos) {
     for (let j = CurrentOrigin["x"]; j < width; j++) {
       // draw empty cells
       let cell = row.insertCell();
-      cell.className = "square";
+      cell.className = "terrain_cell";
       cell.id = "terrain";
 
       // Draw player village cell
