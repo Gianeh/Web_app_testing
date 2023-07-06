@@ -13,6 +13,7 @@
     background-image: url("https://aos-web-testing.azurewebsites.net/Style/bitmap/terrain.png");
     background-repeat: no-repeat;
     background-size: 100%;
+    border: 3px solid black;
 }
 
 .montain_cell{
