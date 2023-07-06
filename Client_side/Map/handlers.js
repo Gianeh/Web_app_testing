@@ -7,7 +7,7 @@ const MapWidth = 500;
 const MapHeight = 500;
 
 // cell constant
-const CellWidth = 30; // width of the cell in px
+const CellWidth = 50; // width of the cell in px
 
 let Rows = 0; //number of rows
 let Cols = 0; //number of columns
@@ -167,7 +167,7 @@ export function enemyHandler(event) {
       // get enemy structures data
       let enemyResurces= getDataWithParameter("resources","user_id ="+ enemypos[k]["user_id"],"*");   
 
-      console.log(enemyResurces);
+      console.log(enemyResurces); 
 
       // set enemy resurces data
       let enemyWoood = document.getElementById("enemyWood");
