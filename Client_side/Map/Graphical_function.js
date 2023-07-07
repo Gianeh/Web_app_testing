@@ -45,6 +45,7 @@ export function drawRock() {
         // is the right row?
         for (let j = 0; j < DENSITY; j++) {
             if (rowsWithRocks[j] = i) {
+
                 for (let k = 0; k < rocksPerRow; k++) {
 
                     // randomize position of the rock
