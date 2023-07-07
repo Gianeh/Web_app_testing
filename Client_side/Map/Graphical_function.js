@@ -70,7 +70,7 @@ export function drawRock() {
 
                 //Draw rocks inside the randomize chosen row
                 for (x = 0; x < rocksPerRow; x++){
-                    let cell = table.row[i].cell[rocksPosition[x]];
+                    let cell = table.rows[i].cells[rocksPosition[x]];
                     cell.className = "rock_cell";
                 }
 
