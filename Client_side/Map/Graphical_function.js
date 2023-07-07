@@ -27,7 +27,7 @@ export function drawRock() {
     // randomize the number of rocks per Row 
     let rocksPerRow = Math.floor(Math.random() * (MAX_ROCKS - MIN_ROCKS + 1)) + MIN_ROCKS;
     let rowsWithRocks = [];
-    
+
     console.log("rocksPerRow", rocksPerRow);
 
     // randomixe the number of rows with rocks
@@ -59,13 +59,15 @@ export function drawRock() {
 
                         //check entire roksPosition if the new one is different
                         for (let x = 0; x < rocksPosition.length; x++) {
-                            if (element == rockcell || (rockcell == player[x] && rockcell == player[y]) || (rockcell == enemy[x] && rockcell == enemy[y])) {
+                            element = rocksPosition[x];
+                            if (element == rockcell || (element == player[x] && i == player[y]) || (element == enemy[k][x] && i == enemy[k][y])) {
                                 rockcell = Math.floor(Math.random() * columns);
                                 break;
                             } else {
                                 check++;
                             }
                         }
+
                         if (check == rocksPosition.length - 1) {
                             different = false;
                         }
@@ -73,9 +75,9 @@ export function drawRock() {
                 }
 
                 //Draw rocks inside the randomize chosen row
-                for (x = 0; x < rocksPerRow; x++){
+                for (x = 0; x < rocksPerRow; x++) {
                     let cell = table.row[i].cell[rocksPosition[x]];
-                    console.log("cell: ", i, " ", rocksPosition[x] );
+                    console.log("cell: ", i, " ", rocksPosition[x]);
                     cell.className = "rock_cell";
                 }
 
