@@ -59,7 +59,7 @@ export function drawRock() {
 
                         //check entire roksPosition if the new one is different
                         for (let x = 0; x < rocksPosition.length; x++) {
-                            element = rocksPosition[x];
+                            let element = rocksPosition[x];
                             if (element == rockcell || (element == player[x] && i == player[y]) || (element == enemy[k][x] && i == enemy[k][y])) {
                                 rockcell = Math.floor(Math.random() * columns);
                                 break;
