@@ -42,7 +42,8 @@ export function drawRock() {
 
     //Scroll every row inside the table
     for (let i = 0; i < table.rows.length; i++) {
-        // is the right row
+        // is the right row?
+        for (let j = 0; j < DENSITY; j++) {
             if (rowsWithRocks[j] = i) {
                 for (let k = 0; k < rocksPerRow; k++) {
 
@@ -82,6 +83,8 @@ export function drawRock() {
 
             }
         }
+
+    }
 
 }
 
