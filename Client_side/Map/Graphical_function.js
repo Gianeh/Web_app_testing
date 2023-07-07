@@ -48,7 +48,7 @@ export function drawRock() {
                 for (let k = 0; k < rocksPerRow; k++) {
 
                     // randomize position of the rock
-                    let rockcell = Math.floor(Math.random() * table.row.cells.length);
+                    let rockcell = Math.floor(Math.random() * table.row[0].cells.length);
                     rocksPosition[k] = rockcell;
 
                     // check if there was already a rock there
