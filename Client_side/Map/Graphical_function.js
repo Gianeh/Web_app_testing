@@ -37,7 +37,6 @@ export function drawRock() {
 
     console.log("rowsWithRocks", rowsWithRocks);
 
-    let rockDrawn = 0;
     let rocksPosition = [];
 
     //Scroll every row inside the table
