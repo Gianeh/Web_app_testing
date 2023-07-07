@@ -26,12 +26,15 @@ export function drawRock() {
     // randomize the number of rocks per Row 
     let rocksPerRow = Math.floor(Math.random() * (MAX_ROCKS - MIN_ROCKS + 1)) + MIN_ROCKS;
     let rowsWithRocks = [];
+    
+    console.log("rocksPerRow", rocksPerRow);
 
     // randomixe the number of rows with rocks
     for (let i = 0; i < DENSITY; i++) {
         rowsWithRocks[i] = Math.floor(Math.random() * (rows - DENSITY + 1)) + DENSITY;
     }
 
+    console.log("rowsWithRocks", rowsWithRocks);
 
     let rockDrawn = 0;
     let rocksPosition = [];
@@ -71,6 +74,7 @@ export function drawRock() {
                 //Draw rocks inside the randomize chosen row
                 for (x = 0; x < rocksPerRow; x++){
                     let cell = table.row[i].cell[rocksPosition[x]];
+                    console.log("cell: ", i, " ", rocksPosition[x] );
                     cell.className = "rock_cell";
                 }
 
