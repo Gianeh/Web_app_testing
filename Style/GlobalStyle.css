@@ -41,6 +41,7 @@
     background-image: url("https://aos-web-testing.azurewebsites.net/Style/bitmap/rock.png");
     width: 30 px;
     height: 30 px;
+    background-repeat: no-repeat;
 }
 
 .forest_cell{

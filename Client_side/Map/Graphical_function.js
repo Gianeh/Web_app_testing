@@ -10,7 +10,7 @@ export function drawRock() {
 
     // max e min number of rock spawn
     const MAX_ROCKS = 5;  // MAX Number of rocks per row
-    const MIN_ROCKS = 0;  // MIN Number of rocks per row
+    const MIN_ROCKS = 2;  // MIN Number of rocks per row
     const DENSITY = 7;    // Number Of row with rocks
 
     // get the table
