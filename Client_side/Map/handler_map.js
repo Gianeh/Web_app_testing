@@ -43,7 +43,7 @@ export function onLoad() {
   SetDimension();
 
   // draw the map
-  let CurrentOrigin = createTable();
+  let CurrentOrigin = createTable(player);
   console.log("CurrentOrigin: " + CurrentOrigin["x"] + ", " + CurrentOrigin["y"]);
 
   // draw rock inside the map

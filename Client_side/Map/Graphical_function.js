@@ -9,6 +9,7 @@
 // 2) draw the rocks
 // 3) draw the player village and enemy villages
 
+// Function to draw rocks inside the map
 export function drawRock() {
 
     // max e min number of rock spawn
@@ -20,7 +21,7 @@ export function drawRock() {
 
     // get the table
     let table = document.getElementById("WarMap");
-    
+
     // get number of rows
     let rows = localStorage.getItem("Rows");
     let columns = localStorage.getItem("Cols");
@@ -101,7 +102,7 @@ export function drawRock() {
 
 }
 
-
+// a function that draw the player and the enemy village
 export function drawPlayerAndEnemy() {
 
     // get the current origin
@@ -136,5 +137,11 @@ export function drawPlayerAndEnemy() {
             }
         }
     }
+
+}
+
+
+// a function that drow trees around the map
+export function drawTrees(){
 
 }

@@ -30,7 +30,7 @@ export function SetDimension() {
 
 
 // HandlerDrawMap function to draw the map
-export function createTable() {
+export function createTable(player) {
 
   // Get the table
   let table = document.getElementById("WarMap");
