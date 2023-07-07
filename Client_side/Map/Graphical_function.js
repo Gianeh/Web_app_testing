@@ -21,7 +21,8 @@ export function drawRock() {
     //get enemy position
     let enemy = localStorage.getItem("enemypos");
     // get number of rows
-    let rows = table.rows.length;
+    let rows = localStorage.getItem("Rows");
+    let columns = localStorage.getItem("Cols");
 
     // randomize the number of rocks per Row 
     let rocksPerRow = Math.floor(Math.random() * (MAX_ROCKS - MIN_ROCKS + 1)) + MIN_ROCKS;
@@ -48,7 +49,7 @@ export function drawRock() {
                 for (let k = 0; k < rocksPerRow; k++) {
 
                     // randomize position of the rock
-                    let rockcell = Math.floor(Math.random() * table.row[0].cells.length);
+                    let rockcell = Math.floor(Math.random() * Cols);
                     rocksPosition[k] = rockcell;
 
                     // check if there was already a rock there
@@ -59,7 +60,7 @@ export function drawRock() {
                         //check entire roksPosition if the new one is different
                         for (let x = 0; x < rocksPosition.length; x++) {
                             if (element == rockcell) {
-                                rockcell = Math.floor(Math.random() * table.row.cells.length);
+                                rockcell = Math.floor(Math.random() * Cols);
                                 break;
                             } else {
                                 check++;
