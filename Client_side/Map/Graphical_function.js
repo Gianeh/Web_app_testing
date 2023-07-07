@@ -51,11 +51,12 @@ export function drawRock() {
                     let rockcell = Math.floor(Math.random() * columns);
                     rocksPosition[k] = rockcell;
 
-                    // check if there was already a rock there
+                    // check if there was already a rock there  I NEED TO AVOID LOOPS
+                    let counter = 0;
                     let different = true;
                     while (different) {
                         let check = 0;
-
+                        counter++;
                         //check entire roksPosition if the new one is different
                         for (let x = 0; x < rocksPosition.length; x++) {
                             let element = rocksPosition[x];
@@ -69,6 +70,9 @@ export function drawRock() {
                         }
 
                         if (check == rocksPosition.length - 1) {
+                            different = false;
+                        }
+                        if (counter == 100) { // if i can't find a different position i will stop
                             different = false;
                         }
                     }
