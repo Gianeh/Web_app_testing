@@ -40,7 +40,7 @@ export function drawRock() {
     let rocksPosition = [];
 
     //Scroll every row inside the table
-    for (i = 0; i < table.rows.length; i++) {
+    for (let i = 0; i < table.rows.length; i++) {
 
         // is the right row?
         for (let j = 0; j < DENSITY; j++) {
