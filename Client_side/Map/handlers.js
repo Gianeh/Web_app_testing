@@ -1,5 +1,5 @@
 import {
-	getDataWithParameter
+  getDataWithParameter
 } from "../helper.js";
 
 // map constant
@@ -19,6 +19,11 @@ export function SetDimension() {
   let container = document.getElementById("MapContainer");
   Rows = Math.floor(container.offsetHeight / CellWidth);
   Cols = Math.floor(container.offsetWidth / CellWidth);
+
+  // save the number of rows and columns in local storage
+  localStorage.setItem("Cols", Cols);
+  localStorage.setItem("Rows", Rows);
+
   console.log("Rows: " + Rows);
   console.log("Cols: " + Cols);
 }
@@ -37,10 +42,10 @@ export function createTable(player, enemypos) {
   let height = 0;
 
   // Set the height and width of the relative table CHECK SPAWN POSIION POLICY
-	let CurrentOrigin = {
-		x: player["x"] - Math.floor(Cols / 2),
-		y: player["y"] - Math.floor(Rows / 2)
-	};
+  let CurrentOrigin = {
+    x: player["x"] - Math.floor(Cols / 2),
+    y: player["y"] - Math.floor(Rows / 2)
+  };
   height = Rows + CurrentOrigin["y"];
   width = Cols + CurrentOrigin["x"];
 
@@ -86,8 +91,8 @@ export function createTable(player, enemypos) {
       for (let k in enemypos) {
         if (j == enemypos[k]["x"] && i == enemypos[k]["y"]) {
           cell.className = "enemyVillage";
-            cell.id = "enemyVillage";
-            cell.innerHTML = "E";
+          cell.id = "enemyVillage";
+          cell.innerHTML = "E";
         }
       }
     }
@@ -145,8 +150,8 @@ export function enemyHandler(event) {
   let enemypos = JSON.parse(localStorage.getItem("enemypos"));
   let CurrentOrigin = JSON.parse(localStorage.getItem("CurrentOrigin"));
 
-  for(let k in enemypos){
-    if(enemypos[k]["x"]== (x+CurrentOrigin["x"]) && enemypos[k]["y"] == (y+CurrentOrigin["y"])){
+  for (let k in enemypos) {
+    if (enemypos[k]["x"] == (x + CurrentOrigin["x"]) && enemypos[k]["y"] == (y + CurrentOrigin["y"])) {
       // set enemy overlay
       let overlay = document.getElementById("EnemyOverlay");
       let top = enemy.offsetTop;
@@ -165,9 +170,9 @@ export function enemyHandler(event) {
       enemyLevel.innerHTML = enemypos[k]["level"];
 
       // get enemy structures data
-      let enemyResurces= getDataWithParameter("resources"," user_id = '" + enemypos[k]["user_id"] + "'","wood, rock, iron, food");   
+      let enemyResurces = getDataWithParameter("resources", " user_id = '" + enemypos[k]["user_id"] + "'", "wood, rock, iron, food");
 
-      console.log(enemyResurces); 
+      console.log(enemyResurces);
 
       // set enemy resurces data
       let enemyWoood = document.getElementById("enemyWood");
@@ -492,7 +497,7 @@ export function moveTable(event) {
 
 
   // reset the event listener on the overlay of the player village
- 
+
   // player can desappear if he is not in the map
   if (playerOverlay != null) {
     playerOverlay.addEventListener("click", playerHandler);
