@@ -29,10 +29,8 @@ export function SetDimension() {
 }
 
 
-
-
 // HandlerDrawMap function to draw the map
-export function createTable(player, enemypos) {
+export function createTable() {
 
   // Get the table
   let table = document.getElementById("WarMap");
@@ -80,21 +78,6 @@ export function createTable(player, enemypos) {
       cell.className = "terrain_cell";
       cell.id = "terrain";
 
-      // Draw player village cell
-      if (j == player["x"] && i == player["y"]) {
-        cell.className = "playerVillage";
-        cell.id = "playerVillage";
-        cell.innerHTML = "P";
-      }
-
-      //Draw enemy villages cells
-      for (let k in enemypos) {
-        if (j == enemypos[k]["x"] && i == enemypos[k]["y"]) {
-          cell.className = "enemyVillage";
-          cell.id = "enemyVillage";
-          cell.innerHTML = "E";
-        }
-      }
     }
   }
   return CurrentOrigin;

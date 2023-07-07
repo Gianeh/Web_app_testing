@@ -1,25 +1,27 @@
- // Idea for the map
-  // I will have a 40 x 40 table already centerd on player village
-  // I will have a CurrentOrigin variable that will be the relative origin of the table
-  // I will have a function that will draw the table
-  // That function will consider as origin the CurrentOrigin variable so i will be currentOrigin[0] and j will be currentOrigin[1]
-  // The limit will be 40 + currentOrigin[0] and 40 + currentOrigin[1]
-  // If the limit is more than 500 or less than 0 it will table will not be centrered on the player village
+// Idea for the map
+// I will have a 40 x 40 table already centerd on player village
+// I will have a CurrentOrigin variable that will be the relative origin of the table
+// I will have a function that will draw the table
+// That function will consider as origin the CurrentOrigin variable so i will be currentOrigin[0] and j will be currentOrigin[1]
+// The limit will be 40 + currentOrigin[0] and 40 + currentOrigin[1]
+// If the limit is more than 500 or less than 0 it will table will not be centrered on the player village
 
 
 
-import { pickRecords,  getLocalData, getDataWithParameter } from "../helper.js";
+import { pickRecords, getLocalData, getDataWithParameter } from "../helper.js";
 import { createTable, playerHandler, enemyHandler, moveTable, ClosePlayerHandlrer, VillageClick, SetDimension } from "./handlers.js";
-import { drawRock } from "./Graphical_function.js";
+import { drawRock, drawPlayerAndEnemy } from "./Graphical_function.js";
 //use only getLocalData to get info
 
 
 export function onLoad() {
 
+  ///////////////////////// DATA RETRIVE SECTION /////////////////////////
+
   // search in local cache player data
-  let player = getLocalData("player", "map");       
+  let player = getLocalData("player", "map");
   // pick only username, x and y from player data      
-  player = pickRecords(player, ["username", "x", "y"]);   
+  player = pickRecords(player, ["username", "x", "y"]);
 
   // get the username
   let username = player["username"]
@@ -27,12 +29,13 @@ export function onLoad() {
   console.log("player position: " + player["x"] + ", " + player["y"]);
   console.log("player username: " + username);
 
-
-
   // execute the query to get enemy data and not the player data
-  let enemypos = getDataWithParameter("player", " username  <> '" + player["username"] + "'", "*");   
+  let enemypos = getDataWithParameter("player", " username  <> '" + player["username"] + "'", "*");
   console.log(enemypos);
 
+  ///////////////////////// GRAPHIC SECTION /////////////////////////
+
+  // get the loading circle and hide it
   let loading = document.getElementById("loading_circle");
   loading.style.display = "none";
 
@@ -40,11 +43,14 @@ export function onLoad() {
   SetDimension();
 
   // draw the map
-  let CurrentOrigin = createTable(player, enemypos);
+  let CurrentOrigin = createTable();
   console.log("CurrentOrigin: " + CurrentOrigin["x"] + ", " + CurrentOrigin["y"]);
 
   // draw rock inside the map
   drawRock();
+
+  // draw player and enemy
+  drawPlayerAndEnemy();
 
   // insert in localstorage the current origin
   localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));
@@ -68,7 +74,7 @@ function setHandlers() {
 
   //add event listeners to enemy villages 
   let enemyCells = document.getElementsByClassName("enemyVillage");
-  for (let i = 0; i < enemyCells.length; i++) { 
+  for (let i = 0; i < enemyCells.length; i++) {
     enemyCells[i].addEventListener("click", enemyHandler);
   }
   // add event listener to close player village overlay
@@ -90,12 +96,12 @@ function setHandlers() {
   buttonRight.addEventListener("click", moveTable);
 
   // add event listener to move the table by keyboard
-  document.addEventListener("keydown", moveTable);1
+  document.addEventListener("keydown", moveTable); 1
 
   // clear local storage on unload
   window.addEventListener("beforeunload", function () {
     // empties the local storage
     localStorage.clear();
-});
+  });
 
 }

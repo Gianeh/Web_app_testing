@@ -3,23 +3,24 @@
 
 // idea
 
-// i will print rocks in random position in random rows
-// the max numer of Rown is 
+// The concept byond drawing is putting important things at the end to avoid overwriting
+
+// 1) draw the map
+// 2) draw the rocks
+// 3) draw the player village and enemy villages
 
 export function drawRock() {
 
     // max e min number of rock spawn
     const MAX_ROCKS = 5;  // MAX Number of rocks per row
     const MIN_ROCKS = 2;  // MIN Number of rocks per row
-    const DENSITY = 7;    // Number Of row with rocks
+    const DENSITY = 5;    // Number Of row with rocks
+
+    const MIN_ROWS_DISTANCE = 5;
 
     // get the table
     let table = document.getElementById("WarMap");
-
-    //get player position
-    let player = localStorage.getItem("player");
-    //get enemy position
-    let enemy = localStorage.getItem("enemypos");
+    
     // get number of rows
     let rows = localStorage.getItem("Rows");
     let columns = localStorage.getItem("Cols");
@@ -33,6 +34,12 @@ export function drawRock() {
     // randomixe the number of rows with rocks
     for (let i = 0; i < DENSITY; i++) {
         rowsWithRocks[i] = Math.floor(Math.random() * (rows - DENSITY + 1)) + DENSITY;
+        //check if row containing rocks is too close to the previous one
+        if ((rowsWithRocks[i] < (rowsWithRocks[i - 1] + MIN_ROWS_DISTANCE) && i != 0)) {
+            rowsWithRocks[i] = rowsWithRocks[i - 1] + MIN_ROWS_DISTANCE;
+        } else if ((rowsWithRocks[i] > (rowsWithRocks[i - 1] - MIN_ROWS_DISTANCE) && i != 0)) {
+            rowsWithRocks[i] = rowsWithRocks[i - 1] - MIN_ROWS_DISTANCE;
+        }
     }
 
     console.log("rowsWithRocks", rowsWithRocks);
@@ -60,7 +67,7 @@ export function drawRock() {
                         //check entire roksPosition if the new one is different
                         for (let x = 0; x < rocksPosition.length; x++) {
                             let element = rocksPosition[x];
-                            if (element == rockcell || (element == player[x] && i == player[y]) ) {
+                            if (element == rockcell) {
                                 rockcell = Math.floor(Math.random() * columns);
                                 rocksPosition[k] = rockcell;
                                 break;
@@ -95,3 +102,39 @@ export function drawRock() {
 }
 
 
+export function drawPlayerAndEnemy() {
+
+    // get the current origin
+    let CurrentOrigin = localStorage.getItem("CurrentOrigin");
+
+    // drwawing position
+    let player = localStorage.getItem("player");
+    let enemy = localStorage.getItem("enemypos");
+
+    // get the table
+    let table = document.getElementById("WarMap");
+
+    // scroll all the table
+    for (let i = 0; i < table.rows.length; i++) {
+        for (let j = 0; j < table.rows[i].cells.length; j++) {
+            // get the cell
+            let cell = table.rows[i].cells[j];
+
+            // check if the cell is the player position
+            if (i + CurrentOrigin["y"] == player["y"] && j + CurrentOrigin["x"] == player["x"]) {
+                cell.className = "playerVillage";
+                cell.id = "playerVillage";
+                cell.innerHTML = "P";
+            }
+            // check if the cell is the enemy position
+            for (let k in enemypos) {
+                if (j + CurrentOrigin["x"] == enemypos[k]["x"] && i + CurrentOrigin["y"] == enemypos[k]["y"]) {
+                    cell.className = "enemyVillage";
+                    cell.id = "enemyVillage";
+                    cell.innerHTML = "E";
+                }
+            }
+        }
+    }
+
+}
