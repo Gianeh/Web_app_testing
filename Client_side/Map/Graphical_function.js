@@ -11,7 +11,7 @@ export function drawRock() {
     // max e min number of rock spawn
     const MAX_ROCKS = 5;  // MAX Number of rocks per row
     const MIN_ROCKS = 0;  // MIN Number of rocks per row
-    const DENSITY = 7;  // Number Of row with rocks
+    const DENSITY = 7;    // Number Of row with rocks
 
     // get the table
     let table = document.getElementById("WarMap");
@@ -44,7 +44,7 @@ export function drawRock() {
     for (let i = 0; i < table.rows.length; i++) {
         // is the right row?
         for (let j = 0; j < DENSITY; j++) {
-            if (rowsWithRocks[j] = i) {
+            if (rowsWithRocks[j] == i) {
 
                 for (let k = 0; k < rocksPerRow; k++) {
 
@@ -62,6 +62,7 @@ export function drawRock() {
                             let element = rocksPosition[x];
                             if (element == rockcell || (element == player[x] && i == player[y]) ) {
                                 rockcell = Math.floor(Math.random() * columns);
+                                rocksPosition[k] = rockcell;
                                 break;
                             } else {
                                 check++;
@@ -72,6 +73,7 @@ export function drawRock() {
                             different = false;
                         }
                     }
+                    console.log("rockposition: ", rocksPosition);
                 }
 
                 //Draw rocks inside the randomize chosen row
