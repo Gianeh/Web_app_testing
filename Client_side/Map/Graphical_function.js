@@ -59,7 +59,7 @@ export function drawRock() {
                         //check entire roksPosition if the new one is different
                         for (let x = 0; x < rocksPosition.length; x++) {
                             if (element == rockcell) {
-                                rockcell = Math.floor(Math.random() * (table.cells.length - 1)) + table.cells.length;
+                                rockcell = Math.floor(Math.random() * (table.row[i].cells.length - 1)) + table.cells.length;
                                 break;
                             } else {
                                 check++;
