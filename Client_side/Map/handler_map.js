@@ -50,7 +50,7 @@ export function onLoad() {
   drawRock();
 
   // draw player and enemy
-  drawPlayerAndEnemy();
+  drawPlayerAndEnemy(CurrentOrigin, enemypos, player);
 
   // insert in localstorage the current origin
   localStorage.setItem("CurrentOrigin", JSON.stringify(CurrentOrigin));

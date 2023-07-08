@@ -6,7 +6,7 @@
 // The concept byond drawing is putting important things at the end to avoid overwriting
 
 // 1) draw the map
-// 2) draw the rocks
+// 2) draw the rocks, trees, whater
 // 3) draw the player village and enemy villages
 
 // Function to draw rocks inside the map
@@ -17,7 +17,7 @@ export function drawRock() {
     const MIN_ROCKS = 2;  // MIN Number of rocks per row
     const DENSITY = 5;    // Number Of row with rocks
 
-    const MIN_ROWS_DISTANCE = 5;
+    const MIN_ROWS_DISTANCE = 5; // Minimum distance between rows with rocks
 
     // get the table
     let table = document.getElementById("WarMap");
@@ -103,14 +103,7 @@ export function drawRock() {
 }
 
 // a function that draw the player and the enemy village
-export function drawPlayerAndEnemy() {
-
-    // get the current origin
-    let CurrentOrigin = localStorage.getItem("CurrentOrigin");
-
-    // drwawing position
-    let player = localStorage.getItem("player");
-    let enemy = localStorage.getItem("enemypos");
+export function drawPlayerAndEnemy(CurrentOrigin, enemypos, player) {
 
     // get the table
     let table = document.getElementById("WarMap");
@@ -122,7 +115,7 @@ export function drawPlayerAndEnemy() {
             let cell = table.rows[i].cells[j];
 
             // check if the cell is the player position
-            if (i + CurrentOrigin["y"] == player["y"] && j + CurrentOrigin["x"] == player["x"]) {
+            if ((i + CurrentOrigin["y"]) == player["y"] && (j + CurrentOrigin["x"]) == player["x"]) {
                 cell.className = "playerVillage";
                 cell.id = "playerVillage";
                 cell.innerHTML = "P";
