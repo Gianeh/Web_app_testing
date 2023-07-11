@@ -10,7 +10,7 @@
 
 import { pickRecords, getLocalData, getDataWithParameter } from "../helper.js";
 import { createTable, playerHandler, enemyHandler, moveTable, ClosePlayerHandlrer, VillageClick, SetDimension } from "./handlers.js";
-import { drawRock, drawPlayerAndEnemy } from "./Graphical_function.js";
+import { drawLandScape, drawPlayerAndEnemy } from "./Graphical_function.js";
 //use only getLocalData to get info
 
 
@@ -47,7 +47,7 @@ export function onLoad() {
   console.log("CurrentOrigin: " + CurrentOrigin["x"] + ", " + CurrentOrigin["y"]);
 
   // draw rock inside the map
-  drawRock();
+  drawLandScape();
 
   // draw player and enemy
   drawPlayerAndEnemy(CurrentOrigin, enemypos, player);
