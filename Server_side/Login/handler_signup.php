@@ -7,6 +7,8 @@
     $MAX_DISTANCE = 25;
     $MIN_DISTANCE = 10;
 
+    $MAX_PLAYERS = 1000;
+
 
     if(!isset($_POST["username"]) || !isset($_POST["password"]) || !isset($_POST["password2"])){
         echo json_encode(array("status" => "error", "message" => "Missing parameters"));
@@ -39,7 +41,7 @@
         exit();
     }
 
-    
+    include_once("./poisson_disk_generator.php");
     
     //Generate a random position for the player
     $existingPositions = $connection->select("x, y", "player");
@@ -61,31 +63,37 @@
 
     // Following code is incomplete, after a first spawn the next player won't be able to spawn covering the whole map but just in a $MAX_DISTANCE radius from the first player
     if(count($existingPositions) == 0){
-        $x = floor($MAP_WIDTH/2);
-        $y = floor($MAP_HEIGHT/2);
+        // generate the spawnable points using poisson disk sampling
+        $points = generatePoissonDisk($MAP_WIDTH, $MAP_HEIGHT, $MIN_DISTANCE, $MAX_PLAYERS);
+        // get the first point
+        $position = $points[0];
+        $x = floor($position[0]);
+        $y = floor($position[1]);
         $position = array($x, $y);
-    }else{
-        $near = true;
-        while ($near) {
-            $lastElement = end($existingPositions);                                        // get the last player position
-            $x = rand($lastElement[0] - $MAX_DISTANCE, $lastElement[0] + $MAX_DISTANCE);   // generate a random position for the new player considering the last player position
-            $y = rand($lastElement[1] - $MAX_DISTANCE, $lastElement[1] + $MAX_DISTANCE);   
-            $within_range = true;
-            foreach($existingPositions as $key => $value){                
-                if($x != $value[0] && $y != $value[1]){                                      // check if the new player position is not the same of one of the player position
-                $distance = sqrt(($value[0] - $x) ** 2 + ($value[1] - $y) ** 2);             
-                if ($distance > $MIN_DISTANCE || $distance < $MAX_DISTANCE) {
-                    $within_range = true;
-                    break;
-                }
-            }
-            }
 
-            if ($within_range) {
-                $near = false;
-            }
-        }
-        $position = array($x, $y);
+        // store the remaining available points in json in a sorted order
+        sortPointsByDistance($points, $position);
+        $points = array_slice($points, 1);
+        $points = json_encode($points);
+        // save a new file
+        $file = fopen("spawnable_points.json", "w");
+        fwrite($file, $points);
+        fclose($file);
+    }else{ // retrieve the json containing the stored points in poisson disk and decode it, then sort the array to find the minimum spawnable distance from last player
+        $file = fopen("spawnable_points.json", "r");
+        $points = fread($file, filesize("spawnable_points.json"));
+        fclose($file);
+        $points = json_decode($points);
+        $position = $points[0];
+        $x = floor($position[0]);
+        $y = floor($position[1]);
+        // erease the first element of the array
+        $points = array_slice($points, 1);
+        // save the new array in json
+        $points = json_encode($points);
+        $file = fopen("spawnable_points.json", "w");
+        fwrite($file, $points);
+        fclose($file);
     }
 
 
