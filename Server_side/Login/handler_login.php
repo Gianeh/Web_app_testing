@@ -11,13 +11,14 @@
     }
 
     //get username and password
-    $username = $_POST["username"];
+    $username = strtolower($_POST["username"]);
     $password = $_POST["password"];
 
     // check the database to be sure that the username exist
     include_once("../database_query.php");
-    include_once("user_id_encoder.php");
-    $user_id = encode($username);
+
+    $key = 42;
+    $user_id = hash("sha256", $username.$key);
     $connection = new DatabaseQuery();
     $matching_users = $connection->select("*", "users", "username = '$username' AND password = '$password'");
 

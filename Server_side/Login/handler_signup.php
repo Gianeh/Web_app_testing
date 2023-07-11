@@ -15,7 +15,7 @@
         exit();
     }
 
-    $username = $_POST["username"];
+    $username = strtolower($_POST["username"]);
     $password = $_POST["password"];
     $password2 = $_POST["password2"];
 
@@ -31,7 +31,6 @@
 
     // check the database to be sure that the username is not already taken
     include_once("../database_query.php");
-    include_once("user_id_encoder.php");
 
     $connection = new DatabaseQuery();
     $matching_users = $connection->select("*", "users", "username = '$username'");
@@ -50,18 +49,7 @@
         $existingPositions[$key] = array($value["x"], $value["y"]);
     }
 
-
-    //idea for player spawn
-
-    // The spawn will be generrate randomy by the last player that joined the game
-    // The first player will spawn in the middle of the map as it is
-    // The second player will spawn in a random position that is at least $MIN_DISTANCE away from the first player
-    // The third player will spawn in a random position that is at least $MIN_DISTANCE in every direction away from teh second player
-
-    // i need to check ifthe new player dose not spawn in a position where there is already a player
-
-
-    // Following code is incomplete, after a first spawn the next player won't be able to spawn covering the whole map but just in a $MAX_DISTANCE radius from the first player
+    // if there are no players in the database, generate the list of spawnable points
     if(count($existingPositions) == 0){
         // generate the spawnable points using poisson disk sampling
         $points = generatePoissonDisk($MAP_WIDTH, $MAP_HEIGHT, $MIN_DISTANCE, $MAX_PLAYERS);
@@ -79,7 +67,7 @@
         $file = fopen("spawnable_points.json", "w");
         fwrite($file, $points);
         fclose($file);
-    }else{ // retrieve the json containing the stored points in poisson disk and decode it, then sort the array to find the minimum spawnable distance from last player
+    }else if(count($existingPositions) < $MAX_PLAYERS){ // retrieve the json containing the stored points in poisson disk and decode it, then sort the array to find the minimum spawnable distance from last player
         $file = fopen("spawnable_points.json", "r");
         $points = fread($file, filesize("spawnable_points.json"));
         fclose($file);
@@ -94,11 +82,15 @@
         $file = fopen("spawnable_points.json", "w");
         fwrite($file, $points);
         fclose($file);
+    }else{
+        echo json_encode(array("status" => "error", "message" => "Server full"));
+        exit();
     }
 
 
     // encode the username to get the user_id and insert all needed records in the database
-    $user_id = encode($username);
+    $key = 42;
+    $user_id = hash("sha256", $username.$key);
     // if everything is ok, insert the new user in the database
     $connection->insert("users", "user_id, username, password", "'$user_id','$username', '$password'");
     $connection->insert("player", "user_id, username, x, y, level", "'$user_id', '$username', '$x', '$y',0");
