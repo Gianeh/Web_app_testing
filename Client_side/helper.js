@@ -192,3 +192,4 @@ export function logout(path=""){
 }
 
 // this function may call a global backend function to update the database with events that are just saved in cache
+

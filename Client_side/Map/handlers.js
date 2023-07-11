@@ -2,6 +2,8 @@ import {
   getDataWithParameter
 } from "../helper.js";
 
+import { reloadCSS } from "./Graphical_function.js";
+
 // map constant
 const MapWidth = 500;
 const MapHeight = 500;
@@ -208,6 +210,9 @@ export function VillageClick(event) {
 
 // function that handle movement inside the map
 export function moveTable(event) {
+
+  //reload css
+  reloadCSS();
 
   // close player/enemy overlay if the table is moving 
 

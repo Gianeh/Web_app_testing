@@ -101,7 +101,7 @@ export function drawLandScape() {
 
     // 1) using his method is very casual how rocks, trees and water are placed
     // 2) x or y can exeeds the map size                                            ---> I NEED TO FIX THIS
-    
+
     // SOLUTION
 
     // max hash long is 42
@@ -110,35 +110,42 @@ export function drawLandScape() {
     const MAX_TREES = 5;
     const MAX_WATER = 2;
 
-     // get current origin
-     let CurrentOrigin = localStorage.getItem("CurrentOrigin");
+    // get current origin
+    let CurrentOrigin = localStorage.getItem("CurrentOrigin");
 
-     // realize the seed using hash SHA1 on current origin
-     var hash = CryptoJS.SHA1(CurrentOrigin["x"] + CurrentOrigin["y"]);
-     var hex = hash.toString(CryptoJS.enc.Hex);
-     hash = hex.replace(/\D/g, '');
- 
-     console.log("hash seed: ", hash);
+    // realize the seed using hash SHA1 on current origin
+    var hash = CryptoJS.SHA1(CurrentOrigin["x"] + CurrentOrigin["y"]);
+    var hex = hash.toString(CryptoJS.enc.Hex);
+    hash = hex.replace(/\D/g, '');
+
+    console.log("hash seed: ", hash);
 
     // get rocks position;
     let rocksPosition = [];
     for (let i = 0; i < MAX_ROCKS; i++) {
-        rocksPosition[i]["x"] = parseInt(hash.substring(0+i, 2+i), 10);
-        rocksPosition[i]["y"] = parseInt(hash.substring(2+i, 4+i), 10);
+        rocksPosition[i]["x"] = parseInt(hash.substring(0 + i, 2 + i), 10);
+        rocksPosition[i]["y"] = parseInt(hash.substring(2 + i, 4 + i), 10);
     }
+
+
+    // check if the number of rockposition is usable
+
+
+    console.log("rocks position: ", rocksPosition);
+
 
     // get trees position
     let treesPosition = [];
     for (let i = 0; i < MAX_TREES; i++) {
-        treesPosition[i]["x"] = parseInt(hash.substring(0+i+(MAX_ROCKS*2), 2+i+(MAX_ROCKS*2)), 10);
-        treesPosition[i]["y"] = parseInt(hash.substring(6+i+(MAX_ROCKS*2), 8+i+(MAX_ROCKS*2)), 10);
+        treesPosition[i]["x"] = parseInt(hash.substring(0 + i + (MAX_ROCKS * 2), 2 + i + (MAX_ROCKS * 2)), 10);
+        treesPosition[i]["y"] = parseInt(hash.substring(6 + i + (MAX_ROCKS * 2), 8 + i + (MAX_ROCKS * 2)), 10);
     }
 
     // get water position
     let waterPosition = [];
     for (let i = 0; i < MAX_WATER; i++) {
-        waterPosition[i]["x"] = parseInt(hash.substring(0+i+(MAX_ROCKS*2)+(MAX_TREES*2), 2+i+(MAX_ROCKS*2)+(MAX_TREES*2)), 10);
-        waterPosition[i]["y"] = parseInt(hash.substring(10+i+(MAX_ROCKS*2)+(MAX_TREES*2), 12+i+(MAX_ROCKS*2)+(MAX_TREES*2)), 10);
+        waterPosition[i]["x"] = parseInt(hash.substring(0 + i + (MAX_ROCKS * 2) + (MAX_TREES * 2), 2 + i + (MAX_ROCKS * 2) + (MAX_TREES * 2)), 10);
+        waterPosition[i]["y"] = parseInt(hash.substring(10 + i + (MAX_ROCKS * 2) + (MAX_TREES * 2), 12 + i + (MAX_ROCKS * 2) + (MAX_TREES * 2)), 10);
     }
 
     // scroll all the table
@@ -149,7 +156,7 @@ export function drawLandScape() {
 
             // check if the cell is a rock
             for (let k in rocksPosition) {
-                if (j  == rocksPosition[k]["x"] && i  == rocksPosition[k]["y"]) {
+                if (j == rocksPosition[k]["x"] && i == rocksPosition[k]["y"]) {
                     cell.className = "rock_cell";
                     cell.id = "rock";
                     cell.innerHTML = "R";
@@ -167,7 +174,7 @@ export function drawLandScape() {
 
             // check if the cell is a water
             for (let k in waterPosition) {
-                if (j  == waterPosition[k]["x"] && i == waterPosition[k]["y"]) {
+                if (j == waterPosition[k]["x"] && i == waterPosition[k]["y"]) {
                     cell.className = "water_cell";
                     cell.id = "water";
                     cell.innerHTML = "W";
@@ -208,3 +215,14 @@ export function drawPlayerAndEnemy(CurrentOrigin, enemypos, player) {
     }
 
 }
+
+// a function that reload the css
+export function reloadCSS() {
+    let links = document.getElementsByTagName("link");
+    for (let i = 0; i < links.length; i++) {
+      if (links[i].getAttribute("rel") == "stylesheet") {
+        let href = links[i].getAttribute("href");
+        links[i].setAttribute("href", href + "?version=" + new Date().getTime());
+      }
+    }
+  }
