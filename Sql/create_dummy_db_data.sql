@@ -3,6 +3,7 @@ IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'users
 BEGIN
     CREATE TABLE users (
         user_id varchar(64) PRIMARY KEY,
+        username varchar(20) NOT NULL,
         password varchar(20) NOT NULL,
         online_hour INTEGER NOT NULL DEFAULT 0,
         online_time INTEGER NOT NULL DEFAULT 0,
@@ -25,14 +26,14 @@ END
 -- create a table resources containing iron, food, wood, rock
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'resources')
 BEGIN
-CREATE TABLE resources (
-    user_id varchar(64) PRIMARY KEY,
-    iron INTEGER NOT NULL,
-    food INTEGER NOT NULL,
-    wood INTEGER NOT NULL,
-    rock INTEGER NOT NULL,
-    population INTEGER NOT NULL
-    FOREIGN KEY (user_id) REFERENCES player(user_id)
+    CREATE TABLE resources (
+        user_id varchar(64) PRIMARY KEY,
+        iron INTEGER NOT NULL,
+        food INTEGER NOT NULL,
+        wood INTEGER NOT NULL,
+        rock INTEGER NOT NULL,
+        population INTEGER NOT NULL
+        FOREIGN KEY (user_id) REFERENCES player(user_id)
     );
 END
 
@@ -135,5 +136,4 @@ DROP TABLE structures;
 DROP TABLE player;
 DROP TABLE users;
 */
-
 

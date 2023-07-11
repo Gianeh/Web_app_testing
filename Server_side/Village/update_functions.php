@@ -102,10 +102,12 @@
         $json = file_get_contents('../requirements.json');
         $requirements = json_decode($json, true)["townhall_upgrade"][$townhall["level"] + 1];
         foreach ($requirements as $key => $value) {
+            if($key = "duration") continue; // skip duration check as it's not a resource
             if($resources[$key] < $value) return false;
         }
         // update the resources
         foreach ($requirements as $key => $value) {
+            if($key = "duration") continue; // skip duration check as it's not a resource
             $resources[$key] -= $value;
         }
         // resources can and should be updated as soon as the player clicks the upgrade button but 
