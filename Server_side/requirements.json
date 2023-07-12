@@ -1,4 +1,158 @@
-{
+{   
+    "food_production":{
+        "0": {
+            "food": 100,
+            "duration": 3600
+        },
+        "1": {
+            "food": 200,
+            "duration": 3600
+        },
+        "2": {
+            "food": 300,
+            "duration": 3600
+        },
+        "3": {
+            "food": 400,
+            "duration": 3600
+        },
+        "4": {
+            "food": 500,
+            "duration": 3600
+        },
+        "5": {
+            "food": 600,
+            "duration": 3600
+        },
+        "6": {
+            "food": 700,
+            "duration": 3600
+        },
+        "7": {
+            "food": 800,
+            "duration": 3600
+        },
+        "8": {
+            "food": 900,
+            "duration": 3600
+        }
+    },
+    "wood_production":{
+        "0":{
+            "wood": 100,
+            "duration": 3600
+        },
+        "1":{
+            "wood": 200,
+            "duration": 3600
+        },
+        "2":{
+            "wood": 300,
+            "duration": 3600
+        },
+        "3":{
+            "wood": 400,
+            "duration": 3600
+        },
+        "4":{
+            "wood": 500,
+            "duration": 3600
+        },
+        "5":{
+            "wood": 600,
+            "duration": 3600
+        },
+        "6":{
+            "wood": 700,
+            "duration": 3600
+        },
+        "7":{
+            "wood": 800,
+            "duration": 3600
+        },
+        "8":{
+            "wood": 900,
+            "duration": 3600
+        }
+    },
+
+    "rock_production":{
+        "0":{
+            "rock": 100,
+            "duration": 3600
+        },
+        "1":{
+            "rock": 200,
+            "duration": 3600
+        },
+        "2":{
+            "rock": 300,
+            "duration": 3600
+        },
+        "3":{
+            "rock": 400,
+            "duration": 3600
+        },
+        "4":{
+            "rock": 500,
+            "duration": 3600
+        },
+        "5":{
+            "rock": 600,
+            "duration": 3600
+        },
+        "6":{
+            "rock": 700,
+            "duration": 3600
+        },
+        "7":{
+            "rock": 800,
+            "duration": 3600
+        },
+        "8":{
+            "rock": 900,
+            "duration": 3600
+        }
+    },
+
+    "iron_production":{
+        "0":{
+            "iron": 0,
+            "duration": 3600
+        },
+        "1":{
+            "iron": 100,
+            "duration": 3600
+        },
+        "2":{
+            "iron": 200,
+            "duration": 3600
+        },
+        "3":{
+            "iron": 250,
+            "duration": 3600
+        },
+        "4":{
+            "iron": 350,
+            "duration": 3600
+        },
+        "5":{
+            "iron": 400,
+            "duration": 3600
+        },
+        "6":{
+            "iron": 500,
+            "duration": 3600
+        },
+        "7":{
+            "iron": 550,
+            "duration": 3600
+        },
+        "8":{
+            "iron": 650,
+            "duration": 3600
+        }
+    },
 
     "infantry_training": {
         "iron": 10,
