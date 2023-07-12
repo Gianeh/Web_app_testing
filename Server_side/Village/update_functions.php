@@ -8,7 +8,7 @@
     include_once('../database_query.php');
 
     // a function to add a training event to events table in the cache
-    function addTraining($event_type, $cache){
+    function addTraining($event_type, $database){
         // if a training event for this player already exists this event will have a completion_date calculated from the last event completion date
         $ongoing_training = $cache->getUpdates($event_type);    // this function returns an array of all the events of the same type that are not finished yet for this user -- STILL TO BE IMPLEMENTED
         // cronological order is free as the append action on buffer is intrinsically ordered
@@ -48,24 +48,34 @@
     // a function that deletes the events records from cache and triggers a new databse call trough the acquireData function
     function updateEvents($token){
         $cache = new Cache(array("player", "structures", "event"));
+        // upgrades deletion
         $cache->deleteData("townhall_upgrade", $token);
         $cache->deleteData("barracks_upgrade", $token);
         $cache->deleteData("farm_upgrade", $token);
         $cache->deleteData("woodchopper_upgrade", $token);
         $cache->deleteData("rockmine_upgrade", $token);
         $cache->deleteData("ironmine_upgrade", $token);
-        // training will need this feature too
+        // training deletion
+        $cache->deleteData("infantry_training", $token);
+        $cache->deleteData("archer_training", $token);
+        $cache->deleteData("cavalry_training", $token);
+        // production will need to be added here
+        
+        // upgrades retrieval
         $cache->acquireData("townhall_upgrade", $token);
         $cache->acquireData("barracks_upgrade", $token);
         $cache->acquireData("farm_upgrade", $token);
         $cache->acquireData("woodchopper_upgrade", $token);
         $cache->acquireData("rockmine_upgrade", $token);
         $cache->acquireData("ironmine_upgrade", $token);
+        // training retrieval
+        $cache->acquireData("infantry_training", $token);
+        $cache->acquireData("archer_training", $token);
+        $cache->acquireData("cavalry_training", $token);
         unset($cache);
         return true;
     }
 
-    // example rule: the player needs to have 10 food to add 1 population to village
     function addPopulation($token){
         // retrieve data from cache to check if the player has enough food
         $cache = new Cache(array("player"));
@@ -87,7 +97,7 @@
         return true;
 
     }
-
+    // UPGRADES FUNCTIONS:
     function upgradeTownhall($token){
         // retrieve data from cache to check if the player has enough resources
         $cache = new Cache(array("player"));
@@ -126,9 +136,46 @@
 
     }
 
+    function upgradeBarracks($token){
+        // retrieve data from cache to check if the player has enough resources
+        $cache = new Cache(array("player"));
+        $resources = $cache->acquireData("player", $token);
+        $barracks = $cache->acquireData("barracks", $token);
 
-    //////////////////////////////////////////
-    //special functions: required password: "gianeh!"
+        // make sure to remove upgrade event from cache as it's first added onclick
+        $ongoing = $cache->acquireData("barracks_upgrade", $token);
+        if($ongoing["status"] == "success"){
+            return "upgrade already ongoing";
+        }
+
+        //parse the requirements json file
+        $json = file_get_contents('../requirements.json');
+        $requirements = json_decode($json, true)["barracks_upgrade"][$barracks["level"] + 1];
+        foreach ($requirements as $key => $value) {
+            if($key == "duration") continue; // skip duration check as it's not a resource
+            if($resources[$key] < $value) return false;
+        }
+        // update the resources
+        foreach ($requirements as $key => $value) {
+            if($key == "duration") continue; // skip duration check as it's not a resource
+            $resources[$key] -= $value;
+        }
+        // resources can and should be updated as soon as the player clicks the upgrade button but 
+        // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
+
+        $cache->setData("player", $resources, $token);
+        unset($cache);
+        $db = new databaseQuery();
+
+        // the update is added to the events table in the database
+        addUpgrade("barracks_upgrade", $barracks["level"] + 1, $db);
+        //$cache->setData("barracks", $barracks, $token);
+        return true;
+
+    }
+
+
+    //SPECIAL FUNCTIONS (require password: "gianeh!"):
 
     function cleanCache($password){
         // clean the cache

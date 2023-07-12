@@ -52,6 +52,10 @@
                 $status = upgradeTownhall($token);
                 break;
 
+            case "upgradeBarracks":
+                $status = upgradeBarracks($token);
+                break;
+
             case "cleancache":
                 $status = cleanCache($_POST["password"]);
                 break;

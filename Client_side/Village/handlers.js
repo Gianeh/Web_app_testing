@@ -80,7 +80,7 @@ export function barracksClick(event) {
     // set the info div to the data
     info.innerHTML = printData(text);
 
-    //spawn a button inside the buttons div
+    //spawn buttons inside the buttons div
     let infantry = document.createElement("button");
     infantry.innerHTML = "Train Infantry" + parseRequirements("infantry_training");
     infantry.classList.add("button");
