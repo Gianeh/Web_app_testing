@@ -159,7 +159,7 @@
             if($deleted){
                 return array("status" => "key '$data' deleted successfuly from redis cache");
             }else{
-                return array("status" => "key '$data' deleted successfuly from redis cache");
+                return array("status" => "key '$data' not found in redis cache");
             }
 
         }
@@ -178,7 +178,7 @@
             if($deleted){
                 return array("all keys deleted successfuly from redis cache");
             }else{
-                return array("all keys deleted successfuly from redis cache");
+                return array("cache is already empty");
             }
 
         }
