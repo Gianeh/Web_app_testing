@@ -1,4 +1,5 @@
 import { pickRecords, printData, getLocalData, sendData, parseRequirements } from "../helper.js";
+import {upgradeTownhall, upgradeBarracks} from "./upgrades.js";
 
 var upgrade_id = 0;
 
@@ -83,8 +84,25 @@ export function barracksClick(event) {
 
     //spawn a button inside the buttons div
     let infantry = document.createElement("button");
-    infantry.innerHTML = "Train Infantry + 1 [10 iron, 10 food]";
-
+    infantry.innerHTML = "Train Infantry" + parseRequirements("infantry_training");
+    infantry.classList.add("button");
+    infantry.addEventListener("click", trainInfantry);
+    buttons.appendChild(infantry);
+    let archer = document.createElement("button");
+    archer.innerHTML = "Train Archer" + parseRequirements("archer_training");
+    archer.classList.add("button");
+    archer.addEventListener("click", trainArcher);
+    buttons.appendChild(archer);
+    let cavalry = document.createElement("button");
+    cavalry.innerHTML = "Train Cavalry" + parseRequirements("cavalry_training");
+    cavalry.classList.add("button");
+    cavalry.addEventListener("click", trainCavalry);
+    buttons.appendChild(cavalry);
+    let upgrade = document.createElement("button");
+    upgrade.innerHTML = "Upgrade Barracks " + parseRequirements("barracks_upgrade", (parseInt(data["level"])+1).toString());
+    upgrade.addEventListener("click", upgradeBarracks);
+    upgrade.classList.add("button");
+    buttons.appendChild(upgrade);
 
 }
 
@@ -125,7 +143,9 @@ export function warmapClick(event) {
     window.location.href = "Map.html";
 }
 
-export function addPopulation(event) {
+// ADD POPULATION FUNCTION -> TOWNHALL ONLY:
+
+function addPopulation(event) {
     // checks if the local storage has the resources data
     if (localStorage.getItem("player") != null) {
         localStorage.removeItem("player");    // removes the local data
@@ -135,7 +155,10 @@ export function addPopulation(event) {
     townhallClick();
 }
 
-export function upgradeTownhall(event) {
+// UPGRADE STRUCTURES FUNCTIONS:
+
+// handles the upgrade click on townhall
+function upgradeTownhall(event) {
     // checks if the local storage has the resources data
     if (localStorage.getItem("player") != null) {
         localStorage.removeItem("player");    // removes the local data
@@ -150,6 +173,37 @@ export function upgradeTownhall(event) {
     townhallClick();
 }
 
+
+// handle the upgrade click on barracks
+function upgradeBarracks(event) {
+    // checks if the local storage has the resources data
+    if (localStorage.getItem("player") != null) {
+        localStorage.removeItem("player");    // removes the local data
+    }
+    if (localStorage.getItem("barracks") != null) {
+        localStorage.removeItem("barracks");    // removes the local data
+    }
+    // send update to the server
+    sendData("upgradeBarracks");
+    // remove data from local storage relative to barracks_upgrade
+    localStorage.removeItem("barracks_upgrade");
+    barracksClick();
+}
+
+
+
+// TRAIN TROOPS FUNCTIONS:
+function trainInfantry(event) {
+    // checks if the local storage has the resources data
+    if (localStorage.getItem("player") != null) {
+        localStorage.removeItem("player");    // removes the local data
+    }
+    // send update to the server
+    sendData("trainInfantry");
+    barracksClick();
+}
+
+// VARIOUS SCOPE SPECIFIC HELPER FUNCTIONS:
 
 function setInfoDiv(color){
     // empties the buttons div
