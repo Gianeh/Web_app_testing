@@ -79,15 +79,106 @@
 
                 // add more cases for other objects as needed
                 // also remember to add the logout copy instance!
-
+                
+                // UPGRADE CASES
                 case "townhall_upgrade":
-                    $upgrade = $this->db->select("*","events", "events.user_id = '$user_id' AND events.event_type = 'townhall_upgrade'");
+                    $upgrade = $this->db->select("*","events", "events.user_id = '$user_id' AND events.event_type = 'townhall_upgrade' AND events.finished = 0");
                     if(count($upgrade) == 0) {
                         $output = array("status" => "no data found");
                         break;
                     }
                     $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
                     $output = array_merge($upgrade->get_data(), ["status" => "success"]);
+                    break;
+                
+                case "barracks_upgrade":
+                    $upgrade = $this->db->select("*","events", "events.user_id = '$user_id' AND events.event_type = 'barracks_upgrade' AND events.finished = 0");
+                    if(count($upgrade) == 0) {
+                        $output = array("status" => "no data found");
+                        break;
+                    }
+                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $output = array_merge($upgrade->get_data(), ["status" => "success"]);
+                    break;
+                
+                case "rockmine_upgrade":
+                    $upgrade = $this->db->select("*","events", "events.user_id = '$user_id' AND events.event_type = 'rockmine_upgrade' AND events.finished = 0");
+                    if(count($upgrade) == 0) {
+                        $output = array("status" => "no data found");
+                        break;
+                    }
+                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $output = array_merge($upgrade->get_data(), ["status" => "success"]);
+                    break;
+                
+                case "ironmine_upgrade":
+                    $upgrade = $this->db->select("*","events", "events.user_id = '$user_id' AND events.event_type = 'ironmine_upgrade' AND events.finished = 0");
+                    if(count($upgrade) == 0) {
+                        $output = array("status" => "no data found");
+                        break;
+                    }
+                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $output = array_merge($upgrade->get_data(), ["status" => "success"]);
+                    break;
+                
+                case "woodchopper_upgrade":
+                    $upgrade = $this->db->select("*","events", "events.user_id = '$user_id' AND events.event_type = 'woodchopper_upgrade' AND events.finished = 0");
+                    if(count($upgrade) == 0) {
+                        $output = array("status" => "no data found");
+                        break;
+                    }
+                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $output = array_merge($upgrade->get_data(), ["status" => "success"]);
+                    break;
+                
+                case "farm_upgrade":
+                    $upgrade = $this->db->select("*","events", "events.user_id = '$user_id' AND events.event_type = 'farm_upgrade' AND events.finished = 0");
+                    if(count($upgrade) == 0) {
+                        $output = array("status" => "no data found");
+                        break;
+                    }
+                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $output = array_merge($upgrade->get_data(), ["status" => "success"]);
+                    break;
+                
+                // TRAINING CASES
+                case "infantry_training":
+                    $training = $this->db->select("*","events", "events.user_id = '$user_id' AND events.event_type = 'infantry_training' AND events.finished = 0 ORDER BY events.event_completion ASC");
+                    if(count($training) == 0) {
+                        $output = array("status" => "no data found");
+                        break;
+                    }
+                    $infantry = array();
+                    foreach($training as $train){
+                        $infantry[] = new Training($train[$user_id]["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "infantry");
+                    }
+                    $output = array_merge($infantry[0]->get_data(), ["status" => "success"]);
+                    break;
+
+                case "archer_training":
+                    $training = $this->db->select("*","events", "events.user_id = '$user_id' AND events.event_type = 'archer_training' AND events.finished = 0 ORDER BY events.event_completion ASC");
+                    if(count($training) == 0) {
+                        $output = array("status" => "no data found");
+                        break;
+                    }
+                    $archer = array();
+                    foreach($training as $train){
+                        $archer[] = new Training($train[$user_id]["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "archer");
+                    }
+                    $output = array_merge($archer[0]->get_data(), ["status" => "success"]);
+                    break;
+                
+                case "cavalry_training":
+                    $training = $this->db->select("*","events", "events.user_id = '$user_id' AND events.event_type = 'cavalry_training' AND events.finished = 0 ORDER BY events.event_completion ASC");
+                    if(count($training) == 0) {
+                        $output = array("status" => "no data found");
+                        break;
+                    }
+                    $cavalry = array();
+                    foreach($training as $train){
+                        $cavalry[] = new Training($train[$user_id]["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "cavalry");
+                    }
+                    $output = array_merge($cavalry[0]->get_data(), ["status" => "success"]);
                     break;
 
                 default:

@@ -15,6 +15,13 @@ export function woodchopperClick(event) {
     let text = Object.assign(data, player);
     // set the info div to the data
     info.innerHTML = printData(text);
+
+    //spawn a button inside the buttons div
+    let upgrade = document.createElement("button");
+    upgrade.innerHTML = "Upgrade Woodchopper " + parseRequirements("woodchopper_upgrade", (parseInt(data["level"])+1).toString());
+    upgrade.addEventListener("click", upgradeWoodchopper);
+    upgrade.classList.add("button");
+    buttons.appendChild(upgrade);
 }
 
 // a function to handle the rockmine click
@@ -31,6 +38,13 @@ export function rockmineClick(event) {
     let text = Object.assign(data, player);
     // set the info div to the data
     info.innerHTML = printData(text);
+
+    //spawn a button inside the buttons div
+    let upgrade = document.createElement("button");
+    upgrade.innerHTML = "Upgrade Rockmine " + parseRequirements("rockmine_upgrade", (parseInt(data["level"])+1).toString());
+    upgrade.addEventListener("click", upgradeRockmine);
+    upgrade.classList.add("button");
+    buttons.appendChild(upgrade);
 }
 
 // a function to handle the ironmine click
@@ -47,6 +61,13 @@ export function ironmineClick(event) {
     let text = Object.assign(data, player);
     // set the info div to the data
     info.innerHTML = printData(text);
+
+    //spawn a button inside the buttons div
+    let upgrade = document.createElement("button");
+    upgrade.innerHTML = "Upgrade Ironmine " + parseRequirements("ironmine_upgrade", (parseInt(data["level"])+1).toString());
+    upgrade.addEventListener("click", upgradeIronmine);
+    upgrade.classList.add("button");
+    buttons.appendChild(upgrade);
 }
 
 // a function to handle the farm click
@@ -63,6 +84,13 @@ export function farmClick(event) {
     let text = Object.assign(data, player);
     // set the info div to the data
     info.innerHTML = printData(text);
+
+    //spawn a button inside the buttons div
+    let upgrade = document.createElement("button");
+    upgrade.innerHTML = "Upgrade Farm " + parseRequirements("farm_upgrade", (parseInt(data["level"])+1).toString());
+    upgrade.addEventListener("click", upgradeFarm);
+    upgrade.classList.add("button");
+    buttons.appendChild(upgrade);
 }
 
 // a function to handle the barracks click
@@ -155,7 +183,6 @@ function addPopulation(event) {
 
 // UPGRADE STRUCTURES FUNCTIONS:
 
-// handles the upgrade click on townhall
 function upgradeTownhall(event) {
     // checks if the local storage has the resources data
     if (localStorage.getItem("player") != null) {
@@ -171,8 +198,6 @@ function upgradeTownhall(event) {
     townhallClick();
 }
 
-
-// handle the upgrade click on barracks
 function upgradeBarracks(event) {
     // checks if the local storage has the resources data
     if (localStorage.getItem("player") != null) {
@@ -188,6 +213,64 @@ function upgradeBarracks(event) {
     barracksClick();
 }
 
+function upgradeWoodchopper(event) {
+    // checks if the local storage has the resources data
+    if (localStorage.getItem("player") != null) {
+        localStorage.removeItem("player");    // removes the local data
+    }
+    if (localStorage.getItem("woodchopper") != null) {
+        localStorage.removeItem("woodchopper");    // removes the local data
+    }
+    // send update to the server
+    sendData("upgradeWoodchopper");
+    // remove data from local storage relative to woodchopper_upgrade
+    localStorage.removeItem("woodchopper_upgrade");
+    woodchopperClick();
+}
+
+function upgradeRockmine(event) {
+    // checks if the local storage has the resources data
+    if (localStorage.getItem("player") != null) {
+        localStorage.removeItem("player");    // removes the local data
+    }
+    if (localStorage.getItem("rockmine") != null) {
+        localStorage.removeItem("rockmine");    // removes the local data
+    }
+    // send update to the server
+    sendData("upgradeRockmine");
+    // remove data from local storage relative to rockmine_upgrade
+    localStorage.removeItem("rockmine_upgrade");
+    rockmineClick();
+}
+
+function upgradeIronmine(event) {
+    // checks if the local storage has the resources data
+    if (localStorage.getItem("player") != null) {
+        localStorage.removeItem("player");    // removes the local data
+    }
+    if (localStorage.getItem("ironmine") != null) {
+        localStorage.removeItem("ironmine");    // removes the local data
+    }
+    // send update to the server
+    sendData("upgradeIronmine");
+    // remove data from local storage relative to ironmine_upgrade
+    localStorage.removeItem("ironmine_upgrade");
+    ironmineClick();
+}
+
+function upgradeFarm(event) {
+    // checks if the local storage has the resources data
+    if (localStorage.getItem("player") != null) {
+        localStorage.removeItem("player");    // removes the local data
+    }if (localStorage.getItem("farm") != null) {
+        localStorage.removeItem("farm");    // removes the local data
+    }
+    // send update to the server
+    sendData("upgradeFarm");
+    // remove data from local storage relative to farm_upgrade
+    localStorage.removeItem("farm_upgrade");
+    farmClick();
+}
 
 
 // TRAIN TROOPS FUNCTIONS:
@@ -198,6 +281,26 @@ function trainInfantry(event) {
     }
     // send update to the server
     sendData("trainInfantry");
+    barracksClick();
+}
+
+function trainArcher(event) {
+    // checks if the local storage has the resources data
+    if (localStorage.getItem("player") != null) {
+        localStorage.removeItem("player");    // removes the local data
+    }
+    // send update to the server
+    sendData("trainArcher");
+    barracksClick();
+}
+
+function trainCavalry(event) {
+    // checks if the local storage has the resources data
+    if (localStorage.getItem("player") != null) {
+        localStorage.removeItem("player");    // removes the local data
+    }
+    // send update to the server
+    sendData("trainCavalry");
     barracksClick();
 }
 
