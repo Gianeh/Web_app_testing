@@ -106,6 +106,43 @@ export function drawLandScape() {
 
     // max hash long is 42
 
+
+    // other idea: use a matrix linearization and a fixed random seed such as 42, then use modulo to chose what to spawn:
+    /*
+    PYTHON SIMPLIFIED ALGORITHM
+
+    matrix = []
+    for i in range(100):
+        matrix.append([])
+        for j in range(100):
+            matrix[i].append(0)
+
+
+
+    
+    import random
+
+    def linearize(x,y,w):
+        return x + y * w
+
+    random.seed(42)
+
+    def set_env(x,y,w):
+        num = random.randint(0,1000) + linearize(x,y,w)
+        if not num % 97:
+            return "r"
+        if not num % 82:
+            return "t"
+        return 0
+        
+    for i in range(100):
+        for j in range(100):
+            matrix[i][j] = set_env(i,j,100)
+            
+    for row in matrix:
+        print(row)
+    */
+
     const MAX_ROCKS = 3;
     const MAX_TREES = 5;
     const MAX_WATER = 2;
