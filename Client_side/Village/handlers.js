@@ -1,6 +1,4 @@
 import { pickRecords, printData, getLocalData, sendData, parseRequirements } from "../helper.js";
-import {upgradeTownhall, upgradeBarracks} from "./upgrades.js";
-
 var upgrade_id = 0;
 
 // a function to handle the woodchopper click
