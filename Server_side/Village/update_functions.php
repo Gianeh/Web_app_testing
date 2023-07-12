@@ -8,25 +8,16 @@
     include_once('../database_query.php');
 
     // a function to add a training event to events table in the cache
-    function addTraining($event_type, $database){
-        // if a training event for this player already exists this event will have a completion_date calculated from the last event completion date
-        $ongoing_training = $cache->getUpdates($event_type);    // this function returns an array of all the events of the same type that are not finished yet for this user -- STILL TO BE IMPLEMENTED
-        // cronological order is free as the append action on buffer is intrinsically ordered
-
+    function addTraining($event_type, $last_completion, $database){
         // parse requirements json to get the duration of the event
         $json = file_get_contents('../requirements.json');
         $requirements = json_decode($json, true);
         
-        if(count($ongoing_training) != 0) $completion = $ongoing_training[count($ongoing_training)-1]["event_completion"] + $requirements[$event_type]["duration"];
-        else $completion = time() + $requirements[$event_type]["duration"];
+        $completion = time() + $requirements[$event_type]["duration"] + $last_completion;
         // compute event_id
         $event_id = hash("sha256", $event_type.$_SESSION['user_id'].$completion);
-        // add the event to the cache
-        $cache->setData($event_type, array("event_id" => $event_id, "event_completion" => $completion, "event_type" => $event_type, "finished" => 0), $event_id);
-        // $event_id becomes the partial key for the event in cache (final key will be $event_type+"_data_"+$event_id), this needs to be saved in a buffer file to let daemon recollect events and add accordingly in database
-        $buffer = fopen("../updates_buffer.txt", "a");
-        fwrite($buffer, $event_type."|".$event_id."|".$_SESSION["user_id"]."\n");
-        fclose($buffer);
+        // add the event in database
+        $database->insert("events", "event_id, user_id, event_type, level, event_completion, online, finished", "'".$event_id."', '".$_SESSION['user_id']."', '".$event_type."', 1, '".$completion."', 1, 0"); // 0 means that the event is not finished yet
     }
 
 
@@ -169,6 +160,43 @@
 
         // the update is added to the events table in the database
         addUpgrade("barracks_upgrade", $barracks["level"] + 1, $db);
+        //$cache->setData("barracks", $barracks, $token);
+        return true;
+
+    }
+
+    // TRAINING FUNCTIONS:
+    function trainInfantry($token){
+        // retrieve data from cache to check if the player has enough resources
+        $cache = new Cache(array("player"));
+        $resources = $cache->acquireData("player", $token);
+
+        // make sure to remove upgrade event from cache as it's first added onclick
+        $ongoing = $cache->acquireData("infantry_training", $token);
+        // pick only the last training retrieved from cache
+        if($ongoing["status"] == "success") $last_completion = $ongoing[count($ongoing)-1]["event_completion"];
+        else $last_completion = 0;
+
+        //parse the requirements json file
+        $json = file_get_contents('../requirements.json');
+        $requirements = json_decode($json, true)["infantry_training"];
+        foreach ($requirements as $key => $value) {
+            if($key == "duration") continue; // skip duration check as it's not a resource
+            if($resources[$key] < $value) return false;
+        }
+        // update the resources
+        foreach ($requirements as $key => $value) {
+            if($key == "duration") continue; // skip duration check as it's not a resource
+            $resources[$key] -= $value;
+        }
+        // resources can and should be updated as soon as the player clicks the upgrade button but
+
+        $cache->setData("player", $resources, $token);
+        unset($cache);
+        $db = new databaseQuery();
+
+        // the update is added to the events table in the database
+        addTraining("infantry_training", $last_completion, $db);
         //$cache->setData("barracks", $barracks, $token);
         return true;
 

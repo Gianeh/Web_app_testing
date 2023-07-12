@@ -44,10 +44,13 @@
             case "updateEvents":
                 $status = updateEvents($token);
                 break;
-
+            
+            // ADD POPULATION TO VILLAGE
             case "addPopulation":
                 $status = addPopulation($token);
                 break;
+            
+            // UPGRADE STRUCTURES
             case "upgradeTownhall":
                 $status = upgradeTownhall($token);
                 break;
@@ -55,7 +58,36 @@
             case "upgradeBarracks":
                 $status = upgradeBarracks($token);
                 break;
+            
+            case "upgradeIronmine":
+                $status = upgradeIronmine($token);
+                break;
+            
+            case "upgradeFarm":
+                $status = upgradeFarm($token);
+                break;
+            
+            case "upgradeWoodchopper":
+                $status = upgradeWoodchopper($token);
+                break;
+            
+            case "upgradeRockmine":
+                $status = upgradeRockmine($token);
+                break;
 
+            // TRAIN TROOPS
+            case "trainInfantry":
+                $status = trainInfantry($token);
+                break;
+            
+            case "trainCavalry":
+                $status = trainCavalry($token);
+                break;
+            
+            case "trainArcher":
+                $status = trainArcher($token);
+                break;
+            
             case "cleancache":
                 $status = cleanCache($_POST["password"]);
                 break;
