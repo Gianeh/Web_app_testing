@@ -79,9 +79,10 @@
         $resources["population"] += 1;
         // update the resources
         foreach ($requirements as $key => $value) {
+            if($key == "duration") continue; // skip duration check as it's not a resource
             $resources[$key] -= $value;
         }
-        $resources["food"] -= 10;
+        // add population is an immediate action so it can be added to the cache
         $cache->setData("player", $resources, $token);
         return true;
 
