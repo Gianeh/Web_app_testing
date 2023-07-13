@@ -33,7 +33,7 @@ export function parseRequirements(data, level=0){
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200 || xhr.status === 0) {
-                // console.log(xhr.responseText); debug option but too verbose!
+                console.log(xhr.responseText); //debug option but too verbose!
                 array = JSON.parse(xhr.responseText);
             }
         }else{
