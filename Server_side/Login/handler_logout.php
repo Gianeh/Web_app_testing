@@ -53,7 +53,7 @@
         // update resources in database table resources
         $db->update("resources", "iron, food, wood, rock, population", $player["iron"] . ", " . $player["food"] . ", " . $player["wood"] . ", " . $player["rock"] . ", " . $player["population"] , "user_id = '" . $_SESSION['user_id']);
         // update structures in database table structures
-        $db->update("structures", "(townhall, woodchopper, rockmine, ironmine, farm, barracks)", "(" . $townhall["level"] . ", " . $woodchopper["level"] . ", " . $rockmine["level"] . ", " . $ironmine["level"] . ", " . $farm["level"] . ", " . $barracks["level"] . ")", "user_id = " . $_SESSION['user_id']);
+        $db->update("structures", "townhall, woodchopper, rockmine, ironmine, farm, barracks", $townhall["level"] . ", " . $woodchopper["level"] . ", " . $rockmine["level"] . ", " . $ironmine["level"] . ", " . $farm["level"] . ", " . $barracks["level"], "user_id = " . $_SESSION['user_id']);
 
         // more updates may need to get saved here
 

@@ -87,7 +87,7 @@ class databaseQuery{
         // connect to the database
         $this->connect();
         // build deletion query
-        $query = "DELETE FROM "+"$table"+" WHERE "*$where;
+        $query = "DELETE FROM "."$table"." WHERE ".$where;
         // try to execute the deletion query
         try {
             $this->conn->query($query);
