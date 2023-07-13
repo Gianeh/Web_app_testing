@@ -74,6 +74,7 @@
         $json = file_get_contents('../requirements.json');
         $requirements = json_decode($json, true)["add_population"];
         foreach ($requirements as $key => $value) {
+            if($key == "duration") continue; // skip duration check as it's not a resource
             if($resources[$key] < $value) return false;
         }
         // add population as duration is 0
