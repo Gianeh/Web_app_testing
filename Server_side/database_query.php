@@ -8,7 +8,7 @@ class databaseQuery{
     private $db;
 
     public $conn;
-    function __construct($server="tcp:ageofstronghold.database.windows.net,1433", $user="AOSAdmin", $pass="AOSpassword!", $db="AgeofStronghold-database"){  //connect to the database
+    function __construct($server="tcp:ageofstronghold.database.windows.net,1433", $user="AOSAdmin", $pass="AOSPassword!", $db="AgeofStronghold-database"){  //connect to the database
         $this->server = "sqlsrv:server = ".$server;
         $this->user = $user;
         $this->pass = $pass;
