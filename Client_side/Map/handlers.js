@@ -456,7 +456,7 @@ export function moveTable(event) {
 
       // insert a new column at the right
       for (let i = 0; i < Rows; i++) {
-        newCell = table.rows[i].insertCell(29);
+        newCell = table.rows[i].insertCell(Cols - 1);
         // i have to check if at the top there is the player village
         if (CurrentOrigin["x"] + Cols - 1 == player["x"] && CurrentOrigin["y"] + Rows - i == player["y"]) {
           newCell.className = "playerVillage";
