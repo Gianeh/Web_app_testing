@@ -236,16 +236,16 @@ export function moveTable(event) {
     let key = event.key;  // getting the key pressed
     switch (key) {
       case "w":
-        id = "buttonDown";
-        break;
-      case "a":
-        id = "buttonRight";
-        break;
-      case "s":
         id = "buttonUp";
         break;
-      case "d":
+      case "a":
         id = "buttonLeft";
+        break;
+      case "s":
+        id = "buttonDown";
+        break;
+      case "d":
+        id = "buttonRight";
         break;
     }
     key = null;
@@ -306,7 +306,7 @@ export function moveTable(event) {
           newCell.innerHTML = "P";
         } else {
           newCell.innerText = "";
-          newCell.className = "square";
+          newCell.className = "terrain_cell";
         }
 
         // check if there is an enemy village
@@ -361,7 +361,7 @@ export function moveTable(event) {
           newCell.innerHTML = "P";
         } else {
           newCell.innerText = "";
-          newCell.className = "square";
+          newCell.className = "terrain_cell";
         }
 
         // check if there is an enemy village
@@ -414,7 +414,7 @@ export function moveTable(event) {
           newCell.innerHTML = "P";
         } else {
           newCell.innerText = "";
-          newCell.className = "square";
+          newCell.className = "terrain_cell";
         }
         // check if there is an enemy village
         for (k in enemypos) {
@@ -467,7 +467,7 @@ export function moveTable(event) {
           newCell.innerHTML = "P";
         } else {
           newCell.innerText = "";
-          newCell.className = "square";
+          newCell.className = "terrain_cell";
         }
 
         // check if there is an enemy village
