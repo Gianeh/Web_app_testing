@@ -32,14 +32,14 @@
 }
 
 .terrain_cell{
-    background-image: url("https://aos-web-testing.azurewebsites.net/Style/bitmap/terrain.png");
+    background-image: url("https://aos.azurewebsites.net/Style/bitmap/terrain.png");
     width: 30px;
     height: 30px;
     background-position: center; /* Center the image */
 }
 
 .rock_cell{
-    background-image: url("https://aos-web-testing.azurewebsites.net/Style/bitmap/rock.png");
+    background-image: url("https://aos.azurewebsites.net/Style/bitmap/rock.png");
     width: 30 px;
     height: 30 px;
     background-position: center;
