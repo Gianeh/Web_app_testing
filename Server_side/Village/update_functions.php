@@ -227,6 +227,7 @@
             $resources["wood"] += 100;
             $resources["rock"] += 100;
             $resources["iron"] += 100;
+            $resources["food"] += 100;
             $cache->setData("player", $resources, $token);
             return true;
         } else {
