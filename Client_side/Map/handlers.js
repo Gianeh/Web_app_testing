@@ -211,9 +211,6 @@ export function VillageClick(event) {
 // function that handle movement inside the map
 export function moveTable(event) {
 
-  //reload css
-  reloadCSS();
-
   // close player/enemy overlay if the table is moving 
 
   let playerOverlay = document.getElementById("PlayerOverlay");
