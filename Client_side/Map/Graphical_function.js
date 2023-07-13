@@ -10,8 +10,6 @@
 // 3) draw the player village and enemy villages
 
 
-const CryptoJS = require('crypto-js');
-
 // Function to draw rocks inside the map
 export function drawLandScape() {
 

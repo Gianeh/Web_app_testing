@@ -47,7 +47,7 @@ export function onLoad() {
   console.log("CurrentOrigin: " + CurrentOrigin["x"] + ", " + CurrentOrigin["y"]);
 
   // draw rock inside the map
-  drawLandScape();
+  //drawLandScape();
 
   // draw player and enemy
   drawPlayerAndEnemy(CurrentOrigin, enemypos, player);
