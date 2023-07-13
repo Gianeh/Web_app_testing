@@ -309,9 +309,9 @@ export function moveTable(event) {
         // check if there is an enemy village
         for (k in enemypos) {
           if (CurrentOrigin["x"] + j == enemypos[k]["x"] && CurrentOrigin["y"] + Rows == enemypos[k]["y"]) {
-            cell.className = "enemyVillage";
-            cell.id = "enemyVillage";
-            cell.innerHTML = "E";
+            newCell.className = "enemyVillage";
+            newCell.id = "enemyVillage";
+            newCell.innerHTML = "E";
           }
         }
       }
@@ -364,9 +364,9 @@ export function moveTable(event) {
         // check if there is an enemy village
         for (let k in enemypos) {
           if (CurrentOrigin["x"] + j == enemypos[k]["x"] && CurrentOrigin["y"] == enemypos[k]["y"]) {
-            cell.className = "enemyVillage";
-            cell.id = "enemyVillage";
-            cell.innerHTML = "E";
+            newCell.className = "enemyVillage";
+            newCell.id = "enemyVillage";
+            newCell.innerHTML = "E";
           }
         }
       }
@@ -416,9 +416,9 @@ export function moveTable(event) {
         // check if there is an enemy village
         for (k in enemypos) {
           if (CurrentOrigin["x"] == enemypos[k]["x"] && CurrentOrigin["y"] + Rows - i == enemypos[k]["y"]) {
-            cell.className = "enemyVillage";
-            cell.id = "enemyVillage";
-            cell.innerHTML = "E";
+            newCell.className = "enemyVillage";
+            newCell.id = "enemyVillage";
+            newCell.innerHTML = "E";
           }
         }
       }
@@ -470,9 +470,9 @@ export function moveTable(event) {
         // check if there is an enemy village
         for (k in enemypos) {
           if (CurrentOrigin["x"] + Cols - 1 == enemypos[k]["x"] && CurrentOrigin["y"] + Rows - i == enemypos[k]["y"]) {
-            cell.className = "enemyVillage";
-            cell.id = "enemyVillage";
-            cell.innerHTML = "E";
+            newCell.className = "enemyVillage";
+            newCell.id = "enemyVillage";
+            newCell.innerHTML = "E";
           }
         }
       }
