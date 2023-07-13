@@ -29,7 +29,7 @@ export function parseRequirements(data, level=0){
     let xhr = new XMLHttpRequest();
     let path = "../Server_side/requirements.json";
     let array;
-    xhr.open("GET", path, true);
+    xhr.open("GET", path, false);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200 || xhr.status === 0) {
@@ -70,7 +70,7 @@ export function parseRequirements(data, level=0){
 // a function to handle requests for a specific objects to the backend
 export function getData(dataName, path) {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", path, true);
+    xhr.open("POST", path, false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     let output = "";
     xhr.onload = function() {
@@ -100,7 +100,7 @@ export function getDataWithParameter(dataName, parameter, colums) {
   let xhr = new XMLHttpRequest();
   // set the path to the backend file that handles the direct request to database
   let path = backend_database;
-  xhr.open("POST", path, true);
+  xhr.open("POST", path, false);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   let output = "";
 
@@ -133,7 +133,7 @@ export function sendData(func="none", password="", path="") {
     else path = backend_village;
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", path, true);
+    xhr.open("POST", path, false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function() {
       if (xhr.status === 200) {
@@ -172,7 +172,7 @@ export function logout(path=""){
     else path = backend_village;  // defaults to Village/data_interface.php
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", path, true);
+    xhr.open("POST", path, false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function() {
       if (xhr.status === 200) {
