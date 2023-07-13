@@ -481,6 +481,9 @@ export function moveTable(event) {
   }
 
 
+// pippo
+
+
   // reset the event listener on the overlay of the player village
 
   // player can desappear if he is not in the map
