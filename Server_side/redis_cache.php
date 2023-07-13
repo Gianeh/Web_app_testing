@@ -9,7 +9,7 @@
     class Cache{
         public $redis;
         public $db;       // the database query object need to stay here?
-        function __construct($classes, $server='AOS-Web-Testing.redis.cache.windows.net', $pass='1QJ5aC5vpZESy1MYbw5oU42lnMixqxm0PAzCaHl4QH4='){
+        function __construct($classes, $server='aos.redis.cache.windows.net', $pass='J8FXqCoVrIILcaeKVL5qiu9NVCUpVOq3cAzCaF2CDPY='){
             // include every class that should be cached
             // this may be useless and removed from constructor
             for ($i = 0; $i < count($classes); $i++) {
