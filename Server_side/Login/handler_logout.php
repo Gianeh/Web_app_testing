@@ -21,7 +21,7 @@
         foreach($upgrades as $upgrade){
             if ($upgrade["status"] != "success") continue; // cache returns a status for upgrades events to prevent not found errors
             $db->update("events", "event_id, user_id, event_type, event_completion, finished, online",
-                $upgrade['event_id'].", ". $_SESSION['user_id'].", ". $upgrade['event_type'].", ". $upgrade['event_completion'].", ". $upgrade['finished'].", 0", "user_id = '". $_SESSION['user_id'] ."'");
+                $upgrade['event_id'].",". $_SESSION['user_id'].",". $upgrade['event_type'].",". $upgrade['event_completion'].",". $upgrade['finished'].",0", "user_id = '". $_SESSION['user_id'] ."'");
         }
 
         // acquire all the training events
@@ -35,7 +35,7 @@
             if ($unit_type["status"] != "success") continue;  // cache returns a status for upgrades events to prevent not found errors
             foreach($unit_type as $train){
                 $db->update("events", "event_id, user_id, event_type, event_completion, finished, online",
-                    $train['event_id'].", ". $_SESSION['user_id'].", ". $train['event_type'].", ". $train['event_completion'].",". $train['finished'].", 0", "user_id = '". $_SESSION['user_id'] ."'");
+                    $train['event_id'].",". $_SESSION['user_id'].",". $train['event_type'].",". $train['event_completion'].",". $train['finished'].",0", "user_id = '". $_SESSION['user_id'] ."'");
             }
         }
         // add resources events to database table events
@@ -51,9 +51,9 @@
         $woodchopper = $cache->acquireData("woodchopper", $token);
 
         // update resources in database table resources
-        $db->update("resources", "iron, food, wood, rock, population", $player["iron"] . ", " . $player["food"] . ", " . $player["wood"] . ", " . $player["rock"] . ", " . $player["population"] , "user_id = '" . $_SESSION['user_id']);
+        $db->update("resources", "iron, food, wood, rock, population", $player["iron"] . "," . $player["food"] . "," . $player["wood"] . "," . $player["rock"] . "," . $player["population"] , "user_id = '" . $_SESSION['user_id']);
         // update structures in database table structures
-        $db->update("structures", "townhall, woodchopper, rockmine, ironmine, farm, barracks", $townhall["level"] . ", " . $woodchopper["level"] . ", " . $rockmine["level"] . ", " . $ironmine["level"] . ", " . $farm["level"] . ", " . $barracks["level"], "user_id = " . $_SESSION['user_id']);
+        $db->update("structures", "townhall, woodchopper, rockmine, ironmine, farm, barracks", $townhall["level"] . "," . $woodchopper["level"] . "," . $rockmine["level"] . "," . $ironmine["level"] . "," . $farm["level"] . "," . $barracks["level"], "user_id = " . $_SESSION['user_id']);
 
         // more updates may need to get saved here
 
