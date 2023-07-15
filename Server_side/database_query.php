@@ -102,7 +102,7 @@ class databaseQuery{
         // connect to the database
         $this->connect();
         // build update query
-        $query = "UPDATE ".$table." SET (".$columns.") = (".$values.") WHERE ".$where;
+        $query = "UPDATE ".$table." SET ".$columns." = ".$values." WHERE ".$where;
         // try to execute the update query
         try {
             $this->conn->query($query);
