@@ -106,17 +106,24 @@ class databaseQuery{
         $value_array = explode(", ", $values);
         $query = "UPDATE ".$table." SET ";
         for ($i = 0; $i < count($column_array); $i++) {
-            $query .= $column_array[$i]." = '".$value_array[$i]."'";
+            $query .= $column_array[$i]." = ?";
             if ($i < count($column_array) - 1) {
                 $query .= ", ";
             }
         }
         $query .= " WHERE ".$where;
+        // prepare the update statement
+        $stmt = $this->conn->prepare($query);
+        // bind the values to the statement
+        for ($i = 0; $i < count($value_array); $i++) {
+            $stmt->bindValue($i + 1, $value_array[$i]);
+        }
         // try to execute the update query
         try {
-            $this->conn->query($query);
+            $stmt->execute();
         } catch (PDOException $e) {
             echo "Database Update Error: " . $e->getMessage();
         }
     }
+
 }
