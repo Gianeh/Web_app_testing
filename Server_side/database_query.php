@@ -122,7 +122,7 @@ class databaseQuery{
         try {
             $stmt->execute();
         } catch (PDOException $e) {
-            echo "Database Update Error: " . $e->getMessage();
+            echo "Database Update Error: " . $e->getMessage() . "for table: " . $table . " with columns: " . $columns . " and values: " . $values . " and where: " . $where;
         }
     }
 
