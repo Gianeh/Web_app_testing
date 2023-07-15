@@ -102,8 +102,8 @@ class databaseQuery{
         // connect to the database
         $this->connect();
         // build update query for each column and value pair
-        $column_array = explode(", ", $columns);
-        $value_array = explode(", ", $values);
+        $column_array = explode(",", $columns);
+        $value_array = explode(",", $values);
         $query = "UPDATE ".$table." SET ";
         for ($i = 0; $i < count($column_array); $i++) {
             $query .= $column_array[$i]." = ?";
