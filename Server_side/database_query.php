@@ -36,7 +36,7 @@ class databaseQuery{
         try {
             $this->conn->query($query);
         } catch (PDOException $e) {
-            echo "Database Query Error: " . $e->getMessage();
+            echo "Database Insertion Error: " . $e->getMessage();
         }
         
         //close pdo connection
@@ -59,7 +59,7 @@ class databaseQuery{
             $stmt = $this->conn->query($query);
             // Rest of the code
         } catch (PDOException $e) {
-            echo "Database Query Error: " . $e->getMessage();
+            echo "Database Selection Error: " . $e->getMessage();
             exit();
         }
         $output = array();
@@ -92,7 +92,7 @@ class databaseQuery{
         try {
             $this->conn->query($query);
         } catch (PDOException $e) {
-            echo "Database Query Error: " . $e->getMessage();
+            echo "Database Removal Error: " . $e->getMessage();
         }
     }
     
@@ -107,7 +107,7 @@ class databaseQuery{
         try {
             $this->conn->query($query);
         } catch (PDOException $e) {
-            echo "Database Query Error: " . $e->getMessage();
+            echo "Database Update Error: " . $e->getMessage();
         }
     }
 
