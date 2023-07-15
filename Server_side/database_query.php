@@ -101,8 +101,17 @@ class databaseQuery{
     public function update($table, $columns, $values, $where){
         // connect to the database
         $this->connect();
-        // build update query
-        $query = "UPDATE ".$table." SET ".$columns." = ".$values." WHERE ".$where;
+        // build update query for each column and value pair
+        $column_array = explode(", ", $columns);
+        $value_array = explode(", ", $values);
+        $query = "UPDATE ".$table." SET ";
+        for ($i = 0; $i < count($column_array); $i++) {
+            $query .= $column_array[$i]." = '".$value_array[$i]."'";
+            if ($i < count($column_array) - 1) {
+                $query .= ", ";
+            }
+        }
+        $query .= " WHERE ".$where;
         // try to execute the update query
         try {
             $this->conn->query($query);
@@ -110,5 +119,4 @@ class databaseQuery{
             echo "Database Update Error: " . $e->getMessage();
         }
     }
-
 }
