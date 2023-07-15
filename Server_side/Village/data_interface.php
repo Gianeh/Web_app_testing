@@ -20,6 +20,8 @@
 
         session_destroy();
         echo json_encode(array("status" => "success", "message" => "User logged out"));
+        // redirect to login page
+        header("Location: https://aos.azurewebsites.net/index.html");
         exit();
     }
 
