@@ -2,6 +2,9 @@
 export function setHandlers(){
     let submit = document.getElementById("submit");
     submit.addEventListener("click", submitClick);
+
+    // on the login page, tough not really sensed to be here, I want to clear the local storage
+    localStorage.clear();
 }
 
 //a function that handles the login action
