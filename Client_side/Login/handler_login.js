@@ -5,6 +5,7 @@ export function setHandlers(){
 
     // on the login page, tough not really sensed to be here, I want to clear the local storage
     localStorage.clear();
+    // this prevents the set interval from running on logout and saving useless data (mostly mistaken due to the absence of the user_id in session)
 }
 
 //a function that handles the login action
