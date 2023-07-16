@@ -45,6 +45,10 @@
                 $status = updateEvents($token);
                 break;
             
+            // a case that checks if event remaining time actually finished and updates the database
+            case "checkEvents":
+                $status = checkEvents($token);
+                break;
             // ADD POPULATION TO VILLAGE
             case "addPopulation":
                 $status = addPopulation($token);
