@@ -191,6 +191,10 @@ function upgradeTownhall(event) {
     if (localStorage.getItem("townhall") != null) {
         localStorage.removeItem("townhall");    // removes the local data
     }
+    // ceck if the local storage has the townhall_upgrade data
+    if (localStorage.getItem("townhall_upgrade") != null) {
+        localStorage.removeItem("townhall_upgrade");    // removes the local data
+    }
     // send update to the server
     sendData("upgradeTownhall");
     // remove data from local storage relative to townhall_upgrade
