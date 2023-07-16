@@ -130,6 +130,7 @@ DELETE FROM resources;
 
 /*
 DROP TABLE events;
+
 DROP TABLE resources;
 DROP TABLE troops;
 DROP TABLE structures;

@@ -31,6 +31,9 @@
     $_SESSION["user_id"] = $user_id;
 
     // here the database should be updated to with online status for every event in order for the Daemon not to touch them
+    include_once("../database_query.php");
+    $db = new DatabaseQuery();
+    $db->update("events", "online", "1", "user_id = '$user_id'");
 
     // if everything is ok, log the user in
     echo json_encode(array("status" => "success", "message" => "User logged in"));
