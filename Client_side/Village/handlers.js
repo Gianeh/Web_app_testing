@@ -22,6 +22,9 @@ export function woodchopperClick(event) {
     upgrade.addEventListener("click", upgradeWoodchopper);
     upgrade.classList.add("button");
     buttons.appendChild(upgrade);
+
+    // retieve the upgrade data from storage and append remaining time to upgrade span
+    upgrade_id = setInterval(function(){ setUpgradeSpan("woodchopper_upgrade"); }, 999);
 }
 
 // a function to handle the rockmine click
@@ -45,6 +48,9 @@ export function rockmineClick(event) {
     upgrade.addEventListener("click", upgradeRockmine);
     upgrade.classList.add("button");
     buttons.appendChild(upgrade);
+
+    // retieve the upgrade data from storage and append remaining time to upgrade span
+    upgrade_id = setInterval(function(){ setUpgradeSpan("rockmine_upgrade"); }, 999);
 }
 
 // a function to handle the ironmine click
@@ -68,6 +74,9 @@ export function ironmineClick(event) {
     upgrade.addEventListener("click", upgradeIronmine);
     upgrade.classList.add("button");
     buttons.appendChild(upgrade);
+
+    // retieve the upgrade data from storage and append remaining time to upgrade span
+    upgrade_id = setInterval(function(){ setUpgradeSpan("ironmine_upgrade"); }, 999);
 }
 
 // a function to handle the farm click
@@ -91,6 +100,9 @@ export function farmClick(event) {
     upgrade.addEventListener("click", upgradeFarm);
     upgrade.classList.add("button");
     buttons.appendChild(upgrade);
+
+    // retieve the upgrade data from starage and append remaining time to upgrade span
+    upgrade_id = setInterval(function(){ setUpgradeSpan("farm_upgrade"); }, 999);
 }
 
 // a function to handle the barracks click
@@ -130,6 +142,9 @@ export function barracksClick(event) {
     upgrade.classList.add("button");
     buttons.appendChild(upgrade);
 
+    // retieve the upgrade data from storage and append remaining time to upgrade span
+    upgrade_id = setInterval(function(){ setUpgradeSpan("barracks_upgrade"); }, 999);
+
 }
 
 // a function to handle the townhall click
@@ -160,7 +175,7 @@ export function townhallClick(event) {
     upgrade.classList.add("button");
     buttons.appendChild(upgrade);
 
-    // retieve the upgrade data from starage and append remaining time to upgrade span
+    // retieve the upgrade data from storage and append remaining time to upgrade span
     upgrade_id = setInterval(function(){ setUpgradeSpan("townhall_upgrade"); }, 999);
 
 }
