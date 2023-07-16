@@ -53,13 +53,6 @@ export function onLoad() {
     setInterval(updateUpgrades, 999);
     setInterval(function(){
         sendData("updateEvents", "village");
-        // delete al the upgrade events in local storage
-        for(let key in localStorage){
-            if(key.includes("upgrade")){
-                localStorage.removeItem(key);
-            }
-        }
-        // this enables new updated data retrieval trough the cache
     }, 5000)
 }
 

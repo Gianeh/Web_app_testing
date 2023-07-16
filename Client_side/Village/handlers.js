@@ -330,8 +330,11 @@ function setUpgradeSpan($upgrade){
     let upgradeSpan = document.getElementById("upgrade");
     if (upgradeData["status"] != "success"){
         upgradeSpan.innerHTML = "Structure is not being upgraded";
-    }else{
+    }else if(upgradeData["status"] == "success"){
         upgradeSpan.innerHTML = "remaining time: " + upgradeData["remaining_time"];
+    }else{
+        // something went wrong
+        upgradeSpan.innerHTML = "Something went wrong";
     }
 }
 
