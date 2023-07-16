@@ -182,6 +182,7 @@ export function townhallClick(event) {
 
 export function warmapClick(event) {
     window.location.href = "Map.html";
+    localStorage.clear();
 }
 
 // ADD POPULATION FUNCTION -> TOWNHALL ONLY:
@@ -365,10 +366,10 @@ export function updateUpgrades(){
             localStorage[key] = JSON.stringify(upgrade);
 
             // if the remaining time is 0, call the backend check function
+            if(upgrade["remaining_time"] == 0){
+                sendData("checkUpgrade", "village");
+            }
         }
-        // if the remaining time is 0, call the backend check function
-        // to be implemented
+
     }
 }
-
-// a function that every 5 seconds call the sendData function to trigger a cache update
