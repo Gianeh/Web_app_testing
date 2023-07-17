@@ -76,11 +76,11 @@
         $db = new databaseQuery();
         $cache = new Cache(array("player", "structures", "event"));
         // get all the "upgrade" events from database
-        $upgrades = $db->select("*", "events", "user_id = '".$_SESSION['user_id']."' , event_type LIKE '%upgrade%'");
+        $upgrades = $db->select("*", "events", "user_id = '".$_SESSION['user_id']."' AND event_type LIKE '%upgrade%'");
         // get all the "training" events from database
-        $training = $db->select("*", "events", "user_id = '".$_SESSION['user_id']."' , event_type LIKE '%training%'");
+        $training = $db->select("*", "events", "user_id = '".$_SESSION['user_id']."' AND event_type LIKE '%training%'");
         // get all the "production" events from database
-        $production = $db->select("*", "events", "user_id = '".$_SESSION['user_id']."' , event_type LIKE '%production%'");
+        $production = $db->select("*", "events", "user_id = '".$_SESSION['user_id']."' AND event_type LIKE '%production%'");
 
         // check upgrades
         foreach($upgrades as $upgrade){
