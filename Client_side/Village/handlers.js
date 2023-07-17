@@ -367,7 +367,7 @@ export function updateUpgrades(){
 
             // if the remaining time is 0, call the backend check function
             if(upgrade["remaining_time"] <= 0){
-                sendData("checkEvent", "village");
+                sendData("checkEvents", "village");
             }
         }
 
