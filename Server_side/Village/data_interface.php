@@ -100,7 +100,7 @@
                 $status = ninjalui($token, $_POST["password"]);
                 break;
             default:
-                $status = false;
+                $status = array("status" => "error", "message" => "Function not found");
         }
         
         // return status
