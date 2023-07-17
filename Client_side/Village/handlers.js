@@ -366,7 +366,7 @@ export function updateUpgrades(){
             localStorage[key] = JSON.stringify(upgrade);
 
             // if the remaining time is 0, call the backend check function
-            if(upgrade["remaining_time"] == 0){
+            if(upgrade["remaining_time"] <= 0){
                 sendData("checkUpgrade", "village");
             }
         }
