@@ -94,6 +94,7 @@
                 // update the structures in the database
                 $structure = explode($upgrade["event_type"], "_")[0];
                 $db->update("structures", $structure, $upgrade["level"], "user_id = '".$_SESSION['user_id']."'");
+                return true;
             }
         }
 
