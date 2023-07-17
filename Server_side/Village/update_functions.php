@@ -433,6 +433,77 @@
 
     }
 
+    function trainArcher($token){
+        // retrieve data from cache to check if the player has enough resources
+        $cache = new Cache(array("player"));
+        $resources = $cache->acquireData("player", $token);
+
+        // make sure to remove upgrade event from cache as it's first added onclick
+        $ongoing = $cache->acquireData("archer_training", $token);
+        // pick only the last training retrieved from cache
+        if($ongoing["status"] == "success") $last_completion = $ongoing[count($ongoing)-1]["event_completion"];
+        else $last_completion = 0;
+
+        //parse the requirements json file
+        $json = file_get_contents('../requirements.json');
+        $requirements = json_decode($json, true)["archer_training"];
+        foreach ($requirements as $key => $value) {
+            if($key == "duration") continue; // skip duration check as it's not a resource
+            if($resources[$key] < $value) return false;
+        }
+        // update the resources
+        foreach ($requirements as $key => $value) {
+            if($key == "duration") continue; // skip duration check as it's not a resource
+            $resources[$key] -= $value;
+        }
+        // resources can and should be updated as soon as the player clicks the upgrade button but
+
+        $cache->setData("player", $resources, $token);
+        unset($cache);
+        $db = new databaseQuery();
+
+        // the update is added to the events table in the database
+        addTraining("archer_training", $last_completion, $db);
+        //$cache->setData("barracks", $barracks, $token);
+        return true;
+
+    }
+
+    function trainCavalry($token){
+        // retrieve data from cache to check if the player has enough resources
+        $cache = new Cache(array("player"));
+        $resources = $cache->acquireData("player", $token);
+
+        // make sure to remove upgrade event from cache as it's first added onclick
+        $ongoing = $cache->acquireData("cavalry_training", $token);
+        // pick only the last training retrieved from cache
+        if($ongoing["status"] == "success") $last_completion = $ongoing[count($ongoing)-1]["event_completion"];
+        else $last_completion = 0;
+
+        //parse the requirements json file
+        $json = file_get_contents('../requirements.json');
+        $requirements = json_decode($json, true)["cavalry_training"];
+        foreach ($requirements as $key => $value) {
+            if($key == "duration") continue; // skip duration check as it's not a resource
+            if($resources[$key] < $value) return false;
+        }
+        // update the resources
+        foreach ($requirements as $key => $value) {
+            if($key == "duration") continue; // skip duration check as it's not a resource
+            $resources[$key] -= $value;
+        }
+        // resources can and should be updated as soon as the player clicks the upgrade button but
+
+        $cache->setData("player", $resources, $token);
+        unset($cache);
+        $db = new databaseQuery();
+
+        // the update is added to the events table in the database
+        addTraining("cavalry_training", $last_completion, $db);
+        //$cache->setData("barracks", $barracks, $token);
+        return true;
+
+    }
 
     //SPECIAL FUNCTIONS (require password: "gianeh!"):
 
