@@ -24,7 +24,7 @@ export function woodchopperClick(event) {
     buttons.appendChild(upgrade);
 
     // retieve the upgrade data from storage and append remaining time to upgrade span
-    upgrade_id = setInterval(function(){ setUpgradeSpan("woodchopper_upgrade"); }, 999);
+    upgrade_id = setInterval(function(){ setUpgradeSpan("woodchopper_upgrade"); }, 1000);
 }
 
 // a function to handle the rockmine click
@@ -50,7 +50,7 @@ export function rockmineClick(event) {
     buttons.appendChild(upgrade);
 
     // retieve the upgrade data from storage and append remaining time to upgrade span
-    upgrade_id = setInterval(function(){ setUpgradeSpan("rockmine_upgrade"); }, 999);
+    upgrade_id = setInterval(function(){ setUpgradeSpan("rockmine_upgrade"); }, 1000);
 }
 
 // a function to handle the ironmine click
@@ -76,7 +76,7 @@ export function ironmineClick(event) {
     buttons.appendChild(upgrade);
 
     // retieve the upgrade data from storage and append remaining time to upgrade span
-    upgrade_id = setInterval(function(){ setUpgradeSpan("ironmine_upgrade"); }, 999);
+    upgrade_id = setInterval(function(){ setUpgradeSpan("ironmine_upgrade"); }, 1000);
 }
 
 // a function to handle the farm click
@@ -102,7 +102,7 @@ export function farmClick(event) {
     buttons.appendChild(upgrade);
 
     // retieve the upgrade data from starage and append remaining time to upgrade span
-    upgrade_id = setInterval(function(){ setUpgradeSpan("farm_upgrade"); }, 999);
+    upgrade_id = setInterval(function(){ setUpgradeSpan("farm_upgrade"); }, 1000);
 }
 
 // a function to handle the barracks click
@@ -143,7 +143,7 @@ export function barracksClick(event) {
     buttons.appendChild(upgrade);
 
     // retieve the upgrade data from storage and append remaining time to upgrade span
-    upgrade_id = setInterval(function(){ setUpgradeSpan("barracks_upgrade"); }, 999);
+    upgrade_id = setInterval(function(){ setUpgradeSpan("barracks_upgrade"); }, 1000);
 
 }
 
@@ -176,7 +176,7 @@ export function townhallClick(event) {
     buttons.appendChild(upgrade);
 
     // retieve the upgrade data from storage and append remaining time to upgrade span
-    upgrade_id = setInterval(function(){ setUpgradeSpan("townhall_upgrade"); }, 999);
+    upgrade_id = setInterval(function(){ setUpgradeSpan("townhall_upgrade"); }, 1000);
 
 }
 
@@ -367,7 +367,7 @@ export function updateUpgrades(){
 
             // if the remaining time is 0, call the backend check function
             if(upgrade["remaining_time"] <= 0){
-                sendData("checkUpgrade", "village");
+                sendData("checkEvent", "village");
             }
         }
 
