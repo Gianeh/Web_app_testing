@@ -88,12 +88,12 @@
             if($upgrade["event_completion"] <= $now){
                 // update the event in the database
                 $db->update("events", "finished", "1", "event_id = '".$upgrade["event_id"]."'");
-                // update the cache
-                $cache->deleteData($upgrade["event_type"], $token);
-                $cache->acquireData($upgrade["event_type"], $token);
                 // update the structures in the database
                 $structure = explode("_", $upgrade["event_type"])[0];
                 $db->update("structures", $structure, $upgrade["level"], "user_id = '".$_SESSION['user_id']."'");
+                // update the cache
+                $cache->deleteData($upgrade["event_type"], $token);
+                $cache->acquireData($upgrade["event_type"], $token);
             }
         }
 
@@ -103,13 +103,14 @@
             if($train["event_completion"] <= $now){
                 // update the event in the database
                 $db->update("events", "finished", "1", "event_id = '".$train["event_id"]."'");
-                // update the cache
-                $cache->deleteData($train["event_type"], $token);
-                $cache->acquireData($train["event_type"], $token);
+                
                 // update the units in the database
                 $troop_type = explode("_",$train["event_type"])[0];
                 // add 1 unit to the units table in the database at unit_type
                 $db->update("troops", $troop_type, $troop_type + 1, "user_id = '".$_SESSION['user_id']."'");
+                // update the cache
+                $cache->deleteData($train["event_type"], $token);
+                $cache->acquireData($train["event_type"], $token);
             }
         }
 

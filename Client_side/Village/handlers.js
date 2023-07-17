@@ -368,6 +368,8 @@ export function updateUpgrades(){
             // if the remaining time is 0, call the backend check function
             if(upgrade["remaining_time"] <= 0){
                 sendData("checkEvents", "village");
+                // here an escamotage to reset the currently clicked structure needs to be implemented
+                // local storage needs to be cleared too !
             }
         }
 
