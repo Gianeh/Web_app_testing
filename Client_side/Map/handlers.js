@@ -405,7 +405,7 @@ export function moveTable(event) {
       for (let i = 0; i < Rows; i++) {
         newCell = table.rows[i].insertCell(0);
         // i have to check if at the top there is the player village
-        if (CurrentOrigin["x"] == player["x"] && CurrentOrigin["y"] + Rows - i == player["y"]) {
+        if (CurrentOrigin["x"] == player["x"] && CurrentOrigin["y"] + Rows - i + 1 == player["y"]) {
           newCell.className = "playerVillage";
           newCell.id = "playerVillage";
           newCell.innerHTML = "P";
@@ -413,9 +413,10 @@ export function moveTable(event) {
           newCell.innerText = "";
           newCell.className = "terrain_cell";
         }
+        
         // check if there is an enemy village
         for (k in enemypos) {
-          if (CurrentOrigin["x"] == enemypos[k]["x"] && CurrentOrigin["y"] + Rows - i == enemypos[k]["y"]) {
+          if (CurrentOrigin["x"] == enemypos[k]["x"] && CurrentOrigin["y"] + Rows - i + 1 == enemypos[k]["y"]) {
             newCell.className = "enemyVillage";
             newCell.id = "enemyVillage";
             newCell.innerHTML = "E";
