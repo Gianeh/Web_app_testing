@@ -21,6 +21,8 @@ export function drawPlayerAndEnemy(CurrentOrigin, enemypos, player) {
     // get the table
     let table = document.getElementById("WarMap");
 
+
+    
     // scroll all the table
     for (let i = table.rows.length; i <= 0; i++) {
         for (let j = 0; j < table.rows[i].cells.length; j++) {
