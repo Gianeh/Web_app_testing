@@ -24,7 +24,7 @@ export function drawPlayerAndEnemy(CurrentOrigin, enemypos, player) {
 
     
     // scroll all the table
-    for (let i = table.rows.length; i <= 0; i++) {
+    for (let i = 0; i < table.length.rows ; i++) {
         for (let j = 0; j < table.rows[i].cells.length; j++) {
             // get the cell
             let cell = table.rows[i].cells[j];
@@ -37,7 +37,7 @@ export function drawPlayerAndEnemy(CurrentOrigin, enemypos, player) {
             }
             // check if the cell is the enemy position
             for (let k in enemypos) {
-                if ((j + CurrentOrigin["x"]) == enemypos[k]["x"] && (i + CurrentOrigin["y"]) == enemypos[k]["y"]) {
+                if (((j + CurrentOrigin["x"]) == enemypos[k]["x"]) && ((i + CurrentOrigin["y"]) == enemypos[k]["y"])) {
                     cell.className = "enemyVillage";
                     cell.id = "enemyVillage";
                     cell.innerHTML = "E";
