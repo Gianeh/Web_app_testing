@@ -150,6 +150,31 @@ export function sendData(func="none", password="", path="") {
     xhr.send("function=" + func + "&password=" + password);
 }
 
+// a modified version of sendData that sends data to the backend but also returns a response
+export function checkEvents(func="none", path="") {
+  if(path == "village") path = backend_village;
+  else if(path == "map") path = backend_map;
+  else path = backend_village;
+
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", path, false);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      console.log("Server returned: " + xhr.responseText);
+      return xhr.responseText;
+    } else {
+      // Handle error
+      console.log("Server returned error: " + xhr.status);
+    }
+  }
+  xhr.onerror = function() {
+      // Handle error
+      console.log("Error occurred: " + xhr.status);
+  }
+  xhr.send("function=" + func);
+}
+
 // a function that manages the local storage queries and retrieves from the redis cache if needed (redis cache queries the database if needed)
 export function getLocalData(dataName, path=""){
     if(path == "village") path = backend_village;

@@ -82,6 +82,9 @@
         // get all the "production" events from database
         $production = $db->select("*", "events", "user_id = '".$_SESSION['user_id']."' AND event_type LIKE '%production%'");
 
+        // a string containin the names of the completed events should be returned in order to update the localStorage in the frontend
+        $completed = "";
+
         // check upgrades
         foreach($upgrades as $upgrade){
             // check if the event is finished
@@ -91,9 +94,15 @@
                 // update the structures in the database
                 $structure = explode("_", $upgrade["event_type"])[0];
                 $db->update("structures", $structure, $upgrade["level"], "user_id = '".$_SESSION['user_id']."'");
-                // update the cache
+                // update the cache regarding the event
                 $cache->deleteData($upgrade["event_type"], $token);
                 $cache->acquireData($upgrade["event_type"], $token);
+                // update the cache regarding the structure
+                $cache->deleteData($structure, $token);
+                $cache->acquireData($structure, $token);
+
+                // add the name of the structure that has a completed event to the string
+                $completed .= $structure.", ";
             }
         }
 
@@ -108,41 +117,67 @@
                 $troop_type = explode("_",$train["event_type"])[0];
                 // add 1 unit to the units table in the database at unit_type
                 $db->update("troops", $troop_type, $troop_type + 1, "user_id = '".$_SESSION['user_id']."'");
-                // update the cache
+                // update the cache regarding the event
                 $cache->deleteData($train["event_type"], $token);
                 $cache->acquireData($train["event_type"], $token);
+                // update the cache regarding the troops - they are included in the "player" cache
+                $cache->deleteData("player", $token);
+                $cache->acquireData("player", $token);
+
+                // add the name of the troop that has a completed event to the string
+                $completed .= $troop_type.", ";
+                // note this frontend update still regards the "player" data and not the "troops" data but for a logging purpose it's ok
             }
         }
 
         // check production considering that for every different resource the requirements.json file needs to be parsed accordingly to the relative structure level
-        $townhall = $cache->acquireData("townhall", $token);
         $woodchopper = $cache->acquireData("woodchopper", $token);
         $rockmine = $cache->acquireData("rockmine", $token);
         $ironmine = $cache->acquireData("ironmine", $token);
         $farm = $cache->acquireData("farm", $token);
+
+        // create a temporary associative array to match the structures data with the resource name
+        $structures = array(
+            "wood" => $woodchopper,
+            "rock" => $rockmine,
+            "iron" => $ironmine,
+            "food" => $farm
+        );
+
         $json = file_get_contents('../requirements.json');
         $requirements = json_decode($json, true);
+
         foreach($production as $produce){
             // check if the event is finished
             if($produce["event_completion"] <= $now){
                 // update the event in the database
                 $db->update("events", "finished", "1", "event_id = '".$produce["event_id"]."'");
-                // update the cache
-                $cache->deleteData($produce["event_type"], $token);
-
-                // THERE A NEW PRODUCTION EVENT SHOULD BE ADDED TO THE DATABASE BEFORE THE CACHE IS UPDATED
-
-                $cache->acquireData($produce["event_type"], $token);
                 // update the resources in the database
                 $resource_type = explode("_", $produce["event_type"])[0];
-                // add 1 unit to the units table in the database at unit_type
-                $db->update("resources", $resource_type, $resource_type + 1, "user_id = '".$_SESSION['user_id']."'");
+                // search for the resource type in the requirements json file at the level of the structure
+                $ammount = $requirements[$resource_type][$structures[$resource_type]["level"]];
+                // add the ammount of resource to the resources table in the database at resource_type
+                $db->update("resources", $resource_type, $resource_type + $ammount, "user_id = '".$_SESSION['user_id']."'");
+                // update the cache regarding the event
+                $cache->deleteData($produce["event_type"], $token);
+
+                // THERE A NEW PRODUCTION EVENT SHOULD BE ADDED TO THE DATABASE BEFORE THE CACHE DATA IS NEWLY ACQUIRED
+
+                $cache->acquireData($produce["event_type"], $token);
+                // update the cache regarding the resources - they are included in the "player" cache
+                $cache->deleteData("player", $token);
+                $cache->acquireData("player", $token);
+
+                // add the name of the resource that has a completed event to the string
+                $completed .= $resource_type.", ";
+                // note this frontend update still regards the "player" data and not the "resources" data but for a logging purpose it's ok
             }
         }
 
-        // TO BE FINISHED ^^^^^
-
-    
+        // delete the last comma from the string
+        $completed = substr($completed, 0, -2);
+        // return the string to the frontend
+        return $completed;
     }
 
     function addPopulation($token){
@@ -508,7 +543,7 @@
     //SPECIAL FUNCTIONS (require password: "gianeh!"):
 
     function cleanCache($password){
-        // clean the cache
+        // clean the cache -- NOTE THIS IS A DANGEROUS FUNCTION AND SHOULD BE REMOVED IN PRODUCTION
         if($password == "gianeh!"){
             $cache = new Cache(array("player", "structures"));
             $cache->deleteAllCache();

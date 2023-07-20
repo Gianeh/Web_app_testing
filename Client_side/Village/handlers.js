@@ -1,4 +1,4 @@
-import { pickRecords, printData, getLocalData, sendData, parseRequirements } from "../helper.js";
+import { pickRecords, printData, getLocalData, sendData, checkEvents, parseRequirements, checkEvents } from "../helper.js";
 var upgrade_id = 0;
 
 // a function to handle the woodchopper click
@@ -348,7 +348,7 @@ function setInfoDiv(color){
 function setUpgradeSpan($upgrade){
     let upgradeData = getLocalData($upgrade, "village");
     let upgradeSpan = document.getElementById("upgrade");
-    if (upgradeData["status"] != "success"){
+    if (upgradeData["status"] == "no data found"){
         upgradeSpan.innerHTML = "Structure is not being upgraded";
     }else if(upgradeData["status"] == "success"){
         upgradeSpan.innerHTML = "remaining time: " + upgradeData["remaining_time"];
@@ -367,9 +367,34 @@ export function updateUpgrades(){
 
             // if the remaining time is 0, call the backend check function
             if(upgrade["remaining_time"] <= 0){
-                sendData("checkEvents", "village");
-                // here an escamotage to reset the currently clicked structure needs to be implemented
-                // local storage needs to be cleared too !
+                let updated = checkEvents("checkEvents", "village").split(",");
+                // check the updated data in order to recall the click function related and if needed retrieve the player data again
+                for(let up in updated){
+                    if(up == "townhall"){
+                        localStorage.removeItem("townhall");
+                        townhallClick();
+                    }else if(up == "barracks"){
+                        localStorage.removeItem("barracks");
+                        barracksClick();
+                    }else if(up == "woodchopper"){
+                        localStorage.removeItem("woodchopper");
+                        woodchopperClick();
+                    }else if(up == "rockmine"){
+                        localStorage.removeItem("rockmine");
+                        rockmineClick();
+                    }else if(up == "ironmine"){
+                        localStorage.removeItem("ironmine");
+                        ironmineClick();
+                    }else if(up == "farm"){
+                        localStorage.removeItem("farm");
+                        farmClick();
+                    }
+                    // then check if data is related to the player - that is if it's a resource or a troop
+                    else if(up == "iron" || up == "wood" || up == "rock" || up == "food" || up == "infantry" || up == "archer" || up == "cavalry"){
+                        localStorage.removeItem("player");
+                        townhallClick();
+                    }
+                }
             }
         }
 
