@@ -162,7 +162,7 @@ export function checkEvents(func="none", path="") {
   xhr.onload = function() {
     if (xhr.status === 200) {
       console.log("Server returned: " + xhr.responseText);
-      return xhr.responseText;
+      return JSON.parse(xhr.responseText);
     } else {
       // Handle error
       console.log("Server returned error: " + xhr.status);
