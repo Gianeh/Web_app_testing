@@ -1,4 +1,4 @@
-import { pickRecords, printData, getLocalData, sendData, checkEvents, parseRequirements, checkEvents } from "../helper.js";
+import { pickRecords, printData, getLocalData, sendData, checkEvents, parseRequirements } from "../helper.js";
 var upgrade_id = 0;
 
 // a function to handle the woodchopper click
