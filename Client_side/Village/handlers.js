@@ -369,28 +369,28 @@ export function updateUpgrades(){
             if(upgrade["remaining_time"] <= 0){
                 let updated = checkEvents("checkEvents", "village").split(",");
                 // check the updated data in order to recall the click function related and if needed retrieve the player data again
-                for(let up in updated){
-                    if(up == "townhall"){
+                for(let i = 0; i < updated.length; i++){
+                    if(updated[i] == "townhall"){
                         localStorage.removeItem("townhall");
                         townhallClick();
-                    }else if(up == "barracks"){
+                    }else if(updated[i] == "barracks"){
                         localStorage.removeItem("barracks");
                         barracksClick();
-                    }else if(up == "woodchopper"){
+                    }else if(updated[i] == "woodchopper"){
                         localStorage.removeItem("woodchopper");
                         woodchopperClick();
-                    }else if(up == "rockmine"){
+                    }else if(updated[i] == "rockmine"){
                         localStorage.removeItem("rockmine");
                         rockmineClick();
-                    }else if(up == "ironmine"){
+                    }else if(updated[i] == "ironmine"){
                         localStorage.removeItem("ironmine");
                         ironmineClick();
-                    }else if(up == "farm"){
+                    }else if(updated[i] == "farm"){
                         localStorage.removeItem("farm");
                         farmClick();
                     }
                     // then check if data is related to the player - that is if it's a resource or a troop
-                    else if(up == "iron" || up == "wood" || up == "rock" || up == "food" || up == "infantry" || up == "archer" || up == "cavalry"){
+                    else if(updated[i] == "iron" || updated[i] == "wood" || updated[i] == "rock" || updated[i] == "food" || updated[i] == "infantry" || updated[i] == "archer" || updated[i] == "cavalry"){
                         localStorage.removeItem("player");
                         townhallClick();
                     }
