@@ -157,12 +157,13 @@ export function checkEvents(func="none", path="") {
   else path = backend_village;
 
   let xhr = new XMLHttpRequest();
+  let output = "";
   xhr.open("POST", path, false);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.onload = function() {
     if (xhr.status === 200) {
       console.log("Server returned: " + xhr.responseText);
-      return JSON.parse(xhr.responseText);
+      output = JSON.parse(xhr.responseText);
     } else {
       // Handle error
       console.log("Server returned error: " + xhr.status);
@@ -173,6 +174,7 @@ export function checkEvents(func="none", path="") {
       console.log("Error occurred: " + xhr.status);
   }
   xhr.send("function=" + func);
+  return output;
 }
 
 // a function that manages the local storage queries and retrieves from the redis cache if needed (redis cache queries the database if needed)
