@@ -372,25 +372,54 @@ export function updateUpgrades(){
                 for(let i = 0; i < updated.length; i++){
                     if(updated[i] == "townhall"){
                         localStorage.removeItem("townhall");
+                        localStorage.removeItem("townhall_upgrade");
                         townhallClick();
                     }else if(updated[i] == "barracks"){
                         localStorage.removeItem("barracks");
+                        localStorage.removeItem("barracks_upgrade");
                         barracksClick();
                     }else if(updated[i] == "woodchopper"){
                         localStorage.removeItem("woodchopper");
+                        localStorage.removeItem("woodchopper_upgrade");
                         woodchopperClick();
                     }else if(updated[i] == "rockmine"){
                         localStorage.removeItem("rockmine");
+                        localStorage.removeItem("rockmine_upgrade");
                         rockmineClick();
                     }else if(updated[i] == "ironmine"){
                         localStorage.removeItem("ironmine");
+                        localStorage.removeItem("ironmine_upgrade");
                         ironmineClick();
                     }else if(updated[i] == "farm"){
                         localStorage.removeItem("farm");
+                        localStorage.removeItem("farm_upgrade");
                         farmClick();
                     }
                     // then check if data is related to the player - that is if it's a resource or a troop
                     else if(updated[i] == "iron" || updated[i] == "wood" || updated[i] == "rock" || updated[i] == "food" || updated[i] == "infantry" || updated[i] == "archer" || updated[i] == "cavalry"){
+                        switch(updated[i]){
+                            case "iron":
+                                localStorage.removeItem("iron_production");
+                                break;
+                            case "wood":
+                                localStorage.removeItem("wood_production");
+                                break;
+                            case "rock":
+                                localStorage.removeItem("rock_production");
+                                break;
+                            case "food":
+                                localStorage.removeItem("food_production");
+                                break;
+                            case "infantry":
+                                localStorage.removeItem("infantry_training");
+                                break;
+                            case "archer":
+                                localStorage.removeItem("archer_training");
+                                break;
+                            case "cavalry":
+                                localStorage.removeItem("cavalry_training");
+                                break;
+                        }
                         localStorage.removeItem("player");
                         townhallClick();
                     }
