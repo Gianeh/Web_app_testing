@@ -74,4 +74,5 @@
         $cache->deleteData("infantry_training", $token);
         $cache->deleteData("archer_training", $token);
         $cache->deleteData("cavalry_training", $token);
+        // production events are missing
     }

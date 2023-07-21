@@ -96,6 +96,7 @@
     $connection->insert("structures", "user_id, townhall, farm, woodchopper, rockmine, ironmine, barracks", "'$user_id', 0, 0, 0, 0, 0, 0");
     $connection->insert("resources", "user_id, iron, food, wood, rock, population", "'$user_id', 200, 200, 200, 200, 50");
     $connection->insert("troops", "user_id, archer, infantry, cavalry", "'$user_id', 0, 0, 0");
+    // production events must be added on firts login!
     // every new table rows needs to be added here
     
     

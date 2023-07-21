@@ -40,7 +40,7 @@
     "wood_production":{
         "0":{
             "wood": 100,
-            "duration": 3600
+            "duration": 10
         },
         "1":{
             "wood": 200,
@@ -210,6 +210,43 @@
             "wood": 500,
             "iron": 0,
             "food": 1500,
+            "duration": 180
+        }
+    },
+    "woodchopper_upgrade": {
+        "1": {
+            "rock": 0,
+            "wood": 100,
+            "iron": 50,
+            "food": 50,
+            "duration": 10
+        },
+        "2": {
+            "rock": 0,
+            "wood": 200,
+            "iron": 100,
+            "food": 100,
+            "duration": 30
+        },
+        "3": {
+            "rock": 0,
+            "wood": 300,
+            "iron": 150,
+            "food": 150,
+            "duration": 60
+        },
+        "4": {
+            "rock": 0,
+            "wood": 400,
+            "iron": 200,
+            "food": 200,
+            "duration": 120
+        },
+        "5": {
+            "rock": 0,
+            "wood": 500,
+            "iron": 250,
+            "food": 250,
             "duration": 180
         }
     }

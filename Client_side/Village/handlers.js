@@ -126,16 +126,28 @@ export function barracksClick(event) {
     infantry.classList.add("button");
     infantry.addEventListener("click", trainInfantry);
     buttons.appendChild(infantry);
+    let span = document.createElement("span");
+    span.id = "infantry_training";
+    buttons.appendChild(span);
+    buttons.appendChild(document.createElement("br"));
     let archer = document.createElement("button");
     archer.innerHTML = "Train Archer" + parseRequirements("archer_training");
     archer.classList.add("button");
     archer.addEventListener("click", trainArcher);
     buttons.appendChild(archer);
+    span = document.createElement("span");
+    span.id = "archer_training";
+    buttons.appendChild(span);
+    buttons.appendChild(document.createElement("br"));
     let cavalry = document.createElement("button");
     cavalry.innerHTML = "Train Cavalry" + parseRequirements("cavalry_training");
     cavalry.classList.add("button");
     cavalry.addEventListener("click", trainCavalry);
     buttons.appendChild(cavalry);
+    span = document.createElement("span");
+    span.id = "cavalry_training";
+    buttons.appendChild(span);
+    buttons.appendChild(document.createElement("br"));
     let upgrade = document.createElement("button");
     upgrade.innerHTML = "Upgrade Barracks " + parseRequirements("barracks_upgrade", (parseInt(data["level"])+1).toString());
     upgrade.addEventListener("click", upgradeBarracks);
@@ -357,6 +369,9 @@ function setUpgradeSpan($upgrade){
         upgradeSpan.innerHTML = "Something went wrong";
     }
 }
+
+// a function that updates the training spans is needed!!!!!!!!!!!!
+// god I hate myself...
 
 export function updateUpgrades(){
     for(let key in localStorage){
