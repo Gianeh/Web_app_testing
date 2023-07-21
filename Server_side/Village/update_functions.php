@@ -76,11 +76,11 @@
         $db = new databaseQuery();
         $cache = new Cache(array("player", "structures", "event"));
         // get all the "upgrade" events from database
-        $upgrades = $db->select("*", "events", "user_id = '".$_SESSION['user_id']."' AND event_type LIKE '%upgrade%'");
+        $upgrades = $db->select("*", "events", "user_id = '".$_SESSION['user_id']."' AND event_type LIKE '%upgrade%' AND finished = 0");
         // get all the "training" events from database
-        $training = $db->select("*", "events", "user_id = '".$_SESSION['user_id']."' AND event_type LIKE '%training%'");
+        $training = $db->select("*", "events", "user_id = '".$_SESSION['user_id']."' AND event_type LIKE '%training%' AND finished = 0");
         // get all the "production" events from database
-        $production = $db->select("*", "events", "user_id = '".$_SESSION['user_id']."' AND event_type LIKE '%production%'");
+        $production = $db->select("*", "events", "user_id = '".$_SESSION['user_id']."' AND event_type LIKE '%production%' AND finished = 0");
 
         // a string containin the names of the completed events should be returned in order to update the localStorage in the frontend
         $completed = "";
@@ -210,6 +210,7 @@
         $townhall = $cache->acquireData("townhall", $token);
 
         // make sure to remove upgrade event from cache as it's first added onclick
+        $cache->deleteData("townhall_upgrade", $token);
         $ongoing = $cache->acquireData("townhall_upgrade", $token);
         if($ongoing["status"] == "success"){
             return "upgrade already ongoing";
@@ -248,6 +249,7 @@
         $barracks = $cache->acquireData("barracks", $token);
 
         // make sure to remove upgrade event from cache as it's first added onclick
+        $cache->deleteData("barracks_upgrade", $token);
         $ongoing = $cache->acquireData("barracks_upgrade", $token);
         if($ongoing["status"] == "success"){
             return "upgrade already ongoing";
@@ -286,6 +288,7 @@
         $farm = $cache->acquireData("farm", $token);
 
         // make sure to remove upgrade event from cache as it's first added onclick
+        $cache->deleteData("farm_upgrade", $token);
         $ongoing = $cache->acquireData("farm_upgrade", $token);
         if($ongoing["status"] == "success"){
             return "upgrade already ongoing";
@@ -324,6 +327,7 @@
         $rockmine = $cache->acquireData("rockmine", $token);
 
         // make sure to remove upgrade event from cache as it's first added onclick
+        $cache->deleteData("rockmine_upgrade", $token);
         $ongoing = $cache->acquireData("rockmine_upgrade", $token);
         if($ongoing["status"] == "success"){
             return "upgrade already ongoing";
@@ -362,6 +366,7 @@
         $ironmine = $cache->acquireData("ironmine", $token);
 
         // make sure to remove upgrade event from cache as it's first added onclick
+        $cache->deleteData("ironmine_upgrade", $token);
         $ongoing = $cache->acquireData("ironmine_upgrade", $token);
         if($ongoing["status"] == "success"){
             return "upgrade already ongoing";
@@ -400,6 +405,7 @@
         $woodchopper = $cache->acquireData("woodchopper", $token);
 
         // make sure to remove upgrade event from cache as it's first added onclick
+        $cache->deleteData("woodchopper_upgrade", $token);
         $ongoing = $cache->acquireData("woodchopper_upgrade", $token);
         if($ongoing["status"] == "success"){
             return "upgrade already ongoing";
@@ -438,6 +444,7 @@
         $resources = $cache->acquireData("player", $token);
 
         // make sure to remove upgrade event from cache as it's first added onclick
+        // FOR NOW THE TRAINING EVENT IS NOT REMOVED AS A TEST!
         $ongoing = $cache->acquireData("infantry_training", $token);
         // pick only the last training retrieved from cache
         if($ongoing["status"] == "success") $last_completion = $ongoing[count($ongoing)-1]["event_completion"];
