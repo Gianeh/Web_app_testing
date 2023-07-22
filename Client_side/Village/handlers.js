@@ -328,7 +328,7 @@ function trainInfantry(event) {
     // send update to the server
     sendData("trainInfantry");
     // remove data from local storage
-    localStorage.removeItem("trainInfantry");
+    localStorage.removeItem("infantry_training");
     barracksClick();
 }
 
@@ -340,7 +340,7 @@ function trainArcher(event) {
     // send update to the server
     sendData("trainArcher");
     // remove data from local storage
-    localStorage.removeItem("trainArcher");
+    localStorage.removeItem("archer_training");
     barracksClick();
 }
 
@@ -352,7 +352,7 @@ function trainCavalry(event) {
     // send update to the server
     sendData("trainCavalry");
     // remove data from local storage
-    localStorage.removeItem("trainCavalry");
+    localStorage.removeItem("cavalry_training");
     barracksClick();
 }
 
