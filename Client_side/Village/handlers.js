@@ -387,7 +387,7 @@ function setTrainingSpan(training){
     let trainingData = getLocalData(training, "village");
     let trainingSpan = document.getElementById(training);
     if (trainingData["status"] == "no data found"){
-        trainingSpan.innerHTML = "\t" + training.split("_")[0] + "is not being trained";
+        trainingSpan.innerHTML = "\t" + training.split("_")[0] + " is not being trained";
     }else if(trainingData["status"] == "success"){
         trainingSpan.innerHTML = "\tremaining time: " + trainingData["remaining_time"];
     }else{
@@ -395,9 +395,6 @@ function setTrainingSpan(training){
         trainingSpan.innerHTML = "\tSomething went wrong";
     }
 }
-
-// a function that updates the training spans is needed!!!!!!!!!!!!
-// god I hate myself...
 
 export function updateUpgrades(){
     for(let key in localStorage){
