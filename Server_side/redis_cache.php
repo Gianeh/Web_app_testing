@@ -43,37 +43,37 @@
     
                 case "townhall":
                     $townhall = $this->db->select("townhall","structures", "structures.user_id = '$user_id'");
-                    $townhall = new Townhall($townhall[0]["townhall"]);
+                    $townhall = new Townhall($townhall[$user_id]["townhall"]);
                     $output = $townhall->get_data();
                     break;
     
                 case "rockmine":
                     $rockmine = $this->db->select("rockmine","structures", "structures.user_id = '$user_id'");
-                    $rockmine = new Rockmine($rockmine[0]["rockmine"]);
+                    $rockmine = new Rockmine($rockmine[$user_id]["rockmine"]);
                     $output = $rockmine->get_data();
                     break;
 
                 case "ironmine":
                     $ironmine = $this->db->select("ironmine","structures", "structures.user_id = '$user_id'");
-                    $ironmine = new Ironmine($ironmine[0]["ironmine"]);
+                    $ironmine = new Ironmine($ironmine[$user_id]["ironmine"]);
                     $output = $ironmine->get_data();
                     break;
                 
                 case "woodchopper":
                     $woodchopper = $this->db->select("woodchopper","structures", "structures.user_id = '$user_id'");
-                    $woodchopper = new Woodchopper($woodchopper[0]["woodchopper"]);
+                    $woodchopper = new Woodchopper($woodchopper[$user_id]["woodchopper"]);
                     $output = $woodchopper->get_data();
                     break;
 
                 case "farm":
                     $farm = $this->db->select("farm","structures", "structures.user_id = '$user_id'");
-                    $farm = new Farm($farm[0]["farm"]);
+                    $farm = new Farm($farm[$user_id]["farm"]);
                     $output = $farm->get_data();
                     break;
                 
                 case "barracks":
                     $barracks = $this->db->select("barracks","structures", "structures.user_id = '$user_id'");
-                    $barracks = new Barracks($barracks[0]["barracks"]);
+                    $barracks = new Barracks($barracks[$user_id]["barracks"]);
                     $output = $barracks->get_data();
                     break;
 
