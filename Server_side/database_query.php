@@ -66,18 +66,19 @@ class databaseQuery{
         $numRows = $stmt->rowCount(); // count the number of rows returned by the SELECT query
         // fetch the data from the database
         // if $columns do not include the user_id use a generic index
-        if($numRows > 1){
+        if($numRows == 1 && strpos($columns, "user_id") || $numRows == 1 && strpos($columns, "*")){ // if $columns include the user_id or * use the user_id as index
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                $output[$row["user_id"]] = $row; // add the row to the output array at the specified user_id which is then retrieved by session!
+            }
+        }else{
             $i = 0;
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 $output[$i] = $row; // add the row to the output array at the numeric index $i
                 $i++;
             }
-        }else{
-            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                $output[$row["user_id"]] = $row; // add the row to the output array at the specified user_id which is then retrieved by session!
-
-            }
         }
+
+        // NOTE THAT USING THIS CONTRAPTION YOU CAN ONLY RETRIEVE ONE ROW AT A TIME IF INDEXING USING user_id
 
         //close pdo connection and return the output
         $this->conn = null;
