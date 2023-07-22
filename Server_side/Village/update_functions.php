@@ -463,6 +463,7 @@
         // make sure to remove upgrade event from cache as it's first added onclick
         $cache->deleteData("infantry_training", $token);
         $cache->acquireData("infantry_training", $token);
+        $cache->deleteData("training", $token);
         $ongoing = $cache->acquireData("training", $token);
         // pick only the last training retrieved from cache
         if($ongoing["status"] == "success") $last_completion = $ongoing[count($ongoing)-1]["event_completion"];
@@ -490,6 +491,8 @@
         // cache needs to be again emptied and acquired to update the data
         $cache->deleteData("infantry_training", $token);
         $cache->acquireData("infantry_training", $token);
+        $cache->deleteData("training", $token);
+        $cache->acquireData("training", $token);
         unset($cache);
         return true;
 
