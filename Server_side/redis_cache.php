@@ -150,7 +150,7 @@
                     }
                     $infantry = array();
                     foreach($training as $train){
-                        $infantry[] = new Training($train[$user_id]["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "infantry");
+                        $infantry[] = new Training($train["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "infantry");
                     }
                     $output = array_merge($infantry[0]->get_data(), ["status" => "success"]);
                     break;
@@ -163,7 +163,7 @@
                     }
                     $archer = array();
                     foreach($training as $train){
-                        $archer[] = new Training($train[$user_id]["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "archer");
+                        $archer[] = new Training($train["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "archer");
                     }
                     $output = array_merge($archer[0]->get_data(), ["status" => "success"]);
                     break;
@@ -176,9 +176,28 @@
                     }
                     $cavalry = array();
                     foreach($training as $train){
-                        $cavalry[] = new Training($train[$user_id]["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "cavalry");
+                        $cavalry[] = new Training($train["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "cavalry");
                     }
                     $output = array_merge($cavalry[0]->get_data(), ["status" => "success"]);
+                    break;
+
+                // a case for the whole set of training events
+                case "training":
+                    $training = $this->db->select("*","events", "events.user_id = '$user_id' AND events.event_type IN ('infantry_training', 'archer_training', 'cavalry_training') AND events.finished = 0 ORDER BY events.event_completion ASC");
+                    if(count($training) == 0) {
+                        $output = array("status" => "no data found");
+                        break;
+                    }
+                    $T = array();
+                    foreach($training as $train){
+                        $T[] = new Training($train["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], $train["event_type"]);
+                    }
+                    // output is the all set of getData functions on all the training events
+                    $output = array();
+                    for($i = 0; $i < count($T); $i++){
+                        $output[$i] = $T[$i]->get_data();
+                    }
+                    $output = array_merge($output, ["status" => "success"]);
                     break;
 
                 default:
@@ -186,7 +205,7 @@
                     $output = array("error" => "invalid data requested");
                     break;
             }
-            $output["cached"] = "false";
+            $output["previously_cached"] = "false";
             return $output;
         }
 

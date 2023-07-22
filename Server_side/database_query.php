@@ -63,9 +63,10 @@ class databaseQuery{
             exit();
         }
         $output = array();
+        $numRows = $stmt->rowCount(); // count the number of rows returned by the SELECT query
         // fetch the data from the database
         // if $columns do not include the user_id use a generic index
-        if(strpos($columns, "user_id") === false && strpos($columns, "*") === false){
+        if($numRows > 1){
             $i = 0;
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 $output[$i] = $row; // add the row to the output array at the numeric index $i

@@ -232,12 +232,15 @@
         // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
 
         $cache->setData("player", $resources, $token);
-        unset($cache);
+        
         $db = new databaseQuery();
 
         // the update is added to the events table in the database
         addUpgrade("townhall_upgrade", $townhall["level"] + 1, $db);
-        //$cache->setData("townhall", $townhall, $token);
+        // cache needs to be again emptied and acquired to update the data
+        $cache->deleteData("townhall_upgrade", $token);
+        $cache->acquireData("townhall_upgrade", $token);
+        unset($cache);
         return true;
 
     }
@@ -271,11 +274,15 @@
         // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
 
         $cache->setData("player", $resources, $token);
-        unset($cache);
+        
         $db = new databaseQuery();
 
         // the update is added to the events table in the database
         addUpgrade("barracks_upgrade", $barracks["level"] + 1, $db);
+        // cache needs to be again emptied and acquired to update the data
+        $cache->deleteData("barracks_upgrade", $token);
+        $cache->acquireData("barracks_upgrade", $token);
+        unset($cache);
         //$cache->setData("barracks", $barracks, $token);
         return true;
 
@@ -310,12 +317,14 @@
         // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
 
         $cache->setData("player", $resources, $token);
-        unset($cache);
         $db = new databaseQuery();
 
         // the update is added to the events table in the database
         addUpgrade("farm_upgrade", $farm["level"] + 1, $db);
-        //$cache->setData("farm", $farm, $token);
+        // cache needs to be again emptied and acquired to update the data
+        $cache->deleteData("farm_upgrade", $token);
+        $cache->acquireData("farm_upgrade", $token);
+        unset($cache);
         return true;
 
     }
@@ -349,12 +358,14 @@
         // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
 
         $cache->setData("player", $resources, $token);
-        unset($cache);
         $db = new databaseQuery();
 
         // the update is added to the events table in the database
         addUpgrade("rockmine_upgrade", $rockmine["level"] + 1, $db);
-        //$cache->setData("rockmine", $rockmine, $token);
+        // cache needs to be again emptied and acquired to update the data
+        $cache->deleteData("rockmine_upgrade", $token);
+        $cache->acquireData("rockmine_upgrade", $token);
+        unset($cache);
         return true;
 
     }
@@ -388,12 +399,14 @@
         // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
 
         $cache->setData("player", $resources, $token);
-        unset($cache);
         $db = new databaseQuery();
 
         // the update is added to the events table in the database
         addUpgrade("ironmine_upgrade", $ironmine["level"] + 1, $db);
-        //$cache->setData("ironmine", $ironmine, $token);
+        // cache needs to be again emptied and acquired to update the data
+        $cache->deleteData("ironmine_upgrade", $token);
+        $cache->acquireData("ironmine_upgrade", $token);
+        unset($cache);
         return true;
 
     }
@@ -427,12 +440,14 @@
         // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
 
         $cache->setData("player", $resources, $token);
-        unset($cache);
         $db = new databaseQuery();
 
         // the update is added to the events table in the database
         addUpgrade("woodchopper_upgrade", $woodchopper["level"] + 1, $db);
-        //$cache->setData("woodchopper", $woodchopper, $token);
+        // cache needs to be again emptied and acquired to update the data
+        $cache->deleteData("woodchopper_upgrade", $token);
+        $cache->acquireData("woodchopper_upgrade", $token);
+        unset($cache);
         return true;
 
     }
@@ -444,8 +459,9 @@
         $resources = $cache->acquireData("player", $token);
 
         // make sure to remove upgrade event from cache as it's first added onclick
-        // FOR NOW THE TRAINING EVENT IS NOT REMOVED AS A TEST!
-        $ongoing = $cache->acquireData("infantry_training", $token);
+        $cache->deleteData("infantry_training", $token);
+        $cache->acquireData("infantry_training", $token);
+        $ongoing = $cache->acquireData("training", $token);
         // pick only the last training retrieved from cache
         if($ongoing["status"] == "success") $last_completion = $ongoing[count($ongoing)-1]["event_completion"];
         else $last_completion = 0;
@@ -465,12 +481,14 @@
         // resources can and should be updated as soon as the player clicks the upgrade button but
 
         $cache->setData("player", $resources, $token);
-        unset($cache);
         $db = new databaseQuery();
 
         // the update is added to the events table in the database
         addTraining("infantry_training", $last_completion, $db);
-        //$cache->setData("barracks", $barracks, $token);
+        // cache needs to be again emptied and acquired to update the data
+        $cache->deleteData("infantry_training", $token);
+        $cache->acquireData("infantry_training", $token);
+        unset($cache);
         return true;
 
     }
@@ -481,7 +499,9 @@
         $resources = $cache->acquireData("player", $token);
 
         // make sure to remove upgrade event from cache as it's first added onclick
-        $ongoing = $cache->acquireData("archer_training", $token);
+        $cache->deleteData("archer_training", $token);
+        $cache->acquireData("archer_training", $token);
+        $ongoing = $cache->acquireData("training", $token);
         // pick only the last training retrieved from cache
         if($ongoing["status"] == "success") $last_completion = $ongoing[count($ongoing)-1]["event_completion"];
         else $last_completion = 0;
@@ -501,12 +521,13 @@
         // resources can and should be updated as soon as the player clicks the upgrade button but
 
         $cache->setData("player", $resources, $token);
-        unset($cache);
         $db = new databaseQuery();
 
         // the update is added to the events table in the database
         addTraining("archer_training", $last_completion, $db);
-        //$cache->setData("barracks", $barracks, $token);
+        $cache->deleteData("archer_training", $token);
+        $cache->acquireData("archer_training", $token);
+        unset($cache);
         return true;
 
     }
@@ -517,7 +538,9 @@
         $resources = $cache->acquireData("player", $token);
 
         // make sure to remove upgrade event from cache as it's first added onclick
-        $ongoing = $cache->acquireData("cavalry_training", $token);
+        $cache->deleteData("cavalry_training", $token);
+        $cache->acquireData("cavalry_training", $token);
+        $ongoing = $cache->acquireData("training", $token);
         // pick only the last training retrieved from cache
         if($ongoing["status"] == "success") $last_completion = $ongoing[count($ongoing)-1]["event_completion"];
         else $last_completion = 0;
@@ -537,15 +560,21 @@
         // resources can and should be updated as soon as the player clicks the upgrade button but
 
         $cache->setData("player", $resources, $token);
-        unset($cache);
         $db = new databaseQuery();
 
         // the update is added to the events table in the database
         addTraining("cavalry_training", $last_completion, $db);
-        //$cache->setData("barracks", $barracks, $token);
+        $cache->deleteData("cavalry_training", $token);
+        $cache->acquireData("cavalry_training", $token);
+        unset($cache);
         return true;
 
     }
+
+    // ATTACK FUNCTIONS:
+
+
+    // PRODUCTION FUNCTIONS ARE PROBABLY UNNECESSARY AS LONG AS EVERY PRODUCTION IS AUTOMATICALLY PERIODICALLY ADDED
 
     //SPECIAL FUNCTIONS (require password: "gianeh!"):
 
