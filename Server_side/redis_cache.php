@@ -37,7 +37,7 @@
                 case "player":
                     $player = $this->db->select("*","player, resources, troops", "player.user_id = resources.user_id AND player.user_id = troops.user_id AND player.user_id = '$user_id'");
                     $player = new Player($player[0]["username"], $player[0]["population"], $player[0]["iron"], $player[0]["wood"], $player[0]["rock"],
-                                         $player[0]["food"], $player[0]["archer"], $player[0]["infantry"], $player[$user_id]["cavalry"], $player[0]["x"], $player[0]["y"]);
+                                         $player[0]["food"], $player[0]["archer"], $player[0]["infantry"], $player[0]["cavalry"], $player[0]["x"], $player[0]["y"]);
                     $output = $player->get_data();
                     break;
     
