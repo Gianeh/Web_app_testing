@@ -357,8 +357,9 @@ function setInfoDiv(color){
     return info;
 }
 
-function setUpgradeSpan($upgrade){
-    let upgradeData = getLocalData($upgrade, "village");
+function setUpgradeSpan(upgrade){
+    localStorage.removeItem(upgrade);
+    let upgradeData = getLocalData(upgrade, "village");
     let upgradeSpan = document.getElementById("upgrade");
     if (upgradeData["status"] == "no data found"){
         upgradeSpan.innerHTML = "Structure is not being upgraded";
