@@ -35,9 +35,9 @@
             switch ($data) {
     
                 case "player":
-                    $player = $this->db->select("*","player, resources, troops", "player.user_id = resources.user_id AND player.user_id = troops.user_id");
-                    $player = new Player($player[$user_id]["username"], $player[$user_id]["population"], $player[$user_id]["iron"], $player[$user_id]["wood"], $player[$user_id]["rock"],
-                                         $player[$user_id]["food"], $player[$user_id]["archer"], $player[$user_id]["infantry"], $player[$user_id]["cavalry"], $player[$user_id]["x"], $player[$user_id]["y"]);
+                    $player = $this->db->select("*","player, resources, troops", "player.user_id = resources.user_id AND player.user_id = troops.user_id AND player.user_id = '$user_id'");
+                    $player = new Player($player[0]["username"], $player[0]["population"], $player[0]["iron"], $player[0]["wood"], $player[0]["rock"],
+                                         $player[0]["food"], $player[0]["archer"], $player[0]["infantry"], $player[$user_id]["cavalry"], $player[0]["x"], $player[0]["y"]);
                     $output = $player->get_data();
                     break;
     
@@ -87,7 +87,7 @@
                         $output = array("status" => "no data found");
                         break;
                     }
-                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $upgrade = new Upgrade($upgrade[0]["event_id"], $upgrade[0]["event_type"], $upgrade[0]["event_completion"], $upgrade[0]["finished"], $upgrade[0]["level"]);
                     $output = array_merge($upgrade->get_data(), ["status" => "success"]);
                     break;
                 
@@ -97,7 +97,7 @@
                         $output = array("status" => "no data found");
                         break;
                     }
-                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $upgrade = new Upgrade($upgrade[0]["event_id"], $upgrade[0]["event_type"], $upgrade[0]["event_completion"], $upgrade[0]["finished"], $upgrade[0]["level"]);
                     $output = array_merge($upgrade->get_data(), ["status" => "success"]);
                     break;
                 
@@ -107,7 +107,7 @@
                         $output = array("status" => "no data found");
                         break;
                     }
-                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $upgrade = new Upgrade($upgrade[0]["event_id"], $upgrade[0]["event_type"], $upgrade[0]["event_completion"], $upgrade[0]["finished"], $upgrade[0]["level"]);
                     $output = array_merge($upgrade->get_data(), ["status" => "success"]);
                     break;
                 
@@ -117,7 +117,7 @@
                         $output = array("status" => "no data found");
                         break;
                     }
-                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $upgrade = new Upgrade($upgrade[0]["event_id"], $upgrade[0]["event_type"], $upgrade[0]["event_completion"], $upgrade[0]["finished"], $upgrade[0]["level"]);
                     $output = array_merge($upgrade->get_data(), ["status" => "success"]);
                     break;
                 
@@ -127,7 +127,7 @@
                         $output = array("status" => "no data found");
                         break;
                     }
-                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $upgrade = new Upgrade($upgrade[0]["event_id"], $upgrade[0]["event_type"], $upgrade[0]["event_completion"], $upgrade[0]["finished"], $upgrade[0]["level"]);
                     $output = array_merge($upgrade->get_data(), ["status" => "success"]);
                     break;
                 
@@ -137,7 +137,7 @@
                         $output = array("status" => "no data found");
                         break;
                     }
-                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $upgrade = new Upgrade($upgrade[0]["event_id"], $upgrade[0]["event_type"], $upgrade[0]["event_completion"], $upgrade[0]["finished"], $upgrade[0]["level"]);
                     $output = array_merge($upgrade->get_data(), ["status" => "success"]);
                     break;
                 
