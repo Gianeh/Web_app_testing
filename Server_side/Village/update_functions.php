@@ -455,7 +455,7 @@
     // TRAINING FUNCTIONS:
     function trainInfantry($token){
         // retrieve data from cache to check if the player has enough resources
-        $cache = new Cache(array("player"));
+        $cache = new Cache(array("player", "events"));
         $resources = $cache->acquireData("player", $token);
 
         // make sure to remove upgrade event from cache as it's first added onclick
@@ -495,7 +495,7 @@
 
     function trainArcher($token){
         // retrieve data from cache to check if the player has enough resources
-        $cache = new Cache(array("player"));
+        $cache = new Cache(array("player", "events"));
         $resources = $cache->acquireData("player", $token);
 
         // make sure to remove upgrade event from cache as it's first added onclick
@@ -534,7 +534,7 @@
 
     function trainCavalry($token){
         // retrieve data from cache to check if the player has enough resources
-        $cache = new Cache(array("player"));
+        $cache = new Cache(array("player", "events"));
         $resources = $cache->acquireData("player", $token);
 
         // make sure to remove upgrade event from cache as it's first added onclick

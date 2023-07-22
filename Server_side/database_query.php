@@ -63,7 +63,6 @@ class databaseQuery{
             exit();
         }
         $output = array();
-        $numRows = $stmt->rowCount(); // count the number of rows returned by the SELECT query
         // fetch the data from the database
         // if $columns do not include the user_id use a generic index
         $i = 0;

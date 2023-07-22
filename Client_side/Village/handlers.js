@@ -1,5 +1,8 @@
 import { pickRecords, printData, getLocalData, sendData, checkEvents, parseRequirements } from "../helper.js";
 var upgrade_id = 0;
+var infantry_id = 0;
+var archer_id = 0;
+var cavalry_id = 0;
 
 // a function to handle the woodchopper click
 export function woodchopperClick(event) {
@@ -8,7 +11,7 @@ export function woodchopperClick(event) {
     let info = setInfoDiv("brown");
     // call the getData function to get the woodchopper data
     let data = getLocalData("woodchopper", "village");
-    delete data["cached"];
+    delete data["previously_cached"];
     // call the getData function to get the player data
     let player = getLocalData("player", "village");
     pickRecords(player, ["wood"]);
@@ -34,7 +37,7 @@ export function rockmineClick(event) {
     let info = setInfoDiv("grey");
     // call the getData function to get the rockmine data
     let data = getLocalData("rockmine", "village");
-    delete data["cached"];
+    delete data["previously_cached"];
     // call the getData function to get the player data
     let player = getLocalData("player", "village");
     pickRecords(player, ["rock"]);
@@ -60,7 +63,7 @@ export function ironmineClick(event) {
     let info = setInfoDiv("silver");
     // call the getData function to get the ironmine data
     let data = getLocalData("ironmine", "village");
-    delete data["cached"];
+    delete data["previously_cached"];
     // call the getData function to get the player data
     let player = getLocalData("player", "village");
     pickRecords(player, ["iron"]);
@@ -86,7 +89,7 @@ export function farmClick(event) {
     let info = setInfoDiv("yellow");
     // call the getData function to get the farm data
     let data = getLocalData("farm", "village");
-    delete data["cached"];
+    delete data["previously_cached"];
     // call the getData function to get the player data
     let player = getLocalData("player", "village");
     pickRecords(player, ["food"]);
@@ -109,10 +112,15 @@ export function farmClick(event) {
 export function barracksClick(event) {
     // reset the upgrade span updater
     if(upgrade_id != 0) clearInterval(upgrade_id);
+    // reset the training span updater
+    if(infantry_id != 0) clearInterval(infantry_id);
+    if(archer_id != 0) clearInterval(archer_id);
+    if(cavalry_id != 0) clearInterval(cavalry_id);
+
     let info = setInfoDiv("red");
     // call the getData function to get the barracks data
     let data = getLocalData("barracks", "village");
-    delete data["cached"];
+    delete data["previously_cached"];
     // call the getData function to get the player data
     let player = getLocalData("player", "village");
     pickRecords(player, ["infantry", "archer", "cavalry"]);
@@ -167,7 +175,7 @@ export function townhallClick(event) {
     let info = setInfoDiv("lightblue");
     // call the getData function to get the townhall data
     let data = getLocalData("townhall", "village");
-    delete data["cached"];
+    delete data["previously_cached"];
     // call the getData function to get the player data
     let player = getLocalData("player", "village");
     pickRecords(player, ["population", "iron", "wood", "food", "rock"]);
@@ -371,12 +379,26 @@ function setUpgradeSpan(upgrade){
     }
 }
 
+function setTrainingSpan(training, span_name){
+    localStorage.removeItem(training);
+    let trainingData = getLocalData(training, "village");
+    let trainingSpan = document.getElementById(span_name);
+    if (trainingData["status"] == "no data found"){
+        trainingSpan.innerHTML = training.split("_")[0] + "is not being trained";
+    }else if(trainingData["status"] == "success"){
+        trainingSpan.innerHTML = "remaining time: " + trainingData["remaining_time"];
+    }else{
+        // something went wrong
+        trainingSpan.innerHTML = "Something went wrong";
+    }
+}
+
 // a function that updates the training spans is needed!!!!!!!!!!!!
 // god I hate myself...
 
 export function updateUpgrades(){
     for(let key in localStorage){
-        if(key.includes("upgrade") && JSON.parse(localStorage[key])["status"] == "success"){
+        if((key.includes("upgrade") || key.includes("training") || key.includes("production")) && JSON.parse(localStorage[key])["status"] == "success"){
             let upgrade = JSON.parse(localStorage[key]);
             upgrade["remaining_time"] -= 1;
             localStorage[key] = JSON.stringify(upgrade);
