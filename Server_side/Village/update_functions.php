@@ -70,8 +70,7 @@
     // a function that checks if the event is finished and updates the database accordingly
     // tough this function is called by a specific event on supposed completion it checks all the events in the database related to $_SESSION['user_id']
     function checkEvents($token){
-        // get current date and time
-        $now = time();
+        
         // create a new database object
         $db = new databaseQuery();
         $cache = new Cache(array("player", "structures", "event"));
@@ -84,7 +83,8 @@
 
         // a string containin the names of the completed events should be returned in order to update the localStorage in the frontend
         $completed = "";
-
+        // get current date and time
+        $now = time();
         // check upgrades
         foreach($upgrades as $upgrade){
             // check if the event is finished
