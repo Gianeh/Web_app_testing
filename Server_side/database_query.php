@@ -64,7 +64,6 @@ class databaseQuery{
         }
         $output = array();
         // fetch the data from the database
-        // if $columns do not include the user_id use a generic index
         $i = 0;
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             $output[$i] = $row; // add the row to the output array at the numeric index $i
