@@ -8,6 +8,7 @@ var cavalry_id = 0;
 export function woodchopperClick(event) {
     // reset the upgrade span updater
     if(upgrade_id != 0) clearInterval(upgrade_id);
+    doNotUpdateTrainig()
     let info = setInfoDiv("brown");
     // call the getData function to get the woodchopper data
     let data = getLocalData("woodchopper", "village");
@@ -34,6 +35,7 @@ export function woodchopperClick(event) {
 export function rockmineClick(event) {
     // reset the upgrade span updater
     if(upgrade_id != 0) clearInterval(upgrade_id);
+    doNotUpdateTrainig()
     let info = setInfoDiv("grey");
     // call the getData function to get the rockmine data
     let data = getLocalData("rockmine", "village");
@@ -60,6 +62,7 @@ export function rockmineClick(event) {
 export function ironmineClick(event) {
     // reset the upgrade span updater
     if(upgrade_id != 0) clearInterval(upgrade_id);
+    doNotUpdateTrainig()
     let info = setInfoDiv("silver");
     // call the getData function to get the ironmine data
     let data = getLocalData("ironmine", "village");
@@ -86,6 +89,7 @@ export function ironmineClick(event) {
 export function farmClick(event) {
     // reset the upgrade span updater
     if(upgrade_id != 0) clearInterval(upgrade_id);
+    doNotUpdateTrainig()
     let info = setInfoDiv("yellow");
     // call the getData function to get the farm data
     let data = getLocalData("farm", "village");
@@ -113,9 +117,7 @@ export function barracksClick(event) {
     // reset the upgrade span updater
     if(upgrade_id != 0) clearInterval(upgrade_id);
     // reset the training span updater
-    if(infantry_id != 0) clearInterval(infantry_id);
-    if(archer_id != 0) clearInterval(archer_id);
-    if(cavalry_id != 0) clearInterval(cavalry_id);
+    doNotUpdateTrainig()
 
     let info = setInfoDiv("red");
     // call the getData function to get the barracks data
@@ -174,6 +176,7 @@ export function barracksClick(event) {
 export function townhallClick(event) {
     // reset the upgrade span updater
     if(upgrade_id != 0) clearInterval(upgrade_id);
+    doNotUpdateTrainig();
     // get the buttons div
     let info = setInfoDiv("lightblue");
     // call the getData function to get the townhall data
@@ -394,6 +397,12 @@ function setTrainingSpan(training){
         // something went wrong
         trainingSpan.innerHTML = "\tSomething went wrong";
     }
+}
+
+function doNotUpdateTrainig(){
+    clearInterval(infantry_id);
+    clearInterval(archer_id);
+    clearInterval(cavalry_id);
 }
 
 export function updateUpgrades(){
