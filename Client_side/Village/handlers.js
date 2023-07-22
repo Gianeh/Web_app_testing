@@ -130,28 +130,31 @@ export function barracksClick(event) {
 
     //spawn buttons inside the buttons div
     let infantry = document.createElement("button");
-    infantry.innerHTML = "Train Infantry" + parseRequirements("infantry_training");
+    infantry.innerHTML = "Train Infantry " + parseRequirements("infantry_training");
     infantry.classList.add("button");
     infantry.addEventListener("click", trainInfantry);
     buttons.appendChild(infantry);
     let span = document.createElement("span");
     span.id = "infantry_training";
     buttons.appendChild(span);
+    infantry_id = setInterval(function(){ setTrainingSpan("infantry_training"); }, 1000);
     buttons.appendChild(document.createElement("br"));
     let archer = document.createElement("button");
-    archer.innerHTML = "Train Archer" + parseRequirements("archer_training");
+    archer.innerHTML = "Train Archer " + parseRequirements("archer_training");
     archer.classList.add("button");
     archer.addEventListener("click", trainArcher);
     buttons.appendChild(archer);
+    archer_id = setInterval(function(){ setTrainingSpan("archer_training"); }, 1000);
     span = document.createElement("span");
     span.id = "archer_training";
     buttons.appendChild(span);
     buttons.appendChild(document.createElement("br"));
     let cavalry = document.createElement("button");
-    cavalry.innerHTML = "Train Cavalry" + parseRequirements("cavalry_training");
+    cavalry.innerHTML = "Train Cavalry " + parseRequirements("cavalry_training");
     cavalry.classList.add("button");
     cavalry.addEventListener("click", trainCavalry);
     buttons.appendChild(cavalry);
+    cavalry_id = setInterval(function(){ setTrainingSpan("cavalry_training"); }, 1000);
     span = document.createElement("span");
     span.id = "cavalry_training";
     buttons.appendChild(span);
@@ -379,17 +382,17 @@ function setUpgradeSpan(upgrade){
     }
 }
 
-function setTrainingSpan(training, span_name){
+function setTrainingSpan(training){
     localStorage.removeItem(training);
     let trainingData = getLocalData(training, "village");
-    let trainingSpan = document.getElementById(span_name);
+    let trainingSpan = document.getElementById(training);
     if (trainingData["status"] == "no data found"){
-        trainingSpan.innerHTML = training.split("_")[0] + "is not being trained";
+        trainingSpan.innerHTML = "\t" + training.split("_")[0] + "is not being trained";
     }else if(trainingData["status"] == "success"){
-        trainingSpan.innerHTML = "remaining time: " + trainingData["remaining_time"];
+        trainingSpan.innerHTML = "\tremaining time: " + trainingData["remaining_time"];
     }else{
         // something went wrong
-        trainingSpan.innerHTML = "Something went wrong";
+        trainingSpan.innerHTML = "\tSomething went wrong";
     }
 }
 
