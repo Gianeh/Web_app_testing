@@ -1,8 +1,5 @@
 import { pickRecords, printData, getLocalData, sendData, checkEvents, parseRequirements } from "../helper.js";
 var upgrade_id = 0;
-var infantry_id = 0;
-var archer_id = 0;
-var cavalry_id = 0;
 
 // a function to handle the woodchopper click
 export function woodchopperClick(event) {
@@ -379,7 +376,7 @@ function setUpgradeSpan(upgrade){
         // something went wrong
         upgradeSpan.innerHTML = "Something went wrong";
     }
-    if (upgrade == "barracks_training"){
+    if (upgrade == "barracks_upgrade"){
         setTrainingSpan("infantry_training");
         setTrainingSpan("archer_training");
         setTrainingSpan("cavalry_training");
