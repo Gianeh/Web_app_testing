@@ -200,7 +200,10 @@
             $resources[$key] -= $value;
         }
         // add population is an immediate action so it can be added to the cache
-        $cache->setData("player", $resources, $token);
+        $db = new databaseQuery();
+        $db->update("resources", "wood, food, iron, rock, population", $resources["wood"].", ".$resources["food"].", ".$resources["iron"].", ".$resources["rock"].", ".$resources["population"], "user_id = '".$_SESSION['user_id']."'");
+        $cache->deleteData("player", $token);
+        $cache->acquireData("player", $token);
         return true;
 
     }
@@ -232,10 +235,10 @@
         }
         // resources can and should be updated as soon as the player clicks the upgrade button but 
         // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
-
-        $cache->setData("player", $resources, $token);
-        
         $db = new databaseQuery();
+        $db->update("resources", "wood, food, iron, rock, population", $resources["wood"].", ".$resources["food"].", ".$resources["iron"].", ".$resources["rock"].", ".$resources["population"], "user_id = '".$_SESSION['user_id']."'");
+        $cache->deleteData("player", $token);
+        $cache->acquireData("player", $token);
 
         // the update is added to the events table in the database
         addUpgrade("townhall_upgrade", $townhall["level"] + 1, $db);
@@ -274,10 +277,10 @@
         }
         // resources can and should be updated as soon as the player clicks the upgrade button but 
         // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
-
-        $cache->setData("player", $resources, $token);
-        
         $db = new databaseQuery();
+        $db->update("resources", "wood, food, iron, rock, population", $resources["wood"].", ".$resources["food"].", ".$resources["iron"].", ".$resources["rock"].", ".$resources["population"], "user_id = '".$_SESSION['user_id']."'");
+        $cache->deleteData("player", $token);
+        $cache->acquireData("player", $token);
 
         // the update is added to the events table in the database
         addUpgrade("barracks_upgrade", $barracks["level"] + 1, $db);
@@ -317,9 +320,10 @@
         }
         // resources can and should be updated as soon as the player clicks the upgrade button but 
         // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
-
-        $cache->setData("player", $resources, $token);
         $db = new databaseQuery();
+        $db->update("resources", "wood, food, iron, rock, population", $resources["wood"].", ".$resources["food"].", ".$resources["iron"].", ".$resources["rock"].", ".$resources["population"], "user_id = '".$_SESSION['user_id']."'");
+        $cache->deleteData("player", $token);
+        $cache->acquireData("player", $token);
 
         // the update is added to the events table in the database
         addUpgrade("farm_upgrade", $farm["level"] + 1, $db);
@@ -358,9 +362,10 @@
         }
         // resources can and should be updated as soon as the player clicks the upgrade button but 
         // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
-
-        $cache->setData("player", $resources, $token);
         $db = new databaseQuery();
+        $db->update("resources", "wood, food, iron, rock, population", $resources["wood"].", ".$resources["food"].", ".$resources["iron"].", ".$resources["rock"].", ".$resources["population"], "user_id = '".$_SESSION['user_id']."'");
+        $cache->deleteData("player", $token);
+        $cache->acquireData("player", $token);
 
         // the update is added to the events table in the database
         addUpgrade("rockmine_upgrade", $rockmine["level"] + 1, $db);
@@ -399,9 +404,10 @@
         }
         // resources can and should be updated as soon as the player clicks the upgrade button but 
         // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
-
-        $cache->setData("player", $resources, $token);
         $db = new databaseQuery();
+        $db->update("resources", "wood, food, iron, rock, population", $resources["wood"].", ".$resources["food"].", ".$resources["iron"].", ".$resources["rock"].", ".$resources["population"], "user_id = '".$_SESSION['user_id']."'");
+        $cache->deleteData("player", $token);
+        $cache->acquireData("player", $token);
 
         // the update is added to the events table in the database
         addUpgrade("ironmine_upgrade", $ironmine["level"] + 1, $db);
@@ -440,9 +446,10 @@
         }
         // resources can and should be updated as soon as the player clicks the upgrade button but 
         // level should be updated only after the upgrade is completed (time daemon checks this concurrently with the frontend)
-
-        $cache->setData("player", $resources, $token);
         $db = new databaseQuery();
+        $db->update("resources", "wood, food, iron, rock, population", $resources["wood"].", ".$resources["food"].", ".$resources["iron"].", ".$resources["rock"].", ".$resources["population"], "user_id = '".$_SESSION['user_id']."'");
+        $cache->deleteData("player", $token);
+        $cache->acquireData("player", $token);
 
         // the update is added to the events table in the database
         addUpgrade("woodchopper_upgrade", $woodchopper["level"] + 1, $db);
@@ -481,10 +488,11 @@
             if($key == "duration") continue; // skip duration check as it's not a resource
             $resources[$key] -= $value;
         }
-        // resources can and should be updated as soon as the player clicks the upgrade button but
-
-        $cache->setData("player", $resources, $token);
+        // resources can and should be updated as soon as the player clicks the upgrade button
         $db = new databaseQuery();
+        $db->update("resources", "wood, food, iron, rock, population", $resources["wood"].", ".$resources["food"].", ".$resources["iron"].", ".$resources["rock"].", ".$resources["population"], "user_id = '".$_SESSION['user_id']."'");
+        $cache->deleteData("player", $token);
+        $cache->acquireData("player", $token);
 
         // the update is added to the events table in the database
         addTraining("infantry_training", $last_completion, $db);
@@ -524,9 +532,10 @@
             $resources[$key] -= $value;
         }
         // resources can and should be updated as soon as the player clicks the upgrade button but
-
-        $cache->setData("player", $resources, $token);
         $db = new databaseQuery();
+        $db->update("resources", "wood, food, iron, rock, population", $resources["wood"].", ".$resources["food"].", ".$resources["iron"].", ".$resources["rock"].", ".$resources["population"], "user_id = '".$_SESSION['user_id']."'");
+        $cache->deleteData("player", $token);
+        $cache->acquireData("player", $token);
 
         // the update is added to the events table in the database
         addTraining("archer_training", $last_completion, $db);
@@ -563,9 +572,10 @@
             $resources[$key] -= $value;
         }
         // resources can and should be updated as soon as the player clicks the upgrade button but
-
-        $cache->setData("player", $resources, $token);
         $db = new databaseQuery();
+        $db->update("resources", "wood, food, iron, rock, population", $resources["wood"].", ".$resources["food"].", ".$resources["iron"].", ".$resources["rock"].", ".$resources["population"], "user_id = '".$_SESSION['user_id']."'");
+        $cache->deleteData("player", $token);
+        $cache->acquireData("player", $token);
 
         // the update is added to the events table in the database
         addTraining("cavalry_training", $last_completion, $db);

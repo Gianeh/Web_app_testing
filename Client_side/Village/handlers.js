@@ -8,7 +8,6 @@ var cavalry_id = 0;
 export function woodchopperClick(event) {
     // reset the upgrade span updater
     if(upgrade_id != 0) clearInterval(upgrade_id);
-    doNotUpdateTrainig()
     let info = setInfoDiv("brown");
     // call the getData function to get the woodchopper data
     let data = getLocalData("woodchopper", "village");
@@ -35,7 +34,6 @@ export function woodchopperClick(event) {
 export function rockmineClick(event) {
     // reset the upgrade span updater
     if(upgrade_id != 0) clearInterval(upgrade_id);
-    doNotUpdateTrainig()
     let info = setInfoDiv("grey");
     // call the getData function to get the rockmine data
     let data = getLocalData("rockmine", "village");
@@ -62,7 +60,6 @@ export function rockmineClick(event) {
 export function ironmineClick(event) {
     // reset the upgrade span updater
     if(upgrade_id != 0) clearInterval(upgrade_id);
-    doNotUpdateTrainig()
     let info = setInfoDiv("silver");
     // call the getData function to get the ironmine data
     let data = getLocalData("ironmine", "village");
@@ -89,7 +86,6 @@ export function ironmineClick(event) {
 export function farmClick(event) {
     // reset the upgrade span updater
     if(upgrade_id != 0) clearInterval(upgrade_id);
-    doNotUpdateTrainig()
     let info = setInfoDiv("yellow");
     // call the getData function to get the farm data
     let data = getLocalData("farm", "village");
@@ -117,8 +113,6 @@ export function barracksClick(event) {
     // reset the upgrade span updater
     if(upgrade_id != 0) clearInterval(upgrade_id);
     // reset the training span updater
-    doNotUpdateTrainig()
-
     let info = setInfoDiv("red");
     // call the getData function to get the barracks data
     let data = getLocalData("barracks", "village");
@@ -139,14 +133,12 @@ export function barracksClick(event) {
     let span = document.createElement("span");
     span.id = "infantry_training";
     buttons.appendChild(span);
-    infantry_id = setInterval(function(){ setTrainingSpan("infantry_training"); }, 1000);
     buttons.appendChild(document.createElement("br"));
     let archer = document.createElement("button");
     archer.innerHTML = "Train Archer " + parseRequirements("archer_training");
     archer.classList.add("button");
     archer.addEventListener("click", trainArcher);
     buttons.appendChild(archer);
-    archer_id = setInterval(function(){ setTrainingSpan("archer_training"); }, 1000);
     span = document.createElement("span");
     span.id = "archer_training";
     buttons.appendChild(span);
@@ -156,7 +148,6 @@ export function barracksClick(event) {
     cavalry.classList.add("button");
     cavalry.addEventListener("click", trainCavalry);
     buttons.appendChild(cavalry);
-    cavalry_id = setInterval(function(){ setTrainingSpan("cavalry_training"); }, 1000);
     span = document.createElement("span");
     span.id = "cavalry_training";
     buttons.appendChild(span);
@@ -176,7 +167,6 @@ export function barracksClick(event) {
 export function townhallClick(event) {
     // reset the upgrade span updater
     if(upgrade_id != 0) clearInterval(upgrade_id);
-    doNotUpdateTrainig();
     // get the buttons div
     let info = setInfoDiv("lightblue");
     // call the getData function to get the townhall data
@@ -389,6 +379,7 @@ function setUpgradeSpan(upgrade){
         // something went wrong
         upgradeSpan.innerHTML = "Something went wrong";
     }
+    if (upgrade == "barracks_training") setTrainingSpan("infantry_training");
 }
 
 function setTrainingSpan(training){
@@ -405,11 +396,6 @@ function setTrainingSpan(training){
     }
 }
 
-function doNotUpdateTrainig(){
-    clearInterval(infantry_id);
-    clearInterval(archer_id);
-    clearInterval(cavalry_id);
-}
 
 export function updateUpgrades(){
     for(let key in localStorage){
