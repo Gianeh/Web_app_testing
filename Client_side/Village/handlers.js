@@ -20,7 +20,7 @@ export function woodchopperClick(event) {
     let upgrade = document.createElement("button");
     upgrade.innerHTML = "Upgrade Woodchopper " + parseRequirements("woodchopper_upgrade", (parseInt(data["level"])+1).toString());
     upgrade.addEventListener("click", upgradeWoodchopper);
-    upgrade.classList.add("button");
+    upgrade.classList.add("upgrade_button");
     buttons.appendChild(upgrade);
 
     // retieve the upgrade data from storage and append remaining time to upgrade span
@@ -46,7 +46,7 @@ export function rockmineClick(event) {
     let upgrade = document.createElement("button");
     upgrade.innerHTML = "Upgrade Rockmine " + parseRequirements("rockmine_upgrade", (parseInt(data["level"])+1).toString());
     upgrade.addEventListener("click", upgradeRockmine);
-    upgrade.classList.add("button");
+    upgrade.classList.add("upgrade_button");
     buttons.appendChild(upgrade);
 
     // retieve the upgrade data from storage and append remaining time to upgrade span
@@ -72,7 +72,7 @@ export function ironmineClick(event) {
     let upgrade = document.createElement("button");
     upgrade.innerHTML = "Upgrade Ironmine " + parseRequirements("ironmine_upgrade", (parseInt(data["level"])+1).toString());
     upgrade.addEventListener("click", upgradeIronmine);
-    upgrade.classList.add("button");
+    upgrade.classList.add("upgrade_button");
     buttons.appendChild(upgrade);
 
     // retieve the upgrade data from storage and append remaining time to upgrade span
@@ -98,7 +98,7 @@ export function farmClick(event) {
     let upgrade = document.createElement("button");
     upgrade.innerHTML = "Upgrade Farm " + parseRequirements("farm_upgrade", (parseInt(data["level"])+1).toString());
     upgrade.addEventListener("click", upgradeFarm);
-    upgrade.classList.add("button");
+    upgrade.classList.add("upgrade_button");
     buttons.appendChild(upgrade);
 
     // retieve the upgrade data from starage and append remaining time to upgrade span
@@ -124,7 +124,7 @@ export function barracksClick(event) {
     //spawn buttons inside the buttons div
     let infantry = document.createElement("button");
     infantry.innerHTML = "Train Infantry " + parseRequirements("infantry_training");
-    infantry.classList.add("button");
+    infantry.classList.add("upgrade_button");
     infantry.addEventListener("click", trainInfantry);
     buttons.appendChild(infantry);
     let span = document.createElement("span");
@@ -133,7 +133,7 @@ export function barracksClick(event) {
     buttons.appendChild(document.createElement("br"));
     let archer = document.createElement("button");
     archer.innerHTML = "Train Archer " + parseRequirements("archer_training");
-    archer.classList.add("button");
+    archer.classList.add("upgrade_button");
     archer.addEventListener("click", trainArcher);
     buttons.appendChild(archer);
     span = document.createElement("span");
@@ -142,7 +142,7 @@ export function barracksClick(event) {
     buttons.appendChild(document.createElement("br"));
     let cavalry = document.createElement("button");
     cavalry.innerHTML = "Train Cavalry " + parseRequirements("cavalry_training");
-    cavalry.classList.add("button");
+    cavalry.classList.add("upgrade_button");
     cavalry.addEventListener("click", trainCavalry);
     buttons.appendChild(cavalry);
     span = document.createElement("span");
@@ -152,7 +152,7 @@ export function barracksClick(event) {
     let upgrade = document.createElement("button");
     upgrade.innerHTML = "Upgrade Barracks " + parseRequirements("barracks_upgrade", (parseInt(data["level"])+1).toString());
     upgrade.addEventListener("click", upgradeBarracks);
-    upgrade.classList.add("button");
+    upgrade.classList.add("upgrade_button");
     buttons.appendChild(upgrade);
 
     // retieve the upgrade data from storage and append remaining time to upgrade span
@@ -179,13 +179,13 @@ export function townhallClick(event) {
     //spawn a button inside the buttons div
     let pop = document.createElement("button");
     pop.innerHTML = "Add Population + 1 " + parseRequirements("add_population");
-    pop.classList.add("button");
+    pop.classList.add("upgrade_button");
     pop.addEventListener("click", addPopulation);
     buttons.appendChild(pop);
     let upgrade = document.createElement("button");
     upgrade.innerHTML = "Upgrade Townhall " + parseRequirements("townhall_upgrade", (parseInt(data["level"])+1).toString());
     upgrade.addEventListener("click", upgradeTownhall);
-    upgrade.classList.add("button");
+    upgrade.classList.add("upgrade_button");
     buttons.appendChild(upgrade);
 
     // retieve the upgrade data from storage and append remaining time to upgrade span

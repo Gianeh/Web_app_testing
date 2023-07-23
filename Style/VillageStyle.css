@@ -34,7 +34,7 @@
 }
 
 .barrack_cell{
-    background-image: url("https://aos.azurewebsites.net/Style/bitmap/barrack.png");
+    background-image: url("https://aos.azurewebsites.net/Style/bitmap/barracks.png");
     width: 30px;
     height: 30px;
     background-position: center; /* Center the image */
