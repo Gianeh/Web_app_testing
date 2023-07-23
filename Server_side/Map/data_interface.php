@@ -7,6 +7,14 @@
 
     // perform a check on the session validity
     include_once("../session_check.php");
+    checkSessionExpiration();
+
+    // check if user_id is set in session
+    if (!isset($_SESSION['user_id'])) {
+        // redirect to login page
+        header('Location: ../../index.html');
+        exit();
+    }
 
     // include the chache class
     include_once('update_functions.php');

@@ -7,6 +7,7 @@
 
     // perform a check on the session validity
     include_once("../session_check.php");
+    checkSessionExpiration();
 
     // include memory handlers classes
     include_once('update_functions.php');
