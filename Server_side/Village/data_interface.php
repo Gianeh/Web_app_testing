@@ -9,6 +9,13 @@
     include_once("../session_check.php");
     checkSessionExpiration();
 
+    // check if user_id is set in session
+    if (!isset($_SESSION['user_id'])) {
+        // redirect to login page
+        echo json_encode(array("status" => "error", "message" => "expired"));
+        exit();
+    }
+
     // include memory handlers classes
     include_once('update_functions.php');
     include_once('../redis_cache.php');

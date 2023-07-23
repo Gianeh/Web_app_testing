@@ -12,7 +12,7 @@
     // check if user_id is set in session
     if (!isset($_SESSION['user_id'])) {
         // redirect to login page
-        header('Location: ../../index.html');
+        echo json_encode(array("status" => "error", "message" => "expired"));
         exit();
     }
 
