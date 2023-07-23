@@ -184,7 +184,7 @@
 
     function addPopulation($token){
         // retrieve data from cache to check if the player has enough food
-        $cache = new Cache(array("player"));
+        $cache = new Cache(array("player","event"));
         $resources = $cache->acquireData("player", $token);
         $json = file_get_contents('../requirements.json');
         $requirements = json_decode($json, true)["add_population"];
@@ -210,7 +210,7 @@
     // UPGRADES FUNCTIONS:
     function upgradeTownhall($token){
         // retrieve data from cache to check if the player has enough resources
-        $cache = new Cache(array("player"));
+        $cache = new Cache(array("player","event"));
         $resources = $cache->acquireData("player", $token);
         $townhall = $cache->acquireData("townhall", $token);
 
@@ -252,7 +252,7 @@
 
     function upgradeBarracks($token){
         // retrieve data from cache to check if the player has enough resources
-        $cache = new Cache(array("player"));
+        $cache = new Cache(array("player","event"));
         $resources = $cache->acquireData("player", $token);
         $barracks = $cache->acquireData("barracks", $token);
 
@@ -295,7 +295,7 @@
 
     function upgradeFarm($token){
         // retrieve data from cache to check if the player has enough resources
-        $cache = new Cache(array("player"));
+        $cache = new Cache(array("player","event"));
         $resources = $cache->acquireData("player", $token);
         $farm = $cache->acquireData("farm", $token);
 
@@ -337,7 +337,7 @@
 
     function upgradeRockmine($token){
         // retrieve data from cache to check if the player has enough resources
-        $cache = new Cache(array("player"));
+        $cache = new Cache(array("player","event"));
         $resources = $cache->acquireData("player", $token);
         $rockmine = $cache->acquireData("rockmine", $token);
 
@@ -379,7 +379,7 @@
 
     function upgradeIronmine($token){
         // retrieve data from cache to check if the player has enough resources
-        $cache = new Cache(array("player"));
+        $cache = new Cache(array("player","event"));
         $resources = $cache->acquireData("player", $token);
         $ironmine = $cache->acquireData("ironmine", $token);
 
@@ -421,7 +421,7 @@
 
     function upgradeWoodchopper($token){
         // retrieve data from cache to check if the player has enough resources
-        $cache = new Cache(array("player"));
+        $cache = new Cache(array("player","event"));
         $resources = $cache->acquireData("player", $token);
         $woodchopper = $cache->acquireData("woodchopper", $token);
 

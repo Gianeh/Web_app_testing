@@ -8,13 +8,16 @@
 
 
 
-import { pickRecords, getLocalData, getDataWithParameter } from "../helper.js";
+import { pickRecords, getLocalData, getDataWithParameter, sendData } from "../helper.js";
 import { createTable, playerHandler, enemyHandler, moveTable, ClosePlayerHandlrer, VillageClick, SetDimension } from "./handlers.js";
 import { drawLandScape, drawPlayerAndEnemy } from "./Graphical_function.js";
 //use only getLocalData to get info
 
 
 export function onLoad() {
+
+  // send a useless message to server to check session presence
+  sendData("checkSession", "none", "map");
 
   ///////////////////////// DATA RETRIVE SECTION /////////////////////////
 
