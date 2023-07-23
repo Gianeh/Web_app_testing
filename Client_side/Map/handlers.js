@@ -88,10 +88,6 @@ export function createTable(player) {
 
 
 
-
-
-
-
 //function to open the overlay for player
 export function playerHandler() {
   // open the overlay
@@ -115,7 +111,6 @@ export function playerHandler() {
   overlay.style.display = "block";
 
 }
-
 
 
 // function to open the overlay for enemy
@@ -308,7 +303,7 @@ export function moveTable(event) {
 
         // check if there is an enemy village
         for (k in enemypos) {
-          if (CurrentOrigin["x"] + j == enemypos[k]["x"] && CurrentOrigin["y"] + Rows == enemypos[k]["y"]) {
+          if (CurrentOrigin["x"] + j + 1 == enemypos[k]["x"] && CurrentOrigin["y"] + Rows == enemypos[k]["y"]) {
             newCell.className = "enemyVillage";
             newCell.id = "enemyVillage";
             newCell.innerHTML = "E";

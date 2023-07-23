@@ -10,11 +10,6 @@
 // 3) draw the player village and enemy villages
 
 
-// Function to draw rocks inside the map
-export function drawLandScape() {
-
-}
-
 // a function that draw the player and the enemy village
 export function drawPlayerAndEnemy(CurrentOrigin, enemypos, player) {
 

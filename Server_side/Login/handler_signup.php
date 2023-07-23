@@ -4,7 +4,7 @@
 
     $MAP_WIDTH = 500;
     $MAP_HEIGHT = 500;
-    $MIN_DISTANCE = 20;
+    $MIN_DISTANCE = 100;
 
     $MAX_PLAYERS = 1000;
 
