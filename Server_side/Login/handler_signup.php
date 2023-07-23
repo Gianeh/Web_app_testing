@@ -102,6 +102,7 @@
     
     if (session_status() !== PHP_SESSION_ACTIVE) {
         session_start();
+        ini_set('session.gc_maxlifetime', 1800); // 1800 seconds = 30 minutes
     }
     $_SESSION["user_id"] = $user_id;
     echo json_encode(array("status" => "success", "message" => "User created"));

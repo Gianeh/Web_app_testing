@@ -15,6 +15,20 @@
 </head>
 
 <body>
+
+    <!-- A small script that keeps the php up to date with time -->
+    <script>
+        function sendHeartbeat() {
+          // Send an AJAX request to a PHP script that does nothing but update the session timestamp
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'Server_side/heartbeat.php', true);
+          xhr.send();
+        }
+      
+        // Send the heartbeat every 5 minutes (adjust as needed)
+        setInterval(sendHeartbeat, 300000); // 300000 milliseconds = 5 minutes
+    </script>
+
     <div class="navigation_menu">
         <button class="navigation_button" id="ReturnToVillage">Return To Village</button>
     </div>

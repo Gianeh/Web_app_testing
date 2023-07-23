@@ -1,6 +1,13 @@
 <?php
     //log the error
     ini_set('display_errors', 1);
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
+
+    // perform a check on the session validity
+    include_once("../session_check.php");
+
     // include the chache class
     include_once('update_functions.php');
     include_once('../redis_cache.php');

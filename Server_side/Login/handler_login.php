@@ -3,6 +3,7 @@
     ini_set('display_errors', 1);
     if (session_status() !== PHP_SESSION_ACTIVE) {
         session_start();
+        ini_set('session.gc_maxlifetime', 30); // 1800 seconds = 30 minutes
     }
 
     if(!isset($_POST["username"]) || !isset($_POST["password"])){

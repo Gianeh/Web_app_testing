@@ -4,6 +4,10 @@
     if (session_status() !== PHP_SESSION_ACTIVE) {
         session_start();
     }
+
+    // perform a check on the session validity
+    include_once("../session_check.php");
+
     // include memory handlers classes
     include_once('update_functions.php');
     include_once('../redis_cache.php');

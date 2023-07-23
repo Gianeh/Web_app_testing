@@ -78,6 +78,9 @@ export function getData(dataName, path) {
         console.log("Server returned: " + xhr.responseText);
         // decode the JSON response
         output = JSON.parse(xhr.responseText);
+        if(output["message"] == "expired"){
+          window.location.href = "../../index.html";
+        }
 
       } else {
         // Handle error
@@ -109,6 +112,9 @@ export function getDataWithParameter(dataName, parameter, colums) {
       console.log("Server returned: " + xhr.responseText);
       // decode the JSON response
       output = JSON.parse(xhr.responseText);
+      if(output["message"] == "expired"){
+        window.location.href = "../../index.html";
+      }
 
     } else {
       // Handle error
@@ -138,6 +144,9 @@ export function sendData(func="none", password="", path="") {
     xhr.onload = function() {
       if (xhr.status === 200) {
         console.log("Server returned: " + xhr.responseText);
+        if(JSON.parse(xhr.responseText)["message"] == "expired"){
+          window.location.href = "../../index.html";
+        }
       } else {
         // Handle error
         console.log("Server returned error: " + xhr.status);
@@ -164,6 +173,9 @@ export function checkEvents(func="none", path="") {
     if (xhr.status === 200) {
       console.log("Server returned: " + xhr.responseText);
       output = JSON.parse(xhr.responseText);
+      if(output["message"] == "expired"){
+        window.location.href = "../../index.html";
+      }
     } else {
       // Handle error
       console.log("Server returned error: " + xhr.status);
