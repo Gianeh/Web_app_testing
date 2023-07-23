@@ -15,7 +15,4 @@ function checkSessionExpiration() {
     // Update the session's timestamp for the current activity
     $_SESSION['last_activity'] = time();
 }
-
-// Call the function to check for session expiration on every page load
-checkSessionExpiration();
 ?>
