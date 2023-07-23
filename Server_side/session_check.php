@@ -1,7 +1,5 @@
 <?
 function checkSessionExpiration() {
-    session_start();
-
     // Check if the session has expired
     if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > ini_get('session.gc_maxlifetime'))) {
         // Session has expired, call your function here
