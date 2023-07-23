@@ -46,7 +46,10 @@
 }
 
 .tree_cell{
-    
+    background-image: url("https://aos.azurewebsites.net/Style/bitmap/tree.png");
+    width: 30 px;
+    height: 30 px;
+    background-position: center;
 }
 
 .water_cell{

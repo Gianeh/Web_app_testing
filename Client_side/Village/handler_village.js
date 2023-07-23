@@ -16,37 +16,30 @@ export function onLoad() {
 
             if (i == 15 && j == 15) {
                 cell.id = "townhall";
-                cell.classList.add("townhall");
-                cell.innerHTML = "T";
+                cell.classList.add("townhall_cell");
                 continue;
             } else if (i == 12 && j == 9) {
                 cell.id = "rockmine";
-                cell.classList.add("rockmine");
-                cell.innerHTML = "R";
+                cell.classList.add("rockmine_cell");
                 continue;
             } else if (i == 19 && j == 22) {
                 cell.id = "woodchopper";
-                cell.classList.add("woodchopper");
-                cell.innerHTML = "W";
+                cell.classList.add("woodchopper_cell");
                 continue;
             } else if (i == 20 && j == 13) {
                 cell.id = "farm";
-                cell.classList.add("farm");
-                cell.innerHTML = "F";
+                cell.classList.add("farm_cell");
                 continue;
             } else if (i == 10 && j == 20) {
                 cell.id = "barracks";
-                cell.classList.add("barracks");
-                cell.innerHTML = "B";
+                cell.classList.add("barracks_cell");
                 continue;
             } else if (i == 5 && j == 5) {
                 cell.id = "ironmine";
-                cell.classList.add("ironmine");
-                cell.innerHTML = "I";
+                cell.classList.add("ironmine_cell");
                 continue;
             }
-            cell.innerHTML = "e";
-            cell.classList.add("square");
+            cell.classList.add("terrain_cell");
         }
     }
     setHandlers();
