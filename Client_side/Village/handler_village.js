@@ -35,7 +35,7 @@ export function onLoad() {
                 continue;
             } else if (i == 10 && j == 20) {
                 cell.id = "barracks";
-                cell.classList.add("barracks_cell");
+                cell.classList.add("barrack_cell");
                 continue;
             } else if (i == 5 && j == 5) {
                 cell.id = "ironmine";

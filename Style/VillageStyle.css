@@ -71,3 +71,9 @@ tr {
     width: 30px;
     height: 30px;
 }
+
+.VillageTable{
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+}
