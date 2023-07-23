@@ -8,15 +8,18 @@
 
 
 
-import { pickRecords, getLocalData, getDataWithParameter } from "../helper.js";
+import { pickRecords, getLocalData, getDataWithParameter, sendData } from "../helper.js";
 import { createTable, playerHandler, enemyHandler, moveTable, ClosePlayerHandlrer, VillageClick, SetDimension } from "./handlers.js";
-import { drawLandScape, drawPlayerAndEnemy } from "./Graphical_function.js";
+import { drawPlayerAndEnemy } from "./Graphical_function.js";
 //use only getLocalData to get info
 
 
 export function onLoad() {
 
-  ///////////////////////// DATA RETRIVE SECTION /////////////////////////
+  // send a useless message to server to check session presence
+  sendData("checkSession", "none", "map");
+
+  // RETRIEVE ALL NEEDED DATA FROM SERVER
 
   // search in local cache player data
   let player = getLocalData("player", "map");
@@ -29,11 +32,11 @@ export function onLoad() {
   console.log("player position: " + player["x"] + ", " + player["y"]);
   console.log("player username: " + username);
 
-  // execute the query to get enemy data and not the player data
+  // execute the query to get all the enemy positions
   let enemypos = getDataWithParameter("player", " username  <> '" + player["username"] + "'", "*");
   console.log(enemypos);
 
-  ///////////////////////// GRAPHIC SECTION /////////////////////////
+  // APPLY ALGORITHMS TO DRAW THE MAP
 
   // get the loading circle and hide it
   let loading = document.getElementById("loading_circle");
@@ -47,7 +50,7 @@ export function onLoad() {
   console.log("CurrentOrigin: " + CurrentOrigin["x"] + ", " + CurrentOrigin["y"]);
 
   // draw rock inside the map
-  //drawLandScape();
+  // drawLandScape();
 
   // draw player and enemy
   drawPlayerAndEnemy(CurrentOrigin, enemypos, player);

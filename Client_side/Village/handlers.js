@@ -1,4 +1,4 @@
-import { pickRecords, printData, getLocalData, sendData, parseRequirements } from "../helper.js";
+import { pickRecords, printData, getLocalData, sendData, checkEvents, parseRequirements } from "../helper.js";
 var upgrade_id = 0;
 
 // a function to handle the woodchopper click
@@ -8,7 +8,7 @@ export function woodchopperClick(event) {
     let info = setInfoDiv("brown");
     // call the getData function to get the woodchopper data
     let data = getLocalData("woodchopper", "village");
-    delete data["cached"];
+    delete data["previously_cached"];
     // call the getData function to get the player data
     let player = getLocalData("player", "village");
     pickRecords(player, ["wood"]);
@@ -34,7 +34,7 @@ export function rockmineClick(event) {
     let info = setInfoDiv("grey");
     // call the getData function to get the rockmine data
     let data = getLocalData("rockmine", "village");
-    delete data["cached"];
+    delete data["previously_cached"];
     // call the getData function to get the player data
     let player = getLocalData("player", "village");
     pickRecords(player, ["rock"]);
@@ -60,7 +60,7 @@ export function ironmineClick(event) {
     let info = setInfoDiv("silver");
     // call the getData function to get the ironmine data
     let data = getLocalData("ironmine", "village");
-    delete data["cached"];
+    delete data["previously_cached"];
     // call the getData function to get the player data
     let player = getLocalData("player", "village");
     pickRecords(player, ["iron"]);
@@ -86,7 +86,7 @@ export function farmClick(event) {
     let info = setInfoDiv("yellow");
     // call the getData function to get the farm data
     let data = getLocalData("farm", "village");
-    delete data["cached"];
+    delete data["previously_cached"];
     // call the getData function to get the player data
     let player = getLocalData("player", "village");
     pickRecords(player, ["food"]);
@@ -109,10 +109,11 @@ export function farmClick(event) {
 export function barracksClick(event) {
     // reset the upgrade span updater
     if(upgrade_id != 0) clearInterval(upgrade_id);
+    // reset the training span updater
     let info = setInfoDiv("red");
     // call the getData function to get the barracks data
     let data = getLocalData("barracks", "village");
-    delete data["cached"];
+    delete data["previously_cached"];
     // call the getData function to get the player data
     let player = getLocalData("player", "village");
     pickRecords(player, ["infantry", "archer", "cavalry"]);
@@ -122,20 +123,32 @@ export function barracksClick(event) {
 
     //spawn buttons inside the buttons div
     let infantry = document.createElement("button");
-    infantry.innerHTML = "Train Infantry" + parseRequirements("infantry_training");
+    infantry.innerHTML = "Train Infantry " + parseRequirements("infantry_training");
     infantry.classList.add("button");
     infantry.addEventListener("click", trainInfantry);
     buttons.appendChild(infantry);
+    let span = document.createElement("span");
+    span.id = "infantry_training";
+    buttons.appendChild(span);
+    buttons.appendChild(document.createElement("br"));
     let archer = document.createElement("button");
-    archer.innerHTML = "Train Archer" + parseRequirements("archer_training");
+    archer.innerHTML = "Train Archer " + parseRequirements("archer_training");
     archer.classList.add("button");
     archer.addEventListener("click", trainArcher);
     buttons.appendChild(archer);
+    span = document.createElement("span");
+    span.id = "archer_training";
+    buttons.appendChild(span);
+    buttons.appendChild(document.createElement("br"));
     let cavalry = document.createElement("button");
-    cavalry.innerHTML = "Train Cavalry" + parseRequirements("cavalry_training");
+    cavalry.innerHTML = "Train Cavalry " + parseRequirements("cavalry_training");
     cavalry.classList.add("button");
     cavalry.addEventListener("click", trainCavalry);
     buttons.appendChild(cavalry);
+    span = document.createElement("span");
+    span.id = "cavalry_training";
+    buttons.appendChild(span);
+    buttons.appendChild(document.createElement("br"));
     let upgrade = document.createElement("button");
     upgrade.innerHTML = "Upgrade Barracks " + parseRequirements("barracks_upgrade", (parseInt(data["level"])+1).toString());
     upgrade.addEventListener("click", upgradeBarracks);
@@ -155,7 +168,7 @@ export function townhallClick(event) {
     let info = setInfoDiv("lightblue");
     // call the getData function to get the townhall data
     let data = getLocalData("townhall", "village");
-    delete data["cached"];
+    delete data["previously_cached"];
     // call the getData function to get the player data
     let player = getLocalData("player", "village");
     pickRecords(player, ["population", "iron", "wood", "food", "rock"]);
@@ -301,6 +314,8 @@ function trainInfantry(event) {
     }
     // send update to the server
     sendData("trainInfantry");
+    // remove data from local storage
+    localStorage.removeItem("infantry_training");
     barracksClick();
 }
 
@@ -311,6 +326,8 @@ function trainArcher(event) {
     }
     // send update to the server
     sendData("trainArcher");
+    // remove data from local storage
+    localStorage.removeItem("archer_training");
     barracksClick();
 }
 
@@ -321,6 +338,8 @@ function trainCavalry(event) {
     }
     // send update to the server
     sendData("trainCavalry");
+    // remove data from local storage
+    localStorage.removeItem("cavalry_training");
     barracksClick();
 }
 
@@ -345,10 +364,11 @@ function setInfoDiv(color){
     return info;
 }
 
-function setUpgradeSpan($upgrade){
-    let upgradeData = getLocalData($upgrade, "village");
+function setUpgradeSpan(upgrade){
+    localStorage.removeItem(upgrade);
+    let upgradeData = getLocalData(upgrade, "village");
     let upgradeSpan = document.getElementById("upgrade");
-    if (upgradeData["status"] != "success"){
+    if (upgradeData["status"] == "no data found"){
         upgradeSpan.innerHTML = "Structure is not being upgraded";
     }else if(upgradeData["status"] == "success"){
         upgradeSpan.innerHTML = "remaining time: " + upgradeData["remaining_time"];
@@ -356,20 +376,94 @@ function setUpgradeSpan($upgrade){
         // something went wrong
         upgradeSpan.innerHTML = "Something went wrong";
     }
+    if (upgrade == "barracks_upgrade"){
+        setTrainingSpan("infantry_training");
+        setTrainingSpan("archer_training");
+        setTrainingSpan("cavalry_training");
+    }
 }
+
+function setTrainingSpan(training){
+    localStorage.removeItem(training);
+    let trainingData = getLocalData(training, "village");
+    let trainingSpan = document.getElementById(training);
+    if (trainingData["status"] == "no data found"){
+        trainingSpan.innerHTML = "\t" + training.split("_")[0] + " is not being trained";
+    }else if(trainingData["status"] == "success"){
+        trainingSpan.innerHTML = "\tremaining time: " + trainingData["remaining_time"];
+    }else{
+        // something went wrong
+        trainingSpan.innerHTML = "\tSomething went wrong";
+    }
+}
+
 
 export function updateUpgrades(){
     for(let key in localStorage){
-        if(key.includes("upgrade") && JSON.parse(localStorage[key])["status"] == "success"){
+        if((key.includes("upgrade") || key.includes("training") || key.includes("production")) && JSON.parse(localStorage[key])["status"] == "success"){
             let upgrade = JSON.parse(localStorage[key]);
             upgrade["remaining_time"] -= 1;
             localStorage[key] = JSON.stringify(upgrade);
 
             // if the remaining time is 0, call the backend check function
             if(upgrade["remaining_time"] <= 0){
-                sendData("checkEvents", "village");
-                // here an escamotage to reset the currently clicked structure needs to be implemented
-                // local storage needs to be cleared too !
+                let updated = checkEvents("checkEvents", "village").split(",");
+                // check the updated data in order to recall the click function related and if needed retrieve the player data again
+                for(let i = 0; i < updated.length; i++){
+                    if(updated[i] == "townhall"){
+                        localStorage.removeItem("townhall");
+                        localStorage.removeItem("townhall_upgrade");
+                        townhallClick();
+                    }else if(updated[i] == "barracks"){
+                        localStorage.removeItem("barracks");
+                        localStorage.removeItem("barracks_upgrade");
+                        barracksClick();
+                    }else if(updated[i] == "woodchopper"){
+                        localStorage.removeItem("woodchopper");
+                        localStorage.removeItem("woodchopper_upgrade");
+                        woodchopperClick();
+                    }else if(updated[i] == "rockmine"){
+                        localStorage.removeItem("rockmine");
+                        localStorage.removeItem("rockmine_upgrade");
+                        rockmineClick();
+                    }else if(updated[i] == "ironmine"){
+                        localStorage.removeItem("ironmine");
+                        localStorage.removeItem("ironmine_upgrade");
+                        ironmineClick();
+                    }else if(updated[i] == "farm"){
+                        localStorage.removeItem("farm");
+                        localStorage.removeItem("farm_upgrade");
+                        farmClick();
+                    }
+                    // then check if data is related to the player - that is if it's a resource or a troop
+                    else if(updated[i] == "iron" || updated[i] == "wood" || updated[i] == "rock" || updated[i] == "food" || updated[i] == "infantry" || updated[i] == "archer" || updated[i] == "cavalry"){
+                        switch(updated[i]){
+                            case "iron":
+                                localStorage.removeItem("iron_production");
+                                break;
+                            case "wood":
+                                localStorage.removeItem("wood_production");
+                                break;
+                            case "rock":
+                                localStorage.removeItem("rock_production");
+                                break;
+                            case "food":
+                                localStorage.removeItem("food_production");
+                                break;
+                            case "infantry":
+                                localStorage.removeItem("infantry_training");
+                                break;
+                            case "archer":
+                                localStorage.removeItem("archer_training");
+                                break;
+                            case "cavalry":
+                                localStorage.removeItem("cavalry_training");
+                                break;
+                        }
+                        localStorage.removeItem("player");
+                        townhallClick();
+                    }
+                }
             }
         }
 

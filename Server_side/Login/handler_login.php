@@ -2,6 +2,7 @@
     // log the error
     ini_set('display_errors', 1);
     if (session_status() !== PHP_SESSION_ACTIVE) {
+        ini_set('session.gc_maxlifetime', 30); // 1800 seconds = 30 minutes
         session_start();
     }
 

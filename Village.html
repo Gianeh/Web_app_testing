@@ -14,6 +14,20 @@
 </head>
 
 <body>
+
+    <!-- A small script that keeps the php up to date with time -->
+    <script>
+        function sendHeartbeat() {
+          // Send an AJAX request to a PHP script that does nothing but update the session timestamp
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'Server_side/heartbeat.php', true);
+          xhr.send();
+        }
+      
+        // Send the heartbeat every 5 minutes (adjust as needed)
+        setInterval(sendHeartbeat, 300000); // 300000 milliseconds = 5 minutes
+    </script>
+
     <h1>AOS Test 1</h1>
     <p>Test 1</p>
     <div class="container">

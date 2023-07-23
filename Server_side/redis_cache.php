@@ -35,9 +35,9 @@
             switch ($data) {
     
                 case "player":
-                    $player = $this->db->select("*","player, resources, troops", "player.user_id = resources.user_id AND player.user_id = troops.user_id");
-                    $player = new Player($player[$user_id]["username"], $player[$user_id]["population"], $player[$user_id]["iron"], $player[$user_id]["wood"], $player[$user_id]["rock"],
-                                         $player[$user_id]["food"], $player[$user_id]["archer"], $player[$user_id]["infantry"], $player[$user_id]["cavalry"], $player[$user_id]["x"], $player[$user_id]["y"]);
+                    $player = $this->db->select("*","player, resources, troops", "player.user_id = resources.user_id AND player.user_id = troops.user_id AND player.user_id = '$user_id'");
+                    $player = new Player($player[0]["username"], $player[0]["population"], $player[0]["iron"], $player[0]["wood"], $player[0]["rock"],
+                                         $player[0]["food"], $player[0]["archer"], $player[0]["infantry"], $player[0]["cavalry"], $player[0]["x"], $player[0]["y"]);
                     $output = $player->get_data();
                     break;
     
@@ -87,7 +87,7 @@
                         $output = array("status" => "no data found");
                         break;
                     }
-                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $upgrade = new Upgrade($upgrade[0]["event_id"], $upgrade[0]["event_type"], $upgrade[0]["event_completion"], $upgrade[0]["finished"], $upgrade[0]["level"]);
                     $output = array_merge($upgrade->get_data(), ["status" => "success"]);
                     break;
                 
@@ -97,7 +97,7 @@
                         $output = array("status" => "no data found");
                         break;
                     }
-                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $upgrade = new Upgrade($upgrade[0]["event_id"], $upgrade[0]["event_type"], $upgrade[0]["event_completion"], $upgrade[0]["finished"], $upgrade[0]["level"]);
                     $output = array_merge($upgrade->get_data(), ["status" => "success"]);
                     break;
                 
@@ -107,7 +107,7 @@
                         $output = array("status" => "no data found");
                         break;
                     }
-                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $upgrade = new Upgrade($upgrade[0]["event_id"], $upgrade[0]["event_type"], $upgrade[0]["event_completion"], $upgrade[0]["finished"], $upgrade[0]["level"]);
                     $output = array_merge($upgrade->get_data(), ["status" => "success"]);
                     break;
                 
@@ -117,7 +117,7 @@
                         $output = array("status" => "no data found");
                         break;
                     }
-                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $upgrade = new Upgrade($upgrade[0]["event_id"], $upgrade[0]["event_type"], $upgrade[0]["event_completion"], $upgrade[0]["finished"], $upgrade[0]["level"]);
                     $output = array_merge($upgrade->get_data(), ["status" => "success"]);
                     break;
                 
@@ -127,7 +127,7 @@
                         $output = array("status" => "no data found");
                         break;
                     }
-                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $upgrade = new Upgrade($upgrade[0]["event_id"], $upgrade[0]["event_type"], $upgrade[0]["event_completion"], $upgrade[0]["finished"], $upgrade[0]["level"]);
                     $output = array_merge($upgrade->get_data(), ["status" => "success"]);
                     break;
                 
@@ -137,7 +137,7 @@
                         $output = array("status" => "no data found");
                         break;
                     }
-                    $upgrade = new Upgrade($upgrade[$user_id]["event_id"], $upgrade[$user_id]["event_type"], $upgrade[$user_id]["event_completion"], $upgrade[$user_id]["finished"], $upgrade[$user_id]["level"]);
+                    $upgrade = new Upgrade($upgrade[0]["event_id"], $upgrade[0]["event_type"], $upgrade[0]["event_completion"], $upgrade[0]["finished"], $upgrade[0]["level"]);
                     $output = array_merge($upgrade->get_data(), ["status" => "success"]);
                     break;
                 
@@ -150,7 +150,7 @@
                     }
                     $infantry = array();
                     foreach($training as $train){
-                        $infantry[] = new Training($train[$user_id]["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "infantry");
+                        $infantry[] = new Training($train["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "infantry");
                     }
                     $output = array_merge($infantry[0]->get_data(), ["status" => "success"]);
                     break;
@@ -163,7 +163,7 @@
                     }
                     $archer = array();
                     foreach($training as $train){
-                        $archer[] = new Training($train[$user_id]["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "archer");
+                        $archer[] = new Training($train["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "archer");
                     }
                     $output = array_merge($archer[0]->get_data(), ["status" => "success"]);
                     break;
@@ -176,9 +176,28 @@
                     }
                     $cavalry = array();
                     foreach($training as $train){
-                        $cavalry[] = new Training($train[$user_id]["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "cavalry");
+                        $cavalry[] = new Training($train["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], "cavalry");
                     }
                     $output = array_merge($cavalry[0]->get_data(), ["status" => "success"]);
+                    break;
+
+                // a case for the whole set of training events
+                case "training":
+                    $training = $this->db->select("*","events", "events.user_id = '$user_id' AND events.event_type IN ('infantry_training', 'archer_training', 'cavalry_training') AND events.finished = 0 ORDER BY events.event_completion ASC");
+                    if(count($training) == 0) {
+                        $output = array("status" => "no data found");
+                        break;
+                    }
+                    $T = array();
+                    foreach($training as $train){
+                        $T[] = new Training($train["event_id"], $train["event_type"], $train["event_completion"], $train["finished"], $train["event_type"]);
+                    }
+                    // output is the all set of getData functions on all the training events
+                    $output = array();
+                    for($i = 0; $i < count($T); $i++){
+                        $output[$i] = $T[$i]->get_data();
+                    }
+                    $output = array_merge($output, ["status" => "success"]);
                     break;
 
                 default:
@@ -186,7 +205,7 @@
                     $output = array("error" => "invalid data requested");
                     break;
             }
-            $output["cached"] = "false";
+            $output["previously_cached"] = "false";
             return $output;
         }
 
@@ -212,7 +231,7 @@
                 // data found in cache, decode the JSON string
                 // log that the data was found in the cache
                 $output = json_decode($output, true);
-                $output["cached"] = "true";
+                $output["previously_cached"] = "true";
             }
 
             // close the cache connection

@@ -1,6 +1,6 @@
 <?php
     // A function that handles the copy of all the cache relative to the user to the database
-    function logout($token){
+    function logout($token, $from_heartbeat = false){
         include_once("../database_query.php");
         include_once("../redis_cache.php");
 
@@ -74,4 +74,14 @@
         $cache->deleteData("infantry_training", $token);
         $cache->deleteData("archer_training", $token);
         $cache->deleteData("cavalry_training", $token);
+        // production events are missing
+
+        unset($cache);  // this allows the garbage collector to delete the object
+
+        // destroy the session
+        session_destroy();
+
+        if($from_heartbeat){
+            return array("status" => "success", "message" => "Expired");
+        }
     }

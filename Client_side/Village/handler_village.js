@@ -7,6 +7,9 @@ import { showCheats, hideCheats } from "./shortcuts.js";
 
 export function onLoad() {
 
+    // send a useless message to server to check session presence
+    sendData("checkSession", "none", "village");
+
     // this is the base graphics of the village for now
     let table = document.getElementById("Village");
     for (let i = 0; i < 30; i++) {

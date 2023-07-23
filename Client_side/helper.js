@@ -78,6 +78,9 @@ export function getData(dataName, path) {
         console.log("Server returned: " + xhr.responseText);
         // decode the JSON response
         output = JSON.parse(xhr.responseText);
+        if(output["message"] == "expired"){
+          window.location.href = "../../index.html";
+        }
 
       } else {
         // Handle error
@@ -109,6 +112,9 @@ export function getDataWithParameter(dataName, parameter, colums) {
       console.log("Server returned: " + xhr.responseText);
       // decode the JSON response
       output = JSON.parse(xhr.responseText);
+      if(output["message"] == "expired"){
+        window.location.href = "../../index.html";
+      }
 
     } else {
       // Handle error
@@ -138,6 +144,9 @@ export function sendData(func="none", password="", path="") {
     xhr.onload = function() {
       if (xhr.status === 200) {
         console.log("Server returned: " + xhr.responseText);
+        if(JSON.parse(xhr.responseText)["message"] == "expired"){
+          window.location.href = "../../index.html";
+        }
       } else {
         // Handle error
         console.log("Server returned error: " + xhr.status);
@@ -148,6 +157,36 @@ export function sendData(func="none", password="", path="") {
         console.log("Error occurred: " + xhr.status);
     }
     xhr.send("function=" + func + "&password=" + password);
+}
+
+// a modified version of sendData that sends data to the backend but also returns a response
+export function checkEvents(func="none", path="") {
+  if(path == "village") path = backend_village;
+  else if(path == "map") path = backend_map;
+  else path = backend_village;
+
+  let xhr = new XMLHttpRequest();
+  let output = "";
+  xhr.open("POST", path, false);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      console.log("Server returned: " + xhr.responseText);
+      output = JSON.parse(xhr.responseText);
+      if(output["message"] == "expired"){
+        window.location.href = "../../index.html";
+      }
+    } else {
+      // Handle error
+      console.log("Server returned error: " + xhr.status);
+    }
+  }
+  xhr.onerror = function() {
+      // Handle error
+      console.log("Error occurred: " + xhr.status);
+  }
+  xhr.send("function=" + func);
+  return output;
 }
 
 // a function that manages the local storage queries and retrieves from the redis cache if needed (redis cache queries the database if needed)

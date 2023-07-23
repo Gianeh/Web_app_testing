@@ -4,7 +4,7 @@
 
     $MAP_WIDTH = 500;
     $MAP_HEIGHT = 500;
-    $MIN_DISTANCE = 20;
+    $MIN_DISTANCE = 100;
 
     $MAX_PLAYERS = 1000;
 
@@ -96,11 +96,14 @@
     $connection->insert("structures", "user_id, townhall, farm, woodchopper, rockmine, ironmine, barracks", "'$user_id', 0, 0, 0, 0, 0, 0");
     $connection->insert("resources", "user_id, iron, food, wood, rock, population", "'$user_id', 200, 200, 200, 200, 50");
     $connection->insert("troops", "user_id, archer, infantry, cavalry", "'$user_id', 0, 0, 0");
+    // production events must be added on firts login!
     // every new table rows needs to be added here
     
     
     if (session_status() !== PHP_SESSION_ACTIVE) {
+        ini_set('session.gc_maxlifetime', 1800); // 1800 seconds = 30 minutes
         session_start();
+        
     }
     $_SESSION["user_id"] = $user_id;
     echo json_encode(array("status" => "success", "message" => "User created"));

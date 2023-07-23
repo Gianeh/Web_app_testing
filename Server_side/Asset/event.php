@@ -38,6 +38,6 @@
         }
 
         public function get_data(){
-            return array("event_id" => $this->event_id, "event_type" => $this->event_type, "event_completion" => $this->event_completion, "finished" => $this->finished, "troop_type" => $this->troop_type);
+            return array("event_id" => $this->event_id, "event_type" => $this->event_type, "event_completion" => $this->event_completion, "finished" => $this->finished, "troop_type" => $this->troop_type, "remaining_time" => $this->remaining_time);
         }
     }
