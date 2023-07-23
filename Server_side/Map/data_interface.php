@@ -41,6 +41,9 @@
             case "PlayerPosition":
                 $status = PlayerPosition($token);
                 break;
+            default:
+                $status = array("status" => "error", "message" => "Function not found");
+                break;
         }
         
         // return status
