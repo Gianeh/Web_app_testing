@@ -615,7 +615,10 @@
             $resources["rock"] += 100;
             $resources["iron"] += 100;
             $resources["food"] += 100;
-            $cache->setData("player", $resources, $token);
+            $db = new databaseQuery();
+            $db->update("resources", "wood, food, iron, rock", $resources["wood"].", ".$resources["food"].", ".$resources["iron"].", ".$resources["rock"], "user_id = '".$_SESSION['user_id']."'");
+            $cache->deleteData("player", $token);
+            $cache->acquireData("player", $token);
             return true;
         } else {
             return false;

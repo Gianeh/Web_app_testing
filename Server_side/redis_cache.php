@@ -231,7 +231,7 @@
                 // data found in cache, decode the JSON string
                 // log that the data was found in the cache
                 $output = json_decode($output, true);
-                $output["cached"] = "true";
+                $output["previously_cached"] = "true";
             }
 
             // close the cache connection
