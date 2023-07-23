@@ -379,7 +379,11 @@ function setUpgradeSpan(upgrade){
         // something went wrong
         upgradeSpan.innerHTML = "Something went wrong";
     }
-    if (upgrade == "barracks_training") setTrainingSpan("infantry_training");
+    if (upgrade == "barracks_training"){
+        setTrainingSpan("infantry_training");
+        setTrainingSpan("archer_training");
+        setTrainingSpan("cavalry_training");
+    }
 }
 
 function setTrainingSpan(training){
