@@ -9,6 +9,28 @@
     margin: 50px auto;
 }
 
+.upgrade_button {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.upgrade_button:hover {
+    background-color: #3e8e41;
+    box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.2);
+}
+
 .navigation_button {
     background-color: #4CAF50;
     /* Green */
