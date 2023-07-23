@@ -51,8 +51,8 @@
 
 .playerVillage {
     border-collapse: collapse;
-    border: 2px solid black;
-    background-color: blue;
+    border: 2px solid blue;
+    background-image: url("https://aos.azurewebsites.net/Style/bitmap/townhall.png");
     width: 30px;
     height: 30px;
     text-align: center;
@@ -60,11 +60,11 @@
 
 .enemyVillage {
     border-collapse: collapse;
-    border: 2px solid black;
-    background-color: red;
+    border: 2px solid red;
+    background-image: url("https://aos.azurewebsites.net/Style/bitmap/enemy_village.png");
     width: 30px;
     height: 30px;
-    text-align: center;
+    background-position: center; /* Center the image */
 }
 
 .AttackButton{
