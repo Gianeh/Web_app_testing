@@ -249,5 +249,153 @@
             "food": 250,
             "duration": 180
         }
+    },
+    "rockmine_upgrade": {
+        "1": {
+            "rock": 0,
+            "wood": 100,
+            "iron": 50,
+            "food": 0,
+            "duration": 10
+        },
+        "2": {
+            "rock": 100,
+            "wood": 200,
+            "iron": 100,
+            "food": 20,
+            "duration": 30
+        },
+        "3": {
+            "rock": 350,
+            "wood": 300,
+            "iron": 150,
+            "food": 100,
+            "duration": 60
+        },
+        "4": {
+            "rock": 500,
+            "wood": 400,
+            "iron": 200,
+            "food": 150,
+            "duration": 120
+        },
+        "5": {
+            "rock": 1000,
+            "wood": 500,
+            "iron": 250,
+            "food": 150,
+            "duration": 180
+        }
+    },
+    "ironmine_upgrade": {
+        "1": {
+            "rock": 0,
+            "wood": 100,
+            "iron": 150,
+            "food": 50,
+            "duration": 10
+        },
+        "2": {
+            "rock": 0,
+            "wood": 250,
+            "iron": 200,
+            "food": 100,
+            "duration": 30
+        },
+        "3": {
+            "rock": 100,
+            "wood": 300,
+            "iron": 350,
+            "food": 150,
+            "duration": 60
+        },
+        "4": {
+            "rock": 200,
+            "wood": 400,
+            "iron": 400,
+            "food": 200,
+            "duration": 120
+        },
+        "5": {
+            "rock": 250,
+            "wood": 500,
+            "iron": 550,
+            "food": 250,
+            "duration": 180
+        }
+    }, 
+    "farm_upgrade": {
+        "1": {
+            "rock": 0,
+            "wood": 100,
+            "iron": 50,
+            "food": 50,
+            "duration": 10
+        },
+        "2": {
+            "rock": 0,
+            "wood": 200,
+            "iron": 100,
+            "food": 10,
+            "duration": 30
+        },
+        "3": {
+            "rock": 0,
+            "wood": 300,
+            "iron": 150,
+            "food": 10,
+            "duration": 60
+        },
+        "4": {
+            "rock": 0,
+            "wood": 400,
+            "iron": 200,
+            "food": 10,
+            "duration": 120
+        },
+        "5": {
+            "rock": 0,
+            "wood": 500,
+            "iron": 250,
+            "food": 10,
+            "duration": 180
+        }
+    },
+    "barracks_upgrade": {
+        "1": {
+            "rock": 100,
+            "wood": 100,
+            "iron": 50,
+            "food": 50,
+            "duration": 10
+        },
+        "2": {
+            "rock": 100,
+            "wood": 200,
+            "iron": 100,
+            "food": 150,
+            "duration": 30
+        },
+        "3": {
+            "rock": 100,
+            "wood": 300,
+            "iron": 150,
+            "food": 250,
+            "duration": 60
+        },
+        "4": {
+            "rock": 100,
+            "wood": 400,
+            "iron": 200,
+            "food": 400,
+            "duration": 120
+        },
+        "5": {
+            "rock": 100,
+            "wood": 500,
+            "iron": 250,
+            "food": 450,
+            "duration": 180
+        }
     }
 }

@@ -116,7 +116,7 @@ export function playerHandler() {
   document.getElementById("PlayerOverlayTitle").innerHTML = playerData["username"] + " Village";
 
   // get player resurces data
-  let playerResurces = getDataWithParameter("resources", " user_id = '" + playerData["user_id"] + "'", "wood, rock, iron, food");
+  let playerResurces = getDataWithParameter("resources", " username = '" + playerData["username"] + "'", "wood, rock, iron, food");
 
   console.log(playerResurces);
 
