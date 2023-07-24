@@ -1,4 +1,14 @@
-.navigation_menu{
+.title {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    text-shadow: 2px 2px #ccc;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.navigation_menu {
     width: 1000px;
     height: 75px;
     border: 2px solid black;
@@ -53,32 +63,31 @@
     box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.2);
 }
 
-.terrain_cell{
+.terrain_cell {
     background-image: url("https://aos.azurewebsites.net/Style/bitmap/terrain.png");
     width: 30px;
     height: 30px;
-    background-position: center; /* Center the image */
+    background-position: center;
+    /* Center the image */
 }
 
-.rock_cell{
+.rock_cell {
     background-image: url("https://aos.azurewebsites.net/Style/bitmap/rock.png");
     width: 30 px;
     height: 30 px;
     background-position: center;
 }
 
-.tree_cell{
+.tree_cell {
     background-image: url("https://aos.azurewebsites.net/Style/bitmap/tree.png");
     width: 30 px;
     height: 30 px;
     background-position: center;
 }
 
-.water_cell{
-    
-}
+.water_cell {}
 
-.loading_circle{
+.loading_circle {
     position: absolute;
     top: 46%;
     left: 48%;
@@ -95,9 +104,9 @@
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
 
 }
-
