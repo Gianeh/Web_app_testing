@@ -24,7 +24,7 @@ export function onLoad() {
   // search in local cache player data
   let player = getLocalData("player", "map");
   // pick only username, x and y from player data      
-  player = pickRecords(player, ["username", "x", "y"]);
+  player = pickRecords(player, ["user_id","username", "x", "y"]);
 
   // get the username
   let username = player["username"]
