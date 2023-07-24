@@ -110,6 +110,22 @@ export function playerHandler() {
   // show overlay
   overlay.style.display = "block";
 
+  // get from local storage the player data
+  let playerData = JSON.parse(localStorage.getItem("player"));
+
+  document.getElementById("PlayerOverlayTitle").innerHTML = playerData["username"] + " Village";
+
+  // get player resurces data
+  let playerResurces = getDataWithParameter("resources", " user_id = '" + playerData["user_id"] + "'", "wood, rock, iron, food");
+
+  console.log(playerResurces);
+
+  // set player resurces data
+  let playerWoood = document.getElementById("playerWood").innerHTML = playerResurces["wood"];
+  let playerRock = document.getElementById("playerRock").innerHTML = playerResurces["rock"];
+  let playerIron = document.getElementById("playerIron").innerHTML = playerResurces["iron"];
+  let playerFood = document.getElementById("playerFood").innerHTML = playerResurces["food"];
+
 }
 
 

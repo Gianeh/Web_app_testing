@@ -1,0 +1,78 @@
+.townhall_cell{
+    background-image: url("https://aos.azurewebsites.net/Style/bitmap/townhall.png");
+    width: 30px;
+    height: 30px;
+    border-color: blue;
+    background-position: center; /* Center the image */
+}
+
+.rockmine_cell{
+    background-image: url("https://aos.azurewebsites.net/Style/bitmap/rockmine.png");
+    width: 30px;
+    height: 30px;
+    border-color: blue;
+    background-position: center; /* Center the image */
+}
+
+.ironmine_cell{
+    background-image: url("https://aos.azurewebsites.net/Style/bitmap/ironmine.png");
+    width: 30px;
+    height: 30px;
+    border-color: blue;
+    background-position: center; /* Center the image */
+}
+
+.farm_cell{
+    background-image: url("https://aos.azurewebsites.net/Style/bitmap/farm.png");
+    width: 30px;
+    height: 30px;
+    border-color: blue;
+    background-position: center; /* Center the image */
+}
+
+.woodchopper_cell{
+    background-image: url("https://aos.azurewebsites.net/Style/bitmap/woodchopper.png");
+    width: 30px;
+    height: 30px;
+    border-color: blue;
+    background-position: center; /* Center the image */
+}
+
+.barrack_cell{
+    background-image: url("https://aos.azurewebsites.net/Style/bitmap/barracks.png");
+    width: 30px;
+    height: 30px;
+    border-color: blue;
+    background-position: center; /* Center the image */
+}
+
+.container {
+    width:1000px;
+    height: 75px;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+}
+.button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: 3px solid gold;
+    border-radius: 5px;
+}
+.info {
+    font-size: 20px;
+    font-weight: bold;
+    margin: auto;
+    text-align: center;
+    color: black;
+}
+
+.VillageTable{
+    border-collapse: collapse;
+    margin: auto;
+}

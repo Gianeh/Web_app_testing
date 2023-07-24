@@ -1,89 +1,15 @@
 <html lang="it">
 
 <head>
-    <title>AOS Test 1</title>
-    <style>
-        .container {
-            width:1000px;
-            height: 75px;
-            border: 2px solid black;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 50px auto;
-        }
-        .button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            font-size: 16px;
-            border: 3px solid gold;
-            border-radius: 5px;
-        }
-        .info {
-            font-size: 20px;
-            font-weight: bold;
-            margin: auto;
-            text-align: center;
-            color: black;
-        }
-
-        tr {
-            border: 1px solid black;
-            width: 30px;
-            height: 30px;
-        }
-
-        .square {
-            border: 1px solid black;
-            width: 30px;
-            height: 30px;
-            background-color: lightgreen;
-            border-radius: 3px;
-        }
-        .townhall{
-            border: 1px solid black;
-            width: 30px;
-            height: 30px;
-            background-color: blue;
-        }
-        .rockmine{
-            border: 1px solid black;
-            width: 30px;
-            height: 30px;
-            background-color: grey;
-        }
-        .ironmine{
-            border: 1px solid black;
-            width: 30px;
-            height: 30px;
-            background-color: silver;
-        }
-        .woodchopper{
-            border: 1px solid black;
-            width: 30px;
-            height: 30px;
-            background-color: brown;
-        }
-        .farm{
-            border: 1px solid black;
-            width: 30px;
-            height: 30px;
-            background-color: rgb(255, 255, 0);
-        }
-        .barracks{
-            border: 1px solid black;
-            width: 30px;
-            height: 30px;
-            background-color: red;
-        }
-    </style>
+    <title>Village</title>
 
     <script type="module">
         import { onLoad } from './Client_side/Village/handler_village.js';
         window.onload = onLoad;
     </script>
+
+    <link rel="stylesheet" href="./Style/VillageStyle.css">
+    <link rel="stylesheet" href="./Style/GlobalStyle.css">
     
 </head>
 
@@ -102,16 +28,12 @@
         setInterval(sendHeartbeat, 300000); // 300000 milliseconds = 5 minutes
     </script>
 
-    <h1>AOS Test 1</h1>
-    <p>Test 1</p>
-    <div class="container">
-        <button id="warmap" class="button">War Map</button>
+    <h1 class="title">Age Of Stronghold</h1>
+    <div class="container" class = "navigation_menu">
+        <button id="warmap" class="navigation_button">War Map</button>
+        <button id="logout" class="navigation_button">Logout</button>
     </div>
-
-    <br />
-    <button id="logout" class="button">Logout</button>
-    
-    <table id="Village" style="margin:auto">
+    <table id="Village" class="VillageTable">
         <!-- Table rows and columns are created dynamically in js -->
     </table>
     

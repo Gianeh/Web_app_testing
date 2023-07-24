@@ -26,14 +26,12 @@ export function drawPlayerAndEnemy(CurrentOrigin, enemypos, player) {
             if ((i + CurrentOrigin["y"]) == player["y"] && (j + CurrentOrigin["x"]) == player["x"]) {
                 cell.className = "playerVillage";
                 cell.id = "playerVillage";
-                cell.innerHTML = "P";
             }
             // check if the cell is the enemy position
             for (let k in enemypos) {
                 if (((j + CurrentOrigin["x"]) == enemypos[k]["x"]) && ((i + CurrentOrigin["y"]) == enemypos[k]["y"])) {
                     cell.className = "enemyVillage";
                     cell.id = "enemyVillage";
-                    cell.innerHTML = "E";
                 }
             }
         }
