@@ -128,7 +128,6 @@ export function playerHandler() {
 
 }
 
-
 // function to open the overlay for enemy
 export function enemyHandler(event) {
 
@@ -191,8 +190,6 @@ export function enemyHandler(event) {
 
 }
 
-
-
 //funxtion that close the player overlay
 export function ClosePlayerHandlrer() {
 
@@ -200,7 +197,6 @@ export function ClosePlayerHandlrer() {
   overlay.style.display = "none";
 
 }
-
 
 // function that close the enemy overlay
 export function CloseEnemyHandlrer() {
@@ -215,8 +211,6 @@ export function CloseEnemyHandlrer() {
 export function VillageClick(event) {
   window.location.href = "Village.html";
 }
-
-
 
 
 // function that handle movement inside the map
@@ -236,8 +230,7 @@ export function moveTable(event) {
     enemyOverlay.style.display = "none";
   }
 
-
-
+  
   // get key or the elemnt id of the button clicked
   let id = event.target.id;
   if (event.target.id != null) {

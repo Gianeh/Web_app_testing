@@ -20,7 +20,22 @@ function submitClick(){
         console.log("Passwords do not match!");
         return;
     }
-    // password should be veriefied to match security concerns
+    
+    // check for password validity (a valid pass contains a number , an upper and a lower case letter and is at least 8 characters long)
+    let passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+    if(!passRegex.test(password)){
+        alert("Password must contain at least 8 characters, one number, one uppercase and one lowercase letter!");
+        console.log("Password must contain at least 8 characters, one number, one uppercase and one lowercase letter!");
+        return;
+    }
+    // check for username validity (a valid username contains only letters and numbers and is at least 4 characters long)
+    let userRegex = /^[a-zA-Z0-9]{4,}$/;
+    if(!userRegex.test(username)){
+        alert("Username must contain at least 4 characters and contain only letters and numbers!");
+        console.log("Username must contain at least 4 characters and contain only letters and numbers!");
+        return;
+    }
+
     // all previous controls are repeated in backend to prevent user from bypassing the frontend
     // I hate the users...
 

@@ -24,7 +24,17 @@
         exit();
     }
 
-    // various checks on username validity and password strength should be done here
+    // Double checks to username and pasword as happens in signup.js
+    $passwordRegex = "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/";
+    if(!preg_match($passwordRegex, $password)){
+        echo json_encode(array("status" => "error", "message" => "Password must contain at least 8 characters, one number, one uppercase and one lowercase letter!"));
+        exit();
+    }
+    $usernameRegex = "/^[a-zA-Z0-9]{4,}$/";
+    if(!preg_match($usernameRegex, $username)){
+        echo json_encode(array("status" => "error", "message" => "Username must contain at least 4 characters and contain only letters and numbers!"));
+        exit();
+    }
 
     
 
