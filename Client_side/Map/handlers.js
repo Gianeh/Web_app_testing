@@ -121,10 +121,10 @@ export function playerHandler() {
   console.log(playerResurces);
 
   // set player resurces data
-  let playerWoood = document.getElementById("playerWood").innerHTML = playerResurces[0]["wood"];
-  let playerRock = document.getElementById("playerRock").innerHTML = playerResurces[0]["rock"];
-  let playerIron = document.getElementById("playerIron").innerHTML = playerResurces[0]["iron"];
-  let playerFood = document.getElementById("playerFood").innerHTML = playerResurces[0]["food"];
+  let playerWoood = document.getElementById("playerWood").innerHTML = playerResurces["wood"];
+  let playerRock = document.getElementById("playerRock").innerHTML = playerResurces["rock"];
+  let playerIron = document.getElementById("playerIron").innerHTML = playerResurces["iron"];
+  let playerFood = document.getElementById("playerFood").innerHTML = playerResurces["food"];
 
 }
 
