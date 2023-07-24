@@ -2,7 +2,7 @@
     background-image: url("https://aos.azurewebsites.net/Style/bitmap/townhall.png");
     width: 30px;
     height: 30px;
-    border-color: blue;
+    border-color: 2px solid blue;
     background-position: center; /* Center the image */
 }
 
@@ -10,7 +10,7 @@
     background-image: url("https://aos.azurewebsites.net/Style/bitmap/rockmine.png");
     width: 30px;
     height: 30px;
-    border-color: blue;
+    border-color: 2px solid grey;
     background-position: center; /* Center the image */
 }
 
@@ -18,7 +18,7 @@
     background-image: url("https://aos.azurewebsites.net/Style/bitmap/ironmine.png");
     width: 30px;
     height: 30px;
-    border-color: blue;
+    border-color: 2px solid silver;
     background-position: center; /* Center the image */
 }
 
@@ -26,7 +26,7 @@
     background-image: url("https://aos.azurewebsites.net/Style/bitmap/farm.png");
     width: 30px;
     height: 30px;
-    border-color: blue;
+    border-color: 2px solid yellow;
     background-position: center; /* Center the image */
 }
 
@@ -34,7 +34,7 @@
     background-image: url("https://aos.azurewebsites.net/Style/bitmap/woodchopper.png");
     width: 30px;
     height: 30px;
-    border-color: blue;
+    border-color: 2px solid brown;
     background-position: center; /* Center the image */
 }
 
@@ -42,7 +42,7 @@
     background-image: url("https://aos.azurewebsites.net/Style/bitmap/barracks.png");
     width: 30px;
     height: 30px;
-    border-color: blue;
+    border-color: 2px solid red;
     background-position: center; /* Center the image */
 }
 
